@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+       <record id="hr_holidays_report_py3o" model="ir.actions.report.xml">
+          <field name="name">HR Holiday Report Py3o</field>
+          <field name="type">ir.actions.report.xml</field>
+          <field name="model">hr.holidays</field>
+          <field name="report_name">HR Holidays</field>
+          <field name="report_type">py3o</field>
+          <field name="py3o_filetype">odt</field>
+          <field name="py3o_is_local_fusion" eval="1"/>
+          <field name="py3o_filetype">odt</field>
+          <field name="module">hr_holidays_py3o</field>
+          <field name="py3o_template_fallback">report/hr_holidays.odt</field>
+        </record>
+
+        <record id="hr_holidays_report_py3o_print_action" model="ir.values">
+          <field eval="'action'" name="key" />
+          <field eval="'client_print_multi'" name="key2" />
+          <field name="model">hr.holidays</field>
+          <field name="name">HR Holidays</field>
+          <field eval="'ir.actions.report.xml,'+str(hr_holidays_report_py3o)" name="value" />
+        </record>
+</odoo>
