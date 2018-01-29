@@ -18,7 +18,7 @@
             <field name="name">Phonebook</field>
             <field name="model">res.phonebook</field>
             <field name="arch" type="xml">
-                <tree string="Vessel Type">
+                <tree string="Phonebook">
                     <field name="first_name"/>
                     <field name="last_name"/>
                     <field name="country_id"/>
