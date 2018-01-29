@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
+    <data noupdate="0">
 
         <record model="ir.ui.view" id="phonebook_search_view">
             <field name="name">Phonebook</field>
