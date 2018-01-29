@@ -6,10 +6,20 @@
 from odoo import models, fields, api, _
 
 
+class GpsCard(models.Model):
+    _name = 'gps.card'
+
+    card_no=fields.char(string='Card number')
+    first_name = fields.Char(string='First Name')
+    last_name = fields.Char(string='Last Name')
+
+
 class GpsLocationHistory(models.Model):
     _name = 'gps.location.history'
 
-    latitude = fields.Float(string='Lat',digits=(16,5))
-    longitude = fields.Float(string='Long',digits=(16,5))
-    vehicle_id = fields.Many2one('gps.vehicle', 'Country')
-    birthday = fields.Date(strig='Birthday')
+    latitude = fields.Float(string='Lat', digits=(16, 5))
+    longitude = fields.Float(string='Long', digits=(16, 5))
+    vehicle_inv_no = fields.Char( string='Vehicle Invertory Number')
+    card_no = fields.Many2one('gps.card', string='Badge')
+    is_active = fields.Boolean(string='Active', default=False)
+    battery_voltage = fields.Float(String='Battery voltage')

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record model="ir.ui.view" id="phonebook_search_view">
+            <field name="name">GPS Location history</field>
+            <field name="model">gps.location.history</field>
+            <field name="arch" type="xml">
+                <search string="GPS Location history">
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+                    <field name="vehicle_inv_no"/>
+                    <field name="card_no"/>
+                    <field name="is_active"/>
+                    <field name="battery_voltage"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="phonebook_tree_view">
+            <field name="name">GPS Location history</field>
+            <field name="model">gps.location.history</field>
+            <field name="arch" type="xml">
+                <tree string="Vessel Type">
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+                    <field name="vehicle_inv_no"/>
+                    <field name="card_no"/>
+                    <field name="is_active"/>
+                    <field name="battery_voltage"/>
+                </tree>
+            </field>
+        </record>
+
+       <record model="ir.ui.view" id="phonebook_form_view">
+            <field name="name">GPS Location history</field>
+            <field name="model">gps.location.history</field>
+            <field name="arch" type="xml">
+                <form string="GPS Location history">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Type">
+                                <field name="latitude"/>
+                                    <field name="longitude"/>
+                                    <field name="vehicle_inv_no"/>
+                                    <field name="card_no"/>
+
+                            </group>
+                            <group>
+                                <field name="is_active"/>
+                                <field name="battery_voltage"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="phonebook_action">
+            <field name="name">GPS Location history</field>
+            <field name="res_model">gps.location.history</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new GPS Location history entry.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_phonebook" action="phonebook_action"  sequence="1"/>
+
+
+
+
+
+   </data>
+</odoo>

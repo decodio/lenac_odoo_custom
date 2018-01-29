@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_res_phonebook_user,access_res_phonebook_user,model_res_phonebook,base.group_user,1,0,0,0
-access_res_phonebook_system,access_res_phonebook_system,model_res_phonebook,base.group_system,1,1,1,1
+access_gps_card_user,access_gps_card_user,model_gps_card,base.group_user,1,0,0,0
+access_gps_card_system,access_gps_card_system,model_gps_card,base.group_system,1,1,1,1
+access_gps_location_history_user,access_gps_location_history_user,model_gps_location_history,base.group_user,1,0,0,0
+access_gps_location_history_system,access_gps_location_history_system,model_gps_location_history,base.group_system,1,1,1,1

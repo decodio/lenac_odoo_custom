@@ -12,8 +12,8 @@
     'website': 'http://lenac.hr',
     'depends': ['sp_viktor_lenac_dms_qms'],  # List dependent modules, sp_viktor_lenac_dms_qms is a safe bet
     'data': [
-             #'security/ir.model.access.csv',
-             #'views/phonebook_view.xml',
+             'security/ir.model.access.csv',
+             'views/gps_tracking_view.xml',
              ],
     'demo_xml': [],
     'installable': True,
