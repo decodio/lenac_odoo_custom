@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record model="ir.ui.view" id="phonebook_search_view">
+            <field name="name">Phonebook</field>
+            <field name="model">res.phonebook</field>
+            <field name="arch" type="xml">
+                <search string="Phonebook">
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="country_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="phonebook_tree_view">
+            <field name="name">Phonebook</field>
+            <field name="model">res.phonebook</field>
+            <field name="arch" type="xml">
+                <tree string="Vessel Type">
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="country_id"/>
+                    <field name="birthday"/>
+                    <field name="phone"/>
+                </tree>
+            </field>
+        </record>
+
+       <record model="ir.ui.view" id="phonebook_form_view">
+            <field name="name">Phonebook</field>
+            <field name="model">res.phonebook</field>
+            <field name="arch" type="xml">
+                <form string="Phonebook">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Type">
+                                <field name="first_name"/>
+                                <field name="last_name"/>
+                            </group>
+                            <group>
+                                <field name="country_id"/>
+                                <field name="birthday"/>
+                                <field name="phone"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="phonebook_action">
+            <field name="name">Phonebook</field>
+            <field name="res_model">res.phonebook</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new Phonebook entry.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_phonebook" action="phonebook_action"  sequence="1"/>
+
+
+
+
+
+   </data>
+</odoo>
