@@ -13,7 +13,8 @@
     'depends': ['sp_viktor_lenac_dms_qms'],  # List dependent modules, sp_viktor_lenac_dms_qms is a safe bet
     'data': [
              'security/ir.model.access.csv',
-             'views/gps_tracking_view.xml',
+             'views/card_view.xml',
+             'views/location_history_view.xml',
              ],
     'demo_xml': [],
     'installable': True,

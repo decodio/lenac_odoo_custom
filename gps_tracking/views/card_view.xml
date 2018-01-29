@@ -62,9 +62,5 @@
 
         <menuitem id="menu_phonebook" action="gps_card_action"  sequence="1"/>
 
-
-
-
-
    </data>
 </odoo>
