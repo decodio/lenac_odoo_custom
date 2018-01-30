@@ -3,7 +3,7 @@
 # Copyright (C) 2018 Viktor Lenac
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api, _, tools
 
 
 class LeadReport(models.Model):
@@ -13,9 +13,9 @@ class LeadReport(models.Model):
     _rec_name = 'name'  # if name is not called "name"
     _order = 'create_date DESC'
 
-    name = fields.Char(string='Prilika', readonly = True)
+    name = fields.Char(string='Prilika', readonly=True)
     create_date = fields.Date(string='Kreirano')
-    user_id = fields.Many2oner(comodel_name='res.users', string='Prodavac')
+    user_id = fields.Many2one(comodel_name='res.users', string='Prodavac')
     country_id = fields.Many2one('res.country', 'Country')
     imo_vat = fields.Char(strig='Imo/VAT')
     dock_stay = fields.Integer('Dock Stay')
