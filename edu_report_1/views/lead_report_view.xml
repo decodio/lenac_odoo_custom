@@ -59,7 +59,7 @@
         <!-- Pivot View -->
         <record id="view_lead_report_pivot" model="ir.ui.view">
             <field name="name">lead.report.pivot</field>
-            <field name="model">lead_report</field>
+            <field name="model">lead.report</field>
             <field name="arch" type="xml">
                 <pivot string="Lead " disable_linking="True">
                     <field name="user_id" type="row"/>
