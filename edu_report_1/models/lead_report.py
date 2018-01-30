@@ -25,7 +25,8 @@ class LeadReport(models.Model):
         tools.drop_view_if_exists(self._cr, 'crm_mfn_won_in_progress_report')
         self._cr.execute("""
             create or replace view lead_report AS 
-                select cl.id, cl.name, cl.create_date
+                select cl.id, cl.name
+                      ,cast(cl.create_date as date) create_date
                       ,cl.user_id , rp.country_id
                       ,coalesce(rp.imo, rp.vat, 'N/A') imo_vat
                       ,cl.dock_stay
