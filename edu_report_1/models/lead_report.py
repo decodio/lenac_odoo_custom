@@ -28,6 +28,7 @@ class LeadReport(models.Model):
                 select cl.id, cl.name, cl.create_date
                       ,cl.user_id , rp.country_id
                       ,coalesce(rp.imo, rp.vat, 'N/A') imo_vat
+                      ,cl.dock_stay
                   from crm_lead as cl
                   join res_partner as rp on cl.partner_id =rp.id 
             """)
