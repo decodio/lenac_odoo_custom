@@ -22,14 +22,15 @@ class LeadReport(models.Model):
 
     @api.model_cr
     def init(self):
-        tools.drop_view_if_exists(self._cr, 'crm_mfn_won_in_progress_report')
+        tools.drop_view_if_exists(self._cr, 'lead_report')
         self._cr.execute("""
-            create or replace view lead_report AS 
-                select cl.id, cl.name
+            CREATE OR REPLACE VIEW lead_report AS 
+                SELECT cl.id
+                      ,cl.name
                       ,cast(cl.create_date as date) create_date
                       ,cl.user_id , rp.country_id
                       ,coalesce(rp.imo, rp.vat, 'N/A') imo_vat
                       ,cl.dock_stay
-                  from crm_lead as cl
-                  join res_partner as rp on cl.partner_id =rp.id 
+                 FROM crm_lead as cl
+                 JOIN res_partner as rp ON rp.id = cl.partner_id  
             """)
