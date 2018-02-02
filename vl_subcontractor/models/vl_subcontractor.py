@@ -3,21 +3,15 @@
 # Copyright (C) 2018 Viktor Lenac
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class VlSubcontractor(models.Model):
     _name = 'vl.subcontractor'
     _description = "Subcontractor"
     _order = "priority desc, id desc"
-    _inherit = ['mail.thread', 'ir.need action_mixin', 'utm.mixin']
+    _inherit = ['mail.thread', 'ir.needaction_mixin', 'utm.mixin']
     _mail_mass_mailing = _('Applicants')
-
-    first_name = fields.Char(string='First Name', required=True)
-    last_name = fields.Char(string='Last Name')
-    phone = fields.Integer(string='Phone')
-    country_id = fields.Many2one('res.country', 'Country')
-    birthday = fields.Date(strig='Birthday')
 
     name = fields.Char("Subject / Applicant name", required=True)
     active = fields.Boolean("Active", default=True,
@@ -33,11 +27,15 @@ class VlSubcontractor(models.Model):
     )
     address = fields.Text("Address")
     per_id_number = fields.Char("Personal identification number")
-    email_from = fields.Char("General Email address", help="These people will receive email.")
+    email_from = fields.Char(
+        "General Email address",
+        help="These people will receive email.")
     partner_phone = fields.Char("Telephone")
     fax_number = fields.Char("Fax Number")
     contact_person = fields.Char("Contact Person / Title")
-    contact_person_email = fields.Char("Contact Person Email)", help="This person will be contacted for additional info")
+    contact_person_email = fields.Char(
+        "Contact Person Email)",
+        help="This person will be contacted for additional info")
     filled_in_by = fields.Char("Application filled in by / Title")
     financial_group = fields.Text("Financial Group/ Owners")
     company_age = fields.Integer("Company age")
@@ -50,17 +48,17 @@ class VlSubcontractor(models.Model):
     administration = fields.Integer("Administration")
     ship_fitter = fields.Integer("Ship fitters")
     management = fields.Integer("Management")
-    locksmith  = fields.Integer("Locksmith")
+    locksmith = fields.Integer("Locksmith")
     manpower = fields.Integer("Manpower")
-    mechanic  = fields.Integer("Mechanic")
-    foreman  = fields.Integer("Foreman")
-    electrician  = fields.Integer("Electricina")
-    welders  = fields.Integer("Welders")
-    other  = fields.Integer("Other")
+    mechanic = fields.Integer("Mechanic")
+    foreman = fields.Integer("Foreman")
+    electrician = fields.Integer("Electricina")
+    welders = fields.Integer("Welders")
+    other = fields.Integer("Other")
     proj1_company = fields.Char("Company name")
     proj1_address = fields.Char("Address")
     proj1_manager_name = fields.Char("Project manager")
-    proj1_project  = fields.Char("Bank account")
+    proj1_project = fields.Char("Bank account")
     proj1_date = fields.Date("Project date")
     proj1_project_desc = fields.Text("Short project description")
     proj2_company = fields.Char("Company name")
@@ -162,7 +160,7 @@ class VlSubcontractor(models.Model):
         string='QA Accident/Incident Statistics',
         required=True,
         default="No")
-    agent_shipp_agent = fields.Selection(
+    agent_ship_agent = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
         string='Shipping agent',
         required=True,
