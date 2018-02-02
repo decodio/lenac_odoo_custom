@@ -10,10 +10,11 @@
     'complexity': "normal",
     'author': 'Viktor Lenac d.d. (Vedran Terihaj)',
     'website': 'http://lenac.hr',
-    'depends': ['sp_viktor_lenac_dms_qms'],  # List dependent modules, sp_viktor_lenac_dms_qms is a safe bet
+    'depends': ['sp_viktor_lenac_dms_qms', 'website_partner', 'website_mail', 'website_form'],  # List dependent modules, sp_viktor_lenac_dms_qms is a safe bet
     'data': [
-             #'security/ir.model.access.csv',
+             'security/ir.model.access.csv',
              'views/vl_subcontractor_view.xml',
+             'views/website_vl_subcontractor_templates.xml',
              ],
     'demo_xml': [],
     'installable': True,

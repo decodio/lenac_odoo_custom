@@ -21,7 +21,7 @@
                 <tree string="Subcontractor">
                     <field name="name"/>
                     <field name="contact_person"/>
-                    <field name="agent_ship_agnet"/>
+                    <field name="agent_ship_agent"/>
                 </tree>
             </field>
         </record>
@@ -53,7 +53,7 @@
             <field name="res_model">vl.subcontractor</field>
             <field name="view_type">form</field>
             <field name="help" type="html">
-              <p class="oe_view_no content_create">
+              <p class="oe_view_nocontent_create">
                 Click to add a new Subcontractor entry.
               </p>
             </field>
