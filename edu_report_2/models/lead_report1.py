@@ -28,24 +28,25 @@ class LeadReport1(models.Model):
         tools.drop_view_if_exists(self._cr, 'lead_report1')
         self._cr.execute("""
             CREATE OR REPLACE VIEW lead_report1 AS 
-                SELECT  cl.project_code
-	            	cl.name,
-		            cl.stage_id,
-	            	to_char(cl.create_date, 'dd.mm.yyyy'),
-   	            	cl.user_id,
-   		            rp.country_id,
-    	            	COALESCE(rp.imo, rp.vat, 'N/A'::character varying) AS imo_vat,
-    		        cl.dock_stay,
-			            CASE 
-    		                WHEN cl.lost_reason_id IS NULL then 'No'
-    		                WHEN cl.lost_reason_id IS NOT NULL THEN 'Yes'
-    		                ELSE 'Maybe'
-			            END	
-			            AS LOST	,
-			        cl.lost_description,
-			        ll.lead_id
-		            FROM crm_lead cl		
-		            LEFT OUTER JOIN res_partner rp ON cl.partner_id = rp.id
-		            LEFT OUTER JOIN crm_lead_lost ll on cl.id = ll.lead_id
-		            LEFT OUTER JOIN crm_lost_reason lr on ll.id = lr.id
+                SELECT cl.id,
+                    cl.project_code,
+                    cl.name,
+                    cl.stage_id,
+                    to_char(cl.create_date, 'dd.mm.yy'),
+                    cl.user_id,
+                    rp.country_id,
+                    COALESCE(rp.imo, rp.vat, 'N/A'::character varying) AS imo_vat,
+                    cl.dock_stay,
+                        CASE 
+                            WHEN cl.lost_reason_id IS NULL then 'No'
+                            WHEN cl.lost_reason_id IS NOT NULL THEN 'Yes'
+                            ELSE 'Maybe'
+                        END
+                        AS LOST	,
+                    cl.lost_description,
+                    ll.lead_id
+                    FROM crm_lead cl		
+                    LEFT OUTER JOIN res_partner as rp ON rp.id = cl.partner_id
+                    LEFT OUTER JOIN crm_lead_lost as ll on ll.lead_id = cl.id
+                    LEFT OUTER JOIN crm_lost_reason as lr on lr.id = ll.id
             """)
