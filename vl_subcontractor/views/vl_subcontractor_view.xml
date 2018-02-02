@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record model="ir.ui.view" id="vl_subcontractor_search_view">
+            <field name="name">Subcontractor</field>
+            <field name="model">vl.subcontractor</field>
+            <field name="arch" type="xml">
+                <search string="Subcontractor">
+                    <field name="name"/>
+                    <field name="contact_person"/>
+                    <field name="agent_ship_agent"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="vl_subcontractor_tree_view">
+            <field name="name">Subcontractor</field>
+            <field name="model">vl.subcontractor</field>
+            <field name="arch" type="xml">
+                <tree string="Subcontractor">
+                    <field name="name"/>
+                    <field name="contact_person"/>
+                    <field name="agent_ship_agnet"/>
+                </tree>
+            </field>
+        </record>
+
+       <record model="ir.ui.view" id="vl_subcontractor_form_view">
+            <field name="name">Subcontractor</field>
+            <field name="model">vl.subcontractor</field>
+            <field name="arch" type="xml">
+                <form string="Subcontractor">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Type">
+                                <field name="name"/>
+                                <field name="contact_person"/>
+                            </group>
+                            <group>
+                                <field name="agent_ship_agent"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="vl_subcontractor_action">
+            <field name="name">Subcontractor</field>
+            <field name="res_model">vl.subcontractor</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_no content_create">
+                Click to add a new Subcontractor entry.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vl_subcontractor" action="vl_subcontractor_action"  sequence="1"/>
+
+
+
+
+
+   </data>
+</odoo>
