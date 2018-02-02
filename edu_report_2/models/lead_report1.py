@@ -28,7 +28,7 @@ class LeadReport1(models.Model):
         tools.drop_view_if_exists(self._cr, 'lead_report1')
         self._cr.execute("""
             CREATE OR REPLACE VIEW lead_report1 AS 
-                SELECT  cl.project_code
+                SELECT  cl.project_code,
 	            	cl.name,
 		            cl.stage_id,
 	            	to_char(cl.create_date, 'dd.mm.yyyy'),
