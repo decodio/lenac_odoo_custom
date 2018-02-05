@@ -54,7 +54,7 @@
                         </sheet>
                     </form>
                     <xpath expr="//notebook/page[1]" position="before">
-                        <page string="Organization/General Description">
+                        <page string="Organization/General Description" name="general_description">
                             <group string="General info">
                                <group>
                                     <field name="financial_group"/>
@@ -80,7 +80,7 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Previous Experience">
+                        <page string="Previous Experience" name="previous_experience">
                             <group string="Experience">
                                 <group>
                                     <field name="proj1_company"/>
