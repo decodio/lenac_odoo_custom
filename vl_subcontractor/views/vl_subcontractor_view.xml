@@ -30,21 +30,88 @@
             <field name="name">Subcontractor</field>
             <field name="model">vl.subcontractor</field>
             <field name="arch" type="xml">
-                <form string="Subcontractor">
-                    <header>
-                    </header>
-                    <sheet>
-                        <group>
-                            <group string="Type">
-                                <field name="name"/>
-                                <field name="contact_person"/>
+                <data>
+                    <form string="Subcontractor">
+                        <header>
+                        </header>
+                        <sheet>
+                            <group string="Subcontractor">
+                                <group>
+                                    <field name="name"/>
+                                    <field name="address"/>
+                                    <field name="per_id_number"/>
+                                    <field name="email_from"/>
+                                    <field name="partner_phone"/>
+                                    <field name="fax_number"/>
+                                </group>
+                                <group>
+                                    <field name="contact_person"/>
+                                    <field name="contact_person_email"/>
+                                    <field name="filled_in_by"/>
+                                    <field name="agent_ship_agent"/>
+                                </group>
                             </group>
-                            <group>
-                                <field name="agent_ship_agent"/>
+                        </sheet>
+                    </form>
+                    <xpath expr="//notebook/page[1]" position="before">
+                        <page string="Organization/General Description">
+                            <group string="General info">
+                               <group>
+                                    <field name="financial_group"/>
+                                    <field name="company_age"/>
+                                    <field name="product_range"/>
+                                    <field name="type_service"/>
+                                    <field name="bank"/>
+                                    <field name="bank_account"/>
+                                    <field name="total_personnel"/>
+                               </group>
+                                <group>
+                                    <field name="administration"/>
+                                    <field name="management"/>
+                                    <field name="manpower"/>
+                                    <field name="foreman"/>
+                                    <field name="welders"/>
+                                    <field name="pipe_welders"/>
+                                   <field name="ship_fitter"/>
+                                    <field name="locksmith"/>
+                                    <field name="mechanic"/>
+                                    <field name="electrician"/>
+                                    <field name="other"/>
+                                </group>
                             </group>
+                        </page>
+                        <page string="Previous Experience">
+                            <group string="Experience">
+                                <group>
+                                    <field name="proj1_company"/>
+                                    <field name="proj1_address"/>
+                                    <field name="proj1_manager_name"/>
+                                    <field name="proj1_date"/>
+                                    <field name="proj1_project_desc"/>
+                                </group>
+                                <group>
+                                    <field name="proj2_company"/>
+                                    <field name="proj2_address"/>
+                                    <field name="proj2_manager_name"/>
+                                    <field name="proj2_date"/>
+                                    <field name="proj2_project_desc"/>
+                                </group>
+                                <group>
+                                    <field name="proj3_company"/>
+                                    <field name="proj3_address"/>
+                                    <field name="proj3_manager_name"/>
+                                    <field name="proj3_date"/>
+                                    <field name="proj3_project_desc"/>
+                                </group>
+                            </group>
+                        </page>
+                    </xpath>
+                    <!--<page string="Issues" name="page_project_issues">
+                        <group colspan="4" col="4">
+                            <field name="project_issue_ids" nolabel="1"/>
                         </group>
-                    </sheet>
-                </form>
+                    </page>-->
+                </data>
             </field>
         </record>
 
