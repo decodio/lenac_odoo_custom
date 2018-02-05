@@ -102,12 +102,33 @@
                                     </group>
                                 </group>
                             </page>
+                            <page string="Quality and Safety Management" name="quality_and_safety_management">
+                                <group string="QA Management">
+                                    <group>
+                                        <field name="qa_system"/>
+                                        <field name="qa_contact"/>
+                                        <field name="qa_organization"/>
+                                        <field name="qa_contract_rev"/>
+                                        <field name="qa_engineering"/>
+                                        <field name="qa_docs"/>
+                                        <field name="qa_purchasing"/>
+                                        <field name="qa_trace_material"/>
+                                        <field name="qa_spec_proces"/>
+                                    </group>
+                                    <group>
+                                        <field name="qa_inspect_test"/>
+                                        <field name="qa_calibration"/>
+                                        <field name="qa_non_conf_ite"/>
+                                        <field name="qa_correct_action"/>
+                                        <field name="qa_handle_stor_pack"/>
+                                        <field name="qa_qal_rec"/>
+                                        <field name="qa_auditors"/>
+                                        <field name="qa_safe_manage"/>
+                                        <field name="qa_sys"/>
+                                    </group>
+                                </group>
+                            </page>
                         </notebook>
-                        <!--<page string="Issues" name="page_project_issues">
-                            <group colspan="4" col="4">
-                                <field name="project_issue_ids" nolabel="1"/>
-                            </group>
-                        </page>-->
                     </sheet>
                 </form>
             </field>
