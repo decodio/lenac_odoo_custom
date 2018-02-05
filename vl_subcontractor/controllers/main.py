@@ -82,7 +82,7 @@ class WebsiteVlSubcontractor(http.Controller):
             'main_object': job,
         })
     """
-    @http.route('/vl_subcontractor', type='http', auth="public", website=True)
+    @http.route('/vl_subcontractor', type='https', auth="public", website=True)
     def subc_apply(self, **kwargs):
         error = {}
         default = {}
