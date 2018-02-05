@@ -15,7 +15,7 @@
              'security/ir.model.access.csv',
              'views/vl_subcontractor_view.xml',
              'views/website_vl_subcontractor_templates.xml',
-             'data/survey_survey_data.xml',
+             #'data/survey_survey_data.xml',
              ],
     'demo_xml': [],
     'installable': True,
