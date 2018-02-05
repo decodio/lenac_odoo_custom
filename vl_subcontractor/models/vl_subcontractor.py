@@ -7,14 +7,20 @@ from odoo import models, fields, api, _
 
 
 class VlSubcontractor(models.Model):
-    survey_id = fields.Many2one(
-        'survey.survey', "Subcontractor review")
+
+    #survey_id = fields.Many2one(
+    #    'survey.survey', "Subcontractor review")
+
+
 
     _name = 'vl.subcontractor'
     _description = "Subcontractor"
     #_order = "priority desc, id desc"
     _inherit = ['mail.thread', 'ir.needaction_mixin', 'utm.mixin']
     _mail_mass_mailing = _('Applicants')
+
+    survey_id = fields.Many2one('survey.survey', string="Survey")
+    response_id = fields.Many2one('survey.user_input', "Response", ondelete="set null", oldname="response")
 
     name = fields.Char("Subject / Applicant name", required=True)
     active = fields.Boolean("Active", default=True,
