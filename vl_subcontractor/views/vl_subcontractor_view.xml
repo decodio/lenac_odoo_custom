@@ -53,7 +53,7 @@
                             </group>
                         </sheet>
                     </form>
-                    <xpath expr="//notebook/page[1]" position="before">
+                    <notebook>
                         <page string="Organization/General Description" name="general_description">
                             <group string="General info">
                                <group>
@@ -105,7 +105,7 @@
                                 </group>
                             </group>
                         </page>
-                    </xpath>
+                    </notebook>
                     <!--<page string="Issues" name="page_project_issues">
                         <group colspan="4" col="4">
                             <field name="project_issue_ids" nolabel="1"/>
