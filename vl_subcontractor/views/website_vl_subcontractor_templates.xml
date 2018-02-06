@@ -128,7 +128,9 @@
             </h3>
             <div class="row">
                 <section id="forms">
-                    <form action="/website_form/" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-model_name="vl.subcontractor" data-success_page="/page/website_vl_subcontractor.thankyou">
+                    <form action="/website_form/"
+                          method="post" class="s_website_form form-horizontal container-fluid mt32"
+                          enctype="multipart/form-data" data-model_name="vl.subcontractor" data-success_page="/page/website_vl_subcontractor.thankyou">
                         <div class="form-group form-field o_website_form_required_custom">
                             <div class="col-md-3 col-sm-4 text-right">
                                 <label class="control-label" for="name">Name:</label>

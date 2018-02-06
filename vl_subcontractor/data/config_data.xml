@@ -12,24 +12,35 @@
             <field name="target">self</field>
             <field name="url">/vl_subcontractor</field>
         </record>
-        <record id="base.open_menu" model="ir.actions.todo">
+        <!-- ne treba record id="base.open_menu" model="ir.actions.todo">
             <field name="action_id" ref="action_open_website"/>
             <field name="state">open</field>
-        </record>
+        </record-->
     </data>
     <data>
         <record id="vl_subcontractor.model_vl_subcontractor" model="ir.model">
-            <field name="website_form_default_field_id"/>
+            <field name="website_form_default_field_id" ref="vl_subcontractor.field_vl_subcontractor_details">
+                <!--Modul_where_field_is_first_declared.field_model_fieldname -->
+            </field>
             <field name="website_form_access">True</field>
-            <field name="website_form_label">Apply for a Job</field>
+            <field name="website_form_label">Subcontractor Application</field>
         </record>
         <function model="ir.model.fields" name="formbuilder_whitelist">
-            <value>hr.applicant</value>
+            <value>vl.subcontractor</value>
+            <!--List all editable fields needed in website form  -->
             <value eval="[
                 'description',
                 'email_from',
                 'name',
                 'partner_phone'
+                'qa_calibration', 'qa_contract_rev', 'campaign_id',
+                'qa_sys', 'qa_inspect_test', 'qa_spec_proces',
+                'qa_docs', 'qa_non_conf_ite', 'qa_engineering',
+                'qa_correct_action', 'qa_purchasing', 'qa_organization',
+                'qa_qal_rec', 'qa_handle_stor_pack',
+                'qa_acc_inc_stat', 'medium_id',
+                'qa_auditors', 'qa_safe_manage', 'source_id',
+                'qa_trace_material', 'agent_ship_agent'
             ]"/>
         </function>
     </data>
