@@ -13,8 +13,8 @@ class VlSubcontractor(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin', 'utm.mixin']
     _mail_mass_mailing = _('Applicants')
 
-    survey_id = fields.Many2one('survey.survey', related='vl_subcontractor_id.survey_id', string="Survey")
-    response_id = fields.Many2one('survey.user_input', "Response", ondelete="set null", oldname="response")
+    #survey_id = fields.Many2one('survey.survey', related='vl_subcontractor_id.survey_id', string="Survey")
+    #response_id = fields.Many2one('survey.user_input', "Response", ondelete="set null", oldname="response")
 
     name = fields.Char("Subject / Applicant name", required=True)
     active = fields.Boolean("Active", default=True,
@@ -168,15 +168,15 @@ class VlSubcontractor(models.Model):
 
     description = fields.Text("Description")
 
-    @api.multi
-    def action_start_survey(self):
-        self.ensure_one()
-        # create a response and link it to this applicant
-        if not self.response_id:
-            response = self.env['survey.user_input'].create(
-                {'survey_id': self.survey_id.id, 'partner_id': self.partner_id.id})
-            self.response_id = response.id
-        else:
-            response = self.response_id
-        # grab the token of the response and start surveying
-        return self.survey_id.with_context(survey_token=response.token).action_start_survey()
+    #@api.multi
+    #def action_start_survey(self):
+    #    self.ensure_one()
+    #    # create a response and link it to this applicant
+    #    if not self.response_id:
+    #        response = self.env['survey.user_input'].create(
+    #            {'survey_id': self.survey_id.id, 'partner_id': self.partner_id.id})
+    #        self.response_id = response.id
+    #    else:
+    #        response = self.response_id
+    #    # grab the token of the response and start surveying
+    #    return self.survey_id.with_context(survey_token=response.token).action_start_survey()
