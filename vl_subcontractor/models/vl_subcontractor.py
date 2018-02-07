@@ -165,16 +165,16 @@ class VlSubcontractor(models.Model):
 
     description = fields.Text("Description")
 
-    #@api.multi
-    #def action_start_survey(self):
-    #   self.ensure_one()
+    @api.multi
+    def action_start_survey(self):
+       self.ensure_one()
         # create a response and link it to this applicant
-    #    if not self.response_id:
-    #        response = self.env['survey.user_input'].create(
-    #            {'survey_id': self.survey_id.id, 'partner_id': self.partner_id.id})
-    #        self.response_id = response.id
-    #    else:
-    #        response = self.response_id
+        if not self.response_id:
+            response = self.env['survey.user_input'].create(
+                {'survey_id': self.survey_id.id, 'partner_id': self.partner_id.id})
+            self.response_id = response.id
+        else:
+            response = self.response_id
         # grab the token of the response and start surveying
-    #    return self.survey_id.with_context(survey_token=response.token).action_start_survey()
+        return self.survey_id.with_context(survey_token=response.token).action_start_survey()
 
