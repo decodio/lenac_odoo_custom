@@ -13,6 +13,9 @@ class VlSubcontractor(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin', 'utm.mixin']
     _mail_mass_mailing = _('Applicants')
 
+    survey_id = fields.Many2one('survey.survey', related='vl_subcontractor_id.survey_id', string="Survey")
+    response_id = fields.Many2one('survey.user_input', "Response", ondelete="set null", oldname="response")
+
     name = fields.Char("Subject / Applicant name", required=True)
     active = fields.Boolean("Active", default=True,
                             help="If the active field is set to false, it will allow you "
@@ -167,7 +170,7 @@ class VlSubcontractor(models.Model):
 
     @api.multi
     def action_start_survey(self):
-       self.ensure_one()
+        self.ensure_one()
         # create a response and link it to this applicant
         if not self.response_id:
             response = self.env['survey.user_input'].create(
@@ -177,4 +180,3 @@ class VlSubcontractor(models.Model):
             response = self.response_id
         # grab the token of the response and start surveying
         return self.survey_id.with_context(survey_token=response.token).action_start_survey()
-
