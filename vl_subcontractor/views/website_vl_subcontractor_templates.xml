@@ -134,13 +134,1119 @@
                           data-success_page="/page/vl_subcontractor.thankyou">
                         <div class="form-group form-field o_website_form_required_custom">
                             <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="name">Company Name:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="name" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="address_street">Company Address:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="address_street" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="address_po_box">PO Box:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="address_po_box" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="address_city">City:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="address_city" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="country_id">Country:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="country_id" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="per_id_number">Personal identification number:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="per_id_number" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="email_from">General E-Mail Address:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="email" class="form-control o_website_form_input" name="email_from" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="partner_phone">Telephone:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="partner_phone" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="fax_number">Telefax</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="fax_number" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="contact_person">Contact person/Title:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="contact_person" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="contact_peson_email">Contact person E-mail Address:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="contact_person_email" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="filled_in_by">Application Filled in by/Position:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="filled_in_by" required=""/>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-center">
+                                2. Organization / General description
+                            </h3>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="financial_group">Financial Group/Owners:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="financial_group" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="company_age">How old is the Company/Plant:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="company_age" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="product_range">Product range:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="product_range" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="type_service">Types of services:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="type_service" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="bank">Bank:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="bank" required=""/>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="bank_account">Bank Account:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="bank_account" required=""/>
+                            </div>
+                        </div>
+                        <table align="center" >
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="total_personnel">Total Personnel:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" class="form-control o_website_form_input" name="total_personnel" required=""/>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="pipe_welders">Pipe Welders:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" class="form-control o_website_form_input" name="pipe_welders" required=""/>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="administration">Administration:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" class="form-control o_website_form_input" name="administration" required=""/>
+                                        </div>
+                                    </div>
+                                </td>
+                                 <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="ship_fitter">Ship-fitter:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" class="form-control o_website_form_input" name="ship_fitter" required=""/>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="management">Management:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" class="form-control o_website_form_input" name="management" required=""/>
+                                        </div>
+                                    </div>
+                                </td>
+                                 <td>
+                                     <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="locksmith">Locksmith:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" class="form-control o_website_form_input" name="locksmith" required=""/>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="manpower">Manpower:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" class="form-control o_website_form_input" name="manpower" required=""/>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                     <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="mechanic">Mechanic:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" class="form-control o_website_form_input" name="mechanic" required=""/>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="foreman">Foreman:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" class="form-control o_website_form_input" name="foreman" required=""/>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="electrician">Electrician:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" class="form-control o_website_form_input" name="electrician" required=""/>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="welders">Welders:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" class="form-control o_website_form_input" name="welders" required=""/>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                     <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="other">Other:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" class="form-control o_website_form_input" name="other" required=""/>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div>
+                            <h3 class="text-center">
+                                3. Previous Experience
+                            </h3>
+                        </div>
+                        <table align ="center">
+                            <tr>
+                                <td>
+                                    <th>Give 3 recent references of other client statig the Company name, address, Name of Project Manager, <br></br> date, brief description of the project.</th>
+                                </td>
+                            </tr>
+                            <tr>
+                                <table align ="center"> <!-- border="1px solid black">-->
+                                    <tr>
+                                        <td>
+
+                                        </td>
+                                        <td>
+                                            <th> Client information</th>
+                                            <th> Description</th>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <th>    1   </th>
+                                        </td>
+                                        <td>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj1_company">Company name</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-6">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj1_company" required=""/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj1_address">Address</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj1_address" required=""/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj1_manager_name">Name of the Project Manager</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj1_manager_name" required=""/>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj1_date">Date</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj1_date" required=""/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj1_project_desc">Brief description of the project</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj1_project_desc" required=""/>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr><td><br></br></td></tr>
+                                    <tr><td><br></br></td></tr>
+                                    <tr>
+                                        <td>
+                                            <th>    2   </th>
+                                        </td>
+                                        <td>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj2_company">Company name</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-6">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj2_company" required=""/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj2_address">Address</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj2_address" required=""/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj2_manager_name">Name of the Project Manager</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj2_manager_name" required=""/>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj2_date">Date</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj2_date" required=""/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj2_project_desc">Brief description of the project</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj2_project_desc" required=""/>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr><td><br></br></td></tr>
+                                    <tr><td><br></br></td></tr>
+                                    <tr>
+                                        <td>
+                                            <th>    3   </th>
+                                        </td>
+                                        <td>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj3_company">Company name</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-6">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj3_company" required=""/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj3_address">Address</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj3_address" required=""/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj3_manager_name">Name of the Project Manager</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj3_manager_name" required=""/>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj3_date">Date</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj3_date" required=""/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-field">
+                                                <div class="col-md-5 col-sm-4 text-right">
+                                                    <label class="control-label" for="proj3_project_desc">Brief description of the project</label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="text" class="form-control o_website_form_input" name="proj3_project_desc" required=""/>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </tr>
+                        </table>
+                        <div>
+                            <h3 class="text-center">
+                                4. Quality Assurance System and Safety Management System
+                            </h3>
+                        </div>
+                        <table align="center">
+                            <tr>
+                                <th>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-4 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_system_9000"><br></br>ISO 9001 Standard</label>
+                                        </div>
+                                        <div class="radio col-md-2 col-sm-4 text-just">
+                                            <input type="radio" class="radio o:website_form_input" name="qa_system_9000" required="" value="no" selected="true">No</input><br></br>
+                                            <br></br>
+                                            <input type="radio" class="radio o:website_form_input" name="qa_system_9000" required="" value="yes">Yes</input><br></br>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <div>
+                                        <h4> Indicate for which of the following topics you have documnets or procedures describing the controls implemented to ensure work is planned and carried out to a satisfactory standard (enter YES or NO)</h4>
+                                    </div>
+                                </th>
+                            </tr>
+                        </table>
+                        <br></br>
+                        <table align="center">
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-8 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_organization"><br></br>Organization:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_organization" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_organization" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-6 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_non_conf_ite"><br></br>Non Conforming Items:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_non_conf_ite" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_non_conf_ite" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-8 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_contract_rev"><br></br>Contract Review:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_contract_rev" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_contract_rev" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                 <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-6 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_correct_action"><br></br>Corrective Action:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_correct_action" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_correct_action" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-8 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_engineering"><br></br>Engineering:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_engineering" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_engineering" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                 <td>
+                                     <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-6 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_handle_stor_pack"><br></br>Handling/Storage/Packing:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_handle_stor_pack" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_handle_stor_pack" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-8 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_docs"><br></br>Documentation:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_docs" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_docs" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                     <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-6 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_qal_rec"><br></br>Quality Record:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_qal_rec" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_qal_rec" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-8 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_purchasing"><br></br>Purchasing:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_purchasing" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_purchasing" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-6 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_auditors"><br></br>Auditors:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_auditors" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_auditors" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-8 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_trace_material"><br></br>Traceability of Material:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_trace_material" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_trace_material" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-6 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_inspect_test"><br></br>Inspection/Testing:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_inspect_test" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_inspect_test" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-8 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_calibration"><br></br>Calibration:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_calibration" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_calibration" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-6 col-sm-6 text-right">
+                                            <label class="control-label" for="qa_spec_proces"><br></br>Special Processes (Welding, Heat treatmnet, NDT,...):</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_spec_proces" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_spec_proces" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <br></br>
+                        <br></br>
+                        <table align="center">
+                            <tr>
+                                <th>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-4 col-sm-3 text-right">
+                                            <label class="control-label" for="qa_system_14000"><br></br>ISO 14001 Standard</label>
+                                        </div>
+                                        <div class="radio col-md-2 col-sm-4 text-just">
+                                            <input type="radio" class="radio o:website_form_input" name="qa_system_14000" required="" value="no" selected="true">No</input><br></br>
+                                            <br></br>
+                                            <input type="radio" class="radio o:website_form_input" name="qa_system_14000" required="" value="yes">Yes</input><br></br>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <div>
+                                        <h4> Indicate for which of the following topics you have documnets or procedures.</h4>
+                                    </div>
+                                </th>
+                            </tr>
+                        </table>
+                        <br></br>
+                        <table align="center">
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_policy_14"><br></br>Policy:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_policy_14" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_policy_14" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_waste_mgmt_14"><br></br>Waste management:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_waste_mgmt_14" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_waste_mgmt_14" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <br></br>
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_dan_haz_sub_14">Control of dangerous and hazardous substances:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_dan_haz_sub_14" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_dan_haz_sub_14" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                 <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_acc_inc_stat_14">Acident/Incident Statistics:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_acc_inc_stat_14" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_acc_inc_stat_14" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <br></br>
+                        <br></br>
+                        <table align="center">
+                            <tr>
+                                <th>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-4 col-sm-3 text-right">
+                                            <label class="control-label" for="qa_system_18000"><br></br>ISO 18001 Standard</label>
+                                        </div>
+                                        <div class="radio col-md-2 col-sm-4 text-just">
+                                            <input type="radio" class="radio o:website_form_input" name="qa_system_18000" required="" value="no" selected="true">No</input><br></br>
+                                            <br></br>
+                                            <input type="radio" class="radio o:website_form_input" name="qa_system_18000" required="" value="yes">Yes</input><br></br>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <div>
+                                        <h4> Indicate for which of the following topics you have documnets or procedures.</h4>
+                                    </div>
+                                </th>
+                            </tr>
+                        </table>
+                        <br></br>
+                        <table align="center">
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_policy_18"><br></br>Policy:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_policy_18" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_policy_18" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_mach_main_18"><br></br>Machinery maintainance</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_mach_main_18" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_mach_main_18" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <br></br>
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_acc_inc_stat_18">Acident/Incident Statistics:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_acc_inc_stat_18" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_acc_inc_stat_18" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <br></br>
+                        <br></br>
+                        <table align="center">
+                            <tr>
+                                <th>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-4 col-sm-3 text-right">
+                                            <label class="control-label" for="qa_system_50000"><br></br>ISO 50001 Standard</label>
+                                        </div>
+                                        <div class="radio col-md-2 col-sm-4 text-just">
+                                            <input type="radio" class="radio o:website_form_input" name="qa_system_50000" required="" value="no" selected="true">No</input><br></br>
+                                            <br></br>
+                                            <input type="radio" class="radio o:website_form_input" name="qa_system_50000" required="" value="yes">Yes</input><br></br>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <div>
+                                        <h4> Indicate for which of the following topics you have documnets or procedures.</h4>
+                                    </div>
+                                </th>
+                            </tr>
+                        </table>
+                        <br></br>
+                        <table align="center">
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_policy_50"><br></br>Policy:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_policy_14" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_policy_14" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_eng_track_type_50">Energy consumption tracking by energy type</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_eng_track_type_50" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_eng_track_type_50" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <br></br>
+                            <tr>
+                                <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_mgmt_goal_50">Energy management goals:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_mgmt_goal_50" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_mgmt_goal_50" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                 <td>
+                                    <div class="form-group form-field o_website_form_required_custom">
+                                        <div class="col-md-5 col-sm-4 text-right">
+                                            <label class="control-label" for="qa_action_plan_50">Action plans for energy savings:</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="radio col-md-2 col-sm-4 text-just">
+                                                <input type="radio" class="radio o:website_form_input" name="qa_action_plan_50" required="" value="no" selected="true">No</input><br></br>
+                                                <br></br>
+                                                <input type="radio" class="radio o:website_form_input" name="qa_action_plan_50" required="" value="yes">Yes</input><br></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <br></br>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
+                                <label class="control-label" for="contact_qms">Contact person for QMS Systems:</label>
+                            </div>
+                            <div class="col-md-7 col-sm-8">
+                                <input type="text" class="form-control o_website_form_input" name="contact_qms" required=""/>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-center">
+                                5. Please provide the following attachments/Answers
+                            </h3>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="Copy of ISO 9001 certificate">Copy of ISO 9001 certificate</label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="Copy of ISO 9001 certificate"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="Copy of ISO 14001 certificate">Copy of ISO 14001 certificate</label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="Copy of ISO 14001 certificate"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="Copy of ISO 18001 certificate">Copy of ISO 18001 certificate</label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="Copy of ISO 18001 certificate"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="Copy of ISO 50001 certificate">Copy of ISO 50001 certificate</label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="Copy of ISO 50001 certificate"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="Proof of registred activities">Extract from the judicial record - proof of registred activities</label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="Proof of registred activities"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="BON-1">BON-1 not older than 30 days (Only applies to companies based in Croatia)</label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="BON-1"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="BON-2">BON-2 not older than 30 days (Only applies to companies based in Croatia) </label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="BON-2"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="Register">Extract from the Register not older than 30 days</label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="Register"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="Taxes and contributions">Judicial record or an equivalent certificate of payment of social security contributions and payment of taxes (Only applies to companies based in Croatia)</label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="Taxes and contributions"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="Customs duties">Proof of prompt and complete payment of customs duties (Only applies to companies based in Croatia)</label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="Customs duties"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="Customs legislation">Proof that the subject has not seriously infringed or repeated infringed customs legislations (Only applies to companies based in Croatia)</label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="Customs legislation"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="Criminal proceedings">Proof that there are no criminal proceedings being conducted against the director or any other responsible person (Not older than 30 days)</label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="Criminal proceedings"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="Insurance/note">Evidence of insurance against liability (with a renowned assurance company) for mistakes made by employees or blank promissory note (Only applies to companies based in Croatia)</label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="Insurance/Note"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-5 col-sm-4 text-right">
+                                <label class="control-label" for="agent">Is the aplicant an Agent?</label>
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <div class="radio col-md-2 col-sm-4 text-just">
+                                    <input type="radio" class="radio o:website_form_input" name="agent" required="" value="no" selected="true">No</input><br></br>
+                                    <br></br>
+                                    <input type="radio" class="radio o:website_form_input" name="agent" required="" value="yes">Yes</input><br></br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-5 col-sm-4 text-right">
+                                <label class="control-label" for="agent_ship_agent">Is the Agent also a Shipping anget?</label>
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <div class="radio col-md-2 col-sm-4 text-just">
+                                    <input type="radio" class="radio o:website_form_input" name="agent_ship_agent" required="" value="no" selected="true">No*</input><br></br>
+                                    <br></br>
+                                    <input type="radio" class="radio o:website_form_input" name="agent_ship_agent" required="" value="yes">Yes</input><br></br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                            <div calss="text-left">
+                                <label class="control-label" for="agent_ship_agent">* If the answer to the last question is NO please fill this questionnaire and provide the necesery documunets for your Shipping agent also.</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                                <span class="btn btn-primary btn-lg o_website_form_send">Submit</span>
+                                <span id="o_website_form_result"/>
+                            </div>
+                        </div>
+                        <!--<div class="form-group form-field o_website_form_required_custom">
+                            <div class="col-md-3 col-sm-4 text-right">
                                 <label class="control-label" for="name">Name:</label>
                             </div>
                             <div class="col-md-7 col-sm-8">
                                 <input type="text" class="form-control o_website_form_input" name="name" required=""/>
                             </div>
                         </div>
-                        <!--<div class="form-group form-field o_website_form_required_custom">
+                        <div class="form-group form-field o_website_form_required_custom">
                             <div class="col-md-3 col-sm-4 text-right">
                                 <label class="control-label" for="address">Address:</label>
                             </div>
@@ -892,7 +1998,7 @@
                             <div class="col-md-7 col-sm-8">
                                 <textarea class="form-control o_website_form_input" name="description"/>
                             </div>
-                        </div>-->
+                        </div>
                         <div class="form-group form-field o_website_form_custom">
                           <div class="col-md-3 col-sm-4 text-right">
                             <label class="control-label" for="Resume">Resume</label>
@@ -906,7 +2012,7 @@
                                 <span class="btn btn-primary btn-lg o_website_form_send">Submit</span>
                                 <span id="o_website_form_result"></span>
                             </div>
-                        </div>
+                        </div>-->
                     </form>
                 </section>
             </div>

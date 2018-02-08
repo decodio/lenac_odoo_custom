@@ -49,7 +49,10 @@
                         <group string="Subcontractor">
                             <group>
                                 <field name="name"/>
-                                <field name="address"/>
+                                <field name="address_street"/>
+                                <field name="address_po_box"/>
+                                <field name="address_city"/>
+                                <field name="country_id"/>
                                 <field name="per_id_number"/>
                                 <field name="email_from"/>
                                 <field name="partner_phone"/>
@@ -59,6 +62,7 @@
                                 <field name="contact_person"/>
                                 <field name="contact_person_email"/>
                                 <field name="filled_in_by"/>
+                                <field name="agent"/>
                                 <field name="agent_ship_agent"/>
                             </group>
                         </group>
@@ -114,11 +118,11 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Quality and Safety Management" name="quality_and_safety_management">
+                            <page string="Quality Management Systems" name="quality_and_safety_management">
                                 <group string="QA Management">
                                     <group>
-                                        <field name="qa_system"/>
-                                        <field name="qa_contact"/>
+                                        <field name="contact_qms"/>
+                                        <field name="qa_system_9000"/>
                                         <field name="qa_organization"/>
                                         <field name="qa_contract_rev"/>
                                         <field name="qa_engineering"/>
@@ -137,6 +141,26 @@
                                         <field name="qa_auditors"/>
                                         <field name="qa_safe_manage"/>
                                         <field name="qa_sys"/>
+                                    </group>
+                                    <group>
+                                        <field name="qa_system_14000"/>
+                                        <field name="qa_policy_14"/>
+                                        <field name="qa_waste_mgmt_14"/>
+                                        <field name="qa_dan_haz_sub_14"/>
+                                        <field name="qa_acc_inc_stat_14"/>
+                                    </group>
+                                    <group>
+                                        <field name="qa_system_18000"/>
+                                        <field name="qa_policy_18"/>
+                                        <field name="qa_mach_main_18"/>
+                                        <field name="qa_acc_inc_stat_18"/>
+                                    </group>
+                                    <group>
+                                        <field name="qa_system_50000"/>
+                                        <field name="qa_policy_50"/>
+                                        <field name="qa_eng_track_type_50"/>
+                                        <field name="qa_mgmt_goal_50"/>
+                                        <field name="qa_action_plan_50"/>
                                     </group>
                                 </group>
                             </page>
