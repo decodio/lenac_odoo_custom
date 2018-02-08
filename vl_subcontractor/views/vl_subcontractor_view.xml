@@ -26,11 +26,12 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="vl_subcontractor_form_view">
-            <field name="name">Subcontractor</field>
+        <record model="ir.ui.view" id="crm_case_form_view_job_inherit">
+            <field name="name">Subcontractor.form.inherit</field>
             <field name="model">vl.subcontractor</field>
+            <field name="inherit_id" ref="vl_subcontractor.crm_case_form_view_job"/>
             <field name="arch" type="xml">
-                <!--<button name="action_start_survey"
+                <button name="action_start_survey"
                     class="oe_stat_button"
                     icon="fa-user"
                     type="object"
@@ -41,7 +42,7 @@
                         <span class="o_stat_text">Start</span>
                         <span class="o_stat_text">Interview</span>
                     </div>
-                </button>-->
+                </button>
                 <form string="Subcontractor">
                     <header>
                     </header>
