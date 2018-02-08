@@ -139,8 +139,6 @@
                                         <field name="qa_handle_stor_pack"/>
                                         <field name="qa_qal_rec"/>
                                         <field name="qa_auditors"/>
-                                        <field name="qa_safe_manage"/>
-                                        <field name="qa_sys"/>
                                     </group>
                                     <group>
                                         <field name="qa_system_14000"/>
