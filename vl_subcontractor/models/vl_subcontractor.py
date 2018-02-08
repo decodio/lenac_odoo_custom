@@ -243,7 +243,7 @@ class VlSubcontractor(models.Model):
         # create a response and link it to this applicant
         if not self.response_id:
             response = self.env['survey.user_input'].create(
-                {'survey_id': self.survey_id.id, 'partner_id': self.partner_id.id})
+                {'survey_id': self.survey_id.id})
             self.response_id = response.id
         else:
             response = self.response_id
