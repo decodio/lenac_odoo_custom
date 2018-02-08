@@ -13,8 +13,9 @@ class VlSubcontractor(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin', 'utm.mixin']
     _mail_mass_mailing = _('Applicants')
 
-    #survey_id = fields.Many2one('survey.survey', related='vl_subcontractor_id.survey_id', string="Survey")
+    #survey_id = fields.Many2one('survey.survey', string="Survey")
     #response_id = fields.Many2one('survey.user_input', "Response", ondelete="set null", oldname="response")
+    #partner_id =
 
     name = fields.Char("Subject / Applicant name", required=True)
     active = fields.Boolean("Active", default=True,
@@ -28,6 +29,7 @@ class VlSubcontractor(models.Model):
         readonly=True,
         default="draft",
     )
+
     address_street = fields.Text("Company Address")
     address_po_box = fields.Text("PO Box")
     address_city = fields.Text("City")
