@@ -33,18 +33,18 @@
                 <form string="Subcontractor">
                     <header>
                     </header>
+                    <!-- Working but remains hidden:)
                     <button name="action_start_survey"
                     class="oe_stat_button"
                     icon="fa-user"
                     type="object"
-                    help="Answer related job question"
+                    help="Subcontractor evaluation"
                     context="{'survey_id': survey_id}"
                     attrs="{'invisible':[('survey_id','=',False)]}">
                     <div class="o_form_field o_stat_info">
-                        <span class="o_stat_text">Start</span>
-                        <span class="o_stat_text">Interview</span>
+                        <span class="o_stat_text">Evaluation</span>
                     </div>
-                    </button>
+                    </button>-->
                     <sheet>
                         <group string="Subcontractor">
                             <group>
@@ -64,7 +64,8 @@
                                 <field name="filled_in_by"/>
                                 <field name="agent"/>
                                 <field name="agent_ship_agent"/>
-                                <field name="survey_id"/>
+                                <field name="evaluation_of_application"/>
+                                <!--<field name="survey_id"/>-->
                             </group>
                         </group>
                         <notebook>
