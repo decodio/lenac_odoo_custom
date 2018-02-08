@@ -13,7 +13,7 @@ class VlSubcontractor(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin', 'utm.mixin']
     _mail_mass_mailing = _('Applicants')
 
-    #survey_id = fields.Many2one('survey.survey', string="Survey")
+    survey_id = fields.Many2one('survey.survey', string="Survey")
     #response_id = fields.Many2one('survey.user_input', "Response", ondelete="set null", oldname="response")
     #partner_id =
 

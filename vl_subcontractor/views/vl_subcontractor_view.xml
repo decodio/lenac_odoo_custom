@@ -64,6 +64,7 @@
                                 <field name="filled_in_by"/>
                                 <field name="agent"/>
                                 <field name="agent_ship_agent"/>
+                                <field name="survey_id"/>
                             </group>
                         </group>
                         <notebook>

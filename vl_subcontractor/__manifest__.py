@@ -16,7 +16,7 @@
              'security/website_vl_subcontractor_security.xml',
              'views/vl_subcontractor_view.xml',
              'views/website_vl_subcontractor_templates.xml',
-             #'data/survey_survey_data.xml',
+             'data/survey_survey_data.xml',
              'data/config_data.xml',
              ],
     'demo_xml': [],
