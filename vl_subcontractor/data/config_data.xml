@@ -30,17 +30,33 @@
             <!--List all editable fields needed in website form  -->
             <value eval="[
                 'description',
-                'email_from',
                 'name',
-                'partner_phone'
-                'qa_calibration', 'qa_contract_rev', 'campaign_id',
-                'qa_sys', 'qa_inspect_test', 'qa_spec_proces',
-                'qa_docs', 'qa_non_conf_ite', 'qa_engineering',
-                'qa_correct_action', 'qa_purchasing', 'qa_organization',
-                'qa_qal_rec', 'qa_handle_stor_pack',
-                'qa_acc_inc_stat', 'medium_id',
-                'qa_auditors', 'qa_safe_manage', 'source_id',
-                'qa_trace_material', 'agent_ship_agent'
+                'address_street', 'address_po_box', 'address_city', 'country_id',
+                'per_id_number', 'email_from', 'partner_phone', 'fax_number',
+                'contact_person', 'contact_person_email', 'filled_in_by',
+                'financial_group', 'financial_group',
+                'product_range', 'type_service',
+                'bank', 'bank_account',
+                'total_personnel', 'pipe_welders', 'administration', 'ship_fitter',
+                'management', 'locksmith', 'manpower', 'mechanic', 'foreman', 'electrician',
+                'welders', 'other',
+                'proj1_company', 'proj1_address', 'proj1_manager_name',
+                'proj1_date', 'proj1_project_desc',
+                'proj2_company', 'proj2_address', 'proj2_manager_name',
+                'proj2_date', 'proj2_project_desc',
+                'proj3_company', 'proj3_address', 'proj3_manager_name',
+                'proj3_date', 'proj3_project_desc',
+                'qa_system_9000', 'qa_organization', 'qa_non_conf_ite', 'qa_contract_rev',
+                'qa_correct_action', 'qa_engineering', 'qa_handle_stor_pack', 'qa_docs',
+                'qa_qal_rec', 'qa_purchasing', 'qa_auditors', 'qa_trace_material',
+                'qa_inspect_test', 'qa_calibration', 'qa_spec_proces',
+                'qa_system_14000', 'qa_policy_14', 'qa_waste_mgmt_14',
+                'qa_dan_haz_sub_14', 'qa_acc_inc_stat_14',
+                'qa_system_18000', 'qa_policy_18', 'qa_mach_main_18', 'qa_acc_inc_stat_18',
+                'qa_system_50000', 'qa_policy_50', 'qa_eng_track_type_50',
+                'qa_mgmt_goal_50', 'qa_action_plan_50',
+                'contact_qms', 'agent', 'agent_ship_agent',
+                'source_id', 'campaign_id',
             ]"/>
         </function>
     </data>

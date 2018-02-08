@@ -13,6 +13,9 @@ class VlSubcontractor(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin', 'utm.mixin']
     _mail_mass_mailing = _('Applicants')
 
+    #survey_id = fields.Many2one('survey.survey', related='vl_subcontractor_id.survey_id', string="Survey")
+    #response_id = fields.Many2one('survey.user_input', "Response", ondelete="set null", oldname="response")
+
     name = fields.Char("Subject / Applicant name", required=True)
     active = fields.Boolean("Active", default=True,
                             help="If the active field is set to false, it will allow you "
@@ -76,12 +79,12 @@ class VlSubcontractor(models.Model):
     contact_qms = fields.Char("QA System Contact")
     qa_system_9000 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='ISO 9001 Standard',
         required=True,
         default="no")
     qa_organization = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='Organization',
         required=True,
         default="no")
     qa_contract_rev = fields.Selection(
@@ -151,77 +154,77 @@ class VlSubcontractor(models.Model):
         default="no")
     qa_system_14000 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='ISO 14001 Standard',
         required=True,
         default="no")
     qa_policy_14 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='Policy',
         required=True,
         default="no")
     qa_waste_mgmt_14 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='Waste management',
         required=True,
         default="no")
     qa_dan_haz_sub_14 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='Control of dangerous and hazardous substances',
         required=True,
         default="no")
     qa_acc_inc_stat_14 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='Acident/Incident Statistics',
         required=True,
         default="no")
     qa_system_18000 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='ISO 18001 Standard',
         required=True,
         default="no")
     qa_policy_18 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='Policy',
         required=True,
         default="no")
     qa_mach_main_18 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='Machinery maintainance',
         required=True,
         default="no")
     qa_acc_inc_stat_18 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='Acident/Incident Statistics',
         required=True,
         default="no")
     qa_system_50000 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='ISO 50001 Standard',
         required=True,
         default="no")
     qa_policy_50 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='Policy',
         required=True,
         default="no")
     qa_eng_track_type_50 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='Energy consumption tracking by energy type',
         required=True,
         default="no")
     qa_mgmt_goal_50 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='Energy management goals',
         required=True,
         default="no")
     qa_action_plan_50 = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='QA System Contact',
+        string='Action plans for energy savings',
         required=True,
         default="no")
     agent = fields.Selection(
         selection=[('yes', 'Yes'), ('no', 'No')],
-        string='Shipping agent',
+        string='Agent',
         required=True,
         default="no")
     agent_ship_agent = fields.Selection(
@@ -234,14 +237,13 @@ class VlSubcontractor(models.Model):
 
     #@api.multi
     #def action_start_survey(self):
-    #   self.ensure_one()
-        # create a response and link it to this applicant
+    #    self.ensure_one()
+    #    # create a response and link it to this applicant
     #    if not self.response_id:
     #        response = self.env['survey.user_input'].create(
     #            {'survey_id': self.survey_id.id, 'partner_id': self.partner_id.id})
     #        self.response_id = response.id
     #    else:
     #        response = self.response_id
-        # grab the token of the response and start surveying
+    #    # grab the token of the response and start surveying
     #    return self.survey_id.with_context(survey_token=response.token).action_start_survey()
-
