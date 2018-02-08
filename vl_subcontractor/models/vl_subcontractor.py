@@ -13,8 +13,10 @@ class VlSubcontractor(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin', 'utm.mixin']
     _mail_mass_mailing = _('Applicants')
 
-    #survey_id = fields.Many2one('survey.survey', related='vl_subcontractor_id.survey_id', string="Survey")
+    # working but for now remanis hidden
+    #survey_id = fields.Many2one('survey.survey', string="Survey")
     #response_id = fields.Many2one('survey.user_input', "Response", ondelete="set null", oldname="response")
+
 
     name = fields.Char("Subject / Applicant name", required=True)
     active = fields.Boolean("Active", default=True,
@@ -28,6 +30,10 @@ class VlSubcontractor(models.Model):
         readonly=True,
         default="draft",
     )
+    evaluation_of_application = fields.Text("Evaluation of the subcontractor",
+                                            help="Fills the manager of procurement or"
+                                                 "the manager of cooperation and subliferation.")
+
     address_street = fields.Text("Company Address")
     address_po_box = fields.Text("PO Box")
     address_city = fields.Text("City")
@@ -241,7 +247,7 @@ class VlSubcontractor(models.Model):
     #    # create a response and link it to this applicant
     #    if not self.response_id:
     #        response = self.env['survey.user_input'].create(
-    #            {'survey_id': self.survey_id.id, 'partner_id': self.partner_id.id})
+    #            {'survey_id': self.survey_id.id})
     #        self.response_id = response.id
     #    else:
     #        response = self.response_id

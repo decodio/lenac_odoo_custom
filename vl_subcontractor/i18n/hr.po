@@ -1,0 +1,1017 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* vl_subcontractor
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-08 11:03+0000\n"
+"PO-Revision-Date: 2018-02-08 11:03+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "* If the answer to the last question is NO please fill this questionnaire and provide the necesery documunets for your Shipping agent also."
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "1. General references"
+msgstr "Osnovni podaci"
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "2. Organization / General description"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "3. Previous Experience"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "4. Quality Assurance System and Safety Management System"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "5. Please provide the following attachments/Answers"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Auditors:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Calibration:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Contract Review:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Corrective Action:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Documentation:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Engineering:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Handling/Storage/Packing:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>ISO 14001 Standard"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>ISO 18001 Standard"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>ISO 50001 Standard"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>ISO 9001 Standard"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Inspection/Testing:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Machinery maintainance"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Non Conforming Items:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Organization:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Policy:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Purchasing:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Quality Record:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Special Processes (Welding, Heat treatmnet, NDT,...):"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Traceability of Material:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<br/>Waste management:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "<span class=\"btn btn-primary btn-lg o_website_form_send\">Submit</span>\n"
+"                                <span id=\"o_website_form_result\"/>"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_acc_inc_stat_14
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_acc_inc_stat_18
+msgid "Acident/Incident Statistics"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Acident/Incident Statistics:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_action_plan_50
+msgid "Action plans for energy savings"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Action plans for energy savings:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_active
+msgid "Active"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj1_address
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj2_address
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj3_address
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Address"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_administration
+msgid "Administration"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Administration:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_agent
+msgid "Agent"
+msgstr ""
+
+#. module: vl_subcontractor
+#: code:addons/vl_subcontractor/models/vl_subcontractor.py:14
+#, python-format
+msgid "Applicants"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Application Filled in by/Position:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_filled_in_by
+msgid "Application filled in by / Title"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "BON-1 not older than 30 days (Only applies to companies based in Croatia)"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "BON-2 not older than 30 days (Only applies to companies based in Croatia)"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_bank
+msgid "Bank"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Bank Account:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_bank_account
+msgid "Bank account"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Bank:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Brief description of the project"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_address_city
+msgid "City"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "City:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.actions.act_window,help:vl_subcontractor.vl_subcontractor_action
+msgid "Click to add a new Subcontractor entry."
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Client information"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_address_street
+msgid "Company Address"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Company Address:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Company Name:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_company_age
+msgid "Company age"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj1_company
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj2_company
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj3_company
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Company name"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_contact_person
+msgid "Contact Person / Title"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_contact_person_email
+msgid "Contact Person Email)"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Contact person E-mail Address:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Contact person for QMS Systems:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Contact person/Title:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.thankyou
+msgid "Continue To Our Website"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_dan_haz_sub_14
+msgid "Control of dangerous and hazardous substances"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Control of dangerous and hazardous substances:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Copy of ISO 14001 certificate"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Copy of ISO 18001 certificate"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Copy of ISO 50001 certificate"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Copy of ISO 9001 certificate"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_address_country
+msgid "Country"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Country:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Date"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_description
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Description"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_details
+msgid "Details"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: vl_subcontractor
+#: selection:vl.subcontractor,state:0
+msgid "Done"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Electrician:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_electrician
+msgid "Electricina"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_eng_track_type_50
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Energy consumption tracking by energy type"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_mgmt_goal_50
+msgid "Energy management goals"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Energy management goals:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Evidence of insurance against liability (with a renowned assurance company) for mistakes made by employees or blank promissory note (Only applies to companies based in Croatia)"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor_form_view
+msgid "Experience"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Extract from the Register not older than 30 days"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Extract from the judicial record - proof of registred activities"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_fax_number
+msgid "Fax Number"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_financial_group
+msgid "Financial Group/ Owners"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Financial Group/Owners:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_foreman
+msgid "Foreman"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Foreman:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "General E-Mail Address:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_email_from
+msgid "General Email address"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor_form_view
+msgid "General info"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Give 3 recent references of other client statig the Company name, address, Name of Project Manager, <br/> date, brief description of the project."
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "How old is the Company/Plant:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_id
+msgid "ID"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_system_14000
+msgid "ISO 14001 Standard"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_system_18000
+msgid "ISO 18001 Standard"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_system_50000
+msgid "ISO 50001 Standard"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_system_9000
+msgid "ISO 9001 Standard"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,help:vl_subcontractor.field_vl_subcontractor_active
+msgid "If the active field is set to false, it will allow you to hide the case without removing it."
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Indicate for which of the following topics you have documnets or procedures describing the controls implemented to ensure work is planned and carried out to a satisfactory standard (enter YES or NO)"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Indicate for which of the following topics you have documnets or procedures."
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Is the Agent also a Shipping anget?"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Is the aplicant an Agent?"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Judicial record or an equivalent certificate of payment of social security contributions and payment of taxes (Only applies to companies based in Croatia)"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_locksmith
+msgid "Locksmith"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Locksmith:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_mach_main_18
+msgid "Machinery maintainance"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_management
+msgid "Management"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Management:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_manpower
+msgid "Manpower"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Manpower:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_mechanic
+msgid "Mechanic"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Mechanic:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Name of the Project Manager"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+#: selection:vl.subcontractor,agent:0
+#: selection:vl.subcontractor,agent_ship_agent:0
+#: selection:vl.subcontractor,qa_acc_inc_stat_14:0
+#: selection:vl.subcontractor,qa_acc_inc_stat_18:0
+#: selection:vl.subcontractor,qa_action_plan_50:0
+#: selection:vl.subcontractor,qa_auditors:0
+#: selection:vl.subcontractor,qa_calibration:0
+#: selection:vl.subcontractor,qa_contract_rev:0
+#: selection:vl.subcontractor,qa_correct_action:0
+#: selection:vl.subcontractor,qa_dan_haz_sub_14:0
+#: selection:vl.subcontractor,qa_docs:0
+#: selection:vl.subcontractor,qa_eng_track_type_50:0
+#: selection:vl.subcontractor,qa_engineering:0
+#: selection:vl.subcontractor,qa_handle_stor_pack:0
+#: selection:vl.subcontractor,qa_inspect_test:0
+#: selection:vl.subcontractor,qa_mach_main_18:0
+#: selection:vl.subcontractor,qa_mgmt_goal_50:0
+#: selection:vl.subcontractor,qa_non_conf_ite:0
+#: selection:vl.subcontractor,qa_organization:0
+#: selection:vl.subcontractor,qa_policy_14:0
+#: selection:vl.subcontractor,qa_policy_18:0
+#: selection:vl.subcontractor,qa_policy_50:0
+#: selection:vl.subcontractor,qa_purchasing:0
+#: selection:vl.subcontractor,qa_qal_rec:0
+#: selection:vl.subcontractor,qa_spec_proces:0
+#: selection:vl.subcontractor,qa_system_14000:0
+#: selection:vl.subcontractor,qa_system_18000:0
+#: selection:vl.subcontractor,qa_system_50000:0
+#: selection:vl.subcontractor,qa_system_9000:0
+#: selection:vl.subcontractor,qa_trace_material:0
+#: selection:vl.subcontractor,qa_waste_mgmt_14:0
+msgid "No"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "No*"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_organization
+msgid "Organization"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor_form_view
+msgid "Organization/General Description"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_other
+msgid "Other"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Other:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_address_po_box
+msgid "PO Box"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "PO Box:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_per_id_number
+msgid "Personal identification number"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Personal identification number:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Pipe Welders:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_pipe_welders
+msgid "Pipe welders"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_policy_14
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_policy_18
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_policy_50
+msgid "Policy"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor_form_view
+msgid "Previous Experience"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_product_range
+msgid "Product range"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Product range:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj1_date
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj2_date
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj3_date
+msgid "Project date"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj1_manager_name
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj2_manager_name
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj3_manager_name
+msgid "Project manager"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Proof of prompt and complete payment of customs duties (Only applies to companies based in Croatia)"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Proof that the subject has not seriously infringed or repeated infringed customs legislations (Only applies to companies based in Croatia)"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Proof that there are no criminal proceedings being conducted against the director or any other responsible person (Not older than 30 days)"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_auditors
+msgid "QA Auditors"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_calibration
+msgid "QA Calibration"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_contract_rev
+msgid "QA Contract review"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_correct_action
+msgid "QA Corrective Actions"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_docs
+msgid "QA Documentation"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_engineering
+msgid "QA Engineering"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_handle_stor_pack
+msgid "QA Handeling/Stroge/Packing"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_inspect_test
+msgid "QA Inspection/Testing"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor_form_view
+msgid "QA Management"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_non_conf_ite
+msgid "QA Non conforming Items"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_purchasing
+msgid "QA Purchasing"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_qal_rec
+msgid "QA Quality Records"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_spec_proces
+msgid "QA Special Processes"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_contact_qms
+msgid "QA System Contact"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_trace_material
+msgid "QA Traceability of Materials"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor_form_view
+msgid "Quality Management Systems"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_ship_fitter
+msgid "Ship fitters"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Ship-fitter:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_agent_ship_agent
+msgid "Shipping agent"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj1_project_desc
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj2_project_desc
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_proj3_project_desc
+msgid "Short project description"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_state
+msgid "Status"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.actions.act_window,name:vl_subcontractor.vl_subcontractor_action
+#: model:ir.model,name:vl_subcontractor.model_vl_subcontractor
+#: model:ir.ui.menu,name:vl_subcontractor.menu_vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor_footer_custom
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor_form_view
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor_search_view
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor_tree_view
+#: model:website.menu,name:vl_subcontractor.menu_vl_subcontractors
+msgid "Subcontractor"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Subcontractor Application Form"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_name
+msgid "Subject / Applicant name"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Telefax"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_partner_phone
+msgid "Telephone"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Telephone:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.thankyou
+msgid "Thank you!"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,help:vl_subcontractor.field_vl_subcontractor_email_from
+msgid "These people will receive email."
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,help:vl_subcontractor.field_vl_subcontractor_contact_person_email
+msgid "This person will be contacted for additional info"
+msgstr ""
+
+#. module: vl_subcontractor
+#: selection:vl.subcontractor,state:0
+msgid "Todo"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Total Personnel:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_total_personnel
+msgid "Total personnel"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_type_service
+msgid "Type of service"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Types of services:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_qa_waste_mgmt_14
+msgid "Waste management"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.actions.act_url,name:vl_subcontractor.action_open_website
+msgid "Website SUbcontractor Form"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.model.fields,field_description:vl_subcontractor.field_vl_subcontractor_welders
+msgid "Welders"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+msgid "Welders:"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.vl_subcontractor
+#: selection:vl.subcontractor,agent:0
+#: selection:vl.subcontractor,agent_ship_agent:0
+#: selection:vl.subcontractor,qa_acc_inc_stat_14:0
+#: selection:vl.subcontractor,qa_acc_inc_stat_18:0
+#: selection:vl.subcontractor,qa_action_plan_50:0
+#: selection:vl.subcontractor,qa_auditors:0
+#: selection:vl.subcontractor,qa_calibration:0
+#: selection:vl.subcontractor,qa_contract_rev:0
+#: selection:vl.subcontractor,qa_correct_action:0
+#: selection:vl.subcontractor,qa_dan_haz_sub_14:0
+#: selection:vl.subcontractor,qa_docs:0
+#: selection:vl.subcontractor,qa_eng_track_type_50:0
+#: selection:vl.subcontractor,qa_engineering:0
+#: selection:vl.subcontractor,qa_handle_stor_pack:0
+#: selection:vl.subcontractor,qa_inspect_test:0
+#: selection:vl.subcontractor,qa_mach_main_18:0
+#: selection:vl.subcontractor,qa_mgmt_goal_50:0
+#: selection:vl.subcontractor,qa_non_conf_ite:0
+#: selection:vl.subcontractor,qa_organization:0
+#: selection:vl.subcontractor,qa_policy_14:0
+#: selection:vl.subcontractor,qa_policy_18:0
+#: selection:vl.subcontractor,qa_policy_50:0
+#: selection:vl.subcontractor,qa_purchasing:0
+#: selection:vl.subcontractor,qa_qal_rec:0
+#: selection:vl.subcontractor,qa_spec_proces:0
+#: selection:vl.subcontractor,qa_system_14000:0
+#: selection:vl.subcontractor,qa_system_18000:0
+#: selection:vl.subcontractor,qa_system_50000:0
+#: selection:vl.subcontractor,qa_system_9000:0
+#: selection:vl.subcontractor,qa_trace_material:0
+#: selection:vl.subcontractor,qa_waste_mgmt_14:0
+msgid "Yes"
+msgstr ""
+
+#. module: vl_subcontractor
+#: model:ir.ui.view,arch_db:vl_subcontractor.thankyou
+msgid "Your application has been successfully registered,\n"
+"                        we will get back to you soon."
+msgstr ""
+

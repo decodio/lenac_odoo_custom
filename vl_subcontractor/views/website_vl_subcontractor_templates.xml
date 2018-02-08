@@ -169,7 +169,772 @@
                                 <label class="control-label" for="country_id">Country:</label>
                             </div>
                             <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="country_id" required=""/>
+                                <!--<input type="text" class="form-control o_website_form_input" name="country_id" required=""/>-->
+                                <select class="form-control o_website_form_input" name="country_id">
+                                    <option/>
+                                    <option value="10430">
+                                            Guinea Bissau
+                                        </option>
+                                    <option value="10246">
+                                            Andorra, Principality of
+                                        </option>
+                                    <option value="10248">
+                                            United Arab Emirates
+                                        </option>
+                                    <option value="10250">
+                                            Afghanistan, Islamic State of
+                                        </option>
+                                    <option value="10252">
+                                            Antigua and Barbuda
+                                        </option>
+                                    <option value="10254">
+                                            Anguilla
+                                        </option>
+                                    <option value="10256">
+                                            Albania
+                                        </option>
+                                    <option value="10258">
+                                            Armenia
+                                        </option>
+                                    <option value="10260">
+                                            Netherlands Antilles
+                                        </option>
+                                    <option value="10262">
+                                            Angola
+                                        </option>
+                                    <option value="10264">
+                                            Antarctica
+                                        </option>
+                                    <option value="10266">
+                                            Argentina
+                                        </option>
+                                    <option value="10268">
+                                            American Samoa
+                                        </option>
+                                    <option value="10270">
+                                            Austria
+                                        </option>
+                                    <option value="10272">
+                                            Australia
+                                        </option>
+                                    <option value="10274">
+                                            Aruba
+                                        </option>
+                                    <option value="10328">
+                                            Congo, Democratic Republic of the
+                                        </option>
+                                    <option value="10330">
+                                            Congo
+                                        </option>
+                                    <option value="10476">
+                                            Kyrgyz Republic (Kyrgyzstan)
+                                        </option>
+                                    <option value="10478">
+                                            Cambodia, Kingdom of
+                                        </option>
+                                    <option value="10276">
+                                            Åland Islands
+                                        </option>
+                                    <option value="10278">
+                                            Azerbaijan
+                                        </option>
+                                    <option value="10280">
+                                            Bosnia-Herzegovina
+                                        </option>
+                                    <option value="10282">
+                                            Barbados
+                                        </option>
+                                    <option value="10284">
+                                            Bangladesh
+                                        </option>
+                                    <option value="10286">
+                                            Belgium
+                                        </option>
+                                    <option value="10288">
+                                            Burkina Faso
+                                        </option>
+                                    <option value="10290">
+                                            Bulgaria
+                                        </option>
+                                    <option value="10292">
+                                            Bahrain
+                                        </option>
+                                    <option value="10294">
+                                            Burundi
+                                        </option>
+                                    <option value="10296">
+                                            Benin
+                                        </option>
+                                    <option value="10436">
+                                            Heard and McDonald Islands
+                                        </option>
+                                    <option value="10438">
+                                            Honduras
+                                        </option>
+                                    <option value="10440">
+                                            Croatia
+                                        </option>
+                                    <option value="10442">
+                                            Haiti
+                                        </option>
+                                    <option value="10298">
+                                            Saint Barthélémy
+                                        </option>
+                                    <option value="10300">
+                                            Bermuda
+                                        </option>
+                                    <option value="10302">
+                                            Brunei Darussalam
+                                        </option>
+                                    <option value="10304">
+                                            Bolivia
+                                        </option>
+                                    <option value="10306">
+                                            Bonaire, Sint Eustatius and Saba
+                                        </option>
+                                    <option value="10308">
+                                            Brazil
+                                        </option>
+                                    <option value="10456">
+                                            British Indian Ocean Territory
+                                        </option>
+                                    <option value="10458">
+                                            Iraq
+                                        </option>
+                                    <option value="10460">
+                                            Iran
+                                        </option>
+                                    <option value="10502">
+                                            Liechtenstein
+                                        </option>
+                                    <option value="10504">
+                                            Sri Lanka
+                                        </option>
+                                    <option value="10310">
+                                            Bahamas
+                                        </option>
+                                    <option value="10312">
+                                            Bhutan
+                                        </option>
+                                    <option value="10314">
+                                            Bouvet Island
+                                        </option>
+                                    <option value="10316">
+                                            Botswana
+                                        </option>
+                                    <option value="10318">
+                                            Belarus
+                                        </option>
+                                    <option value="10320">
+                                            Belize
+                                        </option>
+                                    <option value="10322">
+                                            Canada
+                                        </option>
+                                    <option value="10324">
+                                            Cocos (Keeling) Islands
+                                        </option>
+                                    <option value="10326">
+                                            Central African Republic
+                                        </option>
+                                    <option value="10332">
+                                            Switzerland
+                                        </option>
+                                    <option value="10334">
+                                            Ivory Coast (Cote D'Ivoire)
+                                        </option>
+                                    <option value="10336">
+                                            Cook Islands
+                                        </option>
+                                    <option value="10338">
+                                            Chile
+                                        </option>
+                                    <option value="10340">
+                                            Cameroon
+                                        </option>
+                                    <option value="10342">
+                                            China
+                                        </option>
+                                    <option value="10496">
+                                            Laos
+                                        </option>
+                                    <option value="10344">
+                                            Colombia
+                                        </option>
+                                    <option value="10346">
+                                            Costa Rica
+                                        </option>
+                                    <option value="10348">
+                                            Cuba
+                                        </option>
+                                    <option value="10350">
+                                            Cape Verde
+                                        </option>
+                                    <option value="10352">
+                                            Curaçao
+                                        </option>
+                                    <option value="10354">
+                                            Christmas Island
+                                        </option>
+                                    <option value="10356">
+                                            Cyprus
+                                        </option>
+                                    <option value="10358">
+                                            Czech Republic
+                                        </option>
+                                    <option value="10360">
+                                            Germany
+                                        </option>
+                                    <option value="10362">
+                                            Djibouti
+                                        </option>
+                                    <option value="10474">
+                                            Kenya
+                                        </option>
+                                    <option value="10364">
+                                            Denmark
+                                        </option>
+                                    <option value="10366">
+                                            Dominica
+                                        </option>
+                                    <option value="10368">
+                                            Dominican Republic
+                                        </option>
+                                    <option value="10370">
+                                            Algeria
+                                        </option>
+                                    <option value="10372">
+                                            Ecuador
+                                        </option>
+                                    <option value="10374">
+                                            Estonia
+                                        </option>
+                                    <option value="10376">
+                                            Egypt
+                                        </option>
+                                    <option value="10378">
+                                            Western Sahara
+                                        </option>
+                                    <option value="10380">
+                                            Eritrea
+                                        </option>
+                                    <option value="10382">
+                                            Spain
+                                        </option>
+                                    <option value="10384">
+                                            Ethiopia
+                                        </option>
+                                    <option value="10386">
+                                            Finland
+                                        </option>
+                                    <option value="10388">
+                                            Fiji
+                                        </option>
+                                    <option value="10390">
+                                            Falkland Islands
+                                        </option>
+                                    <option value="10392">
+                                            Micronesia
+                                        </option>
+                                    <option value="10394">
+                                            Faroe Islands
+                                        </option>
+                                    <option value="10396">
+                                            France
+                                        </option>
+                                    <option value="10398">
+                                            Gabon
+                                        </option>
+                                    <option value="10400">
+                                            Grenada
+                                        </option>
+                                    <option value="10402">
+                                            Georgia
+                                        </option>
+                                    <option value="10404">
+                                            French Guyana
+                                        </option>
+                                    <option value="10406">
+                                            Ghana
+                                        </option>
+                                    <option value="10408">
+                                            Gibraltar
+                                        </option>
+                                    <option value="10410">
+                                            Guernsey
+                                        </option>
+                                    <option value="10412">
+                                            Greenland
+                                        </option>
+                                    <option value="10414">
+                                            Gambia
+                                        </option>
+                                    <option value="10498">
+                                            Lebanon
+                                        </option>
+                                    <option value="10500">
+                                            Saint Lucia
+                                        </option>
+                                    <option value="10416">
+                                            Guinea
+                                        </option>
+                                    <option value="10418">
+                                            Guadeloupe (French)
+                                        </option>
+                                    <option value="10420">
+                                            Equatorial Guinea
+                                        </option>
+                                    <option value="10422">
+                                            Greece
+                                        </option>
+                                    <option value="10424">
+                                            South Georgia and the South Sandwich Islands
+                                        </option>
+                                    <option value="10426">
+                                            Guatemala
+                                        </option>
+                                    <option value="10428">
+                                            Guam (USA)
+                                        </option>
+                                    <option value="10432">
+                                            Guyana
+                                        </option>
+                                    <option value="10434">
+                                            Hong Kong
+                                        </option>
+                                    <option value="10444">
+                                            Hungary
+                                        </option>
+                                    <option value="10446">
+                                            Indonesia
+                                        </option>
+                                    <option value="10448">
+                                            Ireland
+                                        </option>
+                                    <option value="10450">
+                                            Israel
+                                        </option>
+                                    <option value="10452">
+                                            Isle of Man
+                                        </option>
+                                    <option value="10454">
+                                            India
+                                        </option>
+                                    <option value="10462">
+                                            Iceland
+                                        </option>
+                                    <option value="10464">
+                                            Italy
+                                        </option>
+                                    <option value="10466">
+                                            Jersey
+                                        </option>
+                                    <option value="10468">
+                                            Jamaica
+                                        </option>
+                                    <option value="10470">
+                                            Jordan
+                                        </option>
+                                    <option value="10472">
+                                            Japan
+                                        </option>
+                                    <option value="10480">
+                                            Kiribati
+                                        </option>
+                                    <option value="10482">
+                                            Comoros
+                                        </option>
+                                    <option value="10484">
+                                            Saint Kitts &amp;amp; Nevis Anguilla
+                                        </option>
+                                    <option value="10486">
+                                            North Korea
+                                        </option>
+                                    <option value="10488">
+                                            South Korea
+                                        </option>
+                                    <option value="10490">
+                                            Kuwait
+                                        </option>
+                                    <option value="10492">
+                                            Cayman Islands
+                                        </option>
+                                    <option value="10494">
+                                            Kazakhstan
+                                        </option>
+                                    <option value="10506">
+                                            Liberia
+                                        </option>
+                                    <option value="10508">
+                                            Lesotho
+                                        </option>
+                                    <option value="10510">
+                                            Lithuania
+                                        </option>
+                                    <option value="10512">
+                                            Luxembourg
+                                        </option>
+                                    <option value="10514">
+                                            Latvia
+                                        </option>
+                                    <option value="10516">
+                                            Libya
+                                        </option>
+                                    <option value="10518">
+                                            Morocco
+                                        </option>
+                                    <option value="10520">
+                                            Monaco
+                                        </option>
+                                    <option value="10522">
+                                            Moldavia
+                                        </option>
+                                    <option value="10524">
+                                            Montenegro
+                                        </option>
+                                    <option value="10526">
+                                            Saint Martin (French part)
+                                        </option>
+                                    <option value="10622">
+                                            Reunion (French)
+                                        </option>
+                                    <option value="10528">
+                                            Madagascar
+                                        </option>
+                                    <option value="10530">
+                                            Marshall Islands
+                                        </option>
+                                    <option value="10532">
+                                            Macedonia, the former Yugoslav Republic of
+                                        </option>
+                                    <option value="10534">
+                                            Mali
+                                        </option>
+                                    <option value="10536">
+                                            Myanmar
+                                        </option>
+                                    <option value="10538">
+                                            Mongolia
+                                        </option>
+                                    <option value="10540">
+                                            Macau
+                                        </option>
+                                    <option value="10542">
+                                            Northern Mariana Islands
+                                        </option>
+                                    <option value="10544">
+                                            Martinique (French)
+                                        </option>
+                                    <option value="10546">
+                                            Mauritania
+                                        </option>
+                                    <option value="10548">
+                                            Montserrat
+                                        </option>
+                                    <option value="10550">
+                                            Malta
+                                        </option>
+                                    <option value="10552">
+                                            Mauritius
+                                        </option>
+                                    <option value="10554">
+                                            Maldives
+                                        </option>
+                                    <option value="10556">
+                                            Malawi
+                                        </option>
+                                    <option value="10558">
+                                            Mexico
+                                        </option>
+                                    <option value="10560">
+                                            Malaysia
+                                        </option>
+                                    <option value="10562">
+                                            Mozambique
+                                        </option>
+                                    <option value="10564">
+                                            Namibia
+                                        </option>
+                                    <option value="10566">
+                                            New Caledonia (French)
+                                        </option>
+                                    <option value="10568">
+                                            Niger
+                                        </option>
+                                    <option value="10570">
+                                            Norfolk Island
+                                        </option>
+                                    <option value="10572">
+                                            Nigeria
+                                        </option>
+                                    <option value="10574">
+                                            Nicaragua
+                                        </option>
+                                    <option value="10576">
+                                            Netherlands
+                                        </option>
+                                    <option value="10578">
+                                            Norway
+                                        </option>
+                                    <option value="10580">
+                                            Nepal
+                                        </option>
+                                    <option value="10582">
+                                            Nauru
+                                        </option>
+                                    <option value="10584">
+                                            Neutral Zone
+                                        </option>
+                                    <option value="10586">
+                                            Niue
+                                        </option>
+                                    <option value="10588">
+                                            New Zealand
+                                        </option>
+                                    <option value="10590">
+                                            Oman
+                                        </option>
+                                    <option value="10592">
+                                            Panama
+                                        </option>
+                                    <option value="10594">
+                                            Peru
+                                        </option>
+                                    <option value="10596">
+                                            Polynesia (French)
+                                        </option>
+                                    <option value="10598">
+                                            Papua New Guinea
+                                        </option>
+                                    <option value="10600">
+                                            Philippines
+                                        </option>
+                                    <option value="10602">
+                                            Pakistan
+                                        </option>
+                                    <option value="10604">
+                                            Poland
+                                        </option>
+                                    <option value="10606">
+                                            Saint Pierre and Miquelon
+                                        </option>
+                                    <option value="10608">
+                                            Pitcairn Island
+                                        </option>
+                                    <option value="10610">
+                                            Puerto Rico
+                                        </option>
+                                    <option value="10612">
+                                            Palestinian Territory, Occupied
+                                        </option>
+                                    <option value="10614">
+                                            Portugal
+                                        </option>
+                                    <option value="10616">
+                                            Palau
+                                        </option>
+                                    <option value="10618">
+                                            Paraguay
+                                        </option>
+                                    <option value="10620">
+                                            Qatar
+                                        </option>
+                                    <option value="10624">
+                                            Romania
+                                        </option>
+                                    <option value="10626">
+                                            Serbia
+                                        </option>
+                                    <option value="10628">
+                                            Russian Federation
+                                        </option>
+                                    <option value="10630">
+                                            Rwanda
+                                        </option>
+                                    <option value="10632">
+                                            Saudi Arabia
+                                        </option>
+                                    <option value="10634">
+                                            Solomon Islands
+                                        </option>
+                                    <option value="10636">
+                                            Seychelles
+                                        </option>
+                                    <option value="10724">
+                                            Venezuela
+                                        </option>
+                                    <option value="10726">
+                                            Virgin Islands (British)
+                                        </option>
+                                    <option value="10638">
+                                            Sudan
+                                        </option>
+                                    <option value="10640">
+                                            Sweden
+                                        </option>
+                                    <option value="10642">
+                                            Singapore
+                                        </option>
+                                    <option value="10644">
+                                            Saint Helena
+                                        </option>
+                                    <option value="10646">
+                                            Slovenia
+                                        </option>
+                                    <option value="10648">
+                                            Svalbard and Jan Mayen Islands
+                                        </option>
+                                    <option value="10650">
+                                            Slovakia
+                                        </option>
+                                    <option value="10652">
+                                            Sierra Leone
+                                        </option>
+                                    <option value="10654">
+                                            San Marino
+                                        </option>
+                                    <option value="10656">
+                                            Senegal
+                                        </option>
+                                    <option value="10658">
+                                            Somalia
+                                        </option>
+                                    <option value="10660">
+                                            Suriname
+                                        </option>
+                                    <option value="10662">
+                                            South Sudan
+                                        </option>
+                                    <option value="10664">
+                                            Saint Tome (Sao Tome) and Principe
+                                        </option>
+                                    <option value="10666">
+                                            El Salvador
+                                        </option>
+                                    <option value="10668">
+                                            Sint Maarten (Dutch part)
+                                        </option>
+                                    <option value="10670">
+                                            Syria
+                                        </option>
+                                    <option value="10672">
+                                            Swaziland
+                                        </option>
+                                    <option value="10674">
+                                            Turks and Caicos Islands
+                                        </option>
+                                    <option value="10728">
+                                            Virgin Islands (USA)
+                                        </option>
+                                    <option value="10730">
+                                            Vietnam
+                                        </option>
+                                    <option value="10732">
+                                            Vanuatu
+                                        </option>
+                                    <option value="10734">
+                                            Wallis and Futuna Islands
+                                        </option>
+                                    <option value="10736">
+                                            Samoa
+                                        </option>
+                                    <option value="10676">
+                                            Chad
+                                        </option>
+                                    <option value="10678">
+                                            French Southern Territories
+                                        </option>
+                                    <option value="10680">
+                                            Togo
+                                        </option>
+                                    <option value="10682">
+                                            Thailand
+                                        </option>
+                                    <option value="10686">
+                                            Tokelau
+                                        </option>
+                                    <option value="10688">
+                                            Turkmenistan
+                                        </option>
+                                    <option value="10690">
+                                            Tunisia
+                                        </option>
+                                    <option value="10684">
+                                            Tajikistan
+                                        </option>
+                                    <option value="10692">
+                                            Tonga
+                                        </option>
+                                    <option value="10696">
+                                            Turkey
+                                        </option>
+                                    <option value="10698">
+                                            Trinidad and Tobago
+                                        </option>
+                                    <option value="10700">
+                                            Tuvalu
+                                        </option>
+                                    <option value="10702">
+                                            Taiwan
+                                        </option>
+                                    <option value="10704">
+                                            Tanzania
+                                        </option>
+                                    <option value="10706">
+                                            Ukraine
+                                        </option>
+                                    <option value="10708">
+                                            Uganda
+                                        </option>
+                                    <option value="10710">
+                                            United Kingdom
+                                        </option>
+                                    <option value="10712">
+                                            USA Minor Outlying Islands
+                                        </option>
+                                    <option value="10714">
+                                            United States
+                                        </option>
+                                    <option value="10716">
+                                            Uruguay
+                                        </option>
+                                    <option value="10718">
+                                            Uzbekistan
+                                        </option>
+                                    <option value="10720">
+                                            Holy See (Vatican City State)
+                                        </option>
+                                    <option value="10722">
+                                            Saint Vincent &amp;amp; Grenadines
+                                        </option>
+                                    <option value="10738">
+                                            Yemen
+                                        </option>
+                                    <option value="10740">
+                                            Mayotte
+                                        </option>
+                                    <option value="10742">
+                                            Yugoslavia
+                                        </option>
+                                    <option value="10744">
+                                            South Africa
+                                        </option>
+                                    <option value="10746">
+                                            Zambia
+                                        </option>
+                                    <option value="10748">
+                                            Zaire
+                                        </option>
+                                    <option value="10750">
+                                            Zimbabwe
+                                        </option>
+                                    <option value="10694">
+                                            East Timor
+                                        </option>
+                                    <option value="106452">
+                                            USA
+                                        </option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group form-field o_website_form_required_custom">
@@ -473,7 +1238,7 @@
                                                     <label class="control-label" for="proj1_date">Date</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_date"/>
+                                                    <input class="form-control o_website_form_input o_website_form_date" name="proj1_date"/>
                                                 </div>
                                             </div>
                                             <div class="form-group form-field">
@@ -524,7 +1289,7 @@
                                                     <label class="control-label" for="proj2_date">Date</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_date"/>
+                                                    <input class="form-control o_website_form_input o_website_form_date" name="proj2_date"/>
                                                 </div>
                                             </div>
                                             <div class="form-group form-field">
@@ -575,7 +1340,7 @@
                                                     <label class="control-label" for="proj3_date">Date</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_date"/>
+                                                    <input class="form-control o_website_form_input o_website_form_date" name="proj3_date"/>
                                                 </div>
                                             </div>
                                             <div class="form-group form-field">
@@ -1203,9 +1968,39 @@
                             <input type="file" class="form-control o_website_form_input" name="Insurance/Note"/>
                           </div>
                         </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="Evidence for agents">Evidence of IT and personnel support through affiliation with customs and tax offices:</label>
+                            <label class="control-label" for="Evidence for agents">The minimum requirement is the possession of licences for the appropriate customs application (Nova or other)</label>
+                            <label class="control-label" for="Evidence for agents">List of employees in permanent employment who are authorised to perform international freight forwarder jobs</label>
+                            <label class="control-label" for="Evidence for agents">Minimum 2 employees (Name, surname, OIB, job address, e-mail, phone, mobile)</label>
+                            <label class="control-label" for="Evidence for agents">Valid bank guarantee for import procedure and transit bank guarantee for transit procedures (Only applies to companies based in Croatia)</label>
+                            <label class="control-label" for="Evidence for agents">(Only applies to companies based in Croatia and to Agents and shipping agents)</label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="Evidence for gents"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                              <label class="control-label" for="Waste management permits">Valid waste management permits (Only applies for companies that provide mechanical and</label>
+                              <label class="control-label" for="Waste management permits">chemical cleaning services, hazardous substance management and non-hazardous waste.)</label>
+                          </div>
+                            <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="Waste management permits"/>
+                          </div>
+                        </div>
+                        <div class="form-group form-field o_website_form_custom">
+                          <div class="col-md-3 col-sm-4 text-right">
+                            <label class="control-label" for="Confirmation of representation">Confirmation that the subcontractor is a representative or distributor of another company</label>
+                          </div>
+                          <div class="col-md-7 col-sm-8">
+                            <input type="file" class="form-control o_website_form_input" name="Confirmation of representation"/>
+                          </div>
+                        </div>
                         <div class="form-group form-field o_website_form_required_custom">
                             <div class="col-md-5 col-sm-4 text-right">
-                                <label class="control-label" for="agent">Is the aplicant an Agent?</label>
+                                <label class="control-label" for="agent">Is the applicant an Agent?</label>
                             </div>
                             <div class="col-md-4 col-sm-4">
                                 <div class="radio col-md-2 col-sm-4 text-just">
