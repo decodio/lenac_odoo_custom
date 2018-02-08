@@ -27,7 +27,7 @@
         </record>
 
         <record model="ir.ui.view" id="crm_case_form_view_job_inherit">
-            <field name="name">Subcontractor.form.inherit</field>
+            <field name="name">vl.subcontractor.form.inherit</field>
             <field name="model">vl.subcontractor</field>
             <field name="inherit_id" ref="vl_subcontractor.crm_case_form_view_job"/>
             <field name="arch" type="xml">
