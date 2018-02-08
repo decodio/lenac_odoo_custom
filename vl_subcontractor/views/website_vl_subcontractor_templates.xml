@@ -447,7 +447,7 @@
                                                     <label class="control-label" for="proj1_company">Company name</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-6">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_company" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj1_company"/>
                                                 </div>
                                             </div>
                                             <div class="form-group form-field">
@@ -455,7 +455,7 @@
                                                     <label class="control-label" for="proj1_address">Address</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_address" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj1_address" />
                                                 </div>
                                             </div>
                                             <div class="form-group form-field">
@@ -463,7 +463,7 @@
                                                     <label class="control-label" for="proj1_manager_name">Name of the Project Manager</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_manager_name" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj1_manager_name"/>
                                                 </div>
                                             </div>
                                         </td>
@@ -473,7 +473,7 @@
                                                     <label class="control-label" for="proj1_date">Date</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_date" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj1_date"/>
                                                 </div>
                                             </div>
                                             <div class="form-group form-field">
@@ -481,7 +481,7 @@
                                                     <label class="control-label" for="proj1_project_desc">Brief description of the project</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_project_desc" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj1_project_desc"/>
                                                 </div>
                                             </div>
                                         </td>
@@ -498,7 +498,7 @@
                                                     <label class="control-label" for="proj2_company">Company name</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-6">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_company" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj2_company"/>
                                                 </div>
                                             </div>
                                             <div class="form-group form-field">
@@ -506,7 +506,7 @@
                                                     <label class="control-label" for="proj2_address">Address</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_address" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj2_address"/>
                                                 </div>
                                             </div>
                                             <div class="form-group form-field">
@@ -514,7 +514,7 @@
                                                     <label class="control-label" for="proj2_manager_name">Name of the Project Manager</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_manager_name" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj2_manager_name"/>
                                                 </div>
                                             </div>
                                         </td>
@@ -524,7 +524,7 @@
                                                     <label class="control-label" for="proj2_date">Date</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_date" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj2_date"/>
                                                 </div>
                                             </div>
                                             <div class="form-group form-field">
@@ -532,7 +532,7 @@
                                                     <label class="control-label" for="proj2_project_desc">Brief description of the project</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_project_desc" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj2_project_desc"/>
                                                 </div>
                                             </div>
                                         </td>
@@ -549,7 +549,7 @@
                                                     <label class="control-label" for="proj3_company">Company name</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-6">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_company" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj3_company"/>
                                                 </div>
                                             </div>
                                             <div class="form-group form-field">
@@ -557,7 +557,7 @@
                                                     <label class="control-label" for="proj3_address">Address</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_address" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj3_address"/>
                                                 </div>
                                             </div>
                                             <div class="form-group form-field">
@@ -565,7 +565,7 @@
                                                     <label class="control-label" for="proj3_manager_name">Name of the Project Manager</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_manager_name" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj3_manager_name"/>
                                                 </div>
                                             </div>
                                         </td>
@@ -575,7 +575,7 @@
                                                     <label class="control-label" for="proj3_date">Date</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_date" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj3_date"/>
                                                 </div>
                                             </div>
                                             <div class="form-group form-field">
@@ -583,7 +583,7 @@
                                                     <label class="control-label" for="proj3_project_desc">Brief description of the project</label>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_project_desc" required=""/>
+                                                    <input type="text" class="form-control o_website_form_input" name="proj3_project_desc"/>
                                                 </div>
                                             </div>
                                         </td>
