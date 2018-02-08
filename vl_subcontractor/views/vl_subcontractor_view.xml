@@ -26,10 +26,10 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="crm_case_form_view_job_inherit">
+        <record model="ir.ui.view" id="crm_case_form_view_inherit">
             <field name="name">vl.subcontractor.form.inherit</field>
             <field name="model">vl.subcontractor</field>
-            <field name="inherit_id" ref="vl_subcontractor.crm_case_form_view_job"/>
+            <field name="inherit_id" ref="vl_subcontractor.crm_case_form_view"/>
             <field name="arch" type="xml">
                 <button name="action_start_survey"
                     class="oe_stat_button"
