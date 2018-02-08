@@ -14,7 +14,7 @@ class VlSubcontractor(models.Model):
     _mail_mass_mailing = _('Applicants')
 
     survey_id = fields.Many2one('survey.survey', string="Survey")
-    #response_id = fields.Many2one('survey.user_input', "Response", ondelete="set null", oldname="response")
+    response_id = fields.Many2one('survey.user_input', "Response", ondelete="set null", oldname="response")
     #partner_id =
 
     name = fields.Char("Subject / Applicant name", required=True)
