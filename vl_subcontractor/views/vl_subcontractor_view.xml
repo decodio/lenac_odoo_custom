@@ -52,7 +52,7 @@
                                 <field name="address_street"/>
                                 <field name="address_po_box"/>
                                 <field name="address_city"/>
-                                <field name="country_id"/>
+                                <field name="address_country"/>
                                 <field name="per_id_number"/>
                                 <field name="email_from"/>
                                 <field name="partner_phone"/>
