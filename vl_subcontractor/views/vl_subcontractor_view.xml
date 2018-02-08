@@ -30,7 +30,10 @@
             <field name="name">vl.subcontractor</field>
             <field name="model">vl.subcontractor</field>
             <field name="arch" type="xml">
-                <button name="action_start_survey"
+                <form string="Subcontractor">
+                    <header>
+                    </header>
+                    <button name="action_start_survey"
                     class="oe_stat_button"
                     icon="fa-user"
                     type="object"
@@ -41,10 +44,7 @@
                         <span class="o_stat_text">Start</span>
                         <span class="o_stat_text">Interview</span>
                     </div>
-                </button>
-                <form string="Subcontractor">
-                    <header>
-                    </header>
+                    </button>
                     <sheet>
                         <group string="Subcontractor">
                             <group>
