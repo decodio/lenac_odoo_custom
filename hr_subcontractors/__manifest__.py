@@ -8,7 +8,7 @@
     'version': '10.0.1.0.0',
     'category': 'Custom/Lenac',
     'complexity': "normal",
-    'author': 'OpenERP SA custom (Vedran Terihaj)',
+    'author': 'Custom (Vedran Terihaj)',
     'website': 'http://lenac.hr',
     'depends': ['sp_viktor_lenac_dms_qms',
                 'hr',
