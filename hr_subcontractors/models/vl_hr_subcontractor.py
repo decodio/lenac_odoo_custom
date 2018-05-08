@@ -122,7 +122,8 @@ class VLHREvaluation(models.Model):
     date = fields.Date("Appraisal Deadline", required=True, select=True),
     employee_id = fields.Many2one('hr.employee', "Employee", required=True),
     note_summary = fields.Text('Appraisal Summary'),
-    note_action = fields.Text('Action Plan', help="If the evaluation does not meet the expectations, you can propose an action plan"),
+    note_action = fields.Text('Action Plan', help="If the evaluation does not meet the expectations, you can "
+                                                  "propose an action plan"),
     rating = fields.Selection([
             ('0', 'Significantly below expectations'),
             ('1', 'Do not meet expectations'),
@@ -145,6 +146,7 @@ class VLHREvaluation(models.Model):
             '%Y-%m-%d'),
         'state': lambda *a: 'draft',
                 }
+
     @api.multi
     def name_get(self, cr, uid, ids, context=None):
         if not ids:
@@ -210,14 +212,14 @@ class VLHREvaluation(models.Model):
                                     'body_html': '<pre>%s</pre>' % body,
                                     'email_to': child.work_email,
                                     'email_from': evaluation.employee_id.work_email}
-                            self ['mail.mail'].create(cr, uid, vals, context=context)
+                            self['mail.mail'].create(cr, uid, vals, context=context)
 
         self.write(cr, uid, ids, {'state': 'wait'}, context=context)
         return True
 
     @api.multi
     def button_final_validation(self, cr, uid, ids, context=None):
-        request_obj = self ['vl.hr.evaluation.interview']
+        request_obj = self['vl.hr.evaluation.interview']
         self.write(cr, uid, ids, {'state': 'progress'}, context=context)
         for evaluation in self.browse(cr, uid, ids, context=context):
             if evaluation.employee_id and evaluation.employee_id.parent_id and evaluation.employee_id.parent_id.user_id:
@@ -232,14 +234,15 @@ class VLHREvaluation(models.Model):
         return True
 
     @api.multi
-    def button_done(self, cr, uid, ids, context=None):
+    def button_done(self, cr, uid, ids,  # context=None
+                    ):
         self.write(cr, uid, ids, ({'state' : 'done'}))
-        date_close = time.strftime('%Y-%m-%d') #(context=context)}
+        self.date_close = time.strftime('%Y-%m-%d')  # , context=context)}
         return True
 
     @api.multi
     def button_cancel(self, cr, uid, ids, context=None):
-        interview_obj = self ['vl.hr.evaluation.interview']
+        interview_obj = self['vl.hr.evaluation.interview']
         evaluation = self.browse(cr, uid, ids[0], context)
         interview_obj.survey_req_cancel(cr, uid, [r.id for r in evaluation.survey_request_ids])
         self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
@@ -253,12 +256,12 @@ class VLHREvaluation(models.Model):
     @api.multi
     def write(self, cr, uid, ids, vals, context=None):
         if vals.get('employee_id'):
-            employee_id = self ['hr.employee'].browse(cr, uid, vals.get('employee_id'), context=context)
+            employee_id = self['hr.employee'].browse(cr, uid, vals.get('employee_id'), context=context)
             if employee_id.parent_id and employee_id.parent_id.user_id:
                 vals['message_follower_ids'] = [(4, employee_id.parent_id.user_id.partner_id.id)]
         if 'date' in vals:
             new_vals = {'deadline': vals.get('date')}
-            obj_hr_eval_iterview = self ['vl.hr.evaluation.interview']
+            obj_hr_eval_iterview = self['vl.hr.evaluation.interview']
             for evaluation in self.browse(cr, uid, ids, context=context):
                 for survey_req in evaluation.survey_request_ids:
                     obj_hr_eval_iterview.write(cr, uid, [survey_req.id], new_vals, context=context)
@@ -274,15 +277,12 @@ class VLHREvaluationInterview(models.Model):
     evaluation_id = fields.Many2one('vl.hr.evaluation', 'Appraisal Plan', required=True),
     phase_id = fields.Many2one('vl.hr.subcontractors.plan.phase', 'Appraisal Phase', required=True),
     user_to_review_id = fields.Reference('evaluation_id', 'employee_id', type="many2one", relation="hr.employee",
-                                            string="Employee to evaluate"),
+                                         string="Employee to evaluate"),
     user_id = fields.Many2one('res.users', 'Interviewer'),
-    state = fields.Selection([('draft', "Draft"),
-                                   ('waiting_answer', "In progress"),
-                                   ('done', "Done"),
-                                   ('cancel', "Cancelled")],
-                                  string="State", required=True, copy=False),
+    state = fields.Selection([('draft', "Draft"), ('waiting_answer', "In progress"), ('done', "Done"),
+                              ('cancel', "Cancelled")], string="State", required=True, copy=False),
     survey_id = fields.Reference('phase_id', 'survey_id', string="Appraisal Form", type="many2one",
-                                    relation="survey.survey"),
+                                 relation="survey.survey"),
     deadline = fields.Reference('request_id', 'deadline', type="datetime", string="Deadline"),
     defaults = {
         'state': 'draft'
@@ -290,17 +290,17 @@ class VLHREvaluationInterview(models.Model):
 
     @api.multi
     def create(self, cr, uid, vals, context=None):
-        phase_obj = self ['vl.hr.subcontractors.plan.phase']
+        phase_obj = self['vl.hr.subcontractors.plan.phase']
         survey_id = phase_obj.read(cr, uid, vals.get('phase_id'), fields=['survey_id'], context=context)['survey_id'][0]
 
         if vals.get('user_id'):
-            user_obj = self ['res.users']
-            partner_id = \
-            user_obj.read(cr, uid, vals.get('user_id'), fields=['partner_id'], context=context)['partner_id'][0]
+            user_obj = self['res.users']
+            partner_id = user_obj.read(cr, uid, vals.get('user_id'), fields=['partner_id'],
+                                       context=context)['partner_id'][0]
         else:
             partner_id = None
 
-        user_input_obj = self ['survey.user_input']
+        user_input_obj = self['survey.user_input']
 
         if not vals.get('deadline'):
             vals['deadline'] = (datetime.now() + timedelta(days=28)).strftime(DF)
@@ -325,7 +325,7 @@ class VLHREvaluationInterview(models.Model):
 
     @api.multi
     def survey_req_waiting_answer(self, cr, uid, ids, context=None):
-        request_obj = self ['survey.user_input']
+        request_obj = self['survey.user_input']
         for interview in self.browse(cr, uid, ids, context=context):
             if interview.request_id:
                 request_obj.action_survey_resent(cr, uid, [interview.request_id.id], context=context)
@@ -337,7 +337,8 @@ class VLHREvaluationInterview(models.Model):
         for id in self.browse(cr, uid, ids, context=context):
             flag = False
             wating_id = 0
-            if not id.evaluation_id.id: #raise models.expression(_('Warning!'), _("You cannot start evaluation without Appraisal."))
+            if not id.evaluation_id.id:  # raise models.expression(_('Warning!'), _
+                # ("You cannot start evaluation without Appraisal."))
                 records = id.evaluation_id.survey_request_ids
                 for child in records:
                     if child.state == "draft":
@@ -357,11 +358,12 @@ class VLHREvaluationInterview(models.Model):
 
     @api.multi
     def action_print_survey(self, cr, uid, ids, context=None):
-        """ If response is available then print this response otherwise print survey form (print template of the survey) """
+        """ If response is available then print this response otherwise print survey form
+        (print template of the survey) """
         context = dict(context or {})
         interview = self.browse(cr, uid, ids, context=context)[0]
-        survey_obj = self ['survey.survey']
-        response_obj = self ['survey.user_input']
+        survey_obj = self['survey.survey']
+        response_obj = self['survey.user_input']
         response = response_obj.browse(cr, uid, interview.request_id.id, context=context)
         context.update({'survey_token': response.token})
         return survey_obj.action_print_survey(cr, uid, [interview.survey_id.id], context=context)
@@ -380,8 +382,8 @@ class VLHREvaluationInterview(models.Model):
 
 
 
-    #@api.multi
-    #def action_start_survey(self):
+    # @api.multi
+    # def action_start_survey(self):
     #    self.ensure_one()
     #    # create a response and link it to this applicant
     #    if not self.response_id:
