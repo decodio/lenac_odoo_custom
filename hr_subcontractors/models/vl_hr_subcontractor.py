@@ -226,7 +226,7 @@ class VLHREvaluation(models.Model):
         return True
 
     def button_done(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {'state': 'done', date_close = time.strftime('%Y-%m-%d')}, context=context)
+        self.write{cr, uid, ids, ['state' : 'done', date_close = time.strftime('%Y-%m-%d')], context=context}
         return True
 
     def button_cancel(self, cr, uid, ids, context=None):
@@ -322,15 +322,14 @@ class VLHREvaluationInterview(models.Model):
         for id in self.browse(cr, uid, ids, context=context):
             flag = False
             wating_id = 0
-            if not id.evaluation_id.id:
-                raise osv.except_osv(_('Warning!'), _("You cannot start evaluation without Appraisal."))
-            records = id.evaluation_id.survey_request_ids
-            for child in records:
-                if child.state == "draft":
-                    wating_id = child.id
+            if not id.evaluation_id.id: #raise models.expression(_('Warning!'), _("You cannot start evaluation without Appraisal."))
+                records = id.evaluation_id.survey_request_ids
+                for child in records:
+                    if child.state == "draft":
+                        wating_id = child.id
                     continue
-                if child.state != "done":
-                    flag = True
+            if child.state != "done":
+                flag = True
             if not flag and wating_id:
                 self.survey_req_waiting_answer(cr, uid, [wating_id], context=context)
         self.write(cr, uid, ids, {'state': 'done'}, context=context)
