@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'HR Subcontractor',
+    'name': 'VL HR Subcontractor',
     'version': '10.0.1.0.0',
     'category': 'Custom/Lenac',
     'complexity': "normal",
@@ -19,9 +19,10 @@
              #'security/website_vl_subcontractor_security.xml',
              #'views/vl_subcontractor_view.xml',
              'views/vl_hr_evaluation_view.xml',
+             'views/vl_hr_evaluation_report_view.xml',
+             'data/vl_survey_data_appraisal.xml',
              'data/vl_hr_evaluation_data.xml',
              'data/vl_hr_evaluation_installer.xml',
-             'data/vl_survey_data_appraisal.xml',
              ],
     'demo_xml': [],
     'installable': True,
