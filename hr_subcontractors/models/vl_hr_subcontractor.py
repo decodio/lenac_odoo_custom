@@ -2,34 +2,37 @@
 # Odoo, Open Source Management Solution
 # Copyright (C) 2018 Viktor Lenac
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from dateutil.parser import parser
 import time
-from odoo import models, fields, osv, _
+from odoo import api, models, fields, osv, _
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DF
+
 
 class VLHRSubcontractorsPlan(models.Model):
     _name = 'vl.hr.subcontractors.plan'
     _description = "Plan of evaluation"
     name = fields.Char("Plan of evaluation", required=True)
-    company_id = fields.Many2one ('res.company', 'Company', required=True)
+    company_id = fields.Many2one('res.company', 'Company', required=True)
     phase_ids = fields.One2many('vl.hr.subcontractors.plan.phase', 'plan_id', 'Appraisal Phases', copy=True),
     month_firs = fields.Integer('First Appraisal in (months)',
-                                  help="This number of months will be used to schedule the first evaluation date of the "
-                                       "employee when selecting an evaluation plan. "),
+                                help="This number of months will be used to schedule the first evaluation date of the "
+                                     "employee when selecting an evaluation plan. "),
     month_next = fields.Integer('Periodicity of Appraisal (months)',
-                                 help="The number of month that depicts the delay between each evaluation of this plan "
-                                      "(after the first one)."),
+                                help="The number of month that depicts the delay between each evaluation of this plan "
+                                     "(after the first one)."),
     active = fields.Boolean('Active')
 
     defaults = {
         'active': True,
         'month_first': 6,
         'month_next': 12,
-        'company_id': lambda s, cr, uid, c: s.pool.get('res.company').company.default.get(cr, uid,
-                                                                                           'account.account', context=c),
+        'company_id': lambda s, cr, uid, c: s.pool.get('res.company').company_default.get(cr, uid, 'account.account',
+                                                                                          context=c),
                 }
+
 
 class VLHRSubcontractorsPlanPhase(models.Model):
     _name = "vl.hr.subcontractors.plan.phase"
@@ -38,7 +41,7 @@ class VLHRSubcontractorsPlanPhase(models.Model):
     name_phase = fields.Char("Phase", size=64, required=True),
     sequence = fields.Integer("Sequence"),
     company_id = fields.Reference('plan_id', 'company_id', type='many2one', relation='res.company', string='Company',
-                                     store=True, readonly=True),
+                                  store=True, readonly=True),
     plan_id = fields.Many2one('vl.hr.subcontractors.plan', 'Appraisal Plan', ondelete='cascade'),
     action = fields.Selection([
             ('top-down', 'Top-Down Appraisal Requests'),
@@ -47,12 +50,13 @@ class VLHRSubcontractorsPlanPhase(models.Model):
             ('final', 'Final Interview')], 'Action', required=True),
     survey_id = fields.Many2one('survey.survey', 'Appraisal Form', required=True),
     send_answer_manager = fields.Boolean('All Answers', help="Send all answers to the manager"),
-    send_answer_employee = fields.Boolean('All Answers',help="Send all answers to the employee"),
+    send_answer_employee = fields.Boolean('All Answers', help="Send all answers to the employee"),
     send_anonymous_manager = fields.Boolean('Anonymous Summary', help="Send an anonymous summary to the manager"),
     send_anonymous_employee = fields.Boolean('Anonymous Summary', help="Send an anonymous summary to the employee"),
-    wait = fields.Boolean('Wait Previous Phases', help="Check this box if you want to wait that all preceding phases " +
-                                    "are finished before launching this phase."),
-    mail_feature = fields.Boolean('Send mail for this phase', help="Check this box if you want to send mail to employees coming under this phase"),
+    wait = fields.Boolean('Wait Previous Phases', help="Check this box if you want to wait that all preceding phases "
+                                                       "are finished before launching this phase."),
+    mail_feature = fields.Boolean('Send mail for this phase', help="Check this box if you want to send mail to "
+                                                                   "employees coming under this phase"),
     mail_body = fields.Text('Email'),
     email_subject = fields.Text('Subject')
 
@@ -75,22 +79,22 @@ class HREmployee(models.Model):
     _name = "hr.employee"
     _inherit = "hr.employee"
 
-    def _appraisal_count(self, cr, uid, ids, #field_name, arg,
-                          context=None):
-        Evaluation = self['vl.hr.evaluation.interview']
+    @api.multi
+    def _appraisal_count(self, cr, uid, ids,  # field_name, arg,
+                         context=None):
+        evaluation = self['vl.hr.evaluation.interview']
         return {
-            employee_id: Evaluation.search_count(cr, uid, [('user_to_review_id', '=', employee_id)], context=context)
+            employee_id: evaluation.search_count(cr, uid, [('user_to_review_id', '=', employee_id)], context=context)
             for employee_id in ids
         }
-
     evaluation_plan_id = fields.Many2one('vl.hr.subcontractors.plan', 'Appraisal Plan'),
     evaluation_date = fields.Date('Next Appraisal Date', help="The date of the next appraisal is computed by the "
-                                                                "appraisal plan's dates (first appraisal + "
-                                                                "periodicity)."),
-    appraisal_count = fields.function(_appraisal_count, type='integer', string='Appraisal Interviews'),
+                                                              "appraisal plan's dates (first appraisal periodicity)."),
+    appraisal_count = _appraisal_count(type='integer', string='Appraisal Interviews'),
 
-    def run_subcontractor_evaluation(self, cr, uid, #automatic=False, use_new_cursor=False,
-                                      context=None):  # cronjob
+    @api.multi
+    def run_subcontractor_evaluation(self, cr, uid,  # automatic=False, use_new_cursor=False,
+                                     context=None):  #cronjob
         now = parser.parse[datetime.now().strftime('%Y-%m-%d')]
         obj_evaluation = self ['vl.hr.evaluation']
         emp_ids = self.search(cr, uid, [('evaluation_plan_id', '<>', False), ('evaluation_date', '=', False)],
@@ -141,7 +145,7 @@ class VLHREvaluation(models.Model):
             '%Y-%m-%d'),
         'state': lambda *a: 'draft',
                 }
-
+    @api.multi
     def name_get(self, cr, uid, ids, context=None):
         if not ids:
             return []
@@ -153,8 +157,8 @@ class VLHREvaluation(models.Model):
             res.append((record['id'], name + ' / ' + employee))
         return res
 
-    def onchange_employee_id(self, cr, uid, #ids,
-                              employee_id, context=None):
+    @api.multi
+    def onchange_employee_id(self, cr, uid, ids, employee_id, context=None):
         vals = {}
         vals['plan_id'] = False
         if employee_id:
@@ -164,6 +168,7 @@ class VLHREvaluation(models.Model):
                     vals.update({'plan_id': employee.evaluation_plan_id.id})
         return {'value': vals}
 
+    @api.multi
     def button_plan_in_progress(self, cr, uid, ids, context=None):
         hr_eval_inter_obj = self ['vl.hr.evaluation.interview']
         if context is None:
@@ -210,6 +215,7 @@ class VLHREvaluation(models.Model):
         self.write(cr, uid, ids, {'state': 'wait'}, context=context)
         return True
 
+    @api.multi
     def button_final_validation(self, cr, uid, ids, context=None):
         request_obj = self ['vl.hr.evaluation.interview']
         self.write(cr, uid, ids, {'state': 'progress'}, context=context)
@@ -225,10 +231,13 @@ class VLHREvaluation(models.Model):
                     "You cannot change state, because some appraisal forms have not been completed."))
         return True
 
+    @api.multi
     def button_done(self, cr, uid, ids, context=None):
-        self.write{cr, uid, ids, ['state' : 'done', date_close = time.strftime('%Y-%m-%d')], context=context}
+        self.write(cr, uid, ids, ({'state' : 'done'}))
+        date_close = time.strftime('%Y-%m-%d') #(context=context)}
         return True
 
+    @api.multi
     def button_cancel(self, cr, uid, ids, context=None):
         interview_obj = self ['vl.hr.evaluation.interview']
         evaluation = self.browse(cr, uid, ids[0], context)
@@ -236,10 +245,12 @@ class VLHREvaluation(models.Model):
         self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
         return True
 
+    @api.multi
     def button_draft(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {'state': 'draft'}, context=context)
         return True
 
+    @api.multi
     def write(self, cr, uid, ids, vals, context=None):
         if vals.get('employee_id'):
             employee_id = self ['hr.employee'].browse(cr, uid, vals.get('employee_id'), context=context)
@@ -277,6 +288,7 @@ class VLHREvaluationInterview(models.Model):
         'state': 'draft'
                 }
 
+    @api.multi
     def create(self, cr, uid, vals, context=None):
         phase_obj = self ['vl.hr.subcontractors.plan.phase']
         survey_id = phase_obj.read(cr, uid, vals.get('phase_id'), fields=['survey_id'], context=context)['survey_id'][0]
@@ -300,6 +312,7 @@ class VLHREvaluationInterview(models.Model):
         vals['request_id'] = ret
         return super(VLHREvaluationInterview, self).create(cr, uid, vals, context=context)
 
+    @api.multi
     def name_get(self, cr, uid, ids, context=None):
         if not ids:
             return []
@@ -310,6 +323,7 @@ class VLHREvaluationInterview(models.Model):
             res.append((record['id'], name))
         return res
 
+    @api.multi
     def survey_req_waiting_answer(self, cr, uid, ids, context=None):
         request_obj = self ['survey.user_input']
         for interview in self.browse(cr, uid, ids, context=context):
@@ -318,6 +332,7 @@ class VLHREvaluationInterview(models.Model):
             self.write(cr, uid, interview.id, {'state': 'waiting_answer'}, context=context)
         return True
 
+    @api.multi
     def survey_req_done(self, cr, uid, ids, context=None):
         for id in self.browse(cr, uid, ids, context=context):
             flag = False
@@ -335,10 +350,12 @@ class VLHREvaluationInterview(models.Model):
         self.write(cr, uid, ids, {'state': 'done'}, context=context)
         return True
 
+    @api.multi
     def survey_req_cancel(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
         return True
 
+    @api.multi
     def action_print_survey(self, cr, uid, ids, context=None):
         """ If response is available then print this response otherwise print survey form (print template of the survey) """
         context = dict(context or {})
@@ -349,6 +366,7 @@ class VLHREvaluationInterview(models.Model):
         context.update({'survey_token': response.token})
         return survey_obj.action_print_survey(cr, uid, [interview.survey_id.id], context=context)
 
+    @api.multi
     def action_start_survey(self, cr, uid, ids, context=None):
         context = dict(context or {})
         interview = self.browse(cr, uid, ids, context=context)
