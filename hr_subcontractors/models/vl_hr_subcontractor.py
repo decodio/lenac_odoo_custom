@@ -372,8 +372,8 @@ class VLHREvaluationInterview(models.Model):
     def action_start_survey(self, cr, uid, ids, context=None):
         context = dict(context or {})
         interview = self.browse(cr, uid, ids, context=context)
-        survey_obj = self ['survey.survey']
-        response_obj = self ['survey.user_input']
+        survey_obj = self['survey.survey']
+        response_obj = self['survey.user_input']
         # grab the token of the response and start surveying
         response = response_obj.browse(cr, uid, interview.request_id.id, context=context)
         context.update({'survey_token': response.token})
