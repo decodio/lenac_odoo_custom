@@ -2,8 +2,12 @@
 # Odoo, Open Source Management Solution
 # Copyright (C) 2018 Viktor Lenac
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
-from odoo import models, fields, api, _
+from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
+from dateutil.parser import parser
+import time
+from odoo import models, fields, osv, _
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DF
 
 class VLHRSubcontractorsPlan(models.Model):
     _name = 'vl.hr.subcontractors.plan'
@@ -71,8 +75,9 @@ class HREmployee(models.Model):
     _name = "hr.employee"
     _inherit = "hr.employee"
 
-    def _appraisal_count(self, cr, uid, ids, field_name, arg, context=None):
-        Evaluation = self.pool['vl.hr.evaluation.interview']
+    def _appraisal_count(self, cr, uid, ids, #field_name, arg,
+                          context=None):
+        Evaluation = self['vl.hr.evaluation.interview']
         return {
             employee_id: Evaluation.search_count(cr, uid, [('user_to_review_id', '=', employee_id)], context=context)
             for employee_id in ids
@@ -84,17 +89,18 @@ class HREmployee(models.Model):
                                                                 "periodicity)."),
     appraisal_count = fields.function(_appraisal_count, type='integer', string='Appraisal Interviews'),
 
-    def run_subcontractor_evaluation(self, cr, uid, automatic=False, use_new_cursor=False, context=None):  # cronjob
-        now = parser.parse(datetime.now().strftime('%Y-%m-%d'))
-        obj_evaluation = self.pool.get('vl.hr.evaluation')
+    def run_subcontractor_evaluation(self, cr, uid, #automatic=False, use_new_cursor=False,
+                                      context=None):  # cronjob
+        now = parser.parse[datetime.now().strftime('%Y-%m-%d')]
+        obj_evaluation = self ['vl.hr.evaluation']
         emp_ids = self.search(cr, uid, [('evaluation_plan_id', '<>', False), ('evaluation_date', '=', False)],
                               context=context)
         for emp in self.browse(cr, uid, emp_ids, context=context):
             first_date = (now + relativedelta(months=emp.evaluation_plan_id.month_first)).strftime('%Y-%m-%d')
             self.write(cr, uid, [emp.id], {'evaluation_date': first_date}, context=context)
 
-        emp_ids = self.search(cr, uid, [('evaluation_plan_id', '<>', False),
-                                        ('evaluation_date', '<=', time.strftime("%Y-%m-%d"))], context=context)
+            empids = self.search(cr, uid, [('evaluation_plan_id', '<>', False), ('evaluation_date', '<=',
+                                                                        time.strftime("%Y-%m-%d"))], context=context)
         for emp in self.browse(cr, uid, emp_ids, context=context):
             next_date = (now + relativedelta(months=emp.evaluation_plan_id.month_next)).strftime('%Y-%m-%d')
             self.write(cr, uid, [emp.id], {'evaluation_date': next_date}, context=context)
@@ -147,18 +153,19 @@ class VLHREvaluation(models.Model):
             res.append((record['id'], name + ' / ' + employee))
         return res
 
-    def onchange_employee_id(self, cr, uid, ids, employee_id, context=None):
+    def onchange_employee_id(self, cr, uid, #ids,
+                              employee_id, context=None):
         vals = {}
         vals['plan_id'] = False
         if employee_id:
-            employee_obj = self.pool.get('hr.employee')
+            employee_obj = self ['hr.employee']
             for employee in employee_obj.browse(cr, uid, [employee_id], context=context):
                 if employee and employee.evaluation_plan_id and employee.evaluation_plan_id.id:
                     vals.update({'plan_id': employee.evaluation_plan_id.id})
         return {'value': vals}
 
     def button_plan_in_progress(self, cr, uid, ids, context=None):
-        hr_eval_inter_obj = self.pool.get('vl.hr.evaluation.interview')
+        hr_eval_inter_obj = self ['vl.hr.evaluation.interview']
         if context is None:
             context = {}
         for evaluation in self.browse(cr, uid, ids, context=context):
@@ -198,13 +205,13 @@ class VLHREvaluation(models.Model):
                                     'body_html': '<pre>%s</pre>' % body,
                                     'email_to': child.work_email,
                                     'email_from': evaluation.employee_id.work_email}
-                            self.pool.get('mail.mail').create(cr, uid, vals, context=context)
+                            self ['mail.mail'].create(cr, uid, vals, context=context)
 
         self.write(cr, uid, ids, {'state': 'wait'}, context=context)
         return True
 
     def button_final_validation(self, cr, uid, ids, context=None):
-        request_obj = self.pool.get('vl.hr.evaluation.interview')
+        request_obj = self ['vl.hr.evaluation.interview']
         self.write(cr, uid, ids, {'state': 'progress'}, context=context)
         for evaluation in self.browse(cr, uid, ids, context=context):
             if evaluation.employee_id and evaluation.employee_id.parent_id and evaluation.employee_id.parent_id.user_id:
@@ -223,7 +230,7 @@ class VLHREvaluation(models.Model):
         return True
 
     def button_cancel(self, cr, uid, ids, context=None):
-        interview_obj = self.pool.get('vl.hr.evaluation.interview')
+        interview_obj = self ['vl.hr.evaluation.interview']
         evaluation = self.browse(cr, uid, ids[0], context)
         interview_obj.survey_req_cancel(cr, uid, [r.id for r in evaluation.survey_request_ids])
         self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
@@ -235,12 +242,12 @@ class VLHREvaluation(models.Model):
 
     def write(self, cr, uid, ids, vals, context=None):
         if vals.get('employee_id'):
-            employee_id = self.pool.get('hr.employee').browse(cr, uid, vals.get('employee_id'), context=context)
+            employee_id = self ['hr.employee'].browse(cr, uid, vals.get('employee_id'), context=context)
             if employee_id.parent_id and employee_id.parent_id.user_id:
                 vals['message_follower_ids'] = [(4, employee_id.parent_id.user_id.partner_id.id)]
         if 'date' in vals:
             new_vals = {'deadline': vals.get('date')}
-            obj_hr_eval_iterview = self.pool.get('vl.hr.evaluation.interview')
+            obj_hr_eval_iterview = self ['vl.hr.evaluation.interview']
             for evaluation in self.browse(cr, uid, ids, context=context):
                 for survey_req in evaluation.survey_request_ids:
                     obj_hr_eval_iterview.write(cr, uid, [survey_req.id], new_vals, context=context)
@@ -271,17 +278,17 @@ class VLHREvaluationInterview(models.Model):
                 }
 
     def create(self, cr, uid, vals, context=None):
-        phase_obj = self.pool.get('vl.hr.subcontractors.plan.phase')
+        phase_obj = self ['vl.hr.subcontractors.plan.phase']
         survey_id = phase_obj.read(cr, uid, vals.get('phase_id'), fields=['survey_id'], context=context)['survey_id'][0]
 
         if vals.get('user_id'):
-            user_obj = self.pool.get('res.users')
+            user_obj = self ['res.users']
             partner_id = \
             user_obj.read(cr, uid, vals.get('user_id'), fields=['partner_id'], context=context)['partner_id'][0]
         else:
             partner_id = None
 
-        user_input_obj = self.pool.get('survey.user_input')
+        user_input_obj = self ['survey.user_input']
 
         if not vals.get('deadline'):
             vals['deadline'] = (datetime.now() + timedelta(days=28)).strftime(DF)
@@ -304,7 +311,7 @@ class VLHREvaluationInterview(models.Model):
         return res
 
     def survey_req_waiting_answer(self, cr, uid, ids, context=None):
-        request_obj = self.pool.get('survey.user_input')
+        request_obj = self ['survey.user_input']
         for interview in self.browse(cr, uid, ids, context=context):
             if interview.request_id:
                 request_obj.action_survey_resent(cr, uid, [interview.request_id.id], context=context)
@@ -337,23 +344,21 @@ class VLHREvaluationInterview(models.Model):
         """ If response is available then print this response otherwise print survey form (print template of the survey) """
         context = dict(context or {})
         interview = self.browse(cr, uid, ids, context=context)[0]
-        survey_obj = self.pool.get('survey.survey')
-        response_obj = self.pool.get('survey.user_input')
+        survey_obj = self ['survey.survey']
+        response_obj = self ['survey.user_input']
         response = response_obj.browse(cr, uid, interview.request_id.id, context=context)
         context.update({'survey_token': response.token})
         return survey_obj.action_print_survey(cr, uid, [interview.survey_id.id], context=context)
 
     def action_start_survey(self, cr, uid, ids, context=None):
         context = dict(context or {})
-        interview = self.browse(cr, uid, ids, context=context)[0]
-        survey_obj = self.pool.get('survey.survey')
-        response_obj = self.pool.get('survey.user_input')
+        interview = self.browse(cr, uid, ids, context=context)
+        survey_obj = self ['survey.survey']
+        response_obj = self ['survey.user_input']
         # grab the token of the response and start surveying
         response = response_obj.browse(cr, uid, interview.request_id.id, context=context)
         context.update({'survey_token': response.token})
-
-
-return survey_obj.action_start_survey(cr, uid, [interview.survey_id.id], context=context)
+        return survey_obj.action_start_survey(cr, uid, [interview.survey_id.id], context=context)
 
 
 
