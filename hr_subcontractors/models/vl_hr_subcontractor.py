@@ -9,6 +9,7 @@ from dateutil.parser import parser
 import time
 from odoo import api, models, fields, osv, _
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DF
+from odoo.exceptions import UserError
 
 
 class VLHRSubcontractorsPlan(models.Model):
@@ -38,10 +39,10 @@ class VLHRSubcontractorsPlanPhase(models.Model):
     _name = "vl.hr.subcontractors.plan.phase"
     _description = "Plan of evaluation Phase"
     order = "sequence"
-    name_phase = fields.Char("Phase", size=64, required=True),
+    name_phase = fields.Char("Phase", required=True),
     sequence = fields.Integer("Sequence"),
-    company_id = fields.Reference('plan_id', 'company_id', type='many2one', relation='res.company', string='Company',
-                                  store=True, readonly=True),
+    company_id = fields.Many2one('plan_id', 'company_id', comodel_name='res.company', string='Company', store=True,
+                                 readonly=True),
     plan_id = fields.Many2one('vl.hr.subcontractors.plan', 'Appraisal Plan', ondelete='cascade'),
     action = fields.Selection([
             ('top-down', 'Top-Down Appraisal Requests'),
@@ -148,7 +149,7 @@ class VLHREvaluation(models.Model):
                 }
 
     @api.multi
-    def name_get(self, cr, uid, ids, context=None):
+    def _name_get(self, cr, uid, ids, context=None):
         if not ids:
             return []
         reads = self.browse(cr, uid, ids, context=context)
@@ -164,7 +165,7 @@ class VLHREvaluation(models.Model):
         vals = {}
         vals['plan_id'] = False
         if employee_id:
-            employee_obj = self ['hr.employee']
+            employee_obj = self['hr.employee']
             for employee in employee_obj.browse(cr, uid, [employee_id], context=context):
                 if employee and employee.evaluation_plan_id and employee.evaluation_plan_id.id:
                     vals.update({'plan_id': employee.evaluation_plan_id.id})
@@ -229,14 +230,13 @@ class VLHREvaluation(models.Model):
                                                                             [('evaluation_id', '=', evaluation.id),
                                                                              ('state', 'in', ['done', 'cancel'])],
                                                                             context=context)):
-                raise osv.except_osv(_('Warning!'), _(
-                    "You cannot change state, because some appraisal forms have not been completed."))
+                raise UserError(_("You cannot change state, because some appraisal forms have not been completed."))
         return True
 
     @api.multi
     def button_done(self, cr, uid, ids,  # context=None
                     ):
-        self.write(cr, uid, ids, ({'state' : 'done'}))
+        self.write(cr, uid, ids, ({'state': 'done'}))
         self.date_close = time.strftime('%Y-%m-%d')  # , context=context)}
         return True
 
@@ -276,13 +276,12 @@ class VLHREvaluationInterview(models.Model):
     request_id = fields.Many2one('survey.user_input', 'Survey Request', ondelete='cascade', readonly=True),
     evaluation_id = fields.Many2one('vl.hr.evaluation', 'Appraisal Plan', required=True),
     phase_id = fields.Many2one('vl.hr.subcontractors.plan.phase', 'Appraisal Phase', required=True),
-    user_to_review_id = fields.Reference('evaluation_id', 'employee_id', type="many2one", relation="hr.employee",
-                                         string="Employee to evaluate"),
+    user_to_review_id = fields.Many2one('evaluation_id', 'employee_id', comodel_name="hr.employee",
+                                        string="Employee to evaluate"),
     user_id = fields.Many2one('res.users', 'Interviewer'),
     state = fields.Selection([('draft', "Draft"), ('waiting_answer', "In progress"), ('done', "Done"),
                               ('cancel', "Cancelled")], string="State", required=True, copy=False),
-    survey_id = fields.Reference('phase_id', 'survey_id', string="Appraisal Form", type="many2one",
-                                 relation="survey.survey"),
+    survey_id = fields.Many2one('phase_id', 'survey_id', string="Appraisal Form", comodel_name="survey.survey"),
     deadline = fields.Reference('request_id', 'deadline', type="datetime", string="Deadline"),
     defaults = {
         'state': 'draft'
