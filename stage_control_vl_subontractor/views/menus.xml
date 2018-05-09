@@ -1,16 +1,16 @@
 <odoo>
 
-    <menuitem
-        id="menu_config_subcontractors"
-        name="Subcontractors"
-        parent="vl.subcontractor.menu_VL_subcontractor_configuration"
+    <!--<menuitem
+        id="menu_config_audit"
+        name="Audits"
+        parent="mgmtsystem.menu_mgmtsystem_configuration"
         sequence="15" />
 
-    <menuitem  id="menu_vl_subcontractors_stages"
+    <menuitem  id="menu_mgmtsystem_audit_stages"
         name="Stages"
-        parent="menu_config_subcontractors"
-        action="stage_control_vl_subcontractors.vl_subcontractors_stage_action"
+        parent="menu_config_audit"
+        action="stage_control_mgmtsystem_audit.mgmtsystem_audit_stage_action"
         sequence="50"
-        <!-- groups="mgmtsystem.group_mgmtsystem_manager,mgmtsystem.group_mgmtsystem_auditor,base.group_user"/>-->
+        groups="mgmtsystem.group_mgmtsystem_manager,mgmtsystem.group_mgmtsystem_auditor,base.group_user"/>-->
 
 </odoo>

@@ -10,7 +10,7 @@ class VLSubcontractorStage(models.Model):
     _name = 'vl.subcontractor.stage'
     _inherit = ['stage.control.common']
     _stage_for_model_name = ['vl.subcontractor']
-    _description = "Sequence off approval"
+    _description = "Subcontractor stages"
     _order = 'sequence'
 
     #def init(self):
@@ -30,7 +30,7 @@ class VLSubcontractorStage(models.Model):
 
 
 class VLSubcontractorAction(models.Model):
-    _name = 'vl.subcontractor.action'
+    _name = 'vl.subcontractor.audit'
     _inherit = ['model.stage.control.common', 'vl.subcontractor']
     _stage_model_name = 'vl.subcontractor.stage'
 
@@ -48,12 +48,12 @@ class VLSubcontractorAction(models.Model):
     @api.multi
     def button_close(self):
         """When Audit is closed, post a message to followers' chatter."""
-        self.message_post(_("Subcontrator approved"))
-        mgmt_audit_stage_obj = self.env['vl.subcontractor.stage']
-        closed_stage_id = mgmt_audit_stage_obj.search([('state', '=', 'done')],
+        self.message_post(_("Audit closed"))
+        subcontractor_stage_obj = self.env['vl.subcontractor.stage']
+        closed_stage_id = subcontractor_stage_obj.search([('state', '=', 'done')],
                                       order="sequence asc", limit=1)
         if closed_stage_id:
             return self.write({'stage_id': closed_stage_id.id,
                                'closing_date': fields.Datetime.now()})
         else:
-            raise UserError(_("Please create a stage for approved Subcontractors!"))
+            raise UserError(_("Please create a stage for done Audits!"))
