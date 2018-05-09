@@ -30,7 +30,7 @@ class VLSubcontractorStage(models.Model):
 
 
 class VLSubcontractorAction(models.Model):
-    _name = 'vl.subcontractor'
+    _name = 'vl.subcontractor.action'
     _inherit = ['model.stage.control.common', 'vl.subcontractor']
     _stage_model_name = 'vl.subcontractor.stage'
 
