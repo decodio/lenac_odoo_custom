@@ -3,7 +3,7 @@
 
     <record id="view_vl_subcontractor_form" model="ir.ui.view">
         <field name="name">name</field>
-        <field name="model">vl.subcontractor.</field>
+        <field name="model">vl.subcontractor.stage</field>
         <field name="inherit_id" ref="vl.subcontractor.vl_subcontractor_view"/>
         <field name="arch" type="xml">
             <data>
