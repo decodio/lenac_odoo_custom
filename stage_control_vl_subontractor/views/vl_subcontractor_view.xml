@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="form_vl_subcontractor_view" model="ir.ui.view">
+        <field name="name">vl.subcontractor.form</field>
+        <field name="model">vl.subcontractor</field>
+        <field name="inherit_id" ref="vl.subcontractor.form_vl_subcontractor_view"/>
+        <field name="arch" type="xml">
+            <data>
+                <field name="state" position="after">
+                    <field name="stage_id" widget="statusbar" clickable="True"/>
+                </field>
+                <field name="state" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <xpath expr="//notebook/page[1]" position="after">
+                    <page string="Tasks" name="tasks">
+                        <group>
+                            <group>
+                                <separator string="To Do List"
+                                       class="oe_horizontal_separator"
+                                       style="margin:0px 0px 10px 0px; font-size:13px; color:#404040;"
+                                       colspan="4"/>
+                                <field name="todo_task_ids" readonly="0" nolabel="1" options="{'reload_on_button': true}">
+                                    <tree editable="top" create="true">
+                                        <field name="name" readonly="0"/>
+                                        <field name="user_id" readonly="1"/>
+                                        <!--field name="note" readonly="0"/-->
+                                        <field name="state" readonly="1"/>
+                                        <button name="action_button_done" context="{'active_id':active_id}"
+                                                        string="Done" type="object" icon="gtk-apply"/>
+                                        <button name="action_button_cancel" context="{'active_id':active_id}"
+                                                        string="Cancel" type="object" icon="gtk-cancel"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group>
+                                <separator string="Finished List"
+                                       class="oe_horizontal_separator"
+                                       style="margin:0px 0px 10px 0px; font-size:13px; color:#404040;"
+                                       colspan="4"/>
+                                <field name="finished_task_ids" readonly="0" nolabel="1" options="{'reload_on_button': true}">
+                                    <tree create="false">
+                                        <field name="name" readonly="1"/>
+                                        <field name="user_id" readonly="1"/>
+                                        <!--field name="note" readonly="1"/-->
+                                        <field name="state" readonly="1"/>
+                                        <button name="action_button_open" context="{'active_id':active_id}"
+                                                        string="Open" type="object" icon="gtk-ok"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,16 @@
+<odoo>
+
+    <menuitem
+        id="menu_config_subcontractors"
+        name="Subcontractors"
+        parent="vl.subcontractor.menu_VL_subcontractor_configuration"
+        sequence="15" />
+
+    <menuitem  id="menu_vl_subcontractors_stages"
+        name="Stages"
+        parent="menu_config_subcontractors"
+        action="stage_control_vl_subcontractors.vl_subcontractors_stage_action"
+        sequence="50"
+        <!-- groups="mgmtsystem.group_mgmtsystem_manager,mgmtsystem.group_mgmtsystem_auditor,base.group_user"/>-->
+
+</odoo>

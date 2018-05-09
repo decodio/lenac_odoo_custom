@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.ui.view" id="vl_subcontractor_stage_tree_view">
+        <field name="name">vl.subcontractor.stage.tree.view</field>
+        <field name="model">vl.subcontractor.stage</field>
+        <field name="arch" type="xml">
+            <tree string="Stages">
+                <field name="name"/>
+                <field name="sequence" widget="handle" />
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="vl_subcontractor_stage_form_view" model="ir.ui.view">
+        <field name="name">vl.subcontractor.stage.from.view</field>
+        <field name="model">vl.subcontractor.stage</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="VL Subcontractor Action Stage">
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="state"/>
+                    </group>
+                    <group>
+                        <field name="sequence"/>
+                        <field name="mail_template_id" />
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Flow" name="page_flow">
+                        <group name="group_flow">
+                            <group string="Forward" name="group_flow_forward">
+                                <field name="allow_skipping"/>
+                                <field name="allowed_forward_group_id"/>
+                            </group>
+                            <group string="Backward" name="group_flow_backward">
+                                <field name="block_backward"/>
+                                <field name="allowed_backward_group_id"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Email Templates">
+                        <group name="group_email_templates" colspan="4">
+                            <label for="mail_template_ids"/>
+                            <field name="mail_template_ids" colspan="4" nolabel="1">
+                                <tree>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                    <page string="Required Fields">
+                        <group name="group_required_fields" colspan="4">
+                            <label for="required_field_ids"/>
+                            <field name="required_field_ids" colspan="4" nolabel="1">
+                                <tree>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                    <page string="Tasks">
+                        <group name="group_todo_tasks" colspan="4">
+                            <field name="task_ids" colspan="4" nolabel="1"
+                                   context="{'default_is_template_task': True, 'default_active': False, 'active_test': False}"
+                                   domain="[('is_template_task', '=', True), ('active', '=', False)]">
+                                <tree>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="vl_subcontractor_stage_action" model="ir.actions.act_window">
+        <field name="name">Stages</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">vl.subcontractor.stage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            </p>
+        </field>
+    </record>
+
+</odoo>
