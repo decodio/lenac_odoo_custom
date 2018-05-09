@@ -23,6 +23,7 @@ Main Features
 
 """,
     'depends': [
+        'sp_viktor_lenac_dms_qms',
         'stage_control_base',
         'vl_subcontractor',
     ],
