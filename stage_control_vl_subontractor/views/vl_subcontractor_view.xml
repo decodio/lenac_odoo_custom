@@ -2,7 +2,7 @@
 <odoo>
 
     <record id="view_vl_subcontractor_form" model="ir.ui.view">
-        <field name="name">Name</field>
+        <field name="name">view.vl.subcontractor.form</field>
         <field name="model">vl.subcontractor</field>
         <field name="inherit_id" ref="vl.subcontractor.vl_subcontractor_view"/>
         <field name="arch" type="xml">
