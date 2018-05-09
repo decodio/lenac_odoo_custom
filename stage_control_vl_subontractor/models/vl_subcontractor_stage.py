@@ -32,6 +32,7 @@ class VLSubcontractorStage(models.Model):
 class VLSubcontractorAction(models.Model):
     _name = 'vl.subcontractor.audit'
     _inherit = ['model.stage.control.common', 'vl.subcontractor']
+    _inherit = 'vl.subcontractor'
     _stage_model_name = 'vl.subcontractor.stage'
 
     def _get_default_stage_id(self):
