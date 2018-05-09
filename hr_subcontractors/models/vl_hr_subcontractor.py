@@ -9,8 +9,6 @@ from dateutil.parser import parser
 import time
 from odoo import api, models, fields, osv, _
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DF
-from odoo import tools
-from odoo import models, fields, osv, _
 
 
 class VLHRSubcontractorsPlan(models.Model):
@@ -98,14 +96,14 @@ class HREmployee(models.Model):
     def run_subcontractor_evaluation(self, cr, uid,  # automatic=False, use_new_cursor=False,
                                      context=None):  #cronjob
         now = parser.parse[datetime.now().strftime('%Y-%m-%d')]
-        obj_evaluation = self ['vl.hr.evaluation']
+        obj_evaluation = self['vl.hr.evaluation']
         emp_ids = self.search(cr, uid, [('evaluation_plan_id', '<>', False), ('evaluation_date', '=', False)],
                               context=context)
         for emp in self.browse(cr, uid, emp_ids, context=context):
             first_date = (now + relativedelta(months=emp.evaluation_plan_id.month_first)).strftime('%Y-%m-%d')
             self.write(cr, uid, [emp.id], {'evaluation_date': first_date}, context=context)
 
-            empids = self.search(cr, uid, [('evaluation_plan_id', '<>', False), ('evaluation_date', '<=',
+            emp_ids = self.search(cr, uid, [('evaluation_plan_id', '<>', False), ('evaluation_date', '<=',
                                                                         time.strftime("%Y-%m-%d"))], context=context)
         for emp in self.browse(cr, uid, emp_ids, context=context):
             next_date = (now + relativedelta(months=emp.evaluation_plan_id.month_next)).strftime('%Y-%m-%d')
@@ -174,7 +172,7 @@ class VLHREvaluation(models.Model):
 
     @api.multi
     def button_plan_in_progress(self, cr, uid, ids, context=None):
-        hr_eval_inter_obj = self ['vl.hr.evaluation.interview']
+        hr_eval_inter_obj = self['vl.hr.evaluation.interview']
         if context is None:
             context = {}
         for evaluation in self.browse(cr, uid, ids, context=context):
