@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+    <!--<data>
         <record model="ir.actions.act_window" id="action_evaluation_plans_installer">
             <field name="name">Review Appraisal Plans</field>
             <field name="type">ir.actions.act_window</field>
@@ -19,5 +19,5 @@
             </field>
         </record>
 
-</data>
+</data>-->
 </odoo>
