@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <odoo>
 
-    <record id="form_vl_subcontractor_view" model="ir.ui.view">
-        <field name="name">vl.subcontractor.form</field>
+    <record id="vl_subcontractor_form_view" model="ir.ui.view">
+        <field name="name">vl.subcontractor</field>
         <field name="model">vl.subcontractor</field>
-        <field name="inherit_id" ref="vl.subcontractor.form_vl_subcontractor_view"/>
+        <field name="inherit_id" ref="vl.subcontractor.vl_subcontractor_form_view"/>
         <field name="arch" type="xml">
             <data>
                 <field name="state" position="after">
