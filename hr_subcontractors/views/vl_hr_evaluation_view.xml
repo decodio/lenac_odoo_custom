@@ -96,10 +96,10 @@
                             <field name="action"/>
                             <field name="survey_id"/>
                         </group>
-                        <group string="Send to Managers">
+                        <group name="Send to Managers">
                             <field name="send_answer_manager"/>
                             <field name="send_anonymous_manager"/>
-                        </group><group string="Send to Employees">
+                        </group><group name="Send to Employees">
                             <field name="send_answer_employee"/>
                             <field name="send_anonymous_employee"/>
                         </group>
@@ -110,7 +110,7 @@
                         <field name="mail_feature"/>
                         <separator string="Mail Body"/>
                         <field name="mail_body"/>
-                        <group string="Legend">
+                        <group name="Legend">
                             <label string=" (employee_name)s: Partner name"/>
                             <label string="(user_signature)s: User name"/>
                             <label string="(date)s: Current Date"/>
@@ -141,7 +141,7 @@
             <field name="inherit_id" ref="hr.view_employee_form"/>
             <field name="arch" type="xml">
             <xpath expr="//group[@name='active_group']" position="before">
-                <group string="Appraisals">
+                <group name="Appraisals">
                     <field name="evaluation_plan_id"/>
                     <field name="evaluation_date"/>
                 </group>
@@ -184,14 +184,14 @@
                             <field name="date_close" readonly="1"/>
                         </group>
                     </group>
-                    <group string="Appraisal Forms" attrs="{'invisible':[('state','=','draft')]}">
+                    <group name="Appraisal Forms" attrs="{'invisible':[('state','=','draft')]}">
                         <field nolabel="1" name="survey_request_ids" attrs="{'readonly': [('state', '=', 'done')]}" />
                     </group>
-                    <group string="Internal Notes" attrs="{'invisible':[('state','=','draft')]}">
+                    <group name="Internal Notes" attrs="{'invisible':[('state','=','draft')]}">
                         <field nolabel="1" name="note_action"
                             groups="base.group_hr_manager" placeholder="Appraisal Summary..."/>
                     </group>
-                    <group string="Public Notes" attrs="{'invisible':[('state','=','draft')]}">
+                    <group name="Public Notes" attrs="{'invisible':[('state','=','draft')]}">
                         <field nolabel="1" name="note_summary" placeholder="Action Plan..."/>
                     </group>
               </sheet>

@@ -120,7 +120,7 @@ class VLHREvaluation(models.Model):
     _inherit = "mail.thread"
     _description = "Employee Appraisal"
     _rec_name = "employee_id"
-    date = fields.Date("Appraisal Deadline", required=True, select=True),
+    date = fields.Date("Appraisal Deadline", required=True, index=True),
     employee_id = fields.Many2one('hr.employee', "Employee", required=True),
     note_summary = fields.Text('Appraisal Summary'),
     note_action = fields.Text('Action Plan', help="If the evaluation does not meet the expectations, you can "
@@ -141,7 +141,7 @@ class VLHREvaluation(models.Model):
             ('progress', 'Waiting Appreciation'),
             ('done', 'Done'),
         ], 'Status', required=True, readonly=True, copy=False),
-    date_close = fields.Date('Ending Date', select=True),
+    date_close = fields.Date('Ending Date', index=True),
     defaults = {
         'date': lambda *a: (parser.parse(datetime.now().strftime('%Y-%m-%d')) + relativedelta(months=+1)).strftime(
             '%Y-%m-%d'),
