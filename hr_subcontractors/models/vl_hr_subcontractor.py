@@ -81,7 +81,12 @@ class HREmployee(models.Model):
     _inherit = "hr.employee"
 
     @api.multi
-    def _appraisal_count(self, cr, uid, ids,  # field_name, arg,
+    def _appraisal_count(self,
+                         cr,
+                         uid,
+                         ids,
+                         # field_name,
+                         # arg,
                          context=None):
         evaluation = self['vl.hr.evaluation.interview']
         return {
@@ -94,7 +99,11 @@ class HREmployee(models.Model):
     appraisal_count = _appraisal_count(type='integer', string='Appraisal Interviews'),
 
     @api.multi
-    def run_subcontractor_evaluation(self, cr, uid,  # automatic=False, use_new_cursor=False,
+    def run_subcontractor_evaluation(self,
+                                     cr,
+                                     uid,
+                                     # automatic=False,
+                                     # use_new_cursor=False,
                                      context=None):  #cronjob
         now = parser.parse[datetime.now().strftime('%Y-%m-%d')]
         obj_evaluation = self['vl.hr.evaluation']
@@ -161,7 +170,7 @@ class VLHREvaluation(models.Model):
         return res
 
     @api.multi
-    def onchange_employee_id(self, cr, uid, ids, employee_id, context=None):
+    def onchange_employee_id(self, cr, uid, employee_id, context=None):
         vals = {}
         vals['plan_id'] = False
         if employee_id:
