@@ -54,12 +54,12 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.actions.act_window" id="open_view_VLHRSubcontractorsPlan_tree">
+        <!--<record model="ir.actions.act_window" id="open_view_VLHRSubcontractorsPlan_tree">
             <field name="name">Appraisal Plans</field>
             <field name="res_model">vl.hr.subcontractors.plan</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-        </record>
+        </record>-->
 
       <!-- Appraisal Interviews Action -->
 
