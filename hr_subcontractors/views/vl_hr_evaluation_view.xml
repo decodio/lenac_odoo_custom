@@ -71,9 +71,9 @@
             <field name="context">{'search_default_user_to_review_id': [active_id], 'default_user_to_review_id': active_id}</field>
         </record>-->
 
-        <menuitem name="Appraisal" parent="hr.menu_hr_root" id="menu_eval_hr" sequence="25"/>
-        <menuitem name="Periodic Appraisal" parent="hr.menu_hr_configuration" id="menu_eval_hr_config" sequence="4"/>
-        <menuitem parent="hr.menu_hr_configuration" id="menu_open_view_hr_evaluation_plan_tree"
+        <menuitem name="Appraisal" parent="menu_hr_root" id="menu_eval_hr" sequence="25"/>
+        <menuitem name="Periodic Appraisal" parent="menu_human_resources_configuration" id="menu_eval_hr_config" sequence="4"/>
+        <menuitem parent="menu_human_resources_configuration" id="menu_open_view_hr_evaluation_plan_tree"
             action="open_view_hr_evaluation_plan_tree" sequence="15"/>
 
         <record model="ir.ui.view" id="view_VLHRSubcontractorsPlanPhase_form">
