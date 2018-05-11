@@ -18,7 +18,7 @@ class VLHRSubcontractorsPlan(models.Model):
     name = fields.Char("Plan of evaluation", required=True)
     company_id = fields.Many2one('res.company', 'Company', required=True)
     phase_ids = fields.One2many('vl.hr.subcontractors.plan.phase', 'plan_id', 'Appraisal Phases', copy=True),
-    month_firs = fields.Integer('First Appraisal in (months)',
+    month_first = fields.Integer('First Appraisal in (months)',
                                 help="This number of months will be used to schedule the first evaluation date of the "
                                      "employee when selecting an evaluation plan. "),
     month_next = fields.Integer('Periodicity of Appraisal (months)',
