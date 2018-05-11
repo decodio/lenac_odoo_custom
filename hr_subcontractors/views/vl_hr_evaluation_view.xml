@@ -63,13 +63,13 @@
 
       <!-- Appraisal Interviews Action -->
 
-        <record model="ir.actions.act_window" id="act_HREmployee_2_VLHREvaluationInterview">
+        <!--<record model="ir.actions.act_window" id="act_HREmployee_2_VLHREvaluationInterview">
             <field name="res_model">vl.hr.evaluation.interview</field>
             <field name="view_type">form</field>
             <field name="name">Interviews</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_user_to_review_id': [active_id], 'default_user_to_review_id': active_id}</field>
-        </record>
+        </record>-->
 
         <menuitem name="Appraisal" parent="hr.menu_hr_root" id="menu_eval_hr" sequence="25"/>
         <menuitem name="Periodic Appraisal" parent="hr.menu_hr_configuration" id="menu_eval_hr_config" sequence="4"/>
