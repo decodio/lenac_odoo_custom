@@ -29,7 +29,7 @@
                                 <field name="active"/>
                             </group>
                             <group>
-                                <field name="month_first"/>
+                                <!--<field name="month_first"/>-->
                                 <!--<field name="month_next"/>-->
                             </group>
                         </group>
