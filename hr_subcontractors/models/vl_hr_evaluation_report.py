@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import tools
-from odoo import models, fields, osv, _
+from odoo import models, fields, api, osv, _
 
 
 class VLHREvaluationReport(models.Model):
@@ -45,6 +45,7 @@ class VLHREvaluationReport(models.Model):
         ],
     }
 
+    @api.multi
     def init(self, cr):
         tools.drop_view_if_exists(cr, 'vl.hr.evaluation_report')
         cr.execute("""
