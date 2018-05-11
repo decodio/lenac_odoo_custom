@@ -63,7 +63,7 @@
 
       <!-- Appraisal Interviews Action -->
 
-        <record id="act_HREmployee_2_VLHREvaluationInterview" model="ir.actions.act_window">
+        <record id="act_VLHREvaluationInterview" model="ir.actions.act_window">
             <field name="res_model">vl.hr.evaluation.interview</field>
             <field name="view_type">form</field>
             <field name="name">Interviews</field>
