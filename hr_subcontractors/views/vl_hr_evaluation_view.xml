@@ -16,7 +16,7 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_VLHRSubcontractorsPlan_form">
+        <record model="ir.ui.view" id="view_vl_hr_subcontractors_plan_form">
             <field name="name">vl.hr.subcontractors.plan.form</field>
             <field name="model">vl.hr.subcontractors.plan</field>
             <field name="arch" type="xml">
