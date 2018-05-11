@@ -70,8 +70,8 @@
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_user_to_review_id': [active_id], 'default_user_to_review_id': active_id}</field>
         </record>-->
-
-        <menuitem id="menu_eval_hr" name="Appraisal" parent="menu_human_resources_configuration"  sequence="25"/>
+        <menuitem id="menu_hr_root" name="Subcontractors" sequence="75"/>
+        <menuitem id="menu_eval_hr" name="Appraisal" parent="menu_hr_root"  sequence="25"/>
         <menuitem name="Periodic Appraisal" parent="menu_human_resources_configuration" id="menu_eval_hr_config" sequence="4"/>
         <menuitem parent="menu_human_resources_configuration" id="menu_open_view_hr_evaluation_plan_tree"
             action="open_view_hr_evaluation_plan_tree" sequence="15"/>
