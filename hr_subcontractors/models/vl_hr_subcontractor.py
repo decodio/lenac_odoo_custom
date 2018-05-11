@@ -76,7 +76,7 @@ class VLHRSubcontractorsPlanPhase(models.Model):
                 }
 
 
-class HREmployee(models.Model):
+class Employee(models.Model):
     _name = "hr.employee"
     _inherit = "hr.employee"
 
