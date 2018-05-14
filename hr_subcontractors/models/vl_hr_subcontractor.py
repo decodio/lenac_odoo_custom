@@ -263,18 +263,18 @@ class VLHREvaluation(models.Model):
         return True
 
     @api.multi
-    def write(self, cr, uid, ids, vals, context=None):
+    def write(self, vals, context=None):
         if vals.get('employee_id'):
-            employee_id = self['hr.employee'].browse(cr, uid, vals.get('employee_id'), context=context)
+            employee_id = self['hr.employee'].browse(vals.get('employee_id'), context=context)
             if employee_id.parent_id and employee_id.parent_id.user_id:
                 vals['message_follower_ids'] = [(4, employee_id.parent_id.user_id.partner_id.id)]
         if 'date' in vals:
             new_vals = {'deadline': vals.get('date')}
             obj_hr_eval_iterview = self['vl.hr.evaluation.interview']
-            for evaluation in self.browse(cr, uid, ids, context=context):
+            for evaluation in self.browse(context=context):
                 for survey_req in evaluation.survey_request_ids:
-                    obj_hr_eval_iterview.write(cr, uid, [survey_req.id], new_vals, context=context)
-        return super(VLHREvaluation, self).write(cr, uid, ids, vals, context=context)
+                    obj_hr_eval_iterview.write([survey_req.id], new_vals, context=context)
+        return super(VLHREvaluation, self).write(vals, context=context)
 
 
 class VLHREvaluationInterview(models.Model):
