@@ -18,9 +18,9 @@ class VLHRSubcontractorsPlan(models.Model):
     name = fields.Char("Plan of evaluation", required=True)
     company_id = fields.Many2one('res.company', 'Company', required=True)
     phase_ids = fields.One2many('vl.hr.subcontractors.plan.phase', 'plan_id', 'Appraisal Phases', copy=True),
-    month_first = fields.Integer('First Appraisal in (months)',
-                                help="This number of months will be used to schedule the first evaluation date of the "
-                                     "employee when selecting an evaluation plan. "),
+    month_first = fields.Integer('First Appraisal in (months)', help="This number of months will be used to schedule "
+                                                                     "the first evaluation date of the employee when "
+                                                                     "selecting an evaluation plan. "),
     month_next = fields.Integer('Periodicity of Appraisal (months)',
                                 help="The number of month that depicts the delay between each evaluation of this plan "
                                      "(after the first one)."),
@@ -263,18 +263,18 @@ class VLHREvaluation(models.Model):
         return True
 
     @api.multi
-    def write(self, vals, context=None):
+    def write(self, cr, uid, ids, vals, context=None):
         if vals.get('employee_id'):
-            employee_id = self['hr.employee'].browse(vals.get('employee_id'), context=context)
+            employee_id = self['hr.employee'].browse(cr, uid, vals.get('employee_id'), context=context)
             if employee_id.parent_id and employee_id.parent_id.user_id:
                 vals['message_follower_ids'] = [(4, employee_id.parent_id.user_id.partner_id.id)]
         if 'date' in vals:
             new_vals = {'deadline': vals.get('date')}
             obj_hr_eval_iterview = self['vl.hr.evaluation.interview']
-            for evaluation in self.browse(context=context):
+            for evaluation in self.browse(cr, uid, ids, context=context):
                 for survey_req in evaluation.survey_request_ids:
-                    obj_hr_eval_iterview.write([survey_req.id], new_vals, context=context)
-        return super(VLHREvaluation, self).write(vals, context=context)
+                    obj_hr_eval_iterview.write(cr, uid, [survey_req.id], new_vals, context=context)
+        return super(VLHREvaluation, self).write(cr, uid, ids, vals, context=context)
 
 
 class VLHREvaluationInterview(models.Model):
@@ -386,9 +386,6 @@ class VLHREvaluationInterview(models.Model):
         response = response_obj.browse(cr, uid, interview.request_id.id, context=context)
         context.update({'survey_token': response.token})
         return survey_obj.action_start_survey(cr, uid, [interview.survey_id.id], context=context)
-
-
-
 
     # @api.multi
     # def action_start_survey(self):
