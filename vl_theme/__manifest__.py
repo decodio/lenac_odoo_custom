@@ -16,6 +16,6 @@
         'views/pages.xml',
         'views/assets.xml',
     ],
-    'images': ['static/description/bootswatch.png'],
+    'images': [''],
     'application': False,
 }
