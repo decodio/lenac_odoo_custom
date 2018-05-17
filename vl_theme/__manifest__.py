@@ -8,10 +8,8 @@
     'category': 'Theme',
     'sequence': 900,
     'version': '1.0',
-    'author': 'Vedran Terihaj',
     'depends': ['website'],
     'data': [
-        #'data/theme_bootswatch_data.xml',
         'views/layout.xml',
         'views/pages.xml',
         'views/assets.xml',
