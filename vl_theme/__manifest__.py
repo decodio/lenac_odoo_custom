@@ -10,9 +10,8 @@
     'version': '1.0',
     'depends': ['website'],
     'data': [
-        'views/layout.xml',
-        'views/pages.xml',
-        'views/assets.xml',
+        'views/theme_default_templates.xml',
+        'data/theme_default_data.xml',
     ],
     'images': [''],
     'application': False,
