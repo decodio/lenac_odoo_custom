@@ -8,7 +8,7 @@
     'category': 'Theme',
     'sequence': 900,
     'version': '1.0',
-    'depends': ['website', 'theme_default'],
+    'depends': ['website'],
     'data': [
         'views/theme_default_templates.xml',
         'data/theme_default_data.xml',
