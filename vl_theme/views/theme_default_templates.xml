@@ -49,12 +49,6 @@
                           </td>
                           <td>
                               <label class="chd-color-combi">
-                                  <img src="/theme_default/static/src/img/theme/variant-stone.gif" alt="Lenac" class="chd-color-combi-img"/>
-                                  <input name="colorvar" type="radio" data-xmlid="theme_default.vl_custom"/>
-                              </label>
-                          </td>
-                          <td>
-                              <label class="chd-color-combi">
                                   <img src="/theme_default/static/src/img/theme/variant-emerald.gif" alt="Emerald" class="chd-color-combi-img"/>
                                   <input name="colorvar" type="radio" data-xmlid="theme_default.option_color_emerald"/>
                               </label>
@@ -137,13 +131,6 @@
     <link href="/theme_default/static/src/less/option_color_stone.less" rel="stylesheet" type="text/less"/>
   </xpath>
 </template>
-
-<template id="vl_custom" name="vl_custom" inherit_id="website.assets_frontend" active="False" customize_show="False">
-  <xpath expr="." position="inside">
-    <link href="/theme_default/static/src/less/vl_custom.less" rel="stylesheet" type="text/less"/>
-  </xpath>
-</template>
-
 <template id="option_color_emerald" name="option_color_emerald" inherit_id="website.assets_frontend" active="False" customize_show="False">
   <xpath expr="." position="inside">
     <link href="/theme_default/static/src/less/option_color_emerald.less" rel="stylesheet" type="text/less"/>
