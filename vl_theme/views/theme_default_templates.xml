@@ -49,6 +49,12 @@
                           </td>
                           <td>
                               <label class="chd-color-combi">
+                                  <img src="/theme_default/static/src/img/theme/variant-stone.gif" alt="Lenac" class="chd-color-combi-img"/>
+                                  <input name="colorvar" type="radio" data-xmlid="theme_default.vl_custom"/>
+                              </label>
+                          </td>
+                          <td>
+                              <label class="chd-color-combi">
                                   <img src="/theme_default/static/src/img/theme/variant-emerald.gif" alt="Emerald" class="chd-color-combi-img"/>
                                   <input name="colorvar" type="radio" data-xmlid="theme_default.option_color_emerald"/>
                               </label>
