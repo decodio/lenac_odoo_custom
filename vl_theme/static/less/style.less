@@ -3,7 +3,7 @@
     padding: 1em;
     margin: 2em 0 3em;
     width: 1140px;
-    position: center;
+    position: y;
     li {
         display: block;
         position: relative;
@@ -18,6 +18,10 @@
         color:#535f6a;
     }
 }
+.o_logo {
+    .o-svg-bg("odoo_logo","png", 0, 0, no-repeat, "logos/" );
+    display: inline-block;
+    .o-logo-size(50px); // 30px height is default size
 //===== Custom navbar
 @navbar-default-bg:                #f3f3f3;
 @navbar-height:                    60px;
@@ -26,7 +30,8 @@
 @navbar-default-link-hover-color:  #be282d;
 @navbar-default-link-hover-bg:     #d1d4d9;
 @navbar-default-link-active-color: #535f6a;
-@navbar-default-link-active-bg:    @navbar-default-link-hover-bg;;
+@navbar-default-link-active-bg:    @navbar-default-link-hover-bg;
+
 
 //===== Custom text
 @font-size-base:          14px;
