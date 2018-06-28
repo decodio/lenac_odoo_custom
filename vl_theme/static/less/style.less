@@ -17,6 +17,59 @@
         color:#535f6a;
     }
 }
+
+// Core variables and mixins
+@import "variables.less";
+@import "mixins.less";
+
+// Reset and dependencies
+@import "normalize.less";
+@import "print.less";
+@import "glyphicons.less";
+
+// Core CSS
+@import "scaffolding.less";
+@import "type.less";
+@import "code.less";
+@import "grid.less";
+@import "tables.less";
+@import "forms.less";
+@import "buttons.less";
+
+// Components
+@import "component-animations.less";
+@import "dropdowns.less";
+@import "button-groups.less";
+@import "input-groups.less";
+@import "navs.less";
+@import "navbar.less";
+@import "breadcrumbs.less";
+@import "pagination.less";
+@import "pager.less";
+@import "labels.less";
+@import "badges.less";
+@import "jumbotron.less";
+@import "thumbnails.less";
+@import "alerts.less";
+@import "progress-bars.less";
+@import "media.less";
+@import "list-group.less";
+@import "panels.less";
+@import "responsive-embed.less";
+@import "wells.less";
+@import "close.less";
+
+// Components w/ JavaScript
+@import "modals.less";
+@import "tooltip.less";
+@import "popovers.less";
+@import "carousel.less";
+
+// Utility classes
+@import "utilities.less";
+@import "responsive-utilities.less";
+
+
 header a.navbar-brand {
     &.logo {
         padding: 0 15px;
@@ -26,21 +79,6 @@ header a.navbar-brand {
         margin-top: 5px;
     }
 }
-.o_main_header {
-    > .o_sub_nav {
-
-            > .container {
-
-                    .o_app_name_logo {
-                        .o_logo();
-                        .o_logo_15();
-                        vertical-align: middle;
-                        margin: auto 5px 3px 0;
-                    }
-             }
-     }
-}
-
 //===== Custom navbar
 @navbar-default-bg:                #f3f3f3;
 @navbar-height:                    60px;
