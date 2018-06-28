@@ -10,9 +10,10 @@
     'version': '1.0',
     'depends': ['website'],
     'data': [
-        'views/theme_default_templates.xml',
-        'data/theme_default_data.xml',
+        'views/layout.xml',
+        #'data/vl_custom_data.xml',
     ],
+    'category':'VL Theme',
     'images': [''],
     'application': False,
 }
