@@ -3,7 +3,6 @@
     padding: 1em;
     margin: 2em 0 3em;
     width: 1140px;
-    position: y;
     li {
         display: block;
         position: relative;
@@ -18,10 +17,35 @@
         color:#535f6a;
     }
 }
-.o_logo {
-    .o-svg-bg("odoo_logo","png", 0, 0, no-repeat, "logos/" );
-    display: inline-block;
-    .o-logo-size(50px); // 30px height is default size
+header a.navbar-brand {
+    &.logo {
+        padding: 0 15px;
+    }
+    img {
+        max-height: 50px;
+        margin-top: 5px;
+    }
+}
+#oe_main_menu_navbar ~ #wrapwrap .o_main_header {
+    &.o_has_sub_nav.o_scrolled {
+        top: 34px - (@w-header-height + 1);
+    }
+}
+.o_main_header {
+    > .o_sub_nav {
+
+            > .container {
+
+                    .o_app_name_logo {
+                        .o_logo();
+                        .o_logo_15();
+                        vertical-align: middle;
+                        margin: auto 5px 3px 0;
+                    }
+             }
+     }
+}
+
 //===== Custom navbar
 @navbar-default-bg:                #f3f3f3;
 @navbar-height:                    60px;
@@ -45,7 +69,7 @@
 @font-size-h5:            @font-size-base;
 @font-size-h6:            ceil((@font-size-base * 0.85)); // ~12px
 
-@headings-font-family:    'Lobster', cursive;
+@headings-font-family:    'Arial', cursive;
 @headings-font-weight:    500;
 @headings-line-height:    1.1;
 @headings-color:          #be282d;
