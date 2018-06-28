@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data>
+    <!-- === Services Page === -->
+    <template name="Services page" id="website.services" page="True">
+      <h1>Our Services</h1>
+        <ul class="services">
+          <li>Cloud Hosting</li>
+          <li>Support</li>
+          <li>Unlimited space</li>
+        </ul>
+      </template>
+    </data>
+  </odoo>
