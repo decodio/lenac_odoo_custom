@@ -12,6 +12,7 @@
     'data': [
         'views/layout.xml',
         'views/pages.xml',
+        'views/assets.xml',
         #'data/vl_custom_data.xml',
     ],
     'category':'VL Theme',
