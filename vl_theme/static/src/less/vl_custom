@@ -1,4 +1,4 @@
-/*.container{
+.container{
     width: 1800px;
     height: 90px;
 }
@@ -35,4 +35,4 @@
             font-size: 24px;
         }
     }
-}*/
+}
