@@ -38,6 +38,8 @@
                t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
             <t t-snippet="vl_theme.vl_image_text"
                t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+            <t t-snippet="vl_theme.vl_big_message"
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
 
             <t t-snippet="vl_theme.vl_features"
                t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
@@ -111,6 +113,20 @@
                             Start with the customer – find out what they want
                             and give it to them.
                         </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+      </template>
+
+      <template id="vl_big_message" name="Big message">
+        <section class="jumbotron vl_big_message" style="background-image: url('/web/image/website.s_background_image_01');">
+            <div class="container">
+                <div class="row">
+                    <div class="mb32 col-md-offset-1 col-md-8">
+                        <h1 class="h1-big-message">Sell Online. Easily.</h1>
+                        <p class="p-big-message">Write one sentence to convince visitor about your message.</p>
+                        <a class="btn btn-warning btn-lg btn-big-message" href="/page/website.contactus">Contact us</a>
                     </div>
                 </div>
             </div>
