@@ -59,7 +59,7 @@
                 <div class="row">
                     <div class="col-md-6 mt64 mb64 bg-black-25">
                         <h2 class="h2-cover">Headline</h2>
-                        <h4 calss="h4-cover">With a great subtitle</h4>
+                        <h4 class="h4-cover">With a great subtitle</h4>
                         <p class="p-cover">Write one or two paragraphs describing your product, services or a specific feature. To be successful your content needs to be useful to your readers.</p>
                     </div>
                 </div>
