@@ -2,7 +2,7 @@
 <odoo>
   <data>
 <!-- === Services Page === -->
-    <template name="Additional information" id="website.additional_information" page="True">
+    <!--<template name="Additional information" id="website.additional_information" page="True">
       <t t-call="website.layout">
        <div id="wrap">
          <div class="container">
@@ -14,13 +14,13 @@
              </li>
              <li>Support</li>
              <li>Unlimited space</li>
-           </ul>
+           </ul>-->
            <!-- === Snippets' area === -->
-           <div class="oe_structure" />
+           <!--<div class="oe_structure" />
          </div>
        </div>
       </t>
-    </template>
+    </template>-->
     <record id="additional_information_page_link" model="website.menu">
       <field name="name">Additional information</field>
       <field name="url">/page/additional_information</field>
