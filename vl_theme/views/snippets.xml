@@ -27,29 +27,26 @@
 
       <template id="place_into_bar" inherit_id="website.snippets" name="Place into bar">
           <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
-            <t t-snippet="vl_theme.snippet_testimonial"
-               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
-
             <t t-snippet="vl_theme.vl_title"
-               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.png"/>
             <t t-snippet="vl_theme.vl_cover"
-               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.png"/>
             <t t-snippet="vl_theme.vl_text_image"
-               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.png"/>
             <t t-snippet="vl_theme.vl_image_text"
-               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.png"/>
             <t t-snippet="vl_theme.vl_big_message"
-               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.png"/>
             <t t-snippet="vl_theme.vl_text_block"
-               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.png"/>
             <t t-snippet="vl_theme.vl_features"
-               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.png"/>
             <t t-snippet="vl_theme.vl_big_picture"
-               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.png"/>
             <t t-snippet="vl_theme.vl_three_columns"
-               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.png"/>
             <t t-snippet="vl_theme.vl_banner"
-               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.png"/>
           </xpath>
       </template>
 
