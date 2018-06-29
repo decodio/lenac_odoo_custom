@@ -42,8 +42,9 @@
                t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
             <t t-snippet="vl_theme.vl_text_block"
                t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
-
             <t t-snippet="vl_theme.vl_features"
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+            <t t-snippet="vl_theme.vl_big_picture"
                t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
           </xpath>
       </template>
@@ -187,5 +188,31 @@
             </div>
         </section>
     </template>
+
+      <template id="vl_big_picture" name="Big Picture">
+        <section class="vl_big_picture bg-gray-lighter">
+            <div class="container">
+                <h2 class="text-center h2-big-picture">A Punchy Headline</h2>
+                <div class="row">
+                    <div class="col-md-12">
+                      <img class="img img-responsive" src="/web/image/website.s_big_picture_default_image" style="margin: 0 auto; height:600px;"  alt="Odoo CMS - a big picture"/>
+                    </div>
+                    <div class="col-md-6 col-md-offset-3 mb16 mt16">
+                        <p class="text-center p-big-picture">
+                            <h3 class="h3-big-picture">A Small Subtitle</h3>
+                        </p>
+                        <p class="text-center p-big-picture">
+                            Choose a vibrant image and write an inspiring paragraph
+                            about it. It does not have to be long, but it should
+                            reinforce your image.
+                        </p>
+                        <p class="text-center p-big-picture">
+                            <a href="/page/website.contactus">Contact us »</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+      </template>
   </data>
 </odoo>
