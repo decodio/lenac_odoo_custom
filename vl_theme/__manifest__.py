@@ -20,6 +20,6 @@
     'description': '',
     'category': 'Theme',
     'sequence': 900,
-    'images': ['/vl_theme/static/src/img/ui/snippet_thumb.png'],
+    'images': [''],
     'application': False,
 }
