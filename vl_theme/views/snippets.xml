@@ -34,6 +34,10 @@
                t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
             <t t-snippet="vl_theme.vl_cover"
                t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+            <t t-snippet="vl_theme.vl_text_image"
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+            <t t-snippet="vl_theme.vl_image_text"
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
 
             <t t-snippet="vl_theme.vl_features"
                t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
@@ -61,6 +65,52 @@
                         <h2 class="h2-cover">Headline</h2>
                         <h4 class="h4-cover">With a great subtitle</h4>
                         <p class="p-cover">Write one or two paragraphs describing your product, services or a specific feature. To be successful your content needs to be useful to your readers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+      </template>
+
+      <template id="vl_text_image" name="Text-Image">
+        <section class="vl_text_image">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt64 mb32">
+                        <h3 class="h3-text-image" style="text-align: right;">A Section Subtitle</h3>
+                        <p class="p-text-image" style="text-align: right;">
+                            Write one or two paragraphs describing your product or
+                            services.<br/>To be successful your content needs to be
+                            useful to your readers.
+                        </p><p class="p-text-image" style="text-align: right;">
+                            Start with the customer – find out what they want
+                            and give it to them.
+                        </p>
+                    </div>
+                    <div class="col-md-6 mt32 mb32">
+                      <img class="img img-responsive pull-left mb16" src="/web/image/website.s_text_image_default_image" alt="Odoo text and image block"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+      </template>
+
+      <template id="vl_image_text" name="Image-Text">
+        <section class="vl_image_text">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt32 mb32">
+                      <img class="img img-responsive center-block mb16" src="/web/image/website.s_image_text_default_image"  alt="Odoo image and text block"/>
+                    </div>
+                    <div class="col-md-6 mt64 mb32">
+                        <h3 class="h3-text-image">A Section Subtitle</h3>
+                        <p class="p-text-image">
+                            Write one or two paragraphs describing your product,
+                            services or a specific feature. To be successful
+                            your content needs to be useful to your readers.
+                        </p><p class="p-text-image">
+                            Start with the customer – find out what they want
+                            and give it to them.
+                        </p>
                     </div>
                 </div>
             </div>
