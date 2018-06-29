@@ -30,5 +30,35 @@
                t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
           </xpath>
       </template>
+
+      <template id="vl_features" name="Features">
+        <section class="vl_features">
+            <div class="container">
+                <div class="row mt16 mb16">
+                    <div class="col-md-4 text-center">
+                        <span class="fa fa-suitcase fa-5x"></span>
+                        <h3 class="mt8 mb0 h3">First Feature</h3>
+                        <p class="text-muted h4">Tell what's the value for the<br/>customer for this feature.</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <span class="fa fa-lock fa-5x"></span>
+                        <h3 class="mt8 mb0 h3">Second Feature</h3>
+                        <p class="text-muted h4">Write what the customer would like to know,<br/>not what you want to show.</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <span class="fa fa-heart fa-5x"></span>
+                        <h3 class="mt8 mb0 h3">Third Feature</h3>
+                        <p class="text-muted h4">A small explanation of this great<br/>feature, in clear words.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+    <template id="place_into_bar" inherit_id="website.snippets" name="Place into bar">
+          <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+            <t t-snippet="vl_theme.vl_features"
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+          </xpath>
+    </template>
   </data>
 </odoo>
