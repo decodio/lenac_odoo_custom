@@ -28,6 +28,8 @@
           <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
             <t t-snippet="vl_theme.snippet_testimonial"
                t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
+            <t t-snippet="vl_theme.vl_features"
+               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
           </xpath>
       </template>
 
@@ -53,12 +55,6 @@
                 </div>
             </div>
         </section>
-    </template>
-    <template id="place_into_bar" inherit_id="website.snippets" name="Place into bar">
-          <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
-            <t t-snippet="vl_theme.vl_features"
-               t-thumbnail="/vl_theme/static/src/img/ui/snippet_thumb.jpg"/>
-          </xpath>
     </template>
   </data>
 </odoo>
