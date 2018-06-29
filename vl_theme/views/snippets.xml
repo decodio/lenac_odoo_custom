@@ -207,7 +207,7 @@
                             reinforce your image.
                         </p>
                         <p class="text-center p-big-picture">
-                            <a href="/page/website.contactus">Contact us »</a>
+                            <a class="a-big picture" href="/page/website.contactus">Contact us »</a>
                         </p>
                     </div>
                 </div>
