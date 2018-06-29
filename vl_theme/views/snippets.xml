@@ -193,7 +193,7 @@
         <section class="vl_big_picture bg-gray-lighter">
             <div class="container">
                 <h2 class="text-center h2-big-picture">A Punchy Headline</h2>
-                <div class="row">
+                <div class="row row-big-picture">
                     <div class="col-md-12">
                       <img class="img img-responsive" src="/web/image/website.s_big_picture_default_image" style="margin: 0 auto; height:600px;"  alt="Odoo CMS - a big picture"/>
                     </div>
