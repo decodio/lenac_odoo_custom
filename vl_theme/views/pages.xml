@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data>
+<!-- === Services Page === -->
+    <!--<template name="Additional information" id="website.additional_information" page="True">
+      <t t-call="website.layout">
+       <div id="wrap">
+         <div class="container">
+           <h2>Access to additional information</h2>
+           <ul class="additional_information">
+             <li>
+                 <h1>Subcontractor log</h1>
+                 <td> By clicking on <a href="https://app.lenac.hr/podugovaraci/f?p=105:LOGIN_DESKTOP:10465307041143:::::">this link</a> you can access the subcontractor log book.</td>
+             </li>
+             <li>Support</li>
+             <li>Unlimited space</li>
+           </ul>-->
+           <!-- === Snippets' area === -->
+           <!--<div class="oe_structure" />
+         </div>
+       </div>
+      </t>
+    </template>-->
+    <record id="additional_information_page_link" model="website.menu">
+      <field name="name">Additional information</field>
+      <field name="url">/page/additional_information</field>
+      <field name="parent_id" ref="website.main_menu" />
+      <field name="sequence" type="int">99</field>
+    </record>
+
+  </data>
+</odoo>
