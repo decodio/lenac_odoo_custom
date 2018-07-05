@@ -173,17 +173,17 @@
                     <div class="col-md-4 text-center">
                         <span class="fa fa-suitcase fa-5x icon-vl-feat"></span>
                         <h3 class="mt8 mb0 h3 h3-features">First Feature</h3>
-                        <p class="text-muted h4 h4-features text-muted-features">Tell what's the value for the<br/>customer for this feature.</p>
+                        <p class="h4 h4-features text-muted-features">Tell what's the value for the<br/>customer for this feature.</p>
                     </div>
                     <div class="col-md-4 text-center">
                         <span class="fa fa-lock fa-5x icon-vl-feat"></span>
                         <h3 class="mt8 mb0 h3 h3-features">Second Feature</h3>
-                        <p class="text-muted h4 h4-features text-muted-features">Write what the customer would like to know,<br/>not what you want to show.</p>
+                        <p class="h4 h4-features text-muted-features">Write what the customer would like to know,<br/>not what you want to show.</p>
                     </div>
                     <div class="col-md-4 text-center">
                         <span class="fa fa-heart fa-5x icon-vl-feat"></span>
                         <h3 class="mt8 mb0 h3 h3-features">Third Feature</h3>
-                        <p class="text-muted h4 h4-features text-muted-features">A small explanation of this great<br/>feature, in clear words.</p>
+                        <p class="h4 h4-features text-muted-features">A small explanation of this great<br/>feature, in clear words.</p>
                     </div>
                 </div>
             </div>
