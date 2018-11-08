@@ -78,7 +78,7 @@
 
     <record id="vl_hr_maintenance_extension_view_form_inherit_hr" model="ir.ui.view">
         <field name="name">vl.hr.maintenance.extension.view.form.inherit.hr</field>
-        <field name="model">vl.hr.maintenance.extension.equipment</field>
+        <field name="model">vl.hr.maintenance.extensiont</field>
         <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='owner_user_id']" position="replace">

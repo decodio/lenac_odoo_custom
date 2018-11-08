@@ -10,7 +10,7 @@
     'summary': 'Extends the from for VL ICT inventory tracking',
     'data': [
         'security/equipment.xml',
-        'views/maintenance_views.xml',
+        'views/vl_hr_maintenance_extension_views.xml',
     ],
     'demo': [],
     'installable': True,

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, fields, models, tools
+from odoo import api, fields, models
 
 
 class AllowedSoftware(models.Model):
-    _inherit = 'allowed.software'
+    _name = 'allowed.software'
 
     sw_name = fields.Char(string="Software name")
     sw_vendor = fields.Char(string="Software vendor")

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, fields, models, tools
+from odoo import api, fields, models
 
 
-class VLHRMaintenaceExtension(models.Model):
+class VLHRMaintenanceExtension(models.Model):
 
-    _inherit = 'vl.hr.maintenance.extension'
+    _name = 'vl.hr.maintenance.extension'
 
     inventory_number = fields.Integer(string='Inventory number')
     installed_os = fields.Selection(
@@ -15,4 +15,4 @@ class VLHRMaintenaceExtension(models.Model):
                    ('winser2012R2', 'Windows Server 2012 R2')],
         string='Installed OS',
         required=False)
-    installed_sw = fields.Many2many('allowed_os', string='Installed software')
+    installed_sw = fields.Many2many('allowed_software', string='Installed software')

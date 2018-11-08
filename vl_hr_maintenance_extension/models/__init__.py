@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
 
-import equipment
-import allowed_os
+from. import vl_hr_maintenance_extension
+from. import allowed_os
