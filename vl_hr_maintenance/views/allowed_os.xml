@@ -75,7 +75,7 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="allowed_software_action">
+        <!--<record model="ir.actions.act_window" id="allowed_software_action">
             <field name="name">Software</field>
             <field name="model">allowed.software</field>
             <field name="view_type">form</field>
@@ -84,10 +84,10 @@
                 Click to add a new SW entry.
               </p>
             </field>
-        </record>
+        </record>-->
 
-        <menuitem id="menu_allowed_software" action="allowed_software_action"  sequence="100"/>
-
+        <menuitem id="menu_allowed_software" action="allowed_software_action"  sequence="100"
+                  parrent="menu_maintenance_title"/>
 
 
 
