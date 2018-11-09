@@ -87,7 +87,7 @@
                 <field name="department_id" string="Department" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'employee'), ('equipment_assign_to', '=', False)]}"/>
                 <field name = "pc_number"/>
                 <field name = "installed_os"/>
-                <!--<field name = "installed_sw"/>-->
+                <field name = "installed_sw"/>
             </xpath>
         </field>
     </record>
@@ -123,5 +123,24 @@
                 <field name="department_id" string="Department"/>
             </xpath>
         </field>
+    </record>
+
+    <!--SW FORM-->>
+    <record id="allowed_software_form_view" model="ir.ui.view">
+            <field name="name">allowed.software.form.view</field>
+            <field name="model">allowed.software</field>
+            <field name="arch" type="xml">
+                <field name = "sw_name"/>
+                <field name = "sw_vendor"/>
+                <field name = "sw_version"/>
+                <field name = "sw_licence"/>
+                <field name = "sw_serial"/>
+                <field name = "sw_purchase_date"/>
+                <field name = "sw_licence_exp"/>
+                <field name = "sw_price"/>
+                <field name = "sw_licence_assignd_person"/>
+                <field name = "sw_licence_assignd_dep"/>
+                <field name = "sw_spec"/>
+            </field>
     </record>
 </odoo>
