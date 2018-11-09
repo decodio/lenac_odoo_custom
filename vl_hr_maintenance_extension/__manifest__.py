@@ -6,7 +6,7 @@
     'sequence': 125,
     'description': """
         Bridge between HR and Maintenance.""",
-    'depends': ['hr', 'maintenance', 'hr_maintenance'],
+    'depends': ['hr', 'maintenance', ],
     'summary': 'Extends the from for VL ICT inventory tracking',
     'data': [
         'security/equipment.xml',
