@@ -135,7 +135,7 @@
                 <search string="Software name">
                     <field name="sw_name"/>
                     <field name="sw_version"/>
-                    <field name="sw_purchase date"/>
+                    <field name="sw_purchase_date"/>
                 </search>
             </field>
     </record>
@@ -147,7 +147,7 @@
             <tree string="Software name">
                 <field name="sw_name"/>
                 <field name="sw_version"/>
-                <field name="sw_purchase date"/>
+                <field name="sw_purchase_date"/>
             </tree>
         </field>
     </record>
