@@ -22,7 +22,7 @@ class MaintenanceEquipment(models.Model):
                    ('winser2012R2', 'Windows Server 2012 R2')],
         string='Installed OS',
         required=False)
-    installed_sw = fields.Many2many('allowed_os', string='Installed software')
+    installed_sw = fields.Many2many('allowed.os', string='Installed software')
 
     @api.one
     @api.depends('employee_id', 'department_id', 'equipment_assign_to')
@@ -140,3 +140,27 @@ class MaintenanceRequest(models.Model):
             if employee:
                 custom_values['employee_id'] = employee and employee[0].id
         return super(MaintenanceRequest, self).message_new(msg, custom_values=custom_values)
+
+
+class AllowedSoftware(models.Model):
+    _name = 'allowed.os'
+    _description = 'Installed os'
+
+    sw_name = fields.Char(string="Software name")
+    sw_vendor = fields.Char(string="Software vendor")
+    sw_version = fields.Char(string="Software version")
+    sw_licence = fields.Selection(selection=[('free', 'Free'), ('personal', 'Personal use'),
+                                             ('spaid', 'Single paid licence'), ('mpaid', 'Multiple activation key')
+                                             ],
+                                  string='Licence type',
+                                  required=False)
+    sw_serial = fields.Char(string="Serial key")
+    sw_purchase_date = fields.Date(string="Date of purchase")
+    sw_licence_exp = fields.Date(string="Expiration date")
+    sw_price = fields.Integer(string="Licence cost")
+    sw_licence_assignd_person = fields.Many2one('hr.employee', string='Assigned to Employee')
+    sw_licence_assignd_dep = fields.Many2one('hr.department', string='Assigned to Department')
+    sw_spec = fields.Selection(selection=[('def', 'Installed by default'),
+                                          ('dep_spec', 'Department specific')],
+                               string='Installation type',
+                               required='True')
