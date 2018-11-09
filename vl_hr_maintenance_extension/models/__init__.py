@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
 
-import vlhrmaintenance_extension
+import equipment
 import allowed_os
