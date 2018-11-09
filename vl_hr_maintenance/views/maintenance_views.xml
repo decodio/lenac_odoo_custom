@@ -68,9 +68,6 @@
         <field name="owner_user_id" position="after">
           <field name="employee_id"/>
           <field name="department_id"/>
-          <field name = "pc_number"/>
-          <field name = "installed_os"/>
-          <!--<field name = "installed_sw"/>-->
         </field>
         <group position="inside">
           <filter string="Employee" domain="[]" context="{'group_by': 'employee_id'}"/>
@@ -100,6 +97,9 @@
             <xpath expr="//field[@name='technician_user_id']" position="after">
                 <field name="employee_id"/>
                 <field name="department_id"/>
+                <field name = "pc_number"/>
+                <field name = "installed_os"/>
+                <!--<field name = "installed_sw"/>-->
             </xpath>
             <xpath expr="//img[@t-att-title='record.owner_user_id.value']" position='replace'>
                 <img t-att-src="kanban_image('hr.employee', 'image_small', record.employee_id.raw_value)" t-att-title="record.employee_id.value" width="27" height="27" class="oe_kanban_avatar"/>
