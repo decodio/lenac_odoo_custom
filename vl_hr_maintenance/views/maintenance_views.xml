@@ -132,21 +132,21 @@
             <form string="Installed software">
                 <sheet>
                 <div class="oe_title">
-                    <label for="sw_name" class="oe_edit_only" string="Category Name"/>
+                    <label for="sw_name" class="oe_edit_only" string="Software name"/>
                     <h1>
                         <field name="sw_name"/>
                     </h1>
                 </div>
-                <field name = "sw_vendor"/>
-                <field name = "sw_version"/>
-                <field name = "sw_licence"/>
-                <field name = "sw_serial"/>
-                <field name = "sw_purchase_date"/>
-                <field name = "sw_licence_exp"/>
-                <field name = "sw_price"/>
-                <field name = "sw_licence_assignd_person"/>
-                <field name = "sw_licence_assignd_dep"/>
-                <field name = "sw_spec"/>
+                <field name = "sw_vendor" string = "Software vendor"/>
+                <field name = "sw_version" string= "Software version"/>
+                <field name = "sw_licence" string = "Software licence type"/>
+                <field name = "sw_serial" string = "Software serial"/>
+                <field name = "sw_purchase_date" string = "Date of purchase"/>
+                <field name = "sw_licence_exp" string = "Renewal licence date"/>
+                <field name = "sw_price" string = "Cost"/>
+                <field name = "sw_licence_assignd_person" string = "Licence assigned to employee"/>
+                <field name = "sw_licence_assignd_dep" string = "Licence assigned to department"/>
+                <field name = "sw_spec" string = "type of instalation"/>
                 </sheet>
             </form>
         </field>
@@ -176,11 +176,12 @@
     </record>
 
     <!--<menuitem
-        id="menu_allowed_oss"
+        id="menu_allowed_os"
         name="Allowed software"
         parent="menu_maintenance_configuration"
         action="allowed_os_action_settings"
         groups="group_equipment_manager"
         sequence="1"/>-->
+
 
 </odoo>
