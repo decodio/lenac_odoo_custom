@@ -204,10 +204,10 @@
     <menuitem
         id="menu_allowed_os"
         name="Allowed software"
-        parent="menu_maintenance_title"
+        parent="maintenance.menu_maintenance_title"
         action="allowed_os_action_settings"
-        groups="group_equipment_manager"
         sequence="100"/>
+        <!--groups="group_equipment_manager"-->
 
     <!--<menuitem
         id="menu_maintenance_teams"
@@ -216,6 +216,4 @@
         action="maintenance_team_action_settings"
         groups="group_equipment_manager"
         sequence="1"/>-->
-
-
 </odoo>
