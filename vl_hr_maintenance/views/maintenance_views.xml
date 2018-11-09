@@ -91,7 +91,8 @@
             </xpath>
             <page string="Product Information">
                 <field name = "warranty" positin="before">
-                    <field name = "date_purchased" string="Date of purchase"/>
+                    <label for = "sw_vendor" string="Date of purchase"/>
+                    <field name = "date_purchased"/>
                 </field>
             </page>
         </field>
