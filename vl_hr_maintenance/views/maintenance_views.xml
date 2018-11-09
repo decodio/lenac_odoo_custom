@@ -129,7 +129,7 @@
     </record>
 
     <record model="ir.ui.view" id="allowed_os_search_view">
-            <field name="name">allowed.os.tree</field>
+            <field name="name">allowed.os.search.view</field>
             <field name="model">allowed.os</field>
             <field name="arch" type="xml">
                 <search string="Software name">
@@ -141,7 +141,7 @@
     </record>
 
     <record id="allowed_os_view_tree" model="ir.ui.view">
-        <field name="name">allowed.os.tree</field>
+        <field name="name">allowed.os.view.tree</field>
         <field name="model">allowed.os</field>
         <field name="arch" type="xml">
             <tree string="Software name">
@@ -153,7 +153,7 @@
     </record>
 
     <record id="allowed_os_view_form" model="ir.ui.view">
-        <field name="name">allowed.os.form</field>
+        <field name="name">allowed.os.view.form</field>
         <field name="model">allowed.os</field>
         <field name="arch" type="xml">
             <form string="Installed software">
