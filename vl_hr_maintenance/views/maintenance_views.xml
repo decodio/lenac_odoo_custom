@@ -128,6 +128,30 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="allowed_os_search_view">
+            <field name="name">allowed.os.tree</field>
+            <field name="model">allowed.os</field>
+            <field name="arch" type="xml">
+                <search string="Software name">
+                    <field name="sw_name"/>
+                    <field name="sw_version"/>
+                    <field name="sw_purchase date"/>
+                </search>
+            </field>
+    </record>
+
+    <record id="allowed_os_view_tree" model="ir.ui.view">
+        <field name="name">allowed.os.tree</field>
+        <field name="model">allowed.os</field>
+        <field name="arch" type="xml">
+            <tree string="Software name">
+                <field name="sw_name"/>
+                <field name="sw_version"/>
+                <field name="sw_purchase date"/>
+            </tree>
+        </field>
+    </record>
+
     <record id="allowed_os_view_form" model="ir.ui.view">
         <field name="name">allowed.os.form</field>
         <field name="model">allowed.os</field>
@@ -171,25 +195,15 @@
         </field>
     </record>
 
-    <record id="allowed_os_view_tree" model="ir.ui.view">
-        <field name="name">allowed.os.tree</field>
-        <field name="model">allowed.os</field>
-        <field name="arch" type="xml">
-            <tree string="Software name">
-                <field name="sw_name"/>
-            </tree>
-        </field>
-    </record>
-
     <record id="allowed_os_action_settings" model="ir.actions.act_window">
         <field name="name">Installed software</field>
         <field name="res_model">allowed.os</field>
-        <field name="view_mode">tree</field>
+        <!--<field name="view_mode">tree</field>-->
         <field name="view_type">form</field>
         <field name="view_id" ref="allowed_os_view_tree"/>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
-            Click to add a Software in the maintenance request.
+            Click to add a Software.
           </p>
         </field>
     </record>
