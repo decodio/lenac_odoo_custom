@@ -145,25 +145,25 @@
                     <group>
                         <label for = "sw_vendor" string = "Software vendor"/>
                             <field name = "sw_vendor"/>
-                        <label for = "sw_vendor" string= "Software version"/>
+                        <label for = "sw_version" string= "Software version"/>
                             <field name = "sw_version"/>
-                        <label for = "sw_vendor" string = "Software licence type"/>
+                        <label for = "sw_licence" string = "Software licence type"/>
                             <field name = "sw_licence"/>
-                        <label for = "sw_vendor" string = "Software serial"/>
+                        <label for = "sw_serial" string = "Software serial"/>
                             <field name = "sw_serial"/>
-                        <label for = "sw_vendor" string = "Date of purchase"/>
+                        <label for = "sw_purchase_date" string = "Date of purchase"/>
                             <field name = "sw_purchase_date"/>
                     </group>
                     <group>
-                        <label for = "sw_vendor" string = "Renewal licence date"/>
+                        <label for = "sw_licence_exp" string = "Renewal licence date"/>
                             <field name = "sw_licence_exp"/>
-                        <label for = "sw_vendor" string = "Cost"/>
+                        <label for = "sw_price" string = "Cost"/>
                             <field name = "sw_price"/>
-                        <label for = "sw_vendor" string = "Licence assigned to employee"/>
+                        <label for = "sw_licence_assignd_person" string = "Licence assigned to employee"/>
                             <field name = "sw_licence_assignd_person"/>
-                        <label for = "sw_vendor" string = "Licence assigned to department"/>
+                        <label for = "sw_licence_assignd_dep" string = "Licence assigned to department"/>
                             <field name = "sw_licence_assignd_dep"/>
-                        <label for = "sw_vendor" string = "Type of installation"/>
+                        <label for = "sw_spec" string = "Type of installation"/>
                             <field name = "sw_spec"/>
                     </group>
                 </group>
