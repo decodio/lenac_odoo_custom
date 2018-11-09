@@ -175,13 +175,13 @@
         </field>
     </record>
 
-    <!--<menuitem
+    <menuitem
         id="menu_allowed_os"
         name="Allowed software"
-        parent="menu_maintenance_configuration"
+        parent="menu_maintenance_title"
         action="allowed_os_action_settings"
         groups="group_equipment_manager"
-        sequence="1"/>-->
+        sequence="1"/>
 
 
 </odoo>
