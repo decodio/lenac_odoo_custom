@@ -18,23 +18,46 @@
             </field>
         </record>-->
 
-        <!--<record model="ir.ui.view" id="allowed_software_search_view">
-            <field name="name">Software</field>
-            <field name="model">allowed.os</field>
-            <field name="arch" type="xml">
-                <search string="Software">
-                    <field name="sw_name"/>
-                    <field name="sw_vendor"/>
-                    <field name="sw_version"/>
-                </search>
-            </field>
-        </record>-->
+    <record model="ir.ui.view" id="allowed_software_search_view">
+        <field name="name">Software</field>
+        <field name="model">allowed.os</field>
+        <field name="arch" type="xml">
+            <search string="Software">
+                <field name="sw_name" string="Software Name"/>
+                <field name="sw_vendor" string="Software vendor"/>
+                <field name="sw_version" string="Software version"/>
+            </search>
+        </field>
+    </record>
 
-        <record model="ir.ui.view" id="allowed_software_tree_view">
-            <field name="name">Software</field>
-            <field name="model">allowed.os</field>
-            <field name="arch" type="xml">
-                <tree string="Software">
+    <record model="ir.ui.view" id="allowed_software_tree_view">
+        <field name="name">Software</field>
+        <field name="model">allowed.os</field>
+        <field name="arch" type="xml">
+            <tree string="Software">
+                <field name = "sw_name"/>
+                <field name = "sw_vendor"/>
+                <field name = "sw_version"/>
+                <field name = "sw_licence"/>
+                <field name = "sw_serial"/>
+                <field name = "sw_purchase_date"/>
+                <field name = "sw_licence_exp"/>
+                <field name = "sw_price"/>
+                <field name = "sw_licence_assignd_person"/>
+                <field name = "sw_licence_assignd_dep"/>
+                <field name = "sw_spec"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="allowed_software_form_view">
+        <field name="name">Software</field>
+        <field name="model">allowed.os</field>
+        <field name="arch" type="xml">
+            <form string="Software">
+                <header>
+                </header>
+                <sheet>
                     <field name = "sw_name"/>
                     <field name = "sw_vendor"/>
                     <field name = "sw_version"/>
@@ -46,47 +69,24 @@
                     <field name = "sw_licence_assignd_person"/>
                     <field name = "sw_licence_assignd_dep"/>
                     <field name = "sw_spec"/>
-                </tree>
-            </field>
-        </record>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <record model="ir.ui.view" id="allowed_software_form_view">
-            <field name="name">Software</field>
-            <field name="model">allowed.os</field>
-            <field name="arch" type="xml">
-                <form string="Software">
-                    <header>
-                    </header>
-                    <sheet>
-                        <field name = "sw_name"/>
-                        <field name = "sw_vendor"/>
-                        <field name = "sw_version"/>
-                        <field name = "sw_licence"/>
-                        <field name = "sw_serial"/>
-                        <field name = "sw_purchase_date"/>
-                        <field name = "sw_licence_exp"/>
-                        <field name = "sw_price"/>
-                        <field name = "sw_licence_assignd_person"/>
-                        <field name = "sw_licence_assignd_dep"/>
-                        <field name = "sw_spec"/>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+    <!--<record model="ir.actions.act_window" id="allowed_software_action">
+        <field name="name">Software</field>
+        <field name="model">allowed.os</field>
+        <field name="view_type">form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new SW entry.
+          </p>
+        </field>
+    </record>-->
 
-        <!--<record model="ir.actions.act_window" id="allowed_software_action">
-            <field name="name">Software</field>
-            <field name="model">allowed.os</field>
-            <field name="view_type">form</field>
-            <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                Click to add a new SW entry.
-              </p>
-            </field>
-        </record>-->
-
-        <menuitem id="menu_allowed_software" action="allowed_software_action"  sequence="100"
-                  parrent="menu_maintenance_title"/>
+    <menuitem id="menu_allowed_software" action="allowed_software_action"  sequence="100"
+              parrent="menu_maintenance_title"/>
 
 
 
