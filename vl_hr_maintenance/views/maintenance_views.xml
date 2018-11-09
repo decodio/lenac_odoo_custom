@@ -89,12 +89,10 @@
                 <field name = "installed_os"/>
                 <field name = "installed_sw"/>
             </xpath>
-            <page string="Product Information">
-                <field name = "warranty" positin="before">
-                    <label for = "sw_vendor" string="Date of purchase"/>
-                    <field name = "date_purchased"/>
-                </field>
-            </page>
+            <field name = "warranty" positin="before">
+                <label for = "date_purchased" string="Date of purchase"/>
+                <field name = "date_purchased"/>
+            </field>
         </field>
     </record>
 
@@ -146,27 +144,27 @@
                 <group>
                     <group>
                         <label for = "sw_vendor" string = "Software vendor"/>
-                        <field name = "sw_vendor"/>
+                            <field name = "sw_vendor"/>
                         <label for = "sw_vendor" string= "Software version"/>
-                        <field name = "sw_version"/>
+                            <field name = "sw_version"/>
                         <label for = "sw_vendor" string = "Software licence type"/>
-                        <field name = "sw_licence"/>
+                            <field name = "sw_licence"/>
                         <label for = "sw_vendor" string = "Software serial"/>
-                        <field name = "sw_serial"/>
+                            <field name = "sw_serial"/>
                         <label for = "sw_vendor" string = "Date of purchase"/>
-                        <field name = "sw_purchase_date"/>
+                            <field name = "sw_purchase_date"/>
                     </group>
                     <group>
                         <label for = "sw_vendor" string = "Renewal licence date"/>
-                        <field name = "sw_licence_exp"/>
+                            <field name = "sw_licence_exp"/>
                         <label for = "sw_vendor" string = "Cost"/>
-                        <field name = "sw_price"/>
+                            <field name = "sw_price"/>
                         <label for = "sw_vendor" string = "Licence assigned to employee"/>
-                        <field name = "sw_licence_assignd_person"/>
+                            <field name = "sw_licence_assignd_person"/>
                         <label for = "sw_vendor" string = "Licence assigned to department"/>
-                        <field name = "sw_licence_assignd_dep"/>
+                            <field name = "sw_licence_assignd_dep"/>
                         <label for = "sw_vendor" string = "Type of installation"/>
-                        <field name = "sw_spec"/>
+                            <field name = "sw_spec"/>
                     </group>
                 </group>
                 </sheet>
