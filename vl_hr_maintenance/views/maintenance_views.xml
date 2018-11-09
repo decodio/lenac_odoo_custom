@@ -70,7 +70,7 @@
           <field name="department_id"/>
           <field name = "pc_number"/>
           <field name = "installed_os"/>
-          <field name = "installed_sw"/>
+          <!--<field name = "installed_sw"/>-->
         </field>
         <group position="inside">
           <filter string="Employee" domain="[]" context="{'group_by': 'employee_id'}"/>
