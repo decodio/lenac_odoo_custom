@@ -22,7 +22,7 @@ class MaintenanceEquipment(models.Model):
                    ('winser2012R2', 'Windows Server 2012 R2')],
         string='Installed OS',
         required=False)
-    installed_sw = fields.Many2many('allowed_software', string='Installed software')
+    installed_sw = fields.Many2many('allowed_os', string='Installed software')
 
     @api.one
     @api.depends('employee_id', 'department_id', 'equipment_assign_to')
