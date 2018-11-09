@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
 
-from. import vlhrmaintenance_extension
-from. import allowed_os
+import vlhrmaintenance_extension
+import allowed_os
