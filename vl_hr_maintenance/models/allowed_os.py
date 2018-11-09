@@ -4,7 +4,7 @@ from odoo import api, fields, models, _
 
 
 class AllowedSoftware(models.Model):
-    _name = 'allowed.software'
+    _name = 'allowed.os'
 
     sw_name = fields.Char(string="Software name")
     sw_vendor = fields.Char(string="Software vendor")
