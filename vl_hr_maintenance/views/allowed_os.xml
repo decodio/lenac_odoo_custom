@@ -24,9 +24,9 @@
             <field name="model">allowed.software</field>
             <field name="arch" type="xml">
                 <search string="Software">
-                    <field name="first_name"/>
-                    <field name="last_name"/>
-                    <field name="country_id"/>
+                    <field name="sw_name"/>
+                    <field name="sw_vendor"/>
+                    <field name="sw_version"/>
                 </search>
             </field>
         </record>
