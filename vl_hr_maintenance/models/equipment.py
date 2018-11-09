@@ -23,6 +23,7 @@ class MaintenanceEquipment(models.Model):
         string='Installed OS',
         required=False)
     installed_sw = fields.Many2many('allowed.os', string='Installed software')
+    date_purchased = fields.Date('Date of purchase')
 
     @api.one
     @api.depends('employee_id', 'department_id', 'equipment_assign_to')
