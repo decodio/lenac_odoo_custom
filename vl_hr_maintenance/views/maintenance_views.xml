@@ -195,10 +195,25 @@
     </record>
 
     <!--<menuitem
+        id="menu_equipment_form"
+        name="Equipments"
+        parent="menu_maintenance_title"
+        action="hr_equipment_action"
+        groups="group_equipment_manager,base.group_user"
+        sequence="2"/>-->
+    <menuitem
         id="menu_allowed_os"
         name="Allowed software"
-        parent="mantenace.menu_maintenance_title"
+        parent="maintenance.menu_maintenance_title"
         action="allowed_os_action_settings"
+        groups="group_equipment_manager"
+        sequence="100"/>
+
+    <!--<menuitem
+        id="menu_maintenance_teams"
+        name="Maintenance Teams"
+        parent="menu_maintenance_configuration"
+        action="maintenance_team_action_settings"
         groups="group_equipment_manager"
         sequence="1"/>-->
 
