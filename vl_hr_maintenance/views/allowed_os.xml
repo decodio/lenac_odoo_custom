@@ -20,7 +20,7 @@
 
         <record model="ir.ui.view" id="allowed_software_search_view">
             <field name="name">Software</field>
-            <field name="model">allowed.software</field>
+            <field name="model">allowed.os</field>
             <field name="arch" type="xml">
                 <search string="Software">
                     <field name="sw_name"/>
@@ -32,7 +32,7 @@
 
         <record model="ir.ui.view" id="allowed_software_tree_view">
             <field name="name">Software</field>
-            <field name="model">allowed.software</field>
+            <field name="model">allowed.os</field>
             <field name="arch" type="xml">
                 <tree string="Software">
                     <field name = "sw_name"/>
@@ -52,7 +52,7 @@
 
         <record model="ir.ui.view" id="allowed_software_form_view">
             <field name="name">Software</field>
-            <field name="model">allowed.software</field>
+            <field name="model">allowed.os</field>
             <field name="arch" type="xml">
                 <form string="Software">
                     <header>
@@ -76,7 +76,7 @@
 
         <!--<record model="ir.actions.act_window" id="allowed_software_action">
             <field name="name">Software</field>
-            <field name="model">allowed.software</field>
+            <field name="model">allowed.os</field>
             <field name="view_type">form</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
