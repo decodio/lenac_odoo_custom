@@ -8,7 +8,7 @@ class VLHRMaintenanceExtension(models.Model):
     _description = 'VL HR Maintenance extension'
     _inherit = 'maintenance.equipment'
 
-    inventory_number = fields.Integer('Inventory number')
+    pc_number = fields.Integer('Inventory number')
     installed_os = fields.Selection(
         selection=[('winxp', 'Windows XP'), ('win7', 'Windows 7'), ('win10', 'Windows 10'),
                    ('winser2003', 'Windows Server 2003'), ('winser2008', 'Windows Server 2008'),

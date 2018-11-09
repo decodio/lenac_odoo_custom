@@ -60,7 +60,7 @@
         <field name="arch" type="xml">
             <data>
                 <field name="employee_id" position="after">
-                    <field name = "inventory_number"/>
+                    <field name = "pc_number"/>
                     <field name = "installed_os"/>
                     <field name = "installed_sw"/>
                 </field>
