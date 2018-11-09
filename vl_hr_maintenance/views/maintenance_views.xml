@@ -142,7 +142,7 @@
                         <field name="sw_name"/>
                     </h1>
                 </div>
-                <div>
+                <group>
                     <group>
                         <label for = "sw_vendor" string = "Software vendor"/>
                         <field name = "sw_vendor"/>
@@ -167,7 +167,7 @@
                         <label for = "sw_vendor" string = "Type of installation"/>
                         <field name = "sw_spec"/>
                     </group>
-                </div>
+                </group>
                 </sheet>
             </form>
         </field>
