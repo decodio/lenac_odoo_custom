@@ -89,9 +89,11 @@
                 <field name = "installed_os"/>
                 <field name = "installed_sw"/>
             </xpath>
-            <field name = "warranty" positin="after">
-                <field name = "date_purchased"/>
-            </field>
+            <page string="Product Information">
+                <field name = "warranty" positin="after">
+                    <field name = "date_purchased"/>
+                </field>
+            </page>
         </field>
     </record>
 
@@ -140,26 +142,30 @@
                         <field name="sw_name"/>
                     </h1>
                 </div>
-                <label for = "sw_vendor" string = "Software vendor"/>
-                <field name = "sw_vendor"/>
-                <label for = "sw_vendor" string= "Software version"/>
-                <field name = "sw_version"/>
-                <label for = "sw_vendor" string = "Software licence type"/>
-                <field name = "sw_licence"/>
-                <label for = "sw_vendor" string = "Software serial"/>
-                <field name = "sw_serial"/>
-                <label for = "sw_vendor" string = "Date of purchase"/>
-                <field name = "sw_purchase_date"/>
-                <label for = "sw_vendor" string = "Renewal licence date"/>
-                <field name = "sw_licence_exp"/>
-                <label for = "sw_vendor" string = "Cost"/>
-                <field name = "sw_price"/>
-                <label for = "sw_vendor" string = "Licence assigned to employee"/>
-                <field name = "sw_licence_assignd_person"/>
-                <label for = "sw_vendor" string = "Licence assigned to department"/>
-                <field name = "sw_licence_assignd_dep"/>
-                <label for = "sw_vendor" string = "Type of installation"/>
-                <field name = "sw_spec"/>
+                    <grouop>
+                        <label for = "sw_vendor" string = "Software vendor"/>
+                        <field name = "sw_vendor"/>
+                        <label for = "sw_vendor" string= "Software version"/>
+                        <field name = "sw_version"/>
+                        <label for = "sw_vendor" string = "Software licence type"/>
+                        <field name = "sw_licence"/>
+                        <label for = "sw_vendor" string = "Software serial"/>
+                        <field name = "sw_serial"/>
+                        <label for = "sw_vendor" string = "Date of purchase"/>
+                        <field name = "sw_purchase_date"/>
+                    </grouop>
+                    <grpup>
+                        <label for = "sw_vendor" string = "Renewal licence date"/>
+                        <field name = "sw_licence_exp"/>
+                        <label for = "sw_vendor" string = "Cost"/>
+                        <field name = "sw_price"/>
+                        <label for = "sw_vendor" string = "Licence assigned to employee"/>
+                        <field name = "sw_licence_assignd_person"/>
+                        <label for = "sw_vendor" string = "Licence assigned to department"/>
+                        <field name = "sw_licence_assignd_dep"/>
+                        <label for = "sw_vendor" string = "Type of installation"/>
+                        <field name = "sw_spec"/>
+                    </grpup>
                 </sheet>
             </form>
         </field>
