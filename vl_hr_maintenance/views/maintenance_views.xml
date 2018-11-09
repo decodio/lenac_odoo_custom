@@ -89,10 +89,14 @@
                 <field name = "installed_os"/>
                 <field name = "installed_sw"/>
             </xpath>
-            <field name = "warranty" positin="before">
-                <label for = "date_purchased" string="Date of purchase"/>
-                <field name = "date_purchased"/>
-            </field>
+            <notebook>
+                <page string="Product Information">
+                    <field name = "warranty" positin="before">
+                        <!--<label for = "date_purchased" string="Date of purchase"/>-->
+                        <field name = "date_purchased"/>
+                    </field>
+                </page>
+            </notebook>
         </field>
     </record>
 
@@ -141,6 +145,7 @@
                         <field name="sw_name"/>
                     </h1>
                 </div>
+                </sheet>
                 <group>
                     <group>
                         <label for = "sw_vendor" string = "Software vendor"/>
@@ -167,7 +172,6 @@
                             <field name = "sw_spec"/>
                     </group>
                 </group>
-                </sheet>
             </form>
         </field>
     </record>
