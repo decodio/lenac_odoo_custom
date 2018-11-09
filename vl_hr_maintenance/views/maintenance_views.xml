@@ -89,7 +89,7 @@
                 <field name = "installed_os"/>
                 <field name = "installed_sw"/>
             </xpath>
-            <xpath expr="//filed[@name='warranty']" position="after">
+            <xpath expr="//field[@name='warranty']" position="after">
                 <field name = "date_purchased"/>
             </xpath>
         </field>
