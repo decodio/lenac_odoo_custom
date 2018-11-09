@@ -18,7 +18,7 @@
             </field>
         </record>-->
 
-        <record model="ir.ui.view" id="allowed_software_search_view">
+        <!--<record model="ir.ui.view" id="allowed_software_search_view">
             <field name="name">Software</field>
             <field name="model">allowed.os</field>
             <field name="arch" type="xml">
@@ -28,7 +28,7 @@
                     <field name="sw_version"/>
                 </search>
             </field>
-        </record>
+        </record>-->
 
         <record model="ir.ui.view" id="allowed_software_tree_view">
             <field name="name">Software</field>
