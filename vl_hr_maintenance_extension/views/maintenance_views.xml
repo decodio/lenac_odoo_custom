@@ -204,9 +204,6 @@
         <field name="owner_user_id" position="after">
           <field name="employee_id"/>
           <field name="department_id"/>
-          <field name = "pc_number"/>
-          <field name = "installed_os"/>
-          <field name = "installed_sw"/>
         </field>
         <group position="inside">
           <filter string="Employee" domain="[]" context="{'group_by': 'employee_id'}"/>
@@ -224,6 +221,9 @@
                 <field name="equipment_assign_to" widget="radio"/>
                 <field name="employee_id" string="Employee" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'department'), ('equipment_assign_to', '=', False)]}"/>
                 <field name="department_id" string="Department" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'employee'), ('equipment_assign_to', '=', False)]}"/>
+                <field name = "pc_number"/>
+                <field name = "installed_os"/>
+                <field name = "installed_sw"/>
             </xpath>
         </field>
     </record>
