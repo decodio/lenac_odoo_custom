@@ -178,7 +178,7 @@
     <menuitem
         id="menu_allowed_os"
         name="Allowed software"
-        parent="menu_maintenance_title"
+        parent="mantenace.menu_maintenance_title"
         action="allowed_os_action_settings"
         groups="group_equipment_manager"
         sequence="1"/>
