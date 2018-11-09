@@ -85,18 +85,11 @@
                 <field name="equipment_assign_to" widget="radio"/>
                 <field name="employee_id" string="Employee" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'department'), ('equipment_assign_to', '=', False)]}"/>
                 <field name="department_id" string="Department" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'employee'), ('equipment_assign_to', '=', False)]}"/>
+                <field name = "date_purchased"/>
                 <field name = "pc_number"/>
                 <field name = "installed_os"/>
                 <field name = "installed_sw"/>
             </xpath>
-            <notebook>
-                <page string="Product Information">
-                    <field name = "warranty" positin="before">
-                        <!--<label for = "date_purchased" string="Date of purchase"/>-->
-                        <field name = "date_purchased"/>
-                    </field>
-                </page>
-            </notebook>
         </field>
     </record>
 
@@ -139,39 +132,39 @@
         <field name="arch" type="xml">
             <form string="Installed software">
                 <sheet>
-                <div class="oe_title">
-                    <label for="sw_name" class="oe_edit_only" string="Software name"/>
-                    <h1>
-                        <field name="sw_name"/>
-                    </h1>
-                </div>
+                    <div class="oe_title">
+                        <label for="sw_name" class="oe_edit_only" string="Software name"/>
+                        <h1>
+                            <field name="sw_name"/>
+                        </h1>
+                    </div>
+                    <group string = "Software details">
+                        <group>
+                            <!--<label for = "sw_vendor" string = "Software vendor"/>-->
+                                <field name = "sw_vendor"/>
+                            <!--<label for = "sw_version" string= "Software version"/>-->
+                                <field name = "sw_version"/>
+                            <!--<label for = "sw_licence" string = "Software licence type"/>-->
+                                <field name = "sw_licence"/>
+                            <!--<label for = "sw_serial" string = "Software serial"/>-->
+                                <field name = "sw_serial"/>
+                            <!--<label for = "sw_purchase_date" string = "Date of purchase"/>-->
+                                <field name = "sw_purchase_date"/>
+                        </group>
+                        <group>
+                            <!--<label for = "sw_licence_exp" string = "Renewal licence date"/>-->
+                                <field name = "sw_licence_exp"/>
+                            <!--<label for = "sw_price" string = "Cost"/>-->
+                                <field name = "sw_price"/>
+                            <!--<label for = "sw_licence_assignd_person" string = "Licence assigned to employee"/>-->
+                                <field name = "sw_licence_assignd_person"/>
+                            <!--<label for = "sw_licence_assignd_dep" string = "Licence assigned to department"/>-->
+                                <field name = "sw_licence_assignd_dep"/>
+                            <!--<label for = "sw_spec" string = "Type of installation"/>-->
+                                <field name = "sw_spec"/>
+                        </group>
+                    </group>
                 </sheet>
-                <group>
-                    <group>
-                        <label for = "sw_vendor" string = "Software vendor"/>
-                            <field name = "sw_vendor"/>
-                        <label for = "sw_version" string= "Software version"/>
-                            <field name = "sw_version"/>
-                        <label for = "sw_licence" string = "Software licence type"/>
-                            <field name = "sw_licence"/>
-                        <label for = "sw_serial" string = "Software serial"/>
-                            <field name = "sw_serial"/>
-                        <label for = "sw_purchase_date" string = "Date of purchase"/>
-                            <field name = "sw_purchase_date"/>
-                    </group>
-                    <group>
-                        <label for = "sw_licence_exp" string = "Renewal licence date"/>
-                            <field name = "sw_licence_exp"/>
-                        <label for = "sw_price" string = "Cost"/>
-                            <field name = "sw_price"/>
-                        <label for = "sw_licence_assignd_person" string = "Licence assigned to employee"/>
-                            <field name = "sw_licence_assignd_person"/>
-                        <label for = "sw_licence_assignd_dep" string = "Licence assigned to department"/>
-                            <field name = "sw_licence_assignd_dep"/>
-                        <label for = "sw_spec" string = "Type of installation"/>
-                            <field name = "sw_spec"/>
-                    </group>
-                </group>
             </form>
         </field>
     </record>
