@@ -198,7 +198,7 @@
     <record id="allowed_os_action_settings" model="ir.actions.act_window">
         <field name="name">Installed software</field>
         <field name="res_model">allowed.os</field>
-        <!--<field name="view_mode">tree</field>-->
+        <field name="view_mode">tree</field>
         <field name="view_type">form</field>
         <field name="view_id" ref="allowed_os_view_tree"/>
         <field name="help" type="html">
