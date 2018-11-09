@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <data noupdate="1">
 
     <!-- equiment.request : views -->
     <!--<record id="maintenance_request_view_search_inherit_hr" model="ir.ui.view">
@@ -53,7 +54,21 @@
         </field>
     </record>-->
 
-    <!-- equiment : views -->
+    <!-- equipment : views -->
+        <record model="ir.ui.view" id="vlhrmaintenance_extension_form_view" >
+            <field name="name">vlhrmaintenance.extension.form.view</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="hr_maintenance.maintenance_equipment_view_form_inherit_hr"/>
+            <field name="arch" type="xml">
+                <field name="employee_id" position="after">
+                    <field name = "inventory_number"/>
+                    <field name = "installed_os"/>
+                    <field name = "installed_sw"/>
+                </field>
+            </field>
+        </record>
+
+    <!--TO CHECK
     <record id="vl_hr_maintenance_extension_view_search_inherit_hr" model='ir.ui.view'>
       <field name="name">vl.hr.maintenance.extension.view.search.inherit.hr</field>
       <field name="model">vl.hr.maintenance.extension</field>
@@ -120,5 +135,6 @@
                 <field name="department_id" string="Department"/>
             </xpath>
         </field>
-    </record>
+    </record>-->
+    </data>
 </odoo>

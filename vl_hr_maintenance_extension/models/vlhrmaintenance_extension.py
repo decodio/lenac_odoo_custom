@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class VLHRMaintenanceExtension(models.Model):
 
-    _name = 'vl.hr.maintenance.extension'
+    _description = 'VL HR Maintenance extension'
+    _inherit = 'maintenance.equipment'
 
     inventory_number = fields.Integer(string='Inventory number')
     installed_os = fields.Selection(

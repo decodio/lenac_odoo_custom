@@ -11,6 +11,7 @@
     'data': [
         'security/equipment.xml',
         'views/vl_hr_maintenance_extension_views.xml',
+        'views/allowed_os.xml',
     ],
     'demo': [],
     'installable': True,
