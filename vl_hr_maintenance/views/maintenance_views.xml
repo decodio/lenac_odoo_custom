@@ -90,8 +90,8 @@
                 <field name = "installed_sw"/>
             </xpath>
             <page string="Product Information">
-                <field name = "warranty" positin="after">
-                    <field name = "date_purchased"/>
+                <field name = "warranty" positin="before">
+                    <field name = "date_purchased" string="Date of purchase"/>
                 </field>
             </page>
         </field>
@@ -142,7 +142,7 @@
                         <field name="sw_name"/>
                     </h1>
                 </div>
-                    <grouop>
+                    <group>
                         <label for = "sw_vendor" string = "Software vendor"/>
                         <field name = "sw_vendor"/>
                         <label for = "sw_vendor" string= "Software version"/>
@@ -153,8 +153,8 @@
                         <field name = "sw_serial"/>
                         <label for = "sw_vendor" string = "Date of purchase"/>
                         <field name = "sw_purchase_date"/>
-                    </grouop>
-                    <grpup>
+                    </group>
+                    <group>
                         <label for = "sw_vendor" string = "Renewal licence date"/>
                         <field name = "sw_licence_exp"/>
                         <label for = "sw_vendor" string = "Cost"/>
@@ -165,7 +165,7 @@
                         <field name = "sw_licence_assignd_dep"/>
                         <label for = "sw_vendor" string = "Type of installation"/>
                         <field name = "sw_spec"/>
-                    </grpup>
+                    </group>
                 </sheet>
             </form>
         </field>
