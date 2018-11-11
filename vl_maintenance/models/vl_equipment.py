@@ -20,9 +20,9 @@ class VLMaintenanceEquipment(models.Model):
 
 class AllowedSoftware(models.Model):
     _name = 'allowed.os'
-    _description = 'Installed os'
+    _description = 'Installed software'
 
-    sw_name = fields.Char(string="Software name")
+    sw_name = fields.Char(string="Software name", required='True')
     sw_vendor = fields.Char(string="Software vendor")
     sw_version = fields.Char(string="Software version")
     sw_licence = fields.Selection(selection=[('free', 'Free'), ('personal', 'Personal use'),

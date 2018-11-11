@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate ='0'>
+        <record model="ir.ui.view" id="allowed_os_search_view">
+            <field name="name">Software inventory</field>
+            <field name="model">allowed.os</field>
+            <field name="arch" type="xml">
+                <search string="Software name">
+                    <field name="sw_name"/>
+                    <field name="sw_version"/>
+                    <field name="sw_purchase_date"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="allowed_os_view_tree" >
+            <field name="name">Software inventory</field>
+            <field name="model">allowed.os</field>
+            <field name="arch" type="xml">
+                <tree string="Software name">
+                    <field name="sw_name"/>
+                    <field name="sw_version"/>
+                    <field name="sw_purchase_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="allowed_os_view_form">
+            <field name="name">allowed.os.view.form</field>
+            <field name="model">allowed.os</field>
+            <field name="arch" type="xml">
+                <form string="Installed software">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="sw_name" class="oe_edit_only" string="Software name"/>
+                            <h1>
+                                <field name="sw_name"/>
+                            </h1>
+                        </div>
+                        <group string = "Software details">
+                            <group>
+                                    <field name = "sw_vendor"/>
+                                    <field name = "sw_version"/>
+                                    <field name = "sw_licence"/>
+                                    <field name = "sw_serial"/>
+                                    <field name = "sw_purchase_date"/>
+                            </group>
+                            <group>
+                                    <field name = "sw_licence_exp"/>
+                                    <field name = "sw_price"/>
+                                    <field name = "sw_licence_assignd_person"/>
+                                    <field name = "sw_licence_assignd_dep"/>
+                                    <field name = "sw_spec"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="allowed_os_action">
+            <field name="name">Installed software</field>
+            <field name="res_model">allowed.os</field>
+            <field name="view_type">form, tree</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a Software.
+              </p>
+            </field>
+        </record>
+
+        <menuitem
+            id="menu_allowed_os"
+            name="Allowed software"
+            parent="maintenance.menu_maintenance_title"
+            action="allowed_os_action"
+            sequence="100"/>
+    </data>
+</odoo>

@@ -12,6 +12,7 @@
                 'hr_maintenance', ],
     'data': [
             'views/vl_maintenance_views.xml',
+            'views/allowed_os.xml',
             ],
     'demo': [],
     'installable': True,
