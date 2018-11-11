@@ -128,7 +128,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="allowed_os_search_view">
+    <!--<record model="ir.ui.view" id="allowed_os_search_view">
             <field name="name">allowed.os.search.view</field>
             <field name="model">allowed.os</field>
             <field name="arch" type="xml">
@@ -150,7 +150,7 @@
                 <field name="sw_purchase_date"/>
             </tree>
         </field>
-    </record>
+    </record>-->
 
     <record id="allowed_os_view_form" model="ir.ui.view">
         <field name="name">allowed.os.view.form</field>
@@ -200,7 +200,7 @@
         <field name="res_model">allowed.os</field>
         <field name="view_mode">tree</field>
         <field name="view_type">form</field>
-        <!--<field name="view_id" ref="allowed_os_view_form"/>-->
+        <field name="view_id" ref="allowed_os_view_form"/>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
             Click to add a Software.
