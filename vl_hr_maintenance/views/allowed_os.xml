@@ -162,7 +162,7 @@
         </field>
     </record>
 
-    <!--<record model="ir.actions.act_window" id="allowed_software_action">
+    <record model="ir.actions.act_window" id="allowed_software_action">
         <field name="name">Software</field>
         <field name="model">allowed.os</field>
         <field name="view_type">form</field>
