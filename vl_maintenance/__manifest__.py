@@ -11,7 +11,7 @@
                 'maintenance',
                 'hr_maintenance', ],
     'data': [
-            'security/ir.model.access.csv'
+            #'security/ir.model.access.csv'
             'views/vl_maintenance_views.xml',
             'views/allowed_os.xml',
             ],
