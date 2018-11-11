@@ -11,7 +11,7 @@
     'data': [
         'security/equipment.xml',
         'views/maintenance_views.xml',
-        #'views/allowed_os.xml',
+        'views/allowed_os.xml',
     ],
     'demo': [],
     'installable': True,

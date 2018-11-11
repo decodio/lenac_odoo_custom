@@ -1,5 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <data>
+        <record model="ir.ui.view" id="allowed_os_search_view">
+            <field name="name">allowed.os.search.view</field>
+            <field name="model">allowed.os</field>
+            <field name="arch" type="xml">
+                <search string="Software name">
+                    <field name="sw_name"/>
+                    <field name="sw_version"/>
+                    <field name="sw_purchase_date"/>
+                </search>
+            </field>
+    </record>
+
+    <record model="ir.ui.view" id="allowed_os_view_tree" >
+        <field name="name">allowed.os.view.tree</field>
+        <field name="model">allowed.os</field>
+        <field name="arch" type="xml">
+            <tree string="Software name">
+                <field name="sw_name"/>
+                <field name="sw_version"/>
+                <field name="sw_purchase_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="allowed_os_view_form">
+        <field name="name">allowed.os.view.form</field>
+        <field name="model">allowed.os</field>
+        <field name="arch" type="xml">
+            <form string="Installed software">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="sw_name" class="oe_edit_only" string="Software name"/>
+                        <h1>
+                            <field name="sw_name"/>
+                        </h1>
+                    </div>
+                    <group string = "Software details">
+                        <group>
+                            <!--<label for = "sw_vendor" string = "Software vendor"/>-->
+                                <field name = "sw_vendor"/>
+                            <!--<label for = "sw_version" string= "Software version"/>-->
+                                <field name = "sw_version"/>
+                            <!--<label for = "sw_licence" string = "Software licence type"/>-->
+                                <field name = "sw_licence"/>
+                            <!--<label for = "sw_serial" string = "Software serial"/>-->
+                                <field name = "sw_serial"/>
+                            <!--<label for = "sw_purchase_date" string = "Date of purchase"/>-->
+                                <field name = "sw_purchase_date"/>
+                        </group>
+                        <group>
+                            <!--<label for = "sw_licence_exp" string = "Renewal licence date"/>-->
+                                <field name = "sw_licence_exp"/>
+                            <!--<label for = "sw_price" string = "Cost"/>-->
+                                <field name = "sw_price"/>
+                            <!--<label for = "sw_licence_assignd_person" string = "Licence assigned to employee"/>-->
+                                <field name = "sw_licence_assignd_person"/>
+                            <!--<label for = "sw_licence_assignd_dep" string = "Licence assigned to department"/>-->
+                                <field name = "sw_licence_assignd_dep"/>
+                            <!--<label for = "sw_spec" string = "Type of installation"/>-->
+                                <field name = "sw_spec"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="allowed_os_action_settings" model="ir.actions.act_window">
+        <field name="name">Installed software</field>
+        <field name="res_model">allowed.os</field>
+        <field name="view_mode">tree</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="allowed_os_view_form"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a Software.
+          </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_allowed_os"
+        name="Allowed software"
+        parent="maintenance.menu_maintenance_title"
+        action="allowed_os_action_settings"
+        sequence="100"/>
+    </data>
             <!--<record id="allowed_software_form_view" model="ir.ui.view">
             <field name="name">allowed.software.form.view</field>
             <field name="model">allowed.software</field>
@@ -16,7 +104,7 @@
                 <field name = "sw_licence_assignd_dep"/>
                 <field name = "sw_spec"/>
             </field>
-        </record>-->
+        </record>
 
     <record model="ir.ui.view" id="allowed_software_search_view">
         <field name="name">Software</field>
@@ -83,10 +171,10 @@
             Click to add a new SW entry.
           </p>
         </field>
-    </record>-->
+    </record>
 
     <menuitem id="menu_allowed_software" action="allowed_software_action"  sequence="100"
-              parrent="menu_maintenance_title"/>
+              parrent="menu_maintenance_title"/>-->
 
 
 
