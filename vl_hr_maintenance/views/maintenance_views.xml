@@ -213,7 +213,6 @@
         name="Allowed software"
         parent="maintenance.menu_maintenance_title"
         action="allowed_os_action_settings"
-        groups="group_equipment_manager"
         sequence="100"/>
 
 </odoo>
