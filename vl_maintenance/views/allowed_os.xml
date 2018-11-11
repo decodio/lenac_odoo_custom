@@ -61,7 +61,7 @@
         <record model="ir.actions.act_window" id="allowed_os_action">
             <field name="name">Installed software</field>
             <field name="res_model">allowed.os</field>
-            <field name="view_type">form, tree</field>
+            <field name="view_type">form</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Click to add a Software.
