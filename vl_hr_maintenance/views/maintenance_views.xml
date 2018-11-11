@@ -138,7 +138,7 @@
                     <field name="sw_purchase_date"/>
                 </search>
             </field>
-    </record>
+    </record>-->
 
     <record id="allowed_os_view_tree" model="ir.ui.view">
         <field name="name">allowed.os.view.tree</field>
@@ -150,7 +150,7 @@
                 <field name="sw_purchase_date"/>
             </tree>
         </field>
-    </record>-->
+    </record>
 
     <record id="allowed_os_view_form" model="ir.ui.view">
         <field name="name">allowed.os.view.form</field>
