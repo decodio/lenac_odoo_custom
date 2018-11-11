@@ -200,7 +200,7 @@
         <field name="res_model">allowed.os</field>
         <field name="view_mode">tree</field>
         <field name="view_type">form</field>
-        <field name="view_id" ref="allowed_os_view_tree"/>
+        <field name="view_id" ref="allowed_os_view_form"/>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
             Click to add a Software.
@@ -213,6 +213,7 @@
         name="Allowed software"
         parent="maintenance.menu_maintenance_title"
         action="allowed_os_action_settings"
+        groups="group_equipment_manager"
         sequence="100"/>
 
 </odoo>
