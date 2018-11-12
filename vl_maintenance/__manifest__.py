@@ -17,6 +17,7 @@
             'report/personal_equipment.xml',
             'views/vl_maintenance_views.xml',
             'views/allowed_os.xml',
+            'views/hardware.xml',
             ],
     'demo': [],
     'installable': True,
