@@ -68,9 +68,3 @@ class AllowedSoftware(models.Model):
     sw_type = fields.Selection(selection=[('prog', 'Program'), ('OS', 'Operating system')],
                                string='Software type',
                                required='True')
-
-
-class VLEmployee(models.Model):
-    _inherit = 'hr.employee'
-
-    employee_number = fields.Char('Employee ID number')
