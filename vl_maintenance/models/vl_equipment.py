@@ -29,7 +29,7 @@ class VLMaintenanceEquipment(models.Model):
     installed_sw = fields.Many2many('allowed.os', string='Installed software')
     date_purchased = fields.Date('Date of purchase')
     ndep_number = fields.Char('Department number')
-    nemp_number = fields.Many2one('hr.employee', string='Assigned employee number')
+    nemp_number = fields.Char('Assigned employee number')
     old_employee_id = fields.Many2one('hr.employee', string='Assigned to Employee', track_visibility='onchange')
     old_department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
     old_equipment_assign_to = fields.Selection(
@@ -37,7 +37,7 @@ class VLMaintenanceEquipment(models.Model):
         string='Used By',
         required=True,
         default='employee')
-    emp_number = fields.Many2one('hr.employee', string='Employee number')
+    emp_number = fields.Char('Employee number')
     dep_number = fields.Char('Department number')
     date_assigned = fields.Date('Date assigned')
     n_location = fields.Char('Assigned location')
@@ -68,7 +68,9 @@ class AllowedSoftware(models.Model):
     sw_type = fields.Selection(selection=[('prog', 'Program'), ('OS', 'Operating system')],
                                string='Software type',
                                required='True')
-class VLEmploye(models.Model):
+
+
+class VLEmployee(models.Model):
     _inherit = 'hr.employee'
 
     employee_number = fields.Char('Employee ID number')
