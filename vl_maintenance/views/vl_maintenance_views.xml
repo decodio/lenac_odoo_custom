@@ -9,8 +9,11 @@
                 <xpath expr="//field[@name='category_id']" position="after">
                     <field name = "pc_number"/>
                 </xpath>
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field mame= "nemp_number" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'department'), ('equipment_assign_to', '=', False)]}"/>
+                </xpath>
                 <xpath expr="//field[@name='department_id']" position="after">
-                    <field name="dep_number"/>
+                    <field name= "ndep_number" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'employee'), ('equipment_assign_to', '=', False)]}"/>
                     <field name = "installed_os" domain="[('sw_type', '=', 'OS')]"/>
                     <field name = "installed_sw" domain="[('sw_type', '=', 'prog')]"/>
                 </xpath>

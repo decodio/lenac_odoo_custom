@@ -28,10 +28,11 @@ class VLMaintenanceEquipment(models.Model):
     installed_os = fields.Many2one('allowed.os', string='Installed OS')
     installed_sw = fields.Many2many('allowed.os', string='Installed software')
     date_purchased = fields.Date('Date of purchase')
-    dep_number = fields.Char('Department number')
+    ndep_number = fields.Char('Department number')
+    nemp_number = fields.Char('Assigned employee number')
 
     #emp_number = fields.Char('Employee number')
-    #nemp_number = fields.Char('Assigned employee number')
+
     #dep_number = fields.Char('Department number')
 
     #n_location = fields.Char('Assigned location')
