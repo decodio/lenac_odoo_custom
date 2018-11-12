@@ -1,0 +1,16 @@
+<?xml version = "1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_vl_employee_form_inherit_extension" model="ir.ui.view">
+      <field name="name">view.vl.employee.form.inherit.extension</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='user_id']"  position="after">
+            <field name='employee_number'/>
+        </xpath>
+
+      </field>
+    </record>
+
+</odoo>
