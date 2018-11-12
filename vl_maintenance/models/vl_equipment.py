@@ -30,10 +30,15 @@ class VLMaintenanceEquipment(models.Model):
     date_purchased = fields.Date('Date of purchase')
     ndep_number = fields.Char('Department number')
     nemp_number = fields.Char('Assigned employee number')
-
-    #emp_number = fields.Char('Employee number')
-
-    #dep_number = fields.Char('Department number')
+    old_employee_id = fields.Many2one('hr.employee', string='Assigned to Employee', track_visibility='onchange')
+    old_department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
+    old_equipment_assign_to = fields.Selection(
+        [('department', 'Department'), ('employee', 'Employee'), ('other', 'Other')],
+        string='Used By',
+        required=True,
+        default='employee')
+    emp_number = fields.Char('Employee number')
+    dep_number = fields.Char('Department number')
 
     #n_location = fields.Char('Assigned location')
 
