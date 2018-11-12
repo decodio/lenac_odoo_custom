@@ -29,13 +29,7 @@ class VLMaintenanceEquipment(models.Model):
     installed_sw = fields.Many2many('allowed.os', string='Installed software')
     date_purchased = fields.Date('Date of purchase')
     ndep_number = fields.Char('Department number')
-
-    def _get_my_number(self):
-        number = self.env.user.employee_id
-        return (number[0].employee_number if number
-                else self.env['hr.employee'])
-
-    nemp_number = fields.Many2one('hr.employee', string='Assigned employee number', default=_get_my_number)
+    nemp_number = fields.Many2one('Assigned employee number')
     old_employee_id = fields.Many2one('hr.employee', string='Assigned to Employee', track_visibility='onchange')
     old_department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
     old_equipment_assign_to = fields.Selection(
@@ -47,6 +41,9 @@ class VLMaintenanceEquipment(models.Model):
     dep_number = fields.Char('Department number')
     date_assigned = fields.Date('Date assigned')
     n_location = fields.Char('Assigned location')
+    components = fields.Many2many('hardware.details', string='Installed Components')
+
+
 
 
 class AllowedSoftware(models.Model):
@@ -74,3 +71,19 @@ class AllowedSoftware(models.Model):
     sw_type = fields.Selection(selection=[('prog', 'Program'), ('OS', 'Operating system')],
                                string='Software type',
                                required='True')
+
+
+class AllowedHardvare(models.Model):
+        _name = 'hardware.details'
+        _description = 'Hardware Details'
+
+        name = fields.Char(string='Component name')
+        manufacturer = fields.Char(string='Manufacturer')
+        component_type = fields.Many2one('com.type', string='Component type')
+        size = fields.Char(string='Size')
+
+
+class AllowedHArdwareType(models.Model):
+        _name = 'com.type'
+
+        name = fields.Char(string= 'Component type')
