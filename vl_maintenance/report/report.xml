@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <report id="report_personal_equipment"
+        model="maintenance.equipment"
+        string="User equipment list"
+        report_type="qweb-pdf"
+        name="vl_maintenance.report_equipment"
+        file="vl_maintenance.report_equipment"
+        />
+</odoo>

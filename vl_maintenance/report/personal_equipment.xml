@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_equipment">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <tr t-call="report.external_layout">
+                <div class="page">
+                    <table broder="solid">
+                        <tr>
+                            <h1>
+                                IZVJEŠTAJ O PROMJENI SMJEŠTAJA I OSOBNOG ZADUŽENJA OSNOVNIH SREDSTAVA
+                            </h1>
+                        </tr>
+
+                        <tr>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>Osnovno sredstvo</h3></td>
+                            <td width="20px"></td>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>Tip sredstva</h3></td>
+                            <td width="20px"></td>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>Inventarni broj</h3></td>
+                        </tr>
+                        <tr>
+                            <td width="33%" border-color="#ffffff" align="center"><span t-field="o.name"/></td>
+                            <td width="20px"></td>
+                            <td width="33%" border-color="#ffffff" align="center"><span t-field="o.category_id.name"/></td>
+                            <td width="20px"></td>
+                            <td width="33%" border-color="#ffffff" align="center"><span t-field="o.pc_number"/></td>
+                        </tr>
+                        <tr><td><br/></td></tr>
+                        <tr>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>Zaduženje na zaposlenika</h3></td>
+                            <td width="20px"></td>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>Zadužuje se na odjel</h3></td>
+                            <td width="20px"></td>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>Lokacija</h3></td>
+                        </tr>
+                        <tr>
+                            <td align="center"><span t-field="o.employee_id.name"/></td>
+                            <td width="20px"></td>
+                            <td align="center"><span t-field="o.department_id.name"/></td>
+                            <td width="20px"></td>
+                            <td align="center"><span t-field="o.location"/></td>
+                        </tr>
+                        <tr><td><br/></td></tr>
+                        <tr>
+                            <td align="center"><h3>Korisnički software</h3></td>
+                        </tr>
+                        <tr t-foreach="o.installed_sw" t-as="l">
+                            <td align="left">
+                                <h4><span t-esc="l.name"/></h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </tr>
+        </t>
+    </t>
+    </template>
+    <!--<template id="report_personal_equipment">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="report.internal_layout">
+
+        <div class="page">
+                <div class="oe_structure">
+                <div class="row">
+                    <H1>Hi there hello</H1>
+                </div>
+                </div>
+                </div>
+            </t>
+            </t>
+    </template>-->
+</odoo>
+
+
+
+

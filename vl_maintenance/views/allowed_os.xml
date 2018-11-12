@@ -6,9 +6,10 @@
             <field name="model">allowed.os</field>
             <field name="arch" type="xml">
                 <search string="Software name">
-                    <field name="sw_name"/>
+                    <field name="name"/>
                     <field name="sw_version"/>
                     <field name="sw_purchase_date"/>
+                    <field name = "sw_type"/>
                 </search>
             </field>
         </record>
@@ -18,34 +19,34 @@
             <field name="model">allowed.os</field>
             <field name="arch" type="xml">
                 <tree string="Software name">
-                    <field name="sw_name"/>
+                    <field name="name"/>
                     <field name="sw_version"/>
                     <field name="sw_purchase_date"/>
+                    <field name = "sw_type"/>
                 </tree>
             </field>
         </record>
 
         <record model="ir.ui.view" id="allowed_os_view_form">
-            <field name="name">allowed.os.view.form</field>
+            <field name="name">allowed.os</field>
             <field name="model">allowed.os</field>
             <field name="arch" type="xml">
                 <form string="Installed software">
+                    <header>
+                    </header>
                     <sheet>
-                        <div class="oe_title">
-                            <label for="sw_name" class="oe_edit_only" string="Software name"/>
-                            <h1>
-                                <field name="sw_name"/>
-                            </h1>
-                        </div>
                         <group string = "Software details">
                             <group>
+                                    <field name="name"/>
+                                    <field name = "sw_type"/>
                                     <field name = "sw_vendor"/>
                                     <field name = "sw_version"/>
                                     <field name = "sw_licence"/>
                                     <field name = "sw_serial"/>
-                                    <field name = "sw_purchase_date"/>
+
                             </group>
                             <group>
+                                    <field name = "sw_purchase_date"/>
                                     <field name = "sw_licence_exp"/>
                                     <field name = "sw_price"/>
                                     <field name = "sw_licence_assignd_person"/>

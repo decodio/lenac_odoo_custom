@@ -6,10 +6,13 @@
             <field name="model">maintenance.equipment</field>
             <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='department_id']" position="after">
+                <xpath expr="//field[@name='category_id']" position="after">
                     <field name = "pc_number"/>
-                    <field name = "installed_os"/>
-                    <field name = "installed_sw"/>
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="after">
+                    <field name="dep_number"/>
+                    <field name = "installed_os" domain="[('sw_type', '=', 'OS')]"/>
+                    <field name = "installed_sw" domain="[('sw_type', '=', 'prog')]"/>
                 </xpath>
                 <xpath expr="//field[@name='warranty']" position="after">
                     <field name = "date_purchased"/>
