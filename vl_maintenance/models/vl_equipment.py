@@ -40,8 +40,7 @@ class VLMaintenanceEquipment(models.Model):
     emp_number = fields.Char('Employee number')
     dep_number = fields.Char('Department number')
     date_assigned = fields.Date('Date assigned')
-
-    #n_location = fields.Char('Assigned location')
+    n_location = fields.Char('Assigned location')
 
 
 class AllowedSoftware(models.Model):

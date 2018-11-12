@@ -16,6 +16,7 @@
                     <field name = "ndep_number" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'employee'), ('equipment_assign_to', '=', False)]}"/>
                     <field name = "date_assigned"/>
                     <field name = "installed_os" domain="[('sw_type', '=', 'OS')]"/>
+                    <filed name = "n-location"/>
                     <field name = "installed_sw" domain="[('sw_type', '=', 'prog')]"/>
                 </xpath>
                  <xpath expr="//field[@name='technician_user_id']" position="after">
@@ -25,7 +26,7 @@
                         <field name = "old_department_id" string="Department" attrs="{'invisible': ['|', ('old_equipment_assign_to', '=', 'employee'), ('old_equipment_assign_to', '=', False)]}"/>
                         <field name = "dep_number" attrs="{'invisible': ['|', ('old_equipment_assign_to', '=', 'employee'), ('old_equipment_assign_to', '=', False)]}"/>
                 </xpath>
-                <xpath expr="//field[@name='warranty']" position="after">
+                <xpath expr="//field[@name='partner_id']" position="after">
                     <field name = "date_purchased"/>
                 </xpath>
             </field>
