@@ -16,7 +16,7 @@
                     <field name = "ndep_number" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'employee'), ('equipment_assign_to', '=', False)]}"/>
                     <field name = "date_assigned"/>
                     <field name = "installed_os" domain="[('sw_type', '=', 'OS')]"/>
-                    <filed name = "n-location"/>
+                    <field name = "n_location"/>
                     <field name = "installed_sw" domain="[('sw_type', '=', 'prog')]"/>
                 </xpath>
                  <xpath expr="//field[@name='technician_user_id']" position="after">
@@ -30,6 +30,17 @@
                     <field name = "date_purchased"/>
                 </xpath>
             </field>
+        </record>
+
+        <!--HR Employee-->
+        <record id="maintenance_equipment_view_from_inherit_hr_employee" model="ir.ui.view">
+            <field name="name">maintenance.equipment.view.from.inherit.hr.employee</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml"/>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name = "employee_number"/>
+                </xpath>
         </record>
     </data>
 </odoo>

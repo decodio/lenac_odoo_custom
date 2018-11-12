@@ -9,7 +9,8 @@
     'website': 'http://lenac.hr',
     'depends': ['hr',
                 'maintenance',
-                'hr_maintenance', ],
+                'hr_maintenance',
+                'hr.employee'],
     'data': [
             #'security/ir.model.access.csv'
             'report/report.xml',
