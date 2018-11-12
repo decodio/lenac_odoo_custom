@@ -31,8 +31,8 @@ class VLMaintenanceEquipment(models.Model):
     ndep_number = fields.Char('Department number')
 
     def _get_my_number(self):
-        employees = self.env.user.employee_ids
-        return (employees[0].employee_number if employees
+        number = self.env.user.employee_id
+        return (number[0].employee_number if number
                 else self.env['hr.employee'])
 
     nemp_number = fields.Many2one('hr.employee', string='Assigned employee number', default=_get_my_number)
