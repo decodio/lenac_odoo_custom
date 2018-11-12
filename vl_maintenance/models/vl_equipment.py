@@ -29,7 +29,13 @@ class VLMaintenanceEquipment(models.Model):
     installed_sw = fields.Many2many('allowed.os', string='Installed software')
     date_purchased = fields.Date('Date of purchase')
     ndep_number = fields.Char('Department number')
-    nemp_number = fields.Char('Assigned employee number')
+
+    def _get_my_number(self):
+        employees = self.env.user.employee_ids
+        return (employees[0].employee_number if employees
+                else self.env['hr.employee'])
+
+    nemp_number = fields.Many2one('hr.employee', string='Assigned employee number', default=_get_my_number)
     old_employee_id = fields.Many2one('hr.employee', string='Assigned to Employee', track_visibility='onchange')
     old_department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
     old_equipment_assign_to = fields.Selection(
