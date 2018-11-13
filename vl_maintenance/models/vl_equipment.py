@@ -88,17 +88,17 @@ class VLMaintenanceEquipment(models.Model):
     def _compute_dep_number(self):
         for equipment in self:
             if equipment.department_id:
-                equipment.dep_number = equipment.department_id[:1].dep_code
+                equipment.ndep_number = equipment.department_id[:1].dep_code
             else:
-                equipment.dep_number = False
+                equipment.ndep_number = False
 
     @api.depends('old_department_id')
     def _compute_old_dep_number(self):
         for equipment in self:
             if equipment.old_department_id:
-                equipment.emp_number = equipment.old_department_id[:1].dep_code
+                equipment.dep_number = equipment.old_department_id[:1].dep_code
             else:
-                equipment.emp_number = False
+                equipment.dep_number = False
 
 
 class AllowedSoftware(models.Model):
