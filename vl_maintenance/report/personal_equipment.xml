@@ -27,7 +27,9 @@
                         </tr>
                         <tr><td><br/></td></tr>
                         <tr>
-                            ZADUŽENJE SA
+                            <h3>
+                                ZADUŽENJE SA
+                            </h3>
                         </tr>
                         <tr>
                             <td border-color="#ffffff" align="center"><h3>DJELATNIKA</h3></td>
@@ -53,7 +55,9 @@
                         </tr>
                         <tr><td><br/></td></tr>
                         <tr>
-                            ZADUŽJE SE NA
+                            <h3>
+                                ZADUŽJE SE NA
+                            </h3>
                         </tr>
                         <tr>
                             <td border-color="#ffffff" align="center"><h3>DJELATNIKA</h3></td>
