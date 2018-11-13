@@ -67,7 +67,6 @@ class VLMaintenanceEquipment(models.Model):
     n_location = fields.Char('Assigned location')
     components = fields.Many2many('hardware.details', string='Installed Components')
 
-
     @api.depends('employee_id')
     def _compute_emp_number(self):
         for equipment in self:
@@ -136,13 +135,17 @@ class AllowedHardvare(models.Model):
         manufacturer = fields.Char(string='Manufacturer')
         component_type = fields.Many2one('com.type', string='Component type')
         size = fields.Char(string='Size')
-        status = fields.Selection(selection=[('inst', 'Installed'), ('rep', 'Replaced')],
+        status = fields.Selection(selection=[('inst', 'Installed'), ('rep', 'Replaced'), ('war', 'Warranty')],
                                   string='Component status',
-                                  required = 'True')
+                                  required='True')
         log_note = fields.Text(string='Log of internal notes')
+        purchase_date = fields.Date(string='Date of purchase')
+        warranty = fields.Char(string='Warranty')
+        warranty_valid = fields.Date(string='Warranty till')
+        price = fields.Char(string='Cost')
 
 
 class AllowedHArdwareType(models.Model):
         _name = 'com.type'
 
-        name = fields.Char(string= 'Component type')
+        name = fields.Char(string='Component type')

@@ -46,6 +46,11 @@
                                     <field name="status"/>
                                     <field name="log_note"/>
                             </group>
+                                    <field name="purchase_date"/>
+                                    <field name="warranty"/>
+                                    <field name="warranty_valid"/>
+                                    <field name="price"/>
+
                             <group>
 
                             </group>
