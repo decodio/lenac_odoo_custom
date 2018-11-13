@@ -40,5 +40,35 @@
                 </notebook>
             </field>
         </record>
+
+        <record id="view_vl_employee_assigned_inherit_extension" model="ir.ui.view">
+            <field name="name">view.vl.employee.assigned.inherit.extension</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <notebook>
+                    <page string="Assigned equipment" name="employee_personal_eq">
+                        <group>
+                            <field name = "empass_equipement_ids"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="view_vl_department_assigned_inherit_extension" model="ir.ui.view">
+            <field name="name">view.vl.department.assigned.inherit.extension</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_form"/>
+            <field name="arch" type="xml">
+                <notebook>
+                    <page string="Assigned equipment" name="department_assigned_eq">
+                        <group>
+                            <field name = "depass_equipement_ids"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
     </data>
 </odoo>
