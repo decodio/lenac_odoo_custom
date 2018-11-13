@@ -11,7 +11,7 @@
                                 IZVJEŠTAJ O PROMJENI SMJEŠTAJA I OSOBNOG ZADUŽENJA OSNOVNIH SREDSTAVA
                             </h1>
                         </tr>
-                        <!--<tr>
+                        <tr>
                             <td border-color="#ffffff" align="center"><h3>Osnovno sredstvo</h3></td>
                             <td width="20px"></td>
                             <td border-color="#ffffff" align="center"><h3>Tip sredstva</h3></td>
@@ -25,7 +25,7 @@
                             <td width="20px"></td>
                             <td border-color="#ffffff" align="center"><span t-field="o.pc_number"/></td>
                         </tr>
-                        <tr><td><br/></td></tr>-->
+                        <tr><td><br/></td></tr>
                         <tr>
                             <h3>
                                 ZADUŽENJE SA
