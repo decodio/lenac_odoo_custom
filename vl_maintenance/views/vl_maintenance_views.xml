@@ -61,7 +61,7 @@
             <field name="model">hr.department</field>
             <field name="inherit_id" ref="hr.view_department_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='company_id']" position="after">
+                <xpath expr="//form[@name='department']" position="inside">
                     <notebook>
                         <page string="Assigned equipment" name="department_assigned_eq">
                             <group>
