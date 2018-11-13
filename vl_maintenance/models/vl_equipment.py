@@ -28,8 +28,14 @@ class VLMaintenanceEquipment(models.Model):
     installed_os = fields.Many2one('allowed.os', string='Installed OS')
     installed_sw = fields.Many2many('allowed.os', string='Installed software')
     date_purchased = fields.Date('Date of purchase')
-    ndep_number = fields.Char('Department number')
-    nemp_number = fields.Many2one('hr.department',
+
+    ndep_number = fields.Many2one('hr.departmnet',
+                                  string='Department number',
+                                  compute='_compute_dep_number',
+                                  readonly=True,
+                                  store=True)
+
+    nemp_number = fields.Many2one('hr.employee',
                                   string='Assigned employee number',
                                   compute='_compute_emp_number',
                                   readonly=True,
@@ -37,6 +43,7 @@ class VLMaintenanceEquipment(models.Model):
 
     old_employee_id = fields.Many2one('hr.employee', string='Assigned to Employee', track_visibility='onchange')
     old_department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
+
     old_equipment_assign_to = fields.Selection([('department', 'Department'),
                                                 ('employee', 'Employee'),
                                                 ('other', 'Other')],
@@ -44,16 +51,22 @@ class VLMaintenanceEquipment(models.Model):
                                                required=True,
                                                default='employee')
 
-    emp_number = fields.Many2one('hr.department',
+    emp_number = fields.Many2one('hr.employee',
                                  string='Employee number',
                                  compute='_compute_old_emp_number',
                                  readonly=True,
                                  store=True)
 
-    dep_number = fields.Char('Department number')
+    dep_number = fields.Many2one('hr.departmnet',
+                                 string='Department number',
+                                 compute='_compute_old_dep_number',
+                                 readonly=True,
+                                 store=True)
+
     date_assigned = fields.Date('Date assigned')
     n_location = fields.Char('Assigned location')
     components = fields.Many2many('hardware.details', string='Installed Components')
+
 
     @api.depends('employee_id')
     def _compute_emp_number(self):
@@ -68,6 +81,22 @@ class VLMaintenanceEquipment(models.Model):
         for equipment in self:
             if equipment.old_employee_id:
                 equipment.emp_number = equipment.old_employee_id[:1].employee_number
+            else:
+                equipment.emp_number = False
+
+    @api.depends('department_id')
+    def _compute_dep_number(self):
+        for equipment in self:
+            if equipment.department_id:
+                equipment.dep_number = equipment.department_id[:1].dep_code
+            else:
+                equipment.dep_number = False
+
+    @api.depends('old_department_id')
+    def _compute_old_dep_number(self):
+        for equipment in self:
+            if equipment.old_department_id:
+                equipment.emp_number = equipment.old_department_id[:1].dep_code
             else:
                 equipment.emp_number = False
 
