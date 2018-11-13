@@ -52,7 +52,7 @@ class VLMaintenanceEquipment(models.Model):
     def _compute_emp_number(self):
         for equipment in self:
             if equipment.employee_id:
-                equipment.nemp_number = equipment.employee_id.employee_ids[:1].employee_number
+                equipment.nemp_number = equipment.employee_id[:1].employee_number
             else:
                 equipment.nemp_number = False
 
