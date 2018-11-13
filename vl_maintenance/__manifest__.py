@@ -6,7 +6,8 @@
     'category': 'Custom Lenac',
     'complexity': 'normal',
     'author': 'Viktor Lenac d.d. (Vedran Terihaj)',
-    'website': 'http://lenac.hr',
+    'website': 'https://lenac.hr',
+    'license': '',
     'depends': ['hr',
                 'maintenance',
                 'hr_maintenance',
@@ -23,6 +24,6 @@
     'installable': True,
     'auto-install': False,
     'description': """
-        Adds software inventory and licence tracking""",
+        Adds software inventory and licence tracking for Shipyard Viktor Lenac""",
     'summary': 'ICT Inventory tracking',
 }
