@@ -10,6 +10,7 @@
                     <field name="manufacturer"/>
                     <field name="component_type"/>
                     <field name="size"/>
+                    <field name="status"/>
                 </search>
             </field>
         </record>
@@ -23,6 +24,7 @@
                     <field name="manufacturer"/>
                     <field name="component_type"/>
                     <field name="size"/>
+                    <field name="status"/>
                 </tree>
             </field>
         </record>
@@ -41,7 +43,8 @@
                                     <field name="manufacturer"/>
                                     <field name="component_type"/>
                                     <field name="size"/>
-
+                                    <field name="status"/>
+                                    <field name="log_note"/>
                             </group>
                             <group>
 

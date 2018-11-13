@@ -29,6 +29,15 @@
                 <xpath expr="//field[@name='partner_id']" position="after">
                     <field name = "date_purchased"/>
                 </xpath>
+                <notebook>
+                    <page string="Hardware components" name="general_description">
+                        <group string="Components tracking">
+                            <group>
+                                <field name = "components"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
             </field>
         </record>
     </data>

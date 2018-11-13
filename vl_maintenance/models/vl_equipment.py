@@ -81,6 +81,10 @@ class AllowedHardvare(models.Model):
         manufacturer = fields.Char(string='Manufacturer')
         component_type = fields.Many2one('com.type', string='Component type')
         size = fields.Char(string='Size')
+        status = fields.Selection(selection=[('inst', 'Installed'), ('rep', 'Replaced')],
+                                  string='Component status',
+                                  required = 'True')
+        log_note = fields.Text(string='Log of internal notes')
 
 
 class AllowedHArdwareType(models.Model):
