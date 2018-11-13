@@ -11,7 +11,6 @@
                                 IZVJEŠTAJ O PROMJENI SMJEŠTAJA I OSOBNOG ZADUŽENJA OSNOVNIH SREDSTAVA
                             </h1>
                         </tr>
-
                         <tr>
                             <td width="33%" border-color="#ffffff" align="center"><h3>Osnovno sredstvo</h3></td>
                             <td width="20px"></td>
@@ -28,20 +27,56 @@
                         </tr>
                         <tr><td><br/></td></tr>
                         <tr>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>Zaduženje na zaposlenika</h3></td>
+                            ZADUŽENJE SA
+                        </tr>
+                        <tr>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>DJELATNIKA</h3></td>
                             <td width="20px"></td>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>Zadužuje se na odjel</h3></td>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>MB. DJELATNIKA</h3></td>
                             <td width="20px"></td>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>Lokacija</h3></td>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>ODJELA</h3></td>
+                            <td width="20px"></td>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>ŠIFRA OJ</h3></td>
+                            <td width="20px"></td>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>LOKACIJE</h3></td>
                         </tr>
                         <tr>
                             <td align="center"><span t-field="o.employee_id.name"/></td>
                             <td width="20px"></td>
+                            <td align="center"><span t-field="o.nemp_number"/></td>
+                            <td width="20px"></td>
                             <td align="center"><span t-field="o.department_id.name"/></td>
+                            <td width="20px"></td>
+                            <td align="center"><span t-field="o.ndep_number"/></td>
+                            <td width="20px"></td>
+                            <td align="center"><span t-field="o.n_location"/></td>
+                        </tr>
+                        <tr><td><br/></td></tr>
+                        <tr>
+                            ZADUŽJE SE NA
+                        </tr>
+                        <tr>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>DJELATNIKA</h3></td>
+                            <td width="20px"></td>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>MB. DJELATNIKA</h3></td>
+                            <td width="20px"></td>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>ODJELA</h3></td>
+                            <td width="20px"></td>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>ŠIFRA OJ</h3></td>
+                            <td width="20px"></td>
+                            <td width="33%" border-color="#ffffff" align="center"><h3>LOKACIJU</h3></td>
+                        </tr>
+                        <tr>
+                            <td align="center"><span t-field="o.old_employee_id.name"/></td>
+                            <td width="20px"></td>
+                            <td align="center"><span t-field="o.emp_number"/></td>
+                            <td width="20px"></td>
+                            <td align="center"><span t-field="o.old_department_id.name"/></td>
+                            <td width="20px"></td>
+                            <td align="center"><span t-field="o.emp_number"/></td>
                             <td width="20px"></td>
                             <td align="center"><span t-field="o.location"/></td>
                         </tr>
-                        <tr><td><br/></td></tr>
                         <tr>
                             <td align="center"><h3>Korisnički software</h3></td>
                         </tr>
