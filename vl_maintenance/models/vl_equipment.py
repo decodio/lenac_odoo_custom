@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, fields, models, tools
+from odoo import api, fields, models, tools, _
 
 
 class VLMaintenanceEquipment(models.Model):
@@ -29,7 +29,12 @@ class VLMaintenanceEquipment(models.Model):
     installed_sw = fields.Many2many('allowed.os', string='Installed software')
     date_purchased = fields.Date('Date of purchase')
     ndep_number = fields.Char('Department number')
-    nemp_number = fields.Many2one('Assigned employee number')
+    nemp_number = fields.Many2one('hr.department', string='Assigned employee number',
+                                           compute='_compute_emp_number',
+                                           readonly=True,
+                                           store=True)
+
+
     old_employee_id = fields.Many2one('hr.employee', string='Assigned to Employee', track_visibility='onchange')
     old_department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
     old_equipment_assign_to = fields.Selection(
@@ -43,7 +48,13 @@ class VLMaintenanceEquipment(models.Model):
     n_location = fields.Char('Assigned location')
     components = fields.Many2many('hardware.details', string='Installed Components')
 
-
+    @api.depends('employee_id')
+    def _compute_emp_number(self):
+        for equipment in self:
+            if equipment.employee_id:
+                equipment.nemp_number = equipment.employee_id.employee_ids[:1].employee_number
+            else:
+                equipment.nemp_number = False
 
 
 class AllowedSoftware(models.Model):

@@ -27,9 +27,11 @@
                         </tr>
                         <tr><td><br/></td></tr>
                         <tr>
-                            <h3>
-                                ZADUŽENJE SA
-                            </h3>
+                            <td>
+                                <h3>
+                                    ZADUŽENJE SA
+                                </h3>
+                            </td>
                         </tr>
                         <tr>
                             <td border-color="#ffffff" align="center"><h3>DJELATNIKA</h3></td>
@@ -55,9 +57,11 @@
                         </tr>
                         <tr><td><br/></td></tr>
                         <tr>
-                            <h3>
-                                ZADUŽUJE SE NA
-                            </h3>
+                            <td>
+                                <h3>
+                                    ZADUŽUJE SE NA
+                                </h3>
+                            </td>
                         </tr>
                         <tr>
                             <td border-color="#ffffff" align="center"><h3>DJELATNIKA</h3></td>
