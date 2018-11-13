@@ -8,7 +8,8 @@ class VLHREmployee(models.Model):
 
     employee_number = fields.Char(string='Employee ID number')
 
+
 class VLHRDepartment(models.Model):
     _inherit = 'hr.department'
 
-    dep_code = fields.Cahar(string="Department Code")
+    dep_code = fields.Char(string="Department Code")
