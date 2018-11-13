@@ -158,7 +158,7 @@ class HREmployeeEq(models.Model):
 
 
 class HRDepartmentEq(models.Model):
-    _inherit = 'hr.employee'
+    _inherit = 'hr.department'
 
     depass_equipement_ids = fields.One2many('maintenance.equipment', 'department_id', string='Assigned equipment')
 
