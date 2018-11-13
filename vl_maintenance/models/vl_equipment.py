@@ -71,7 +71,7 @@ class VLMaintenanceEquipment(models.Model):
     def _compute_emp_number(self):
         for equipment in self:
             if equipment.employee_id:
-                equipment.nemp_number = equipment.employee_id.[:1].employee_number
+                equipment.nemp_number = equipment.employee_id[:1].employee_number
             else:
                 equipment.nemp_number = False
 
@@ -79,7 +79,7 @@ class VLMaintenanceEquipment(models.Model):
     def _compute_old_emp_number(self):
         for equipment in self:
             if equipment.old_employee_id:
-                equipment.emp_number = equipment.old_employee_id.[:1].employee_number
+                equipment.emp_number = equipment.old_employee_id[:1].employee_number
             else:
                 equipment.emp_number = False
 
@@ -87,15 +87,15 @@ class VLMaintenanceEquipment(models.Model):
     def _compute_dep_number(self):
         for equipment in self:
             if equipment.department_id:
-                equipment.ndep_number = equipment.department_id.[:1].dep_code
+                equipment.ndep_number = equipment.department_id[:1].dep_code
             else:
                 equipment.ndep_number = False
 
-    @api.depends('old_department_id', 'dep_code')
+    @api.depends('old_department_id')
     def _compute_old_dep_number(self):
         for equipment in self:
             if equipment.old_department_id:
-                equipment.dep_number = equipment.old_department_id.[:1].dep_code
+                equipment.dep_number = equipment.old_department_id[:1].dep_code
             else:
                 equipment.dep_number = False
 

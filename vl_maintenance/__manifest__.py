@@ -13,7 +13,7 @@
                 'hr_maintenance',
                 ],
     'data': [
-            'security/equipment.xml',
+            'security/ir.model.access.csv',
             'report/report.xml',
             'report/personal_equipment.xml',
             'views/vl_maintenance_views.xml',
