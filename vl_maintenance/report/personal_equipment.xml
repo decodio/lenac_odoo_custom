@@ -12,33 +12,33 @@
                             </h1>
                         </tr>
                         <tr>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>Osnovno sredstvo</h3></td>
+                            <td border-color="#ffffff" align="center"><h3>Osnovno sredstvo</h3></td>
                             <td width="20px"></td>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>Tip sredstva</h3></td>
+                            <td border-color="#ffffff" align="center"><h3>Tip sredstva</h3></td>
                             <td width="20px"></td>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>Inventarni broj</h3></td>
+                            <td border-color="#ffffff" align="center"><h3>Inventarni broj</h3></td>
                         </tr>
                         <tr>
-                            <td width="33%" border-color="#ffffff" align="center"><span t-field="o.name"/></td>
+                            <td border-color="#ffffff" align="center"><span t-field="o.name"/></td>
                             <td width="20px"></td>
-                            <td width="33%" border-color="#ffffff" align="center"><span t-field="o.category_id.name"/></td>
+                            <td border-color="#ffffff" align="center"><span t-field="o.category_id.name"/></td>
                             <td width="20px"></td>
-                            <td width="33%" border-color="#ffffff" align="center"><span t-field="o.pc_number"/></td>
+                            <td border-color="#ffffff" align="center"><span t-field="o.pc_number"/></td>
                         </tr>
                         <tr><td><br/></td></tr>
                         <tr>
                             ZADUŽENJE SA
                         </tr>
                         <tr>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>DJELATNIKA</h3></td>
+                            <td border-color="#ffffff" align="center"><h3>DJELATNIKA</h3></td>
                             <td width="20px"></td>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>MB. DJELATNIKA</h3></td>
+                            <td border-color="#ffffff" align="center"><h3>MB. DJELATNIKA</h3></td>
                             <td width="20px"></td>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>ODJELA</h3></td>
+                            <td border-color="#ffffff" align="center"><h3>ODJELA</h3></td>
                             <td width="20px"></td>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>ŠIFRA OJ</h3></td>
+                            <td border-color="#ffffff" align="center"><h3>ŠIFRA OJ</h3></td>
                             <td width="20px"></td>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>LOKACIJE</h3></td>
+                            <td border-color="#ffffff" align="center"><h3>LOKACIJE</h3></td>
                         </tr>
                         <tr>
                             <td align="center"><span t-field="o.employee_id.name"/></td>
@@ -56,15 +56,15 @@
                             ZADUŽJE SE NA
                         </tr>
                         <tr>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>DJELATNIKA</h3></td>
+                            <td border-color="#ffffff" align="center"><h3>DJELATNIKA</h3></td>
                             <td width="20px"></td>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>MB. DJELATNIKA</h3></td>
+                            <td border-color="#ffffff" align="center"><h3>MB. DJELATNIKA</h3></td>
                             <td width="20px"></td>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>ODJELA</h3></td>
+                            <td border-color="#ffffff" align="center"><h3>ODJELA</h3></td>
                             <td width="20px"></td>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>ŠIFRA OJ</h3></td>
+                            <td border-color="#ffffff" align="center"><h3>ŠIFRA OJ</h3></td>
                             <td width="20px"></td>
-                            <td width="33%" border-color="#ffffff" align="center"><h3>LOKACIJU</h3></td>
+                            <td border-color="#ffffff" align="center"><h3>LOKACIJU</h3></td>
                         </tr>
                         <tr>
                             <td align="center"><span t-field="o.old_employee_id.name"/></td>

@@ -24,5 +24,5 @@
     'auto-install': False,
     'description': """
         Adds software inventory and licence tracking""",
-    'summary': 'Equipments, Assets, Internal Hardware, Allocation Tracking',
+    'summary': 'ICT Inventory tracking',
 }
