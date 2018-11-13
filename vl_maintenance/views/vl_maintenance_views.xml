@@ -63,7 +63,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='company_id']" position="after">
                     <page string="Assigned equipment" name="department_assigned_eq">
-                        <field name = "depass_equipement_ids" string="Equipemnet assigned to department"/>
+                        <field name = "depass_equipement_ids" string="Equipment assigned to department"/>
                     </page>
                 </xpath>
             </field>
