@@ -29,8 +29,7 @@ class VLMaintenanceEquipment(models.Model):
     installed_sw = fields.Many2many('allowed.os', string='Installed software')
     date_purchased = fields.Date('Date of purchase')
 
-    ndep_number = fields.Many2one('hr.deepartment',
-                                  string='Department number',
+    ndep_number = fields.Many2one(string='Department number',
                                   compute='_compute_dep_number',
                                   readonly=True,
                                   store=True)
