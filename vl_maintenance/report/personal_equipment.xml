@@ -93,6 +93,27 @@
                                 <h4><span t-esc="l.name"/></h4>
                             </td>
                         </tr>
+                        <tr>
+                            <tr>
+                                <td><h3>Predao-predali: <span t-field="o.technician_user_id.name"/></h3></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    (potpis i pečat)
+                                    <br/>
+                                </td>
+                                <td>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span t-field="o.date_assigned"/>
+                                    <br/>
+                                </td>
+                            </tr>
+                        </tr>
                     </table>
                 </div>
             </tr>
