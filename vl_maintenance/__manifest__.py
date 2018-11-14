@@ -14,6 +14,7 @@
                 ],
     'data': [
             'security/ir.model.access.csv',
+            'security/vl_maintenance.xml',
             'report/report.xml',
             'report/personal_equipment.xml',
             'views/vl_maintenance_views.xml',
