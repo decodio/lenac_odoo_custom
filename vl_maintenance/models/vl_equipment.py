@@ -83,7 +83,7 @@ class VLMaintenanceEquipment(models.Model):
             else:
                 equipment.emp_number = False
 
-    @api.depends('department_id', 'dep_code')
+    @api.depends('department_id')
     def _compute_dep_number(self):
         for equipment in self:
             if equipment.department_id:
