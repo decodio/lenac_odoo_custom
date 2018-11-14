@@ -151,16 +151,16 @@ class AllowedHArdwareType(models.Model):
         name = fields.Char(string='Component type')
 
 
-class HREmployeeEq(models.Model):
-    _inherit = 'hr.employee'
+#class HREmployeeEq(models.Model):
+#    _inherit = 'hr.employee'
 
-    empass_equipement_ids = fields.One2many('maintenance.equipment', 'employee_id', string='Assigned equipment')
+#    empass_equipement_ids = fields.One2many('maintenance.equipment', 'employee_id', string='Assigned equipment')
 
 
-class HRDepartmentEq(models.Model):
-    _inherit = 'hr.department'
+#class HRDepartmentEq(models.Model):
+#    _inherit = 'hr.department'
 
-    depass_equipement_ids = fields.One2many('maintenance.equipment', 'department_id', string='Assigned equipment')
+#    depass_equipement_ids = fields.One2many('maintenance.equipment', 'department_id', string='Assigned equipment')
 
 
 

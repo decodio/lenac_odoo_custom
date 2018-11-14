@@ -41,7 +41,7 @@
             </field>
         </record>
 
-        <record id="view_vl_employee_assigned_inherit_extension" model="ir.ui.view">
+        <!--<record id="view_vl_employee_assigned_inherit_extension" model="ir.ui.view">
             <field name="name">view.vl.employee.assigned.inherit.extension</field>
             <field name="model">hr.employee</field>
             <field name="inherit_id" ref="hr.view_employee_form"/>
@@ -65,6 +65,6 @@
                     <field name = "depass_equipement_ids" string="Equipment assigned to department"/>
                 </xpath>
             </field>
-        </record>
+        </record>-->
     </data>
 </odoo>
