@@ -14,6 +14,7 @@ class MaintenanceEquipment(models.Model):
         required=True,
         default='employee')
     owner_user_id = fields.Many2one(compute='_compute_owner', store=True)
+
     pc_number = fields.Integer('Inventory number')
     installed_os = fields.Selection(
         selection=[('winxp', 'Windows XP'), ('win7', 'Windows 7'), ('win10', 'Windows 10'),
