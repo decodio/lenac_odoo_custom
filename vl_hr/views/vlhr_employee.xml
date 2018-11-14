@@ -9,7 +9,13 @@
         <xpath expr="//field[@name='user_id']"  position="after">
             <field name='employee_number'/>
         </xpath>
-
+        <notebook>
+            <page string="Assigned equipment" name="employee_personal_eq">
+                <group>
+                    <field name = "empass_equipement_ids"/>
+                </group>
+            </page>
+        </notebook>
       </field>
     </record>
 
@@ -22,7 +28,9 @@
         <xpath expr="//field[@name='name']"  position="after">
             <field name='dep_code'/>
         </xpath>
-
+        <xpath expr="//field[@name='company_id']" position="after">
+            <field name = "depass_equipement_ids" string="Equipment assigned to department"/>
+        </xpath>
       </field>
     </record>
 
