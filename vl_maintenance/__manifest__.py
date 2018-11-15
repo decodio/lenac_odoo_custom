@@ -25,6 +25,6 @@
     'installable': True,
     'auto-install': False,
     'description': """
-        Adds software inventory and licence tracking for Shipyard Viktor Lenac""",
+        Adds software and hardware inventory + licence tracking for Shipyard Viktor Lenac""",
     'summary': 'ICT Inventory tracking',
 }
