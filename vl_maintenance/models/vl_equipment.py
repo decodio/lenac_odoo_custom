@@ -29,37 +29,33 @@ class MaintenanceEquipment(models.Model):
     installed_sw = fields.Many2many('allowed.os', string='Installed software')
     date_purchased = fields.Date('Date of purchase')
 
-    ndep_number = fields.Many2one('hr.deepartment',
-                                  string='Department number',
-                                  compute='_compute_dep_number',
-                                  readonly=True,
-                                  store=True)
+    new_employee_number = fields.Char('hr.employee',
+                                      #string='Assigned employee number',
+                                      related='employee_id.employee_number',
+                                      readonly=True,
+                                      store=True)
 
-    # nemp_number = fields.Many2one('hr.eemployee',
-    #                               string='Assigned employee number',
-    #                               compute='_compute_emp_number',
-    #                               readonly=True,
-    #                               store=True)
-    assigned_employee_number = fields.Char(
-        'hr.employee',
-        string='Assigned employee number',
-        related='employee_id.employee_number',
-        readonly=True,  # related better be readonly
-        old_name='nemp_number',
-        store=True)
-
-    old_employee_number = fields.Char(
-        'hr.employee',
-        string='Assigned employee number',
-        related='old_employee_id.employee_number',
-        readonly=True,  # related better be readonly
-        old_name='nemp_number',
-        store=True)
-
-
+    new_department_number = fields.Char('hr.department',
+                                        #string='Assigned department number',
+                                        related='department_id.department_code',
+                                        readonly=True,
+                                        store=True)
 
     old_employee_id = fields.Many2one('hr.employee', string='Assigned to Employee', track_visibility='onchange')
+
     old_department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
+
+    old_employee_number = fields.Char('hr.employee',
+                                      #string='Employee number',
+                                      related='old_employee_id.employee_number',
+                                      readonly=True,
+                                      store=True)
+
+    old_department_number = fields.Char('hr.department',
+                                        #string='Department number',
+                                        related='old_department_id.department_code',
+                                        readonly=True,
+                                        store=True)
 
     old_equipment_assign_to = fields.Selection([('department', 'Department'),
                                                 ('employee', 'Employee'),
@@ -68,57 +64,45 @@ class MaintenanceEquipment(models.Model):
                                                required=True,
                                                default='employee')
 
-    emp_number = fields.Many2one('hr.eemployee',
-                                 string='Employee number',
-                                 compute='_compute_old_emp_number',
-                                 readonly=True,
-                                 store=True)
-
-    dep_number = fields.Many2one('hr.deepartment',
-                                 string='Department number',
-                                 compute='_compute_old_dep_number',
-                                 readonly=True,
-                                 store=True)
-
     date_assigned = fields.Date('Date assigned')
-    n_location = fields.Char('Assigned location')
+    new_location = fields.Char('Assigned location')
     components = fields.Many2many('hardware.details', string='Installed Components')
 
-    @api.depends('employee_id')
-    def _compute_emp_number(self):
-        for equipment in self:
-            if equipment.employee_id:
-                equipment.nemp_number = equipment.employee_id[:1].employee_number
-            else:
-                equipment.nemp_number = False
+    #@api.depends('employee_id')
+    #def _compute_emp_number(self):
+    #    for equipment in self:
+    #        if equipment.employee_id:
+    #            equipment.new_employee_number = equipment.employee_id[:1].employee_number
+    #        else:
+    #            equipment.new_employee_number = False
 
-    @api.depends('old_employee_id')
-    def _compute_old_emp_number(self):
-        for equipment in self:
-            if equipment.old_employee_id:
-                equipment.emp_number = equipment.old_employee_id[:1].employee_number
-            else:
-                equipment.emp_number = False
+    #@api.depends('old_employee_id')
+    #def _compute_old_emp_number(self):
+    #    for equipment in self:
+    #        if equipment.old_employee_id:
+    #            equipment.old_employee_number = equipment.old_employee_id[:1].employee_number
+    #        else:
+    #            equipment.old_employee_number = False
 
-    @api.depends('department_id')
-    def _compute_dep_number(self):
-        for equipment in self:
-            if equipment.department_id:
-                equipment.ndep_number = equipment.department_id[:1].dep_code
-            else:
-                equipment.ndep_number = False
+    #@api.depends('department_id')
+    #def _compute_dep_number(self):
+    #    for equipment in self:
+    #        if equipment.department_id:
+    #            equipment.new_department_number = equipment.department_id[:1].department_code
+    #        else:
+    #            equipment.new_department_number = False
 
-    @api.depends('old_department_id')
-    def _compute_old_dep_number(self):
-        for equipment in self:
-            if equipment.old_department_id:
-                equipment.dep_number = equipment.old_department_id[:1].dep_code
-            else:
-                equipment.dep_number = False
+    #@api.depends('old_department_id')
+    #def _compute_old_dep_number(self):
+    #    for equipment in self:
+    #        if equipment.old_department_id:
+    #            equipment.old_department_number = equipment.old_department_id[:1].department_code
+    #        else:
+    #            equipment.old_department_number = False
 
 
-class AllowedOs(models.Model):
-    _name = 'allowed.os'  # probably should be maintanance.allowed.os
+class MaintenanceAllowedOs(models.Model):
+    _name = 'maintenance.allowed.os'
     _description = 'Installed software'
 
     name = fields.Char(string="Software name", required='True')
@@ -133,8 +117,8 @@ class AllowedOs(models.Model):
     sw_purchase_date = fields.Date(string="Date of purchase")
     sw_licence_exp = fields.Date(string="Expiration date")
     sw_price = fields.Integer(string="Licence cost")
-    sw_licence_assignd_person = fields.Many2one('hr.employee', string='Assigned to Employee')
-    sw_licence_assignd_dep = fields.Many2one('hr.department', string='Assigned to Department')
+    sw_licence_assigned_person = fields.Many2one('hr.employee', string='Assigned to Employee')
+    sw_licence_assigned_dep = fields.Many2one('hr.department', string='Assigned to Department')
     sw_spec = fields.Selection(selection=[('def', 'Installed by default'),
                                           ('dep_spec', 'Department specific')],
                                string='Installation type',
@@ -144,13 +128,13 @@ class AllowedOs(models.Model):
                                required='True')
 
 
-class HardwareDetails(models.Model):
-        _name = 'hardware.details'   # probably should be maintanance.hardware.details
+class MaintenanceHardwareDetails(models.Model):
+        _name = 'maintenance.hardware.details'
         _description = 'Hardware Details'
 
         name = fields.Char(string='Component name')
         manufacturer = fields.Char(string='Manufacturer')
-        component_type = fields.Many2one('com.type', string='Component type')
+        component_type = fields.Many2one('maintenance.component.type', string='Component type')
         size = fields.Char(string='Size')
         status = fields.Selection(selection=[('inst', 'Installed'), ('rep', 'Replaced'), ('war', 'Warranty')],
                                   string='Component status',
@@ -162,8 +146,8 @@ class HardwareDetails(models.Model):
         price = fields.Char(string='Cost')
 
 
-class AllowedHArdwareType(models.Model):
-        _name = 'com.type'
+class MaintenanceComponentType(models.Model):
+        _name = 'maintenance.component.type'
 
         name = fields.Char(string='Component type')
 
