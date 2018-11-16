@@ -25,35 +25,19 @@ class MaintenanceEquipment(models.Model):
     #              ('winser2012R2', 'Windows Server 2012 R2')],
     #   string='Installed OS',
     #   required=False)
-    installed_os = fields.Many2one('allowed.os', string='Installed OS')
-    installed_sw = fields.Many2many('allowed.os', string='Installed software')
+    installed_os = fields.Many2one('maintenance.allowed.os', string='Installed OS')
+    installed_sw = fields.Many2many('maintenance.allowed.os', string='Installed software')
     date_purchased = fields.Date('Date of purchase')
 
     new_employee_number = fields.Char('hr.employee',
-                                      #string='Assigned employee number',
+                                      string='Assigned employee number',
                                       related='employee_id.employee_number',
                                       readonly=True,
                                       store=True)
 
     new_department_number = fields.Char('hr.department',
-                                        #string='Assigned department number',
+                                        string='Assigned department number',
                                         related='department_id.department_code',
-                                        readonly=True,
-                                        store=True)
-
-    old_employee_id = fields.Many2one('hr.employee', string='Assigned to Employee', track_visibility='onchange')
-
-    old_department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
-
-    old_employee_number = fields.Char('hr.employee',
-                                      #string='Employee number',
-                                      related='old_employee_id.employee_number',
-                                      readonly=True,
-                                      store=True)
-
-    old_department_number = fields.Char('hr.department',
-                                        #string='Department number',
-                                        related='old_department_id.department_code',
                                         readonly=True,
                                         store=True)
 
@@ -64,9 +48,27 @@ class MaintenanceEquipment(models.Model):
                                                required=True,
                                                default='employee')
 
+    old_employee_id = fields.Many2one('hr.employee', string='Assigned to Employee', track_visibility='onchange')
+
+    old_department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
+
+    old_employee_number = fields.Char('hr.employee',
+                                      string='Employee number',
+                                      related='old_employee_id.employee_number',
+                                      readonly=True,
+                                      store=True)
+
+    old_department_number = fields.Char('hr.department',
+                                        string='Department number',
+                                        related='old_department_id.department_code',
+                                        readonly=True,
+                                        store=True)
+
+
+
     date_assigned = fields.Date('Date assigned')
     new_location = fields.Char('Assigned location')
-    components = fields.Many2many('hardware.details', string='Installed Components')
+    components = fields.Many2many('maintenance.hardware.details', string='Installed Components')
 
     #@api.depends('employee_id')
     #def _compute_emp_number(self):
