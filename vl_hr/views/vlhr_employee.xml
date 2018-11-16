@@ -10,9 +10,9 @@
             <field name='employee_number'/>
         </xpath>
         <notebook>
-            <page string="Assigned equipment" name="employee_personal_eq">
+            <page string="Assigned equipment" name="employee_personal_equipment">
                 <group>
-                    <field name = "empass_equipement_ids"/>
+                    <field name = "employee_assigned_equipment_ids"/>
                 </group>
             </page>
         </notebook>
@@ -26,10 +26,10 @@
       <field name="inherit_id" ref="hr.view_department_form"/>
       <field name="arch" type="xml">
         <xpath expr="//field[@name='name']"  position="after">
-            <field name='dep_code'/>
+            <field name='department_code'/>
         </xpath>
         <xpath expr="//field[@name='company_id']" position="after">
-            <field name = "depass_equipement_ids" string="Equipment assigned to department"/>
+            <field name = "department_assigned_equipment_ids" string="Equipment assigned to department"/>
         </xpath>
       </field>
     </record>
