@@ -30,13 +30,13 @@ class MaintenanceEquipment(models.Model):
     date_purchased = fields.Date('Date of purchase')
 
     new_employee_number = fields.Char('hr.employee',
-                                      string='Assigned employee number',
+                                      #string='Assigned employee number',
                                       related='employee_id.employee_number',
                                       readonly=True,
                                       store=True)
 
     new_department_number = fields.Char('hr.department',
-                                        string='Assigned department number',
+                                        #string='Assigned department number',
                                         related='department_id.department_code',
                                         readonly=True,
                                         store=True)
@@ -53,13 +53,13 @@ class MaintenanceEquipment(models.Model):
     old_department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
 
     old_employee_number = fields.Char('hr.employee',
-                                      string='Employee number',
+                                      #string='Employee number',
                                       related='old_employee_id.employee_number',
                                       readonly=True,
                                       store=True)
 
     old_department_number = fields.Char('hr.department',
-                                        string='Department number',
+                                        #string='Department number',
                                         related='old_department_id.department_code',
                                         readonly=True,
                                         store=True)
