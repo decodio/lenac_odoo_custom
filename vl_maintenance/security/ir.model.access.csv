@@ -5,3 +5,10 @@ access_hr_department_user,access_hr_department_user,model_hr_department,base.gro
 access_hr_department_system,access_hr_department_system,model_hr_department,base.group_system,1,1,1,1
 access_hardware_details_user,access_hardware_details_user,model_hardware_details,base.group_user,1,1,1,1
 access_hardware_details_system,access_hardware_details_system,model_hardware_details,base.group_system,1,1,1,1
+
+# C/P odoo WARNING The model allowed_os has no access rules, consider adding one
+access_allowed_os,access_allowed_os,model_allowed_os,base.group_user,1,0,0,0
+
+access_allowed_os_reader,access_allowed_os_reader,model_allowed_os,base.group_user,1,0,0,0
+access_allowed_os_editor,access_allowed_os_editor,model_allowed_os,hr.group_hr_user,1,1,1,0
+access_allowed_os_manager,access_allowed_os_manager,model_allowed_os,maintenance.group_equipment_manager,1,1,1,1

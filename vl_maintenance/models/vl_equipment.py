@@ -3,7 +3,7 @@
 from odoo import api, fields, models, tools, _
 
 
-class VLMaintenanceEquipment(models.Model):
+class MaintenanceEquipment(models.Model):
     _inherit = 'maintenance.equipment'
 
     @api.model
@@ -35,11 +35,28 @@ class VLMaintenanceEquipment(models.Model):
                                   readonly=True,
                                   store=True)
 
-    nemp_number = fields.Many2one('hr.eemployee',
-                                  string='Assigned employee number',
-                                  compute='_compute_emp_number',
-                                  readonly=True,
-                                  store=True)
+    # nemp_number = fields.Many2one('hr.eemployee',
+    #                               string='Assigned employee number',
+    #                               compute='_compute_emp_number',
+    #                               readonly=True,
+    #                               store=True)
+    assigned_employee_number = fields.Char(
+        'hr.employee',
+        string='Assigned employee number',
+        related='employee_id.employee_number',
+        readonly=True,  # related better be readonly
+        old_name='nemp_number',
+        store=True)
+
+    old_employee_number = fields.Char(
+        'hr.employee',
+        string='Assigned employee number',
+        related='old_employee_id.employee_number',
+        readonly=True,  # related better be readonly
+        old_name='nemp_number',
+        store=True)
+
+
 
     old_employee_id = fields.Many2one('hr.employee', string='Assigned to Employee', track_visibility='onchange')
     old_department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
@@ -100,8 +117,8 @@ class VLMaintenanceEquipment(models.Model):
                 equipment.dep_number = False
 
 
-class AllowedSoftware(models.Model):
-    _name = 'allowed.os'
+class AllowedOs(models.Model):
+    _name = 'allowed.os'  # probably should be maintanance.allowed.os
     _description = 'Installed software'
 
     name = fields.Char(string="Software name", required='True')
@@ -127,8 +144,8 @@ class AllowedSoftware(models.Model):
                                required='True')
 
 
-class AllowedHardvare(models.Model):
-        _name = 'hardware.details'
+class HardwareDetails(models.Model):
+        _name = 'hardware.details'   # probably should be maintanance.hardware.details
         _description = 'Hardware Details'
 
         name = fields.Char(string='Component name')

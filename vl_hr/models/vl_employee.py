@@ -3,14 +3,16 @@
 from odoo import models, fields
 
 
-class VLHREmployee(models.Model):
+class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     employee_number = fields.Char(string='Employee ID number', required=True)
-    empass_equipement_ids = fields.Many2one('maintenance.equipment', 'employee_id', string='Assigned equipment')
+
+    # empass_equipement_ids = fields.Many2one('maintenance.equipment', 'employee_id', string='Assigned equipment')
+    assigned_equipement_ids = fields.One2many('maintenance.equipment', 'employee_id', string='Assigned equipment')
 
 
-class VLHRDepartment(models.Model):
+class HrDepartment(models.Model):
     _inherit = 'hr.department'
 
     dep_code = fields.Char(string="Department Code", required=True)
