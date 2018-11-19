@@ -7,12 +7,12 @@
       <field name="inherit_id" ref="hr.view_employee_form"/>
       <field name="arch" type="xml">
         <xpath expr="//field[@name='user_id']"  position="after">
-            <field name='employee_number'/>
+            <field name="employee_number"/>
         </xpath>
         <notebook>
             <page string="Assigned equipment" name="employee_personal_equipment">
                 <group>
-                    <field name = "employee_assigned_equipment_ids"/>
+                    <field name="employee_assigned_equipment_ids"/>
                 </group>
             </page>
         </notebook>
@@ -26,10 +26,10 @@
       <field name="inherit_id" ref="hr.view_department_form"/>
       <field name="arch" type="xml">
         <xpath expr="//field[@name='name']"  position="after">
-            <field name='department_code'/>
+            <field name="department_code"/>
         </xpath>
         <xpath expr="//field[@name='company_id']" position="after">
-            <field name = "department_assigned_equipment_ids" string="Equipment assigned to department"/>
+            <field string="Equipment assigned to department" name="department_assigned_equipment_ids"/>
         </xpath>
       </field>
     </record>
