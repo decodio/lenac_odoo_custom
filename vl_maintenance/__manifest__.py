@@ -15,8 +15,8 @@
     'data': [
             #'security/ir.model.access.csv',
             #'security/vl_maintenance.xml',
-            #'report/report.xml',
-            #'report/personal_equipment.xml',
+            'report/report.xml',
+            'report/personal_equipment.xml',
             'views/vl_maintenance_views.xml',
             'views/allowed_os.xml',
             'views/hardware.xml',

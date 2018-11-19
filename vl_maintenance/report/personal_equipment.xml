@@ -4,105 +4,117 @@
     <t t-call="report.html_container">
         <t t-foreach="docs" t-as="o">
             <tr t-call="report.external_layout">
-                <div class="page">
-                    <table broder="solid">
+                <div class="page" width="876px">
+                    <h2 style="width: 876px;text-align: center;">IZVJEŠTAJ O PROMJENI SMJEŠTAJA I OSOBNOG ZADUŽENJA OSNOVNIH SREDSTAVA</h2>
+                    <table style="width:876px">
                         <tr>
-                            <h1>
-                                IZVJEŠTAJ O PROMJENI SMJEŠTAJA I OSOBNOG ZADUŽENJA OSNOVNIH SREDSTAVA
-                            </h1>
+                            <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;">OSNOVNO SREDSTVO</td>
+                            <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;">TIP SREDSTVA</td>
+                            <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;">INVENTARNI BROJ</td>
                         </tr>
                         <tr>
-                            <td border-color="#ffffff" align="center"><h3>Osnovno sredstvo</h3></td>
-                            <td width="20px"></td>
-                            <td border-color="#ffffff" align="center"><h3>Tip sredstva</h3></td>
-                            <td width="20px"></td>
-                            <td border-color="#ffffff" align="center"><h3>Inventarni broj</h3></td>
-                        </tr>
-                        <tr>
-                            <td border-color="#ffffff" align="center"><span t-field="o.name"/></td>
-                            <td width="20px"></td>
-                            <td border-color="#ffffff" align="center"><span t-field="o.category_id.name"/></td>
-                            <td width="20px"></td>
-                            <td border-color="#ffffff" align="center"><span t-field="o.pc_number"/></td>
+                            <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.name"/></td>
+                            <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.category_id.name"/></td>
+                            <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.pc_number"/></td>
                         </tr>
                         <tr><td><br/></td></tr>
                         <tr>
                             <td>
                                 <h3>
-                                    ZADUŽENJE SA
+                                    ZADUŽENJE SA:
                                 </h3>
                             </td>
                         </tr>
                         <tr>
-                            <td border-color="#ffffff" align="center"><h3>DJELATNIKA</h3></td>
-                            <td width="20px"></td>
-                            <td border-color="#ffffff" align="center"><h3>MB. DJELATNIKA</h3></td>
-                            <td width="20px"></td>
-                            <td border-color="#ffffff" align="center"><h3>ODJELA</h3></td>
-                            <td width="20px"></td>
-                            <td border-color="#ffffff" align="center"><h3>ŠIFRA OJ</h3></td>
-                            <td width="20px"></td>
-                            <td border-color="#ffffff" align="center"><h3>LOKACIJE</h3></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">DJELATNIKA</td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">MB. DJELATNIKA</td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">ODJEL</td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">ŠIFRA OJ</td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">LOKACIJE</td>
+                            <td><br/></td>
                         </tr>
                         <tr>
-                            <td align="center"><span t-field="o.old_employee_id.name"/></td>
-                            <td width="20px"></td>
-                            <td align="center"><span t-field="o.old_employee_number"/></td>
-                            <td width="20px"></td>
-                            <td align="center"><span t-field="o.old_department_id.name"/></td>
-                            <td width="20px"></td>
-                            <td align="center"><span t-field="o.old_department_number"/></td>
-                            <td width="20px"></td>
-                            <td align="center"><span t-field="o.location"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.old_employee_id.name"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.old_employee_number"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.old_department_id.name"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.old_department_number"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.location"/></td>
+                            <td><br/></td>
                         </tr>
                         <tr><td><br/></td></tr>
                         <tr>
                             <td>
                                 <h3>
-                                    ZADUŽUJE SE NA
+                                    ZADUŽUJE SE NA:
                                 </h3>
                             </td>
                         </tr>
                         <tr>
-                            <td border-color="#ffffff" align="center"><h3>DJELATNIKA</h3></td>
-                            <td width="20px"></td>
-                            <td border-color="#ffffff" align="center"><h3>MB. DJELATNIKA</h3></td>
-                            <td width="20px"></td>
-                            <td border-color="#ffffff" align="center"><h3>ODJELA</h3></td>
-                            <td width="20px"></td>
-                            <td border-color="#ffffff" align="center"><h3>ŠIFRA OJ</h3></td>
-                            <td width="20px"></td>
-                            <td border-color="#ffffff" align="center"><h3>LOKACIJU</h3></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">DJELATNIKA</td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">MB. DJELATNIKA</td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">ODJEL</td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">ŠIFRA OJ</td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">LOKACIJU</td>
+                            <td><br/></td>
                         </tr>
                         <tr>
-                            <td align="center"><span t-field="o.employee_id.name"/></td>
-                            <td width="20px"></td>
-                            <td align="center"><span t-field="o.new_employee_number"/></td>
-                            <td width="20px"></td>
-                            <td align="center"><span t-field="o.department_id.name"/></td>
-                            <td width="20px"></td>
-                            <td align="center"><span t-field="o.new_department_number"/></td>
-                            <td width="20px"></td>
-                            <td align="center"><span t-field="o.new_location"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.employee_id.name"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_employee_number"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.department_id.name"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_department_number"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_location"/></td>
+                            <td><br/></td>
                         </tr>
+                        <tr><td><br/></td></tr>
                         <tr>
-                            <td align="center"><h3>Korisnički software</h3></td>
+                            <td width="400" align="left"><h3>Korisnički software</h3></td>
                         </tr>
-                        <tr t-foreach="o.installed_sw" t-as="l">
-                            <td align="left">
-                                <h4><span t-esc="l.name"/></h4>
+                        <tr t-foreach="o.installed_sw" t-as="l" style="width: 400px;border: black;border-style: solid;">
+                            <td width="400" style="text-align: left;font-size: 20px;"><span t-esc="l.name"/></td>
+                        </tr>
+                        <tr><td><br/></td></tr>
+                        <tr>
+                            <td width="400" align="left"><h3>Hardware</h3></td>
+                        </tr>
+                        <tr t-foreach="o.components" t-as="l" style="width: 400px;border: black;border-style: solid;">
+                            <td width="400" style="text-align: left;font-size: 20px;"><span t-esc="l.name"/></td>
+                        </tr>
+                        <tr><td><br/></td></tr>
+                        <tr>
+                            <td colspan="5" style="border: black;border-style: solid;text-align: left;font-size: 20px;">
+                                Potpisom ovog dokumenta potvrđujem da će se računalo koristiti sukladno RU2702 - Uputa o instalaciji, administraciji i korištenju računala i računalne opreme
+                                u vlasništvu Brodogradilišta.<br/>
+                                Potvrđujem da NEĆU vršti promjene na korisničkom softweru i hardwareu bez prethodnog odobrenja od strane Rukovoditelja odjela OSKICT, u vidu instalacije ili
+                                ugradnje drugog računalnog softwera i hardwera, a koji se ne nalazi na listi odobrenog sofwera i hardwera opreme u vlasništvu Brodgradilišta.<br/>
+                                Sam čin instalacije softwera i hardwera a koji se ne nalazi na listi odobrenog sftwera i hardwera u vlasništvu Brodogradilišta povlači za sobom prijavu za povredu
+                                obveze iz radnog odnosa, povredu radne discipline, ali i kršenje zakonskih propisa, akata i odluka Brodgradilišta.
                             </td>
                         </tr>
                         <tr>
                             <tr>
-                                <td><h3>Predao-predali: <span t-field="o.technician_user_id.name"/></h3></td>
+                                <td colspan="2"><h3>Predao-predali: <span t-field="o.technician_user_id.name"/></h3></td>
+                                <td colspan="2"><h3>Preuzeo: <span t-field="o.employee_id.name"/></h3></td>
                             </tr>
                             <tr>
                                 <td>
                                     <br/>
                                     <br/>
                                     <br/>
-                                    (potpis i pečat)
+                                    (potpis i/ili pečat)
+                                    <br/>
+                                </td>
+                                <td>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span t-field="o.date_assigned"/>
+                                    <br/>
+                                </td>
+                                <td>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    (potpis i/ili pečat)
                                     <br/>
                                 </td>
                                 <td>
