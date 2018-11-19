@@ -64,11 +64,26 @@ class MaintenanceEquipment(models.Model):
                                         readonly=True,
                                         store=True)
 
-
-
     date_assigned = fields.Date('Date assigned')
     new_location = fields.Char('Assigned location')
     components = fields.Many2many('maintenance.hardware.details', string='Installed Components')
+
+    sort_of_equipment = fields.Selection([('production', 'Production Equipment'), ('ict', 'IT Equipment')],
+                                         string='Sort of equipment',
+                                         required=True,
+                                         default='production')
+    parent_equipment_ids = fields.Many2one('maintenance.equipment',
+                                           string='Parent equipment',
+                                           readonly=False,
+                                           store=True)
+    child_equipment_ids = fields.One2many('maintenance.equipment', 'parent_equipment_ids')
+
+    #model_A1 = fields.Char()
+    #model_desc = fields.Char()
+    #model_A1_child = fields.Many2one('modelA')
+    #model_A1_desc = fields.Char(related='model_A1_child.model_desc')
+
+
 
     #@api.depends('employee_id')
     #def _compute_emp_number(self):

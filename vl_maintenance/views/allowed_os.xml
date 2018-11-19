@@ -9,7 +9,7 @@
                     <field name="name"/>
                     <field name="sw_version"/>
                     <field name="sw_purchase_date"/>
-                    <field name = "sw_type"/>
+                    <field name="sw_type"/>
                 </search>
             </field>
         </record>
@@ -22,7 +22,7 @@
                     <field name="name"/>
                     <field name="sw_version"/>
                     <field name="sw_purchase_date"/>
-                    <field name = "sw_type"/>
+                    <field name="sw_type"/>
                 </tree>
             </field>
         </record>
@@ -38,20 +38,20 @@
                         <group string = "Software details">
                             <group>
                                     <field name="name"/>
-                                    <field name = "sw_type"/>
-                                    <field name = "sw_vendor"/>
-                                    <field name = "sw_version"/>
-                                    <field name = "sw_licence"/>
-                                    <field name = "sw_serial"/>
+                                    <field name="sw_type"/>
+                                    <field name="sw_vendor"/>
+                                    <field name="sw_version"/>
+                                    <field name="sw_licence"/>
+                                    <field name="sw_serial"/>
 
                             </group>
                             <group>
-                                    <field name = "sw_purchase_date"/>
-                                    <field name = "sw_licence_exp"/>
-                                    <field name = "sw_price"/>
-                                    <field name = "sw_licence_assigned_person"/>
-                                    <field name = "sw_licence_assigned_dep"/>
-                                    <field name = "sw_spec"/>
+                                    <field name="sw_purchase_date"/>
+                                    <field name="sw_licence_exp"/>
+                                    <field name="sw_price"/>
+                                    <field name="sw_licence_assigned_person"/>
+                                    <field name="sw_licence_assigned_dep"/>
+                                    <field name="sw_spec"/>
                             </group>
                         </group>
                     </sheet>

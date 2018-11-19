@@ -37,7 +37,7 @@
                     <header>
                     </header>
                     <sheet>
-                        <group string = "Hardware details">
+                        <group string="Hardware details">
                             <group>
                                     <field name="name"/>
                                     <field name="manufacturer"/>

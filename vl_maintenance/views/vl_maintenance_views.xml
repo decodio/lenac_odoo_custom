@@ -6,34 +6,47 @@
             <field name="model">maintenance.equipment</field>
             <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//field[@name='category_id']" position="before">
+                    <field name="sort_of_equipment" wiget="radio"/>
+                </xpath>
                 <xpath expr="//field[@name='category_id']" position="after">
                     <field name = "pc_number"/>
                 </xpath>
                 <xpath expr="//field[@name='employee_id']" position="after">
-                    <field name= "new_employee_number" string="Employee number" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'department'), ('equipment_assign_to', '=', False)]}"/>
+                    <field name="new_employee_number" string="Employee number" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'department'), ('equipment_assign_to', '=', False)]}"/>
                 </xpath>
                 <xpath expr="//field[@name='department_id']" position="after">
-                    <field name = "new_department_number" string="Department code" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'employee'), ('equipment_assign_to', '=', False)]}"/>
-                    <field name = "date_assigned"/>
-                    <field name = "installed_os" domain="[('sw_type', '=', 'OS')]"/>
-                    <field name = "new_location"/>
-                    <field name = "installed_sw" domain="[('sw_type', '=', 'prog')]"/>
+                    <field name="new_department_number" string="Department code" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'employee'), ('equipment_assign_to', '=', False)]}"/>
+                    <field name="date_assigned"/>
+                    <field name="installed_os" domain="[('sw_type', '=', 'OS')]" attrs="{'invisible': ['|', ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', False)]}"/>
+                    <field name="new_location"/>
+                    <field name="installed_sw" domain="[('sw_type', '=', 'prog')]" attrs="{'invisible': ['|', ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', False)]}"/>
                 </xpath>
                  <xpath expr="//field[@name='technician_user_id']" position="after">
                      <field name="old_equipment_assign_to" widget="radio"/>
-                        <field name = "old_employee_id" string="Employee" attrs="{'invisible': ['|', ('old_equipment_assign_to', '=', 'department'), ('old_equipment_assign_to', '=', False)]}"/>
-                        <field name = "old_employee_number" string="Employee number" attrs="{'invisible': ['|', ('old_equipment_assign_to', '=', 'department'), ('old_equipment_assign_to', '=', False)]}"/>
-                        <field name = "old_department_id" string="Department" attrs="{'invisible': ['|', ('old_equipment_assign_to', '=', 'employee'), ('old_equipment_assign_to', '=', False)]}"/>
-                        <field name = "old_department_number" string="Department code" attrs="{'invisible': ['|', ('old_equipment_assign_to', '=', 'employee'), ('old_equipment_assign_to', '=', False)]}"/>
+                        <field name="old_employee_id" string="Employee" attrs="{'invisible': ['|', ('old_equipment_assign_to', '=', 'department'), ('old_equipment_assign_to', '=', False)]}"/>
+                        <field name="old_employee_number" string="Employee number" attrs="{'invisible': ['|', ('old_equipment_assign_to', '=', 'department'), ('old_equipment_assign_to', '=', False)]}"/>
+                        <field name="old_department_id" string="Department" attrs="{'invisible': ['|', ('old_equipment_assign_to', '=', 'employee'), ('old_equipment_assign_to', '=', False)]}"/>
+                        <field name="old_department_number" string="Department code" attrs="{'invisible': ['|', ('old_equipment_assign_to', '=', 'employee'), ('old_equipment_assign_to', '=', False)]}"/>
                 </xpath>
                 <xpath expr="//field[@name='partner_id']" position="after">
-                    <field name = "date_purchased"/>
+                    <field name="date_purchased"/>
                 </xpath>
                 <notebook>
-                    <page string="Hardware components" name="general_description">
+                    <page string="Hardware components" name="general_description" attrs="{'invisible': ['|', ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', False)]}">
                         <group string="Components tracking">
                             <group>
-                                <field name = "components"/>
+                                <field name="components"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+                <notebook>
+                    <page string="Related equipment" name="related_equipment">
+                        <group string="Sub-parts od Equipment">
+                            <group>
+                                <field name="parent_equipment_ids"/>
+                                <field name="child_equipment_ids"/>
                             </group>
                         </group>
                     </page>
