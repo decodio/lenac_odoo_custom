@@ -66,17 +66,24 @@ class MaintenanceEquipment(models.Model):
 
     date_assigned = fields.Date('Date assigned')
     new_location = fields.Char('Assigned location')
-    components = fields.Many2many('maintenance.hardware.details', string='Installed Components')
+    components = fields.One2many('maintenance.hardware.details', 'installed_on_pc',
+                                 string='Installed Components')
 
     sort_of_equipment = fields.Selection([('production', 'Production Equipment'), ('ict', 'IT Equipment')],
                                          string='Sort of equipment',
                                          required=True,
                                          default='production')
+
+    child_equipment_ids = fields.One2many('maintenance.equipment', 'parent_equipment_ids',
+                                          string='Child equipment',
+                                          readonly=True)
+
     parent_equipment_ids = fields.Many2one('maintenance.equipment',
                                            string='Parent equipment',
                                            readonly=False,
                                            store=True)
-    child_equipment_ids = fields.One2many('maintenance.equipment', 'parent_equipment_ids')
+
+
 
     #model_A1 = fields.Char()
     #model_desc = fields.Char()
@@ -151,6 +158,7 @@ class MaintenanceHardwareDetails(models.Model):
 
         name = fields.Char(string='Component name')
         manufacturer = fields.Char(string='Manufacturer')
+        serial_no = fields.Char(string='Serial Number')
         component_type = fields.Many2one('maintenance.component.type', string='Component type')
         size = fields.Char(string='Size')
         status = fields.Selection(selection=[('inst', 'Installed'), ('rep', 'Replaced'), ('war', 'Warranty')],
@@ -161,6 +169,10 @@ class MaintenanceHardwareDetails(models.Model):
         warranty = fields.Char(string='Warranty')
         warranty_valid = fields.Date(string='Warranty till')
         price = fields.Char(string='Cost')
+        installed_on_pc = fields.Many2one('maintenance.equipment',
+                                          realted='name',
+                                          track_visibility='onchange',
+                                          readonly=False)
 
 
 class MaintenanceComponentType(models.Model):
@@ -179,6 +191,3 @@ class MaintenanceComponentType(models.Model):
 #    _inherit = 'hr.department'
 
 #    depass_equipement_ids = fields.One2many('maintenance.equipment', 'department_id', string='Assigned equipment')
-
-
-

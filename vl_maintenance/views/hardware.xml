@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate ='0'>
+    <data noupdate="0">
         <record model="ir.ui.view" id="maintenance_hardware_details_search_view">
             <field name="name">Hardware Inventory</field>
             <field name="model">maintenance.hardware.details</field>
@@ -41,6 +41,7 @@
                             <group>
                                     <field name="name"/>
                                     <field name="manufacturer"/>
+                                    <field name="serial_no"/>
                                     <field name="component_type"/>
                                     <field name="size"/>
                                     <field name="status"/>
@@ -51,6 +52,7 @@
                                     <field name="warranty"/>
                                     <field name="warranty_valid"/>
                                     <field name="price"/>
+                                    <field name="installed_on_pc" string="Installed on pc"/>
                             </group>
                         </group>
                     </sheet>

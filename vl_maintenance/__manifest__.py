@@ -5,7 +5,7 @@
     'version': '10.0.1.0.0',
     'category': 'Custom Lenac',
     'complexity': 'normal',
-    'author': 'Viktor Lenac d.d. (Vedran Terihaj)',
+    'author': 'Vedran Terihaj',
     'website': 'https://lenac.hr',
     'license': '',
     'depends': ['hr',

@@ -11,6 +11,7 @@
                             <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;">OSNOVNO SREDSTVO</td>
                             <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;">TIP SREDSTVA</td>
                             <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;">INVENTARNI BROJ</td>
+                            <td rowspan="2" colspan="2"><img style="height: 100px" alt="client" src="/vl_maintenance/static/src/logo.jpg"/></td>
                         </tr>
                         <tr>
                             <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.name"/></td>
@@ -42,42 +43,47 @@
                             <td><br/></td>
                         </tr>
                         <tr><td><br/></td></tr>
-                        <tr>
+                    </table>
+                    <h3>
+                        ZADUŽUJE SE NA:
+                    </h3>
+                    <table style="width:876px">
+                        <!--<tr>
                             <td>
                                 <h3>
                                     ZADUŽUJE SE NA:
                                 </h3>
                             </td>
-                        </tr>
+                        </tr>-->
                         <tr>
-                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">DJELATNIKA</td>
-                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">MB. DJELATNIKA</td>
-                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">ODJEL</td>
-                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">ŠIFRA OJ</td>
-                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">LOKACIJU</td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;">DJELATNIKA</td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;">MB. DJELATNIKA</td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;">ODJEL</td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;">ŠIFRA OJ</td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;">LOKACIJU</td>
                             <td><br/></td>
                         </tr>
                         <tr>
-                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.employee_id.name"/></td>
-                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_employee_number"/></td>
-                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.department_id.name"/></td>
-                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_department_number"/></td>
-                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_location"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.employee_id.name"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_employee_number"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.department_id.name"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_department_number"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_location"/></td>
                             <td><br/></td>
                         </tr>
                         <tr><td><br/></td></tr>
                         <tr>
-                            <td width="400" align="left"><h3>Korisnički software</h3></td>
+                            <td colspan="5" align="left"><h3>Korisnički software</h3></td>
                         </tr>
-                        <tr t-foreach="o.installed_sw" t-as="l" style="width: 400px;border: black;border-style: solid;">
-                            <td width="400" style="text-align: left;font-size: 20px;"><span t-esc="l.name"/></td>
+                        <tr t-foreach="o.installed_sw" t-as="l" style="border: black;border-style: solid;">
+                            <td colspan="5" style="text-align: left;font-size: 20px;"><span t-esc="l.name"/></td>
                         </tr>
                         <tr><td><br/></td></tr>
                         <tr>
-                            <td width="400" align="left"><h3>Hardware</h3></td>
+                            <td colspan="5" align="left"><h3>Hardware</h3></td>
                         </tr>
-                        <tr t-foreach="o.components" t-as="l" style="width: 400px;border: black;border-style: solid;">
-                            <td width="400" style="text-align: left;font-size: 20px;"><span t-esc="l.name"/></td>
+                        <tr t-foreach="o.components" t-as="l" style="border: black;border-style: solid;">
+                            <td colspan="5" style="text-align: left;font-size: 20px;"><span t-esc="l.name"/></td>
                         </tr>
                         <tr><td><br/></td></tr>
                         <tr>

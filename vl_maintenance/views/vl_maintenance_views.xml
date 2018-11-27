@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+    <data noupdate="0">
         <record id="maintenance_equipment_view_form_inherit_hr" model="ir.ui.view">
             <field name="name">maintenance.equipment.view.form.inherit.hr</field>
             <field name="model">maintenance.equipment</field>
@@ -36,7 +36,7 @@
                     <page string="Hardware components" name="general_description" attrs="{'invisible': ['|', ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', False)]}">
                         <group string="Components tracking">
                             <group>
-                                <field name="components"/>
+                                <field name="components" domain="[('installed_on_pc', '=', False)]"/>
                             </group>
                         </group>
                     </page>
