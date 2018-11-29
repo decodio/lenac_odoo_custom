@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models, tools, _
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class MaintenanceEquipment(models.Model):
@@ -82,6 +84,32 @@ class MaintenanceEquipment(models.Model):
                                            string='Parent equipment',
                                            readonly=False,
                                            store=True)
+
+    def raise_new_issue(self):
+        return {
+            'name': ('Issue'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            #'views': [(project.issue.lenac.form.view, 'form')],
+            #'view_id': 'project.issue.lenac.form.view',
+            'res_model': 'project.issue',
+            'view_id': False,
+            'type': 'ir.actions.act_window',
+            'target': 'new'
+        }
+
+
+
+    #def show_ru_assignments_sub_view(self, cr, uid, ids, context=None):
+     #   return {
+     #       'name': ('Assignment Sub'),
+     #       'view_type': 'form',
+     #       'view_mode': 'form',
+     #       'res_model': 'ru.assignments.sub',
+      #      'view_id': False,
+      #      'type': 'ir.actions.act_window',
+      #      'target': 'new'
+      #  }
 
 
 
@@ -180,6 +208,13 @@ class MaintenanceComponentType(models.Model):
 
         name = fields.Char(string='Component type')
 
+
+class MaintenanceRequest(models.Model):
+    _inherit = ['maintenance.request']
+
+    equipment_project_code = fields.Char(string='Project code')
+    equipment_project_type = fields.Many2one('vessel.project.type',
+                                             string='Project Type(VP)')
 
 #class HREmployeeEq(models.Model):
 #    _inherit = 'hr.employee'

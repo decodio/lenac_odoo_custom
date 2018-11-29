@@ -11,6 +11,8 @@
     'depends': ['hr',
                 'hr_maintenance',
                 'vl_hr',
+                'sp_viktor_lenac',
+                'sp_viktor_lenac_dms_qms'
                 ],
     'data': [
             #'security/ir.model.access.csv',
