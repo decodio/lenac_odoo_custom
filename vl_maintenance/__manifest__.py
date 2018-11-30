@@ -12,7 +12,8 @@
                 'hr_maintenance',
                 'vl_hr',
                 'sp_viktor_lenac',
-                'sp_viktor_lenac_dms_qms'
+                'sp_viktor_lenac_dms_qms',
+                'project_issue',
                 ],
     'data': [
             #'security/ir.model.access.csv',
