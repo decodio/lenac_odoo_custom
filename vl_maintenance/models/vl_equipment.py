@@ -88,7 +88,7 @@ class MaintenanceEquipment(models.Model):
                                            readonly=False,
                                            store=True)
 
-    issue_id = fields.One2many('project.issue', 'equipment_id')
+
 
     @api.multi
     def create_new_issue(self):
@@ -107,17 +107,19 @@ class MaintenanceEquipment(models.Model):
         }
         return res
 
+    issue_ids = fields.One2many('project.issue', 'equipment_id')
+
     issues_count = fields.Integer(compute='_compute_issues_count', string="Issues",
                                   store=True)
 
-    issues_open_count = fields.Integer(compute='_compute_issues_count', string="Current Maintenance",
+    issues_open_count = fields.Integer(compute='_compute_issues_count', string="Current Issues",
                                        store=True)
 
     @api.one
-    @api.depends('issue_id')
+    @api.depends('issue_ids')
     def _compute_issues_count(self):
-        self.issues_count = len(self.issue_id)
-        self.issues_open_count = len(self.issue_id.filtered(lambda x: not x.state.done))
+        self.issues_count = len(self.issue_ids)
+        self.issues_open_count = len(self.issue_ids.filtered(lambda x: not x.state.done))
 
 
 """
@@ -257,12 +259,19 @@ class MaintenanceRequest(models.Model):
     equipment_project_type = fields.Many2one('vessel.project.type',
                                              string='Project Type(VP)')
 
+    maintenance_child_equipment_ids = fields.One2many('maintenance.equipment', 'child_equipment_ids',
+                                                      readonly=True)
+
 
 class ProjectIssue(models.Model):
     _inherit = 'project.issue'
 
-    equipment_id = fields.Many2one('maintenance.equipment', string='Equipment',
-                                   ondelete='restrict', index=True)
+    equipment_id = fields.Many2one('maintenance.equipment',
+                                   realted='name',
+                                   string='Equipment',
+                                   track_visibility='onchange',
+                                   readonly=False
+                                   )
 
 
 

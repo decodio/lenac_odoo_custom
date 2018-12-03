@@ -61,10 +61,10 @@
                             </group>
                         </group>
                     </page>
-                    <page string="issues" name="issues" >
+                    <page string="Issues" name="issues" >
                         <group string="Reported issues">
                             <group colspan="4" col="4">
-                                <field name="issue_id" nolabel="1"/>
+                                <field name="issue_ids" nolabel="1"/>
                             </group>
                         </group>
                     </page>
@@ -79,6 +79,23 @@
                         </group>
                     </page>
                 </notebook>
+            </field>
+        </record>
+
+        <record id="maintenance_equipment_view_kanban_inherit_hr" model="ir.ui.view">
+            <field name="name">maintenance.equipment.view.kanban.inherit.hr</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_view_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='department_id']" position="after">
+                    <field name="issue_ids"/>
+                    <field name="issues_open_count"/>
+                </xpath>
+                <div class="oe_kanban_content" tooltip="kanban-tooltip">
+                    <div class="oe_kanban_footer_left mt4 label label-danger" t-if="record.issues_open_count.raw_value" >
+                        <t t-raw="record.issues_open_count.raw_value"/> Request
+                    </div>
+                </div>
             </field>
         </record>
 
@@ -121,6 +138,17 @@
                     <field name="equipment_project_code" readonly="1" class="oe_inline"/>
                 </div>
             </xpath>
+            <sheet>
+                <notebook>
+                    <page string="Related equipment" name="related_equipment">
+                        <group string="Sub-parts od Equipment">
+                            <group>
+                                <field name="maintenance_child_equipment_ids"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </sheet>
         </field>
     </record>
     </data>
