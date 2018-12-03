@@ -28,9 +28,20 @@
         <xpath expr="//field[@name='name']"  position="after">
             <field name="department_code"/>
         </xpath>
-        <xpath expr="//field[@name='company_id']" position="after">
+        <sheet>
+                <notebook>
+                    <page string="Equipment assigned to department" name="department_related_equipment">
+                        <group string="Department equipment">
+                            <group>
+                                <field name="department_assigned_equipment_ids"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+        </sheet>
+        <!--<xpath expr="//field[@name='company_id']" position="after">
             <field string="Equipment assigned to department" name="department_assigned_equipment_ids"/>
-        </xpath>
+        </xpath>-->
       </field>
     </record>
 
