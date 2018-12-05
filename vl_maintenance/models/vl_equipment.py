@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models, tools, _
-
+from datetime import datetime, timedelta
 import logging
 _logger = logging.getLogger(__name__)
+
+_LEAD_STATE = [
+    ('draft', 'New'),
+    ('open', 'In Progress'),
+    ('pending', 'Pending'),
+    ('done', 'Done'),
+    ('cancelled', 'Cancelled')]
 
 
 class MaintenanceEquipment(models.Model):
@@ -21,27 +28,16 @@ class MaintenanceEquipment(models.Model):
         return report_obj.render('report.external_layout', docargs)
 
     pc_number = fields.Char('Inventory number')
-    """ OLD
-    installed_os = fields.Selection(
-      selection=[('winxp', 'Windows XP'), ('win7', 'Windows 7'), ('win10', 'Windows 10'),
-                 ('winser2003', 'Windows Server 2003'), ('winser2008', 'Windows Server 2008'),
-                 ('winser2008R2', 'Windows Server 2008 R2'), ('winser2012', 'Windows Server 2012'),
-                 ('winser2012R2', 'Windows Server 2012 R2')],
-      string='Installed OS',
-      required=False)
-    """
     installed_os = fields.Many2one('maintenance.allowed.os', string='Installed OS')
     installed_sw = fields.Many2many('maintenance.allowed.os', string='Installed software')
     date_purchased = fields.Date('Date of purchase')
 
     new_employee_number = fields.Char('hr.employee',
-#                                      string='Assigned employee number',
                                       related='employee_id.employee_number',
                                       readonly=True,
                                       store=True)
 
     new_department_number = fields.Char('hr.department',
-#                                       string='Assigned department number',
                                         related='department_id.department_code',
                                         readonly=True,
                                         store=True)
@@ -58,13 +54,11 @@ class MaintenanceEquipment(models.Model):
     old_department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
 
     old_employee_number = fields.Char('hr.employee',
-#                                     string='Employee number',
                                       related='old_employee_id.employee_number',
                                       readonly=True,
                                       store=True)
 
     old_department_number = fields.Char('hr.department',
-#                                       string='Department number',
                                         related='old_department_id.department_code',
                                         readonly=True,
                                         store=True)
@@ -79,16 +73,26 @@ class MaintenanceEquipment(models.Model):
                                          required=True,
                                          default='production')
 
-    child_equipment_ids = fields.One2many('maintenance.equipment', 'parent_equipment_ids',
-                                          string='Child equipment',
-                                          readonly=True)
-
     parent_equipment_ids = fields.Many2one('maintenance.equipment',
                                            string='Parent equipment',
                                            readonly=False,
                                            store=True)
 
+    child_equipment_ids = fields.One2many('maintenance.equipment', 'parent_equipment_ids',
+                                          string='Child equipment',
+                                          readonly=True)
 
+#    project_code = fields.Many2one('maintenance.request', 'equipment_project_code')
+
+#    @api.multi
+#    def name_get(self):
+#        result = []
+#        for record in self:
+#            project_code = record.project_code
+#            if record.parent_equipment_ids:
+#                project_code = "%s / %s" % (record.parent_equipment_ids.name_get()[0][1], project_code)
+#            result.append((record.id, project_code))
+#        return result
 
     @api.multi
     def create_new_issue(self):
@@ -112,88 +116,14 @@ class MaintenanceEquipment(models.Model):
     issues_count = fields.Integer(compute='_compute_issues_count', string="Issues",
                                   store=True)
 
-    issues_open_count = fields.Integer(compute='_compute_issues_count', string="Current Issues",
-                                       store=True)
+    """Get me the number of open issues for this equipment"""
+    issues_open_count = fields.Integer(compute='_compute_issues_count', string="Current Issues", store=True)
 
     @api.one
     @api.depends('issue_ids')
     def _compute_issues_count(self):
         self.issues_count = len(self.issue_ids)
-        self.issues_open_count = len(self.issue_ids.filtered[('state', 'not like', 'done')])
-
-
-"""
-    issues_count = fields.Integer(string="Issues",
-                                  store=True,
-                                  compute='_compute_issues_count'
-                                  )
-    @api.one
-    @api.depends('issues_ids.state.done')
-    def _compute_issues_count(self):
-        self.issues_count = len(self.issues_ids)
-        self.issues_open_count = len(self.issues_ids.filtered(lambda x: not x.state.done))
-    """
-"""
-    @api.multi
-    def raise_new_issue(self):
-        return({
-            "type": "ir.actions.act_window",
-            "res_model": "project.issue",
-            "view_type": "form",
-            "view_mode": "form",
-            "views": [[False, "form"]],
-            "target": "new"
-            })
-    """
-"""
-     def show_ru_assignments_sub_view(self, cr, uid, ids, context=None):
-        return {
-               'name': ('Assignment Sub'),
-               'view_type': 'form',
-               'view_mode': 'form',
-               'res_model': 'ru.assignments.sub',
-               'view_id': False,
-               'type': 'ir.actions.act_window',
-               'target': 'new'
-               }
-
-    model_A1 = fields.Char()
-    model_desc = fields.Char()
-    model_A1_child = fields.Many2one('modelA')
-    model_A1_desc = fields.Char(related='model_A1_child.model_desc')
-
-    @api.depends('employee_id')
-    def _compute_emp_number(self):
-        for equipment in self:
-            if equipment.employee_id:
-                equipment.new_employee_number = equipment.employee_id[:1].employee_number
-            else:
-                equipment.new_employee_number = False
-
-    @api.depends('old_employee_id')
-    def _compute_old_emp_number(self):
-        for equipment in self:
-           if equipment.old_employee_id:
-                equipment.old_employee_number = equipment.old_employee_id[:1].employee_number
-            else:
-                equipment.old_employee_number = False
-
-    @api.depends('department_id')
-    def _compute_dep_number(self):
-        for equipment in self:
-            if equipment.department_id:
-                equipment.new_department_number = equipment.department_id[:1].department_code
-            else:
-                equipment.new_department_number = False
-
-    @api.depends('old_department_id')
-    def _compute_old_dep_number(self):
-        for equipment in self:
-            if equipment.old_department_id:
-                equipment.old_department_number = equipment.old_department_id[:1].department_code
-            else:
-                equipment.old_department_number = False
-"""
+        self.issues_open_count = len(self.issue_ids.filtered(lambda x: not x.state.done))
 
 
 class MaintenanceAllowedOs(models.Model):
@@ -256,34 +186,48 @@ class MaintenanceRequest(models.Model):
     _inherit = ['maintenance.request']
 
     equipment_project_code = fields.Char(string='Project code')
-    equipment_project_type = fields.Many2one('vessel.project.type',
-                                             string='Project Type(VP)')
+    equipment_project_type_id = fields.Many2one('vessel.project.type',
+                                                string='Project Type(VP)')
 
-    maintenance_child_equipment_ids = fields.One2many('maintenance.equipment', 'child_equipment_ids',
+    maintenance_child_equipment_ids = fields.One2many('maintenance.equipment',
+                                                      related='equipment_id.child_equipment_ids',
                                                       readonly=True)
+
+    @api.multi
+    def write(self, vals=None):
+        # CREATE PROJECT CODE (sequence defined on vessel_project_type_id)
+        if (vals.get('stage_id') and
+                vals.get('vessel_project_type_id', self.equipment_project_type_id) and
+                (not self.equipment_project_code)):
+            if self.env['maintenance.stage'].browse(vals['stage_id']).create_code:
+                seq = self.equipment_project_type_id.sequence_id and \
+                      self.equipment_project_type_id.sequence_id.next_by_id() or ''
+                current_year = str(datetime.now().year)
+                equipment_project_code = (current_year[2:] + str(self.equipment_project_type_id.code or '') + seq)
+                if seq:
+                    vals.update({'equipment_project_code': equipment_project_code})
+
+#    maintenance_child_equipment_issue_id = fields.One2many(
+#        'project.issue',
+#        related='maintenance_request_ids',
+#        readonly=True)
 
 
 class ProjectIssue(models.Model):
     _inherit = 'project.issue'
 
     equipment_id = fields.Many2one('maintenance.equipment',
-                                   realted='name',
                                    string='Equipment',
                                    track_visibility='onchange',
                                    readonly=False
                                    )
+    """zapisuje se parent project code kako bi se prema njemu mogli dohvatiti svi Issues na formu maintenance request"""
+#    maintenance_request_ids = fields.Many2one('maintenance.request',
+#                                             related='equipment_id.equipment_project_code')
 
 
+class MaintenanceStage(models.Model):
+    _inherit = 'maintenance.stage'
 
-"""
-class HREmployeeEq(models.Model):
-    _inherit = 'hr.employee'
-
-    empass_equipement_ids = fields.One2many('maintenance.equipment', 'employee_id', string='Assigned equipment')
-
-
-class HRDepartmentEq(models.Model):
-    _inherit = 'hr.department'
-
-    depass_equipement_ids = fields.One2many('maintenance.equipment', 'department_id', string='Assigned equipment')
-"""
+    state = fields.Selection(_LEAD_STATE, 'State')
+    create_code = fields.Boolean(string='Create Code')

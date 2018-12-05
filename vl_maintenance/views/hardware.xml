@@ -77,5 +77,6 @@
             parent="maintenance.menu_maintenance_configuration"
             action="maintenance_hardware_details_action"
             sequence="100"/>
+
     </data>
 </odoo>

@@ -138,21 +138,6 @@
         </t>
     </t>
     </template>
-    <!--<template id="report_personal_equipment">
-        <t t-call="report.html_container">
-            <t t-foreach="docs" t-as="o">
-                <t t-call="report.internal_layout">
-
-        <div class="page">
-                <div class="oe_structure">
-                <div class="row">
-                    <H1>Hi there hello</H1>
-                </div>
-                </div>
-                </div>
-            </t>
-            </t>
-    </template>-->
 </odoo>
 
 

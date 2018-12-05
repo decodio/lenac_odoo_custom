@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="0">
-        <!--<record id="maintenance_equipment_view_kanban_inherit_hr" model="ir.ui.view">
-            <field name="name">maintenance.equipment.view.kanban.inherit.hr</field>
-            <field name="model">maintenance.equipment</field>
-            <field name="inherit_id" ref="maintenance.hr_equipment_view_kanban"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='employee_id']" position="after">
-                    <field name="issues_ids"/>
-                </xpath>
-            </field>
-        </record>-->
-
-        <record id="maintenance_equipment_view_form_inherit_hr" model="ir.ui.view">
+         <record id="maintenance_equipment_view_form_inherit_hr" model="ir.ui.view">
             <field name="name">maintenance.equipment.view.form.inherit.hr</field>
             <field name="model">maintenance.equipment</field>
             <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
@@ -99,57 +88,43 @@
             </field>
         </record>
 
-        <!--<record id="view_vl_employee_assigned_inherit_extension" model="ir.ui.view">
-            <field name="name">view.vl.employee.assigned.inherit.extension</field>
-            <field name="model">hr.employee</field>
-            <field name="inherit_id" ref="hr.view_employee_form"/>
-            <field name="arch" type="xml">
-                <notebook>
-                    <page string="Assigned equipment" name="employee_personal_eq">
-                        <group>
-                            <field name = "empass_equipement_ids"/>
-                        </group>
-                    </page>
-                </notebook>
-            </field>
-        </record>
-
-        <record id="view_vl_department_assigned_inherit_extension" model="ir.ui.view">
-            <field name="name">view.vl.department.assigned.inherit.extension</field>
-            <field name="model">hr.department</field>
-            <field name="inherit_id" ref="hr.view_department_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='company_id']" position="after">
-                    <field name = "depass_equipement_ids" string="Equipment assigned to department"/>
-                </xpath>
-            </field>
-        </record>-->
-
         <record id="maintenance_request_view_form_inherit_hr" model="ir.ui.view">
         <field name="name">maintenance.request.view.form.inherit.hr</field>
         <field name="model">maintenance.request</field>
         <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='employee_id']" position="after">
-                <label for="equipment_project_code" string="Type and code"/>
-                <div>
-                    <field name="equipment_project_type" class="oe_inline" options="{'no_create': True}"/>
-                    <span> No. </span>
-                    <field name="equipment_project_code" readonly="1" class="oe_inline"/>
-                </div>
-            </xpath>
-            <sheet>
-                <notebook>
-                    <page string="Related equipment" name="related_equipment">
-                        <group string="Sub-parts od Equipment">
-                            <group>
-                                <field name="maintenance_child_equipment_ids"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <label for="equipment_project_code" string="Type and code"/>
+                    <div>
+                        <field name="equipment_project_type_id" class="oe_inline" options="{'no_create': True}"/>
+                        <span> No. </span>
+                        <field name="equipment_project_code" readonly="1" class="oe_inline"/>
+                    </div>
+                </xpath>
+                <sheet>
+                    <notebook>
+                        <page string="Related equipment" name="related_equipment">
+                            <group string="Sub-parts od Equipment">
+                                <group>
+                                    <field name="maintenance_child_equipment_ids"/>
+                                </group>
                             </group>
-                        </group>
-                    </page>
-                </notebook>
-            </sheet>
-        </field>
-    </record>
+                        </page>
+                    </notebook>
+                </sheet>
+            </field>
+        </record>
+
+        <record id="maintenance_stage_view_tree_inherit_vl" model="ir.ui.view">
+        <field name="name">maintenance.stage.view.tree.inherit.vl</field>
+        <field name="model">maintenance.stage</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_stage_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="create_code"/>
+                    <field name="state"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>
