@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="vl_meeting_report"
+        model="calendar.event"
+        string="Meeting conclusion"
+        report_type="qweb-pdf"
+        name="vl_meeting.meeting_report"
+        file="vl_maintenance.meeting_report"
+        />
+</odoo>
