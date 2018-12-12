@@ -16,7 +16,7 @@
                         <tbody>
                             <tr>
                                 <td valign="center" width="200" style="padding:10px 10px 10px 5px;font-size: 12px">
-                                    <img src="/vl_meeting/static/src/logo.jpg" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${user.company_id.name}">
+                                    <img src="/vl_meeting/static/src/logo.jpg" style="padding: 0px; margin: 0px; height: 100px; width: auto;" alt="${user.company_id.name}">
                                 </td>
                             </tr>
                         </tbody>

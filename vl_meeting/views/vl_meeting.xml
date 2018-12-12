@@ -9,13 +9,6 @@
                 <notebook>
                     <page string="Meeting notes" name="general_description">
                         <button name="action_sendmail" type="object" string="Send mail" icon="fa-envelope" class="oe_link"/>
-                            <field name="attendee_ids" widget="one2many" >
-                                <tree string="Invitation details" editable="top" create="false" delete="false">
-                                    <field name="partner_id" />
-                                    <field name="state" />
-                                    <field name="email" widget="email"/>
-                                </tree>
-                            </field>
                         <group string="Notes">
                             <field name="meeting_notes"/>
                         </group>
