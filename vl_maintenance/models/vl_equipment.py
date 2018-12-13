@@ -127,10 +127,10 @@ class MaintenanceEquipment(models.Model):
     issues_open_count = fields.Integer(compute='_compute_issues_count', string="Current Issues", store=True)
 
     @api.one
-    @api.depends('issue_ids.state.done')
+    @api.depends('issue_ids')
     def _compute_issues_count(self):
         self.issues_count = len(self.issue_ids)
-        self.issues_open_count = len(self.issue_ids.filtered(lambda x: not x.state.done))
+        self.issues_open_count = len(self.issue_ids.filtered(lambda x: not x.stage_id.done))
 
 
 class MaintenanceAllowedOs(models.Model):
