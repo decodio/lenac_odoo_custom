@@ -83,7 +83,6 @@ class MaintenanceEquipment(models.Model):
                                           readonly=True)
 
 #    project_code = fields.Many2one('maintenance.request', 'equipment_project_code')
-
 #    @api.multi
 #    def name_get(self):
 #        result = []
@@ -111,16 +110,24 @@ class MaintenanceEquipment(models.Model):
         }
         return res
 
-    issue_ids = fields.One2many('project.issue', 'equipment_id')
+    """Ovaj dio koda ne radi;
+     
+     issue_ids bi trebali u tablici prikazati sve issue za taj equipment;
+    
+    issues_count bi trebao varti broj svih issues za taj qeuipmnet
+     
+    issues_open_count bi trebali vratiti vrijednost svih otvorenih issues ali ih ne prikazuju"""
 
-    issues_count = fields.Integer(compute='_compute_issues_count', string="Issues",
+    issue_ids = fields.One2many('project.issue', 'equipment_id', string='Issues')
+
+    issues_count = fields.Integer(compute='_compute_issues_count', string='Issues',
                                   store=True)
 
     """Get me the number of open issues for this equipment"""
     issues_open_count = fields.Integer(compute='_compute_issues_count', string="Current Issues", store=True)
 
     @api.one
-    @api.depends('issue_ids')
+    @api.depends('issue_ids.state.done')
     def _compute_issues_count(self):
         self.issues_count = len(self.issue_ids)
         self.issues_open_count = len(self.issue_ids.filtered(lambda x: not x.state.done))
@@ -216,10 +223,10 @@ class MaintenanceRequest(models.Model):
 class ProjectIssue(models.Model):
     _inherit = 'project.issue'
 
+    """Nije moguće dodati equipment na issue"""
     equipment_id = fields.Many2one('maintenance.equipment',
                                    string='Equipment',
-                                   track_visibility='onchange',
-                                   readonly=False
+                                   track_visibility='onchange'
                                    )
     """zapisuje se parent project code kako bi se prema njemu mogli dohvatiti svi Issues na formu maintenance request"""
 #    maintenance_request_ids = fields.Many2one('maintenance.request',
