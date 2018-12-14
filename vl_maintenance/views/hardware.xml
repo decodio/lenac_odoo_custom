@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record model="ir.ui.view" id="maintenance_hardware_details_search_view">
+            <field name="name">Hardware Inventory</field>
+            <field name="model">maintenance.hardware.details</field>
+            <field name="arch" type="xml">
+                <search string="HardWare name">
+                    <field name="name"/>
+                    <field name="manufacturer"/>
+                    <field name="component_type"/>
+                    <field name="size"/>
+                    <field name="status"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_hardware_details_view_tree" >
+            <field name="name">Hardware Inventory</field>
+            <field name="model">maintenance.hardware.details</field>
+            <field name="arch" type="xml">
+                <tree string="Hardware name">
+                    <field name="name"/>
+                    <field name="manufacturer"/>
+                    <field name="component_type"/>
+                    <field name="size"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_hardware_details_view_form">
+            <field name="name">maintenance.hardware.details</field>
+            <field name="model">maintenance.hardware.details</field>
+            <field name="arch" type="xml">
+                <form string="Hardware Inventory">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string="Hardware details">
+                            <group>
+                                    <field name="name"/>
+                                    <field name="manufacturer"/>
+                                    <field name="serial_no"/>
+                                    <field name="component_type"/>
+                                    <field name="size"/>
+                                    <field name="status"/>
+                                    <field name="log_note"/>
+                            </group>
+                            <group>
+                                    <field name="purchase_date"/>
+                                    <field name="warranty"/>
+                                    <field name="warranty_valid"/>
+                                    <field name="price"/>
+                                    <field name="installed_on_pc" string="Installed on pc"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="maintenance_hardware_details_action">
+            <field name="name">Installed Hardware</field>
+            <field name="res_model">maintenance.hardware.details</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a Software.
+              </p>
+            </field>
+        </record>
+
+        <menuitem
+            id="menu_maintenance_hardware_details"
+            name="Installed Hardware"
+            parent="maintenance.menu_maintenance_configuration"
+            action="maintenance_hardware_details_action"
+            sequence="100"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,48 @@
+<?xml version = "1.0" encoding="utf-8"?>
+<odoo>
+    <!--HR Employee-->
+    <record id="view_vl_employee_form_inherit_extension" model="ir.ui.view">
+      <field name="name">view.vl.employee.form.inherit.extension</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='user_id']"  position="after">
+            <field name="employee_number"/>
+        </xpath>
+        <notebook>
+            <page string="Assigned equipment" name="employee_personal_equipment">
+                <group>
+                    <field name="employee_assigned_equipment_ids"/>
+                </group>
+            </page>
+        </notebook>
+      </field>
+    </record>
+
+    <!--HR Department-->
+    <record id="view_vl_department_form_inherit_extension" model="ir.ui.view">
+      <field name="name">view.vl.department.form.inherit.extension</field>
+      <field name="model">hr.department</field>
+      <field name="inherit_id" ref="hr.view_department_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='name']"  position="after">
+            <field name="department_code"/>
+        </xpath>
+        <sheet>
+                <notebook>
+                    <page string="Equipment assigned to department" name="department_related_equipment">
+                        <group string="Department equipment">
+                            <group>
+                                <field name="department_assigned_equipment_ids"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+        </sheet>
+        <!--<xpath expr="//field[@name='company_id']" position="after">
+            <field string="Equipment assigned to department" name="department_assigned_equipment_ids"/>
+        </xpath>-->
+      </field>
+    </record>
+
+</odoo>
