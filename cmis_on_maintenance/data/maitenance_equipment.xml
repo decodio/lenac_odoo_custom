@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+       <record id="maintenance_equipment_view_form_inherit_hr" model="ir.ui.view">
+            <field name="name">maintenance.equipment.view.form.inherit.hr</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[2]" position="after">
+                    <page name="page_documents" groups="base.group_user" string="Documents">
+                        <field name="cmis_folder"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+</odoo>
