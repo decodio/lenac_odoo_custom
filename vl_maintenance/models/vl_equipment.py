@@ -110,11 +110,9 @@ class MaintenanceEquipment(models.Model):
         }
         return res
 
-    """Ovaj dio koda ne radi;
+    """Ovaj dio koda ne radi; 
      
-     issue_ids bi trebali u tablici prikazati sve issue za taj equipment;
-    
-    issues_count bi trebao varti broj svih issues za taj qeuipmnet
+    issues_count bi trebao vratiti broj svih issues za taj equipmnet
      
     issues_open_count bi trebali vratiti vrijednost svih otvorenih issues ali ih ne prikazuju"""
 
@@ -123,14 +121,46 @@ class MaintenanceEquipment(models.Model):
     issues_count = fields.Integer(compute='_compute_issues_count', string='Issues',
                                   store=True)
 
-    """Get me the number of open issues for this equipment"""
     issues_open_count = fields.Integer(compute='_compute_issues_count', string="Current Issues", store=True)
 
     @api.one
-    @api.depends()
+    @api.depends('issue_ids')
     def _compute_issues_count(self):
         self.issues_count = len(self.issue_ids)
         self.issues_open_count = len(self.issue_ids.filtered(lambda x: not x.stage_id.done))
+
+    employee_department_new = fields.Many2one('hr.department',
+                                              compute='_compute_new_department_id',
+                                              readonly=True,
+                                              store=True)
+    employee_department_old = fields.Many2one('hr.department',
+                                              compute='_compute_old_department_id',
+                                              readonly=True,
+                                              store=True)
+    employee_department_new_number = fields.Char('hr.department',
+                                                 related='employee_department_new.department_code',
+                                                 readonly=True,
+                                                 store=True)
+    employee_department_old_number = fields.Char('hr.department',
+                                                 related='employee_department_old.department_code',
+                                                 readonly=True,
+                                                 store=True)
+
+    @api.depends('employee_id')
+    def _compute_new_department_id(self):
+        for equipment in self:
+            if equipment.employee_id:
+                equipment.employee_department_new = equipment.employee_id.department_id
+            else:
+                equipment.employee_department_new = False
+
+    @api.depends('old_employee_id')
+    def _compute_old_department_id(self):
+        for equipment in self:
+            if equipment.old_employee_id:
+                equipment.employee_department_old = equipment.old_employee_id.department_id
+            else:
+                equipment.employee_department_old = False
 
 
 class MaintenanceAllowedOs(models.Model):
@@ -214,6 +244,9 @@ class MaintenanceRequest(models.Model):
                 if seq:
                     vals.update({'equipment_project_code': equipment_project_code})
 
+        res = super(MaintenanceRequest, self).write(vals)
+        return res
+
 #    maintenance_child_equipment_issue_id = fields.One2many(
 #        'project.issue',
 #        related='maintenance_request_ids',
@@ -226,8 +259,10 @@ class ProjectIssue(models.Model):
     """Nije moguće dodati equipment na issue"""
     equipment_id = fields.Many2one('maintenance.equipment',
                                    string='Equipment',
+                                   index=True,
                                    track_visibility='onchange'
                                    )
+
     """zapisuje se parent project code kako bi se prema njemu mogli dohvatiti svi Issues na formu maintenance request"""
 #    maintenance_request_ids = fields.Many2one('maintenance.request',
 #                                             related='equipment_id.equipment_project_code')
@@ -236,5 +271,5 @@ class ProjectIssue(models.Model):
 class MaintenanceStage(models.Model):
     _inherit = 'maintenance.stage'
 
-    state = fields.Selection(_LEAD_STATE, 'State')
+    #state = fields.Selection(_LEAD_STATE, 'State')
     create_code = fields.Boolean(string='Create Code')
