@@ -92,7 +92,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='department_id']" position="after">
                     <field name="issue_ids"/>
-                    <<field name="issues_open_count"/>
+                    <field name="issues_open_count"/>
                 </xpath>
                 <div class="oe_kanban_content" tooltip="kanban-tooltip">
                     <div class="oe_kanban_footer_left mt4 label label-danger" t-if="record.issues_open_count.raw_value" >
