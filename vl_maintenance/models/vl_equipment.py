@@ -127,7 +127,7 @@ class MaintenanceEquipment(models.Model):
     @api.depends('issue_ids')
     def _compute_issues_count(self):
         self.issues_count = len(self.issue_ids)
-        #self.issues_open_count = len(self.issue_ids.filtered(lambda x: not x.state.Done))
+        self.issues_open_count = len(self.issue_ids.filtered(lambda x: not x.state.done))
 
     employee_department_new = fields.Many2one('hr.department',
                                               compute='_compute_new_department_id',
