@@ -14,10 +14,12 @@
                 'sp_viktor_lenac',
                 'sp_viktor_lenac_dms_qms',
                 'project_issue',
+                'stage_control_base',
                 ],
     'data': [
             #'security/ir.model.access.csv',
             #'security/vl_maintenance.xml',
+            #'data/maintenance_data.xml',
             'report/report.xml',
             'report/personal_equipment.xml',
             'views/vl_maintenance_views.xml',

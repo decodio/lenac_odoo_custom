@@ -12,3 +12,7 @@ access_allowed_os,access_allowed_os,model_allowed_os,base.group_user,1,0,0,0
 access_allowed_os_reader,access_allowed_os_reader,model_allowed_os,base.group_user,1,0,0,0
 access_allowed_os_editor,access_allowed_os_editor,model_allowed_os,hr.group_hr_user,1,1,1,0
 access_allowed_os_manager,access_allowed_os_manager,model_allowed_os,maintenance.group_equipment_manager,1,1,1,1
+
+
+
+access_
