@@ -102,12 +102,15 @@
             <field name="inherit_id" ref="maintenance.hr_equipment_view_kanban"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='department_id']" position="after">
-                    <field name="issue_ids"/>
+                    <field name="next_action_dates"/>
                     <field name="issues_open_count"/>
                 </xpath>
                 <div class="oe_kanban_content" tooltip="kanban-tooltip">
                     <div class="oe_kanban_footer_left mt4 label label-danger" t-if="record.issues_open_count.raw_value" >
-                        <t t-raw="record.issues_open_count.raw_value"/> Request
+                        <t t-raw="record.issues_open_count.raw_value"/> Issues
+                    </div>
+                    <div class="oe_kanban_footer_left mt4 label label-default" t-if="record.next_action_dates.raw_value" >
+                        <t t-raw="moment(record.next_action_dates.raw_value).format('MMMM Do')"/>
                     </div>
                 </div>
             </field>
@@ -210,6 +213,7 @@
                         </group>
                         <group>
                             <field name="mail_template_id"/>
+                            <field name="create_code"/>
                         </group>
                     </group>
                     <notebook>

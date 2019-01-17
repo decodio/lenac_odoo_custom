@@ -111,7 +111,8 @@ class MaintenanceEquipment(models.Model):
         }
         return res
 
-    issue_ids = fields.One2many('project.issue', 'equipment_id', string='Issues')
+    issue_ids = fields.One2many('project.issue', 'equipment_id', string='Issues',
+                                domain=[('issue_type', '=', 'corrective')])
 
     issues_count = fields.Integer(compute='_compute_issues_count', string='Issues',
                                   store=True)
@@ -124,7 +125,7 @@ class MaintenanceEquipment(models.Model):
     @api.depends('issue_ids')
     def _compute_issues_count(self):
         self.issues_count = len(self.issue_ids)
-#       self.issues_open_count = len(self.issue_ids.filtered(lambda x: not x.state.done))
+        self.issues_open_count = len(self.issue_ids.filtered(lambda x: x.state in ['draft', 'open', 'pending']))
 
     employee_department_new = fields.Many2one('hr.department',
                                               compute='_compute_new_department_id',
@@ -160,7 +161,7 @@ class MaintenanceEquipment(models.Model):
                 equipment.employee_department_old = False
 
     """SAME AS PREVENTIVE MAINTENANCE"""
-    preventive_issue_ids = fields.One2many('project.issue', 'equipment_id')
+    preventive_issue_ids = fields.One2many('project.issue', 'equipment_id', domain=[('issue_type', '=', 'preventive')])
 
     periods = fields.Integer('project.issue', related='preventive_issue_ids.period')
 
