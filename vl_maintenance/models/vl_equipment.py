@@ -162,6 +162,36 @@ class MaintenanceEquipment(models.Model):
     """SAME AS PREVENTIVE MAINTENANCE"""
     preventive_issue_ids = fields.One2many('project.issue', 'equipment_id')
 
+    periods = fields.Integer('project.issue', related='preventive_issue_ids.period')
+
+    next_action_dates = fields.Datetime('project.issue', related='preventive_issue_ids.next_action_date')
+
+    @api.model
+    def _create_new_issue(self, date):
+        self.ensure_one()
+        self.env['project.issue'].create({
+            'name': _('Preventive issue - %s') % self.name,
+            'date': date,
+            'schedule_date': date,
+            'category_id': self.category_id.id,
+            'equipment_id': self.id,
+            'issue_type': 'preventive',
+            'user_id': self.technician_user_id.id,
+        })
+
+    @api.model
+    def _cron_generate_issue(self):
+        """
+            Generates issue request on the next_action_date or today if none exists
+        """
+        for issue in self.search([('period', '>', 0)]):
+            next_requests = self.env['project.issue'].search([('state.done', '=', False),
+                                                              ('equipment_id', '=', issue.id),
+                                                              ('issue_type', '=', 'preventive'),
+                                                              ('date', '=', issue.next_action_dates)])
+            if not next_requests:
+                issue._create_new_issue(issue.next_action_dates)
+
 
 class MaintenanceAllowedOs(models.Model):
     _name = 'maintenance.allowed.os'
@@ -267,7 +297,6 @@ class MaintenanceRequest(models.Model):
 class MaintenanceStage(models.Model):
     _name = 'maintenance.stage'
     _inherit = ['maintenance.stage', 'stage.control.common']
-    _stage_for_model_name = ['vl.subcontractor']
 
 #    state = fields.Selection(_LEAD_STATE, 'State')
     create_code = fields.Boolean(string='Create Code')
@@ -281,7 +310,7 @@ class MaintenanceEquipmentCategory(models.Model):
     @api.multi
     def _compute_issues_count(self):
         issues_data = self.env['project.issue'].read_group([('category_id', 'in', self.ids)],
-                                                                      ['category_id'], ['category_id'])
+                                                           ['category_id'], ['category_id'])
         mapped_data = dict([(m['category_id'][0], m['category_id_count']) for m in issues_data])
         for category in self:
             category.issues_count = mapped_data.get(category.id, 0)
@@ -299,16 +328,21 @@ class ProjectIssue(models.Model):
     category_id = fields.Many2one('maintenance.equipment.category', related='equipment_id.category_id',
                                   string='Category', store=True, readonly=True)
 
-    parent_equipment_id = fields.Many2one('maintenance.equipment', 'parent_equipment_ids', store=True, readonly=True)
+    parent_equipment_id = fields.Many2one('maintenance.equipment', compute='_compute_parent_equipment_id',
+                                          string="Parent equipment", store=True, readonly=True)
+
+    @api.depends('equipment_id')
+    def _compute_parent_equipment_id(self):
+        for issue in self:
+            if issue.equipment_id:
+                issue.parent_equipment_id = issue.equipment_id.parent_equipment_ids
+            else:
+                issue.parent_equipment_id = False
 
     """zapisuje se parent project code kako bi se prema njemu mogli dohvatiti svi Issues na formu maintenance request"""
 #    maintenance_request_ids = fields.Many2one('maintenance.request',
 #                                             related='equipment_id.equipment_project_code')
 
-    period = fields.Integer('Days between each preventive issue')
-
-    next_action_date = fields.Datetime(compute='_compute_next_issue',
-                                       string='Date of the next preventive issue', store=True)
     schedule_date = fields.Datetime('Scheduled Date')
 
     issue_type = fields.Selection([('corrective', 'Corrective'),
@@ -321,6 +355,11 @@ class ProjectIssue(models.Model):
 #   date_done_iss = close_date = fields.Date('Close Date', help="Date the issue was finished. ")
 
     item_specification = fields.Char('Specification item')
+
+    period = fields.Integer('Days between each preventive issue')
+
+    next_action_date = fields.Datetime(compute='_compute_next_issue',
+                                       string='Date of the next preventive issue', store=True)
 
     @api.depends('period', 'date', 'date_done_iss')
     def _compute_next_issue(self):
@@ -365,31 +404,5 @@ class ProjectIssue(models.Model):
                 next_date = fields.Date.to_string(fields.Date.from_string(date_now) + timedelta(days=issue.period))
 
             issue.next_action_date = next_date
-
-    @api.model
-    def _create_new_issue(self, date):
-        self.ensure_one()
-        self.env['project.issue'].create({
-            'name': _('Preventive issue - %s') % self.name,
-            'date': date,
-            'schedule_date': date,
-            'category_id': self.category_id.id,
-            'equipment_id': self.id,
-            'issue_type': 'preventive',
-            'user_id': self.technician_user_id.id,
-            })
-
-    @api.model
-    def _cron_generate_issue(self):
-        """
-            Generates issue request on the next_action_date or today if none exists
-        """
-        for issue in self.search([('period', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state.done', '=', False),
-                                                             ('equipment_id', '=', issue.id),
-                                                             ('issue_type', '=', 'preventive'),
-                                                             ('date', '=', issue.next_action_date)])
-            if not next_requests:
-                issue._create_new_issue(issue.next_action_date)
 
 

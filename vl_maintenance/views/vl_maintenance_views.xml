@@ -309,6 +309,7 @@
                                 <field name="schedule_date"/>
                                 <field name="issue_type" readonly="True"/>
                                 <field name="item_specification"/>
+                                <field name="parent_equipment_id"/>
                             </group>
                          </group>
                         <!--<notebook>
