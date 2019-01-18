@@ -185,7 +185,7 @@ class MaintenanceEquipment(models.Model):
         """
             Generates issue request on the next_action_date or today if none exists
         """
-        for issue in self.search([('period', '>', 0)]):
+        for issue in self.search([('periods', '>', 0)]):
             next_requests = self.env['project.issue'].search([('state.done', '=', False),
                                                               ('equipment_id', '=', issue.id),
                                                               ('issue_type', '=', 'preventive'),
