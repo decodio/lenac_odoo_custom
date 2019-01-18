@@ -7,7 +7,7 @@
         <field name="numbercall">-1</field>
         <field name="doall" eval="False"/>
         <field name="model" eval="'maintenance.equipment'"/>
-        <field name="function" eval="'_cron_generate_issues'"/>
+        <field name="function" eval="'_cron_generate_issue'"/>
         <field name="args" eval="'()'" />
     </record>
 </odoo>
