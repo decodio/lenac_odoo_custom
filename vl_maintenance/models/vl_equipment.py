@@ -167,6 +167,7 @@ class MaintenanceEquipment(models.Model):
 
     next_action_dates = fields.Datetime('project.issue', related='preventive_issue_ids.next_action_date')
 
+    """
     @api.model
     def _create_new_issue(self, date):
         self.ensure_one()
@@ -179,12 +180,13 @@ class MaintenanceEquipment(models.Model):
             'issue_type': 'preventive',
             'user_id': self.technician_user_id.id,
         })
-
+    """
+    """
     @api.model
     def _cron_generate_issue(self):
-        """
-            Generates issue request on the next_action_date or today if none exists
-        """
+        
+                    Generates issue request on the next_action_date or today if none exists
+        
         for issue in self.search([('periods', '>', 0)]):
             next_requests = self.env['project.issue'].search([('state.done', '=', False),
                                                               ('equipment_id', '=', issue.id),
@@ -192,7 +194,7 @@ class MaintenanceEquipment(models.Model):
                                                               ('date', '=', issue.next_action_dates)])
             if not next_requests:
                 issue._create_new_issue(issue.next_action_dates)
-
+    """
 
 class MaintenanceAllowedOs(models.Model):
     _name = 'maintenance.allowed.os'
@@ -406,4 +408,28 @@ class ProjectIssue(models.Model):
 
             issue.next_action_date = next_date
 
+    @api.model
+    def _create_new_issue(self, date):
+        self.ensure_one()
+        self.env['project.issue'].create({
+            'name': _('Preventive issue - %s') % self.name,
+            'date': date,
+            'schedule_date': date,
+            'category_id': self.category_id.id,
+            'equipment_id': self.id,
+            'issue_type': 'preventive',
+            'user_id': self.technician_user_id.id,
+        })
 
+    @api.model
+    def _cron_generate_issue(self):
+        """
+            Generates issue request on the next_action_date or today if none exists
+        """
+        for issue in self.search([('period', '>', 0)]):
+            next_requests = self.env['project.issue'].search([('state.done', '=', False),
+                                                              ('equipment_id', '=', issue.id),
+                                                              ('issue_type', '=', 'preventive'),
+                                                              ('date', '=', issue.next_action_date)])
+            if not next_requests:
+                issue._create_new_issue(issue.next_action_date)
