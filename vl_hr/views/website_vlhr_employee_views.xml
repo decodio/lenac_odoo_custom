@@ -9,7 +9,7 @@
     </template>
 
     <template id="vl_phonebook" name="Phonebook" page="True">
-        <t t-call="website_portal.portal_layout">
+        <t t-call="website.layout">
             <div id="wrap">
                 <div class="container">
                     <div class="oe_structure">
@@ -45,4 +45,10 @@
             </div>
         </t>
     </template>
+
+
+
+
+
+
 </odoo>
