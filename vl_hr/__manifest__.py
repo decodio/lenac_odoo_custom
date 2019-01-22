@@ -8,9 +8,10 @@
     'author': "Viktor Lenac d.d. (Vedran Terihaj)",
     'website': 'https://lenac.hr',
     'license': '',
-    'depends': ['hr', ],
+    'depends': ['hr', 'website_portal',],
     'data': [
         'views/vlhr_employee.xml',
+        'views/website_vlhr_employee_views.xml',
     ],
     'demo': [],
     'test': [],

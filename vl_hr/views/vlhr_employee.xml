@@ -9,6 +9,12 @@
         <xpath expr="//field[@name='user_id']"  position="after">
             <field name="employee_number"/>
         </xpath>
+        <xpath expr="//field[@name='work_phone']"  position="after">
+            <field name="work_phone_short"/>
+        </xpath>
+        <xpath expr="//field[@name='mobile_phone']"  position="after">
+            <field name="mobile_phone_short"/>
+        </xpath>
         <notebook>
             <page string="Assigned equipment" name="employee_personal_equipment">
                 <group>
