@@ -18,8 +18,8 @@
                                 <center>
                                     <h2>Phonebook</h2>
                                 </center>
-                                <t t-foreach="departments" t-as="departments">
-                                    <table class="table-striped table">
+                                <table class="table-striped table">
+                                    <tr t-foreach="departments" t-as="departments">
                                         <tr>
                                             <td><h3><span t-esc="departments.name"/></h3></td>
                                             <td><h3>Phone</h3></td>
@@ -27,17 +27,15 @@
                                             <td><h3>Mobile Phone</h3></td>
                                             <td><h3>Mobile Phone Short</h3></td>
                                         </tr>
-                                        <t t-foreach="departments" t-as="departments">
-                                            <tr>
-                                              <td><h4><span t-esc="departments.employee_id.name"/></h4></td>
-                                              <td><h4><span t-esc="departments.employee_id.work_phone"/></h4></td>
-                                              <td><h4><span t-esc="departments.employee_id.work_phone_short"/></h4></td>
-                                              <td><h4><span t-esc="departments.employee_id.mobile_phone"/></h4></td>
-                                              <td><h4><span t-esc="departments.employee_id.mobile_phone_short"/></h4></td>
-                                            </tr>
-                                        </t>
-                                    </table>
-                                </t>
+                                        <tr t-foreach="departments.employee_id" t-as="l">
+                                          <td><h4><span t-esc="l.name"/></h4></td>
+                                          <td><h4><span t-esc="l.work_phone"/></h4></td>
+                                          <td><h4><span t-esc="l.work_phone_short"/></h4></td>
+                                          <td><h4><span t-esc="l.mobile_phone"/></h4></td>
+                                          <td><h4><span t-esc="l.mobile_phone_short"/></h4></td>
+                                        </tr>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
