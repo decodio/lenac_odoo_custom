@@ -1,19 +1,33 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
+from collections import OrderedDict
 
 from odoo import http, _
-from odoo.addons.website.models.website import slug
+from odoo.addons.website_portal.controllers.main import website_account
 from odoo.http import request
 
 
-# NB: DO NOT FORWARD PORT THE FALSY LEAVES IN 11.0
-class WebsiteVlEmployee(http.Controller):
+#class WebsiteVlEmployee(http.Controller):
+class WebsiteAccount(website_account):
 
-    @http.route('/my/phonebook', type='http', auth="user", website=True)
-    def render_phonebook(self, **kwargs):
+    def _prepare_portal_layout_values(self):
+        values = super(WebsiteAccount, self)._prepare_portal_layout_values()
         departments = http.request.env['hr.department'].sudo().search([])
         employees = http.request.env['hr.employee'].sudo().search([])
-        return http.request.render('vl_hr.vl_phonebook', {
+        values.update({
             'departments': departments,
             'employees': employees
+        })
+        return values
+
+    @http.route(['/my/phonebook', '/my/phonebook/page/<int:page>'], type='http', auth="user", website=True)
+    def render_phonebook(self, **kwargs):
+        values = self._prepare_portal_layout_values()
+        departments = http.request.env['hr.department'].sudo().search([])
+        employees = http.request.env['hr.employee'].sudo().search([])
+
+        values.update({'departments': departments,
+            'employees': employees})
+
+        return http.request.render('vl_hr.vl_phonebook', values, {
         })

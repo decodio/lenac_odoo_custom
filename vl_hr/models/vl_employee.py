@@ -28,3 +28,4 @@ class HrDepartment(models.Model):
                                                         )
 
     employee_id = fields.One2many('hr.employee', 'department_id')
+
