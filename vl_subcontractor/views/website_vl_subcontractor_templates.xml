@@ -7,122 +7,13 @@
     </xpath>
 </template>
 
-<!-- OLD FORM -->
-<!--<template id="index" name="Subcontractor">
-    <t t-call="website.layout">
-        <div id="wrap">
-            <div class="oe_structure">
-                <section class="mb16">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 text-center mb16">
-                                <h2>Our Job Offers</h2>
-                                <h3 class="text-muted">Join us and help disrupt the enterprise market!</h3>
-                            </div>
-                            <div class="col-md-12">
-                                <p>
-                                    Join us, we offer you an extraordinary chance to learn, to
-                                    develop and to be part of an exciting experience and
-                                    team.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div class="container oe_website_subcontractor">
-                <div class="row">
-                    <div class="hidden" id="subcontractor_grid_left">
-
-                    </div>
-                    <div class="col-md-12" id="subcontractor_grid">
-                        <div t-if="not jobs">
-                            <div class="text-center text-muted">
-                                <h3 class="css_editable_hidden"><a t-attf-href="/page/website.contactus">Contact us</a> for job opportunities.</h3>
-                                <h4 groups="hr_recruitment.group_hr_recruitment_manager">
-                                    Create new job pages from the <strong><i>+New</i></strong> top-right button.
-                                </h4>
-                            </div>
-                        </div>
-                        <ul class="media-list" t-if="jobs">
-                            <li t-foreach="jobs" t-as="job" class="media">
-                                <div class="media-body" t-att-data-publish="job.website_published and 'on' or 'off'">
-                                    <h3 class="media-heading">
-                                        <a t-attf-href="//detail/#{ slug(job) }">
-                                            <span t-field="job.name"/>
-                                        </a>
-                                        <small t-if="job.no_of_recruitment &gt; 1">
-                                            <t t-esc="job.no_of_recruitment"/> open positions
-                                        </small>
-                                    </h3>
-
-                                    <span t-field="job.address_id" t-options='{
-                                        "widget": "contact",
-                                        "fields": ["address"],
-                                        "no_tag_br": True
-                                        }'/>
-                                    <span t-if="not job.website_published" class="label label-danger">unpublished</span>
-                                    <div class="text-muted">
-                                        <i class="fa fa-clock-o"/> <span t-field="job.write_date"/>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </t>
-</template>
-
-<template id="detail" name="Job Detail">
-    <t t-call="website.layout">
-        <t t-set="additional_title">Job Detail</t>
-        <div id="wrap" class="js_hr_recruitment">
-            <div class="oe_structure"/>
-
-            Breadcrumb
-            <section class="mb16 bg-white">
-                <div class="container">
-                    <div class="pull-right">
-                        <a t-attf-href="/jobs/apply/#{job.id}" class="btn btn-primary btn-lg pull-right mt32 mb4">Apply Now!</a>
-                        <br/>
-                        <t t-call="website.publish_management">
-                            <t t-set="object" t-value="job"/>
-                            <t t-set="publish_edit" t-value="True"/>
-                        </t>
-                    </div>
-                    <label class="mb0 mt16"><a href="/jobs">Jobs</a></label> /
-                    <h1 class="mb0 mt0" t-field="job.name"/>
-                    <h4 class="mt0" t-field="job.address_id" t-field-options='{
-                        "widget": "contact",
-                        "fields": ["city"],
-                        "no_tag_br": True
-                    }'/>
-                </div>
-            </section>
-
-            <div t-field="job.website_description"/>
-
-            <div class="oe_structure">
-                <section class="o_job_bottom_bar mt32 mb32">
-                    <div class="text-center">
-                        <a t-attf-href="/jobs/apply/#{job.id}" class="btn btn-primary btn-lg">Apply Now!</a>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </t>
-</template>-->
-
 <template id="vl_subcontractor">
     <t t-call="website.layout">
         <t t-set="additional_title">Subcontractor </t>
 
         <div id="wrap" class="container vl-subcontractor-form-container">
             <h1 class="text-center vl-subcontractor-form-h1">
-                Subcontractor Application Form
+                Application Form for Subcontractors/Port Agents/Forwarders
             </h1>
             <div class="row">
                 <section id="forms">
@@ -132,12 +23,12 @@
                           data-success_page="/page/vl_subcontractor.thankyou"
                           style="width:1700px;">
                         <h3 class="text-center vl-subcontractor-form-h3">
-                            1. General references
+                            1. General Information
                         </h3>
                         <div class="vl-subcontractor-custom">
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="name">Company Name:</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="name">Company name:</label>
                                 </div>
                                 <div class="col-md-9 col-sm-8">
                                     <input type="text" class="form-control o_website_form_input" name="name" required=""/>
@@ -145,7 +36,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="address_street">Company Address:</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="address_street">Company address:</label>
                                 </div>
                                 <div class="col-md-9 col-sm-8">
                                     <input type="text" class="form-control o_website_form_input" name="address_street" required=""/>
@@ -153,7 +44,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="address_po_box">PO Box:</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="address_po_box">ZIP code:</label>
                                 </div>
                                 <div class="col-md-9 col-sm-8">
                                     <input type="text" class="form-control o_website_form_input" name="address_po_box" required=""/>
@@ -942,7 +833,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="per_id_number">Personal identification number:</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="per_id_number">Company Identification Number:</label>
                                 </div>
                                 <div class="col-md-9 col-sm-8">
                                     <input type="text" class="form-control o_website_form_input" name="per_id_number" required=""/>
@@ -950,7 +841,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="email_from">General E-Mail Address:</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="email_from">General E-mail address:</label>
                                 </div>
                                 <div class="col-md-9 col-sm-8">
                                     <input type="email" class="form-control o_website_form_input" name="email_from" required=""/>
@@ -966,7 +857,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="fax_number">Telefax</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="fax_number">Telefax:</label>
                                 </div>
                                 <div class="col-md-9 col-sm-8">
                                     <input type="text" class="form-control o_website_form_input" name="fax_number" required=""/>
@@ -982,7 +873,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="contact_person_email">Contact person E-mail Address:</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="contact_person_email">Contact person’s E-mail address:</label>
                                 </div>
                                 <div class="col-md-9 col-sm-8">
                                     <input type="text" class="form-control o_website_form_input" name="contact_person_email" required=""/>
@@ -990,7 +881,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="filled_in_by">Application Filled in by/Position:</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="filled_in_by">Application filled out by/Position:</label>
                                 </div>
                                 <div class="col-md-9 col-sm-8">
                                     <input type="text" class="form-control o_website_form_input" name="filled_in_by" required=""/>
@@ -999,13 +890,13 @@
                         </div>
                         <div>
                             <h3 class="text-center vl-subcontractor-form-h3">
-                                2. Organization / General description
+                                2. Organization/General Description
                             </h3>
                         </div>
                         <div class="vl-subcontractor-custom">
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="financial_group">Financial Group/Owners:</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="financial_group">Legal entity type:</label>
                                 </div>
                                 <div class="col-md-9 col-sm-8">
                                     <input type="text" class="form-control o_website_form_input" name="financial_group" required=""/>
@@ -1013,7 +904,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="company_age">How old is the Company/Plant:</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="company_age">Year of establishment: </label>
                                 </div>
                                 <div class="col-md-9 col-sm-8">
                                     <input type="text" class="form-control o_website_form_input" name="company_age" required=""/>
@@ -1029,7 +920,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="type_service">Types of services:</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="type_service">Types of service:</label>
                                 </div>
                                 <div class="col-md-9 col-sm-8">
                                     <input type="text" class="form-control o_website_form_input" name="type_service" required=""/>
@@ -1037,7 +928,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="bank">Bank:</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="bank">Bank details:</label>
                                 </div>
                                 <div class="col-md-9 col-sm-8">
                                     <input type="text" class="form-control o_website_form_input" name="bank" required=""/>
@@ -1045,7 +936,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="bank_account">Bank Account:</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="bank_account">Bank account:</label>
                                 </div>
                                 <div class="col-md-9 col-sm-8">
                                     <input type="text" class="form-control o_website_form_input" name="bank_account" required=""/>
@@ -1057,7 +948,7 @@
                                     <td>
                                         <div class="form-group form-field o_website_form_required_custom">
                                             <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="total_personnel">Total Personnel:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" for="total_personnel">Total personnel:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4">
                                                 <input type="text" class="form-control o_website_form_input" name="total_personnel" required=""/>
@@ -1067,7 +958,7 @@
                                     <td>
                                         <div class="form-group form-field o_website_form_required_custom">
                                             <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="pipe_welders">Pipe Welders:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" for="pipe_welders">Pipefitter welders:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4">
                                                 <input type="text" class="form-control o_website_form_input" name="pipe_welders" required=""/>
@@ -1079,7 +970,7 @@
                                     <td>
                                         <div class="form-group form-field o_website_form_required_custom">
                                             <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="administration">Administration:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" for="administration">Administrative staff:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4">
                                                 <input type="text" class="form-control o_website_form_input" name="administration" required=""/>
@@ -1089,7 +980,7 @@
                                      <td>
                                         <div class="form-group form-field o_website_form_required_custom">
                                             <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="ship_fitter">Ship-fitter:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" for="ship_fitter">Ship fitters:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4">
                                                 <input type="text" class="form-control o_website_form_input" name="ship_fitter" required=""/>
@@ -1111,7 +1002,7 @@
                                      <td>
                                          <div class="form-group form-field o_website_form_required_custom">
                                             <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="locksmith">Locksmith:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" for="locksmith">Outfitting:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4">
                                                 <input type="text" class="form-control o_website_form_input" name="locksmith" required=""/>
@@ -1133,7 +1024,7 @@
                                     <td>
                                          <div class="form-group form-field o_website_form_required_custom">
                                             <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="mechanic">Mechanic:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" for="mechanic">Mechanics:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4">
                                                 <input type="text" class="form-control o_website_form_input" name="mechanic" required=""/>
@@ -1145,7 +1036,7 @@
                                     <td>
                                         <div class="form-group form-field o_website_form_required_custom">
                                             <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="foreman">Foreman:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" for="foreman">Foremen:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4">
                                                 <input type="text" class="form-control o_website_form_input" name="foreman" required=""/>
@@ -1155,7 +1046,7 @@
                                     <td>
                                         <div class="form-group form-field o_website_form_required_custom">
                                             <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="electrician">Electrician:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" for="electrician">Electricians:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4">
                                                 <input type="text" class="form-control o_website_form_input" name="electrician" required=""/>
@@ -1196,20 +1087,20 @@
                             <table align ="center" class="vl-subcontractor-form-table">
                                 <tr>
                                     <td>
-                                        <th class="vl-subcontractor-form-font-th-table">Give 3 recent references of other client statig the company name, address, name of project manager, date, brief description of the project.<hr class="vl-subcontractor-form-hr-table"/></th>
+                                        <th class="vl-subcontractor-form-font-th-table">Please give 3 recent client references stating the company name, address, name of the project manager, date and brief description of the project:<hr class="vl-subcontractor-form-hr-table"/></th>
                                     </td>
                                 </tr>
                             </table>
                             <!--1-->
                             <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color">CLIENT INFORMATION</label>
+                                        <label class="control-label vl-subcontractor-form-font-color">3.1. Client Information</label>
                                     </div>
                             </div>
                             <div class="vl-subcontractor-custom">
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj1_company">Company name</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj1_company">Company name:</label>
                                     </div>
                                     <div class="col-md-9 col-sm-8">
                                         <input type="text" class="form-control o_website_form_input" name="proj1_company"/>
@@ -1217,7 +1108,7 @@
                                 </div>
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj1_address">Address</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj1_address">Company address:</label>
                                     </div>
                                     <div class="col-md-9 col-sm-8">
                                         <input type="text" class="form-control o_website_form_input" name="proj1_address" />
@@ -1225,7 +1116,7 @@
                                 </div>
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj1_manager_name">Name of the Project Manager</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj1_manager_name">Name of the project manager: </label>
                                     </div>
                                     <div class="col-md-9 col-sm-8">
                                         <input type="text" class="form-control o_website_form_input" name="proj1_manager_name"/>
@@ -1234,13 +1125,13 @@
                             </div>
                             <div class="form-group form-field vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color">DESCRIPTION</label>
+                                    <label class="control-label vl-subcontractor-form-font-color">3.1. Project description</label>
                                 </div>
                             </div>
                             <div class="vl-subcontractor-custom">
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj1_date">Date</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj1_date">Date of the project:</label>
                                     </div>
                                     <div class="col-md-2 col-sm-8">
                                         <input class="form-control o_website_form_input o_website_form_date" name="proj1_date"/>
@@ -1248,7 +1139,7 @@
                                 </div>
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj1_project_desc">Brief description of the project</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj1_project_desc">Brief description of the project:</label>
                                     </div>
                                     <div class="col-md-9 col-sm-8">
                                         <input type="text" class="form-control o_website_form_input" name="proj1_project_desc"/>
@@ -1259,13 +1150,13 @@
                             <!--2-->
                             <div class="form-group form-field vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color">CLIENT INFORMATION</label>
+                                    <label class="control-label vl-subcontractor-form-font-color">3.2. Client Information</label>
                                 </div>
                             </div>
                             <div class="vl-subcontractor-custom">
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj2_company">Company name</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj2_company">Company name:</label>
                                     </div>
                                     <div class="col-md-9 col-sm-8">
                                         <input type="text" class="form-control o_website_form_input" name="proj2_company"/>
@@ -1273,7 +1164,7 @@
                                 </div>
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj2_address">Address</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj2_address">Company address:</label>
                                     </div>
                                     <div class="col-md-9 col-sm-8">
                                         <input type="text" class="form-control o_website_form_input" name="proj2_address" />
@@ -1281,7 +1172,7 @@
                                 </div>
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj2_manager_name">Name of the Project Manager</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj2_manager_name">Name of the project manager:</label>
                                     </div>
                                     <div class="col-md-9 col-sm-8">
                                         <input type="text" class="form-control o_website_form_input" name="proj2_manager_name"/>
@@ -1290,13 +1181,13 @@
                             </div>
                             <div class="form-group form-field vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color">DESCRIPTION</label>
+                                    <label class="control-label vl-subcontractor-form-font-color">3.2. Project description</label>
                                 </div>
                             </div>
                             <div class="vl-subcontractor-custom">
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj2_date">Date</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj2_date">Date of the project:</label>
                                     </div>
                                     <div class="col-md-2 col-sm-8">
                                         <input class="form-control o_website_form_input o_website_form_date" name="proj2_date"/>
@@ -1304,7 +1195,7 @@
                                 </div>
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj2_project_desc">Brief description of the project</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj2_project_desc">Brief description of the project:</label>
                                     </div>
                                     <div class="col-md-9 col-sm-8">
                                         <input type="text" class="form-control o_website_form_input" name="proj2_project_desc"/>
@@ -1315,13 +1206,13 @@
                             <!--3-->
                             <div class="form-group form-field vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color">CLIENT INFORMATION</label>
+                                    <label class="control-label vl-subcontractor-form-font-color">3.3. Client Information</label>
                                 </div>
                             </div>
                             <div class="vl-subcontractor-custom">
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj3_company">Company name</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj3_company">Company name:</label>
                                     </div>
                                     <div class="col-md-9 col-sm-8">
                                         <input type="text" class="form-control o_website_form_input" name="proj3_company"/>
@@ -1329,7 +1220,7 @@
                                 </div>
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj3_address">Address</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj3_address">Company address:</label>
                                     </div>
                                     <div class="col-md-9 col-sm-8">
                                         <input type="text" class="form-control o_website_form_input" name="proj3_address" />
@@ -1337,7 +1228,7 @@
                                 </div>
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj3_manager_name">Name of the Project Manager</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj3_manager_name">Name of the project manager:</label>
                                     </div>
                                     <div class="col-md-9 col-sm-8">
                                         <input type="text" class="form-control o_website_form_input" name="proj3_manager_name"/>
@@ -1346,13 +1237,13 @@
                             </div>
                             <div class="form-group form-field vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color">DESCRIPTION</label>
+                                    <label class="control-label vl-subcontractor-form-font-color">3.3. Project description</label>
                                 </div>
                             </div>
                             <div class="vl-subcontractor-custom">
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj3_date">Date</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj3_date">Date of the project:</label>
                                     </div>
                                     <div class="col-md-2 col-sm-8">
                                         <input class="form-control o_website_form_input o_website_form_date" name="proj3_date"/>
@@ -1360,192 +1251,24 @@
                                 </div>
                                 <div class="form-group form-field vl-subcontractor-form-div-fields">
                                     <div class="col-md-3 col-sm-4 text-left">
-                                        <label class="control-label vl-subcontractor-form-font-color" for="proj3_project_desc">Brief description of the project</label>
+                                        <label class="control-label vl-subcontractor-form-font-color" for="proj3_project_desc">Brief description of the project:</label>
                                     </div>
                                     <div class="col-md-9 col-sm-8">
                                         <input type="text" class="form-control o_website_form_input" name="proj3_project_desc"/>
                                     </div>
                                 </div>
                             </div>
-                            <!-- OLD FORM -->
-                            <!--OLD <table>
-                            <tr>
-                                <table align ="center">
-                                    <tr>
-                                        <td>
-                                            <th> CLIENT INFORMATION</th>
-                                        </td>
-                                        <td>
-                                        <div class="vl-subcontractor-custom">
-                                             <div class="form-group form-field vl-subcontractor-form-div-fields">
-                                                <div class="col-md-3 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj1_company">Company name</label>
-                                                </div>
-                                                <div class="col-md-7 col-sm-8">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_company"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field vl-subcontractor-form-div-fields">
-                                                <div class="col-md-3 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj1_address">Address</label>
-                                                </div>
-                                                <div class="col-md-7 col-sm-8">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_address" />
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field vl-subcontractor-form-div-fields">
-                                                <div class="col-md-3 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj1_manager_name">Name of the Project Manager</label>
-                                                </div>
-                                                <div class="col-md-7 col-sm-8">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_manager_name"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                            <th> Description</th>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <th>    1   </th>
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj1_date">Date</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input class="form-control o_website_form_input o_website_form_date" name="proj1_date"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj1_project_desc">Brief description of the project</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_project_desc"/>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr><td><br></br></td></tr>
-                                    <tr><td><br></br></td></tr>
-                                    <tr>
-                                        <td>
-                                            <th>    2   </th>
-                                        </td>
-                                        <td>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj2_company">Company name</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-6">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_company"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj2_address">Address</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_address"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj2_manager_name">Name of the Project Manager</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_manager_name"/>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj2_date">Date</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input class="form-control o_website_form_input o_website_form_date" name="proj2_date"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj2_project_desc">Brief description of the project</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_project_desc"/>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr><td><br></br></td></tr>
-                                    <tr><td><br></br></td></tr>
-                                    <tr>
-                                        <td>
-                                            <th>    3   </th>
-                                        </td>
-                                        <td>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj3_company">Company name</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-6">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_company"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj3_address">Address</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_address"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj3_manager_name">Name of the Project Manager</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_manager_name"/>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj3_date">Date</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input class="form-control o_website_form_input o_website_form_date" name="proj3_date"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-left">
-                                                    <label class="control-label vl-subcontractor-form-font-color" for="proj3_project_desc">Brief description of the project</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_project_desc"/>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </tr>
-                        </table>-->
                         </div>
+
                         <div>
                             <h3 class="text-center vl-subcontractor-form-h3">
-                                4. Quality Assurance System and Safety Management System
+                                4. Quality Assurance and Safety Management
                             </h3>
                         </div>
                         <div class="vl-subcontractor-custom">
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-2 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="qa_system_9000">ISO 9001 Standard</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="qa_system_9000">ISO 9001</label>
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <input type="radio" class="col-md-1 col-sm-2" name="qa_system_9000" required="" value="no" selected="true">
@@ -1556,53 +1279,14 @@
                                     </input>
                                 </div>
                             </div>
-                            <!-- OLD FORM -->
-                            <!--<table align="center" class="vl-subcontractor-form-table">
-                                <tr>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="vl-subcontractor-form-div-fields">
-                                            <h4> Indicate for which of the following topics you have documnets or procedures describing the controls implemented to ensure work is planned and carried out to a satisfactory standard (enter YES or NO)</h4>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>-->
                             <table align ="center" class="vl-subcontractor-form-table">
                                 <tr>
                                     <td>
-                                        <th class="vl-subcontractor-form-font-th-table"><hr class="vl-subcontractor-form-hr-table"/>Indicate for which of the following topics you have documents or procedures describing the controls implemented to ensure work is planned and carried out to a satisfactory standard (enter YES or NO)</th>
+                                        <th class="vl-subcontractor-form-font-th-table"><hr class="vl-subcontractor-form-hr-table"/>Please indicate which of the following topics are covered in your documents or procedures describing controls implemented to ensure work is planned and carried out to a satisfactory standard (enter YES or NO):</th>
                                     </td>
                                 </tr>
                             </table>
-                            <!-- OLD FORM -->
-                            <!--<div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
-                                <div class="col-md-2 col-sm-4 text-left" style="width:198px;">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="qa_organization">Organization:</label>
-                                </div>
-                                <div class="col-md-4 col-sm-4">
-                                    <input type="radio" class="col-md-1 col-sm-2" name="qa_organization" required="" value="no" selected="true">
-                                        <label class="control-label col-md-2 col-sm-1" style="text-align:left;">No</label>
-                                    </input>
-                                    <input type="radio" class="col-md-1 col-sm-2" name="qa_organization" required="" value="yes">
-                                        <label class="control-label col-md-3 col-sm-1" style="text-align:left;">Yes</label>
-                                    </input>
-                                </div>
-                                <div class="col-md-2 col-sm-4 text-left" style="width:198px;">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="qa_non_conf_ite">Non Conforming Items:</label>
-                                </div>
-                                <div class="col-md-4 col-sm-4">
-                                    <input type="radio" class="col-md-1 col-sm-2" name="qa_non_conf_ite" required="" value="no" selected="true">
-                                        <label class="control-label col-md-2 col-sm-1">No</label>
-                                    </input>
-                                    <input type="radio" class="col-md-1 col-sm-2" name="qa_non_conf_ite" required="" value="yes">
-                                        <label class="control-label col-md-3 col-sm-1" style="text-align:left;">Yes</label>
-                                    </input>
-                                </div>
-                            </div>-->
+
                             <table align="center" class="vl-subcontractor-form-table">
                                 <tr>
                                     <td>
@@ -1623,7 +1307,7 @@
                                     <td>
                                         <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields" style="width:480px;">
                                             <div class="col-md-2 col-sm-4 text-left" style="width:198px;">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_non_conf_ite">Non conforming items:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_non_conf_ite">Non-Conformances:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4" style="width:282px;">
                                                 <input type="radio" class="col-md-1 col-sm-2" name="qa_non_conf_ite" required="" value="no" selected="true">
@@ -1655,7 +1339,7 @@
                                      <td>
                                         <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields" style="width:480px;">
                                             <div class="col-md-2 col-sm-4 text-left" style="width:198px;">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_correct_action">Corrective action:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_correct_action">Corrective actions:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4" style="width:282px;">
                                                 <input type="radio" class="col-md-1 col-sm-2" name="qa_correct_action" required="" value="no" selected="true">
@@ -1687,7 +1371,7 @@
                                      <td>
                                         <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields" style="width:480px;">
                                             <div class="col-md-2 col-sm-4 text-left" style="width:198px;">
-                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_handle_stor_pack">Handling / Storage / Packing:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_handle_stor_pack">Handling/Storage/Packaging:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4" style="width:282px;">
                                                 <input type="radio" class="col-md-1 col-sm-2" name="qa_handle_stor_pack" required="" value="no" selected="true">
@@ -1719,7 +1403,7 @@
                                      <td>
                                         <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields" style="width:480px;">
                                             <div class="col-md-2 col-sm-4 text-left" style="width:198px;">
-                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_qal_rec">Quality record:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_qal_rec">Quality records:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4" style="width:282px;">
                                                 <input type="radio" class="col-md-1 col-sm-2" name="qa_qal_rec" required="" value="no" selected="true">
@@ -1768,7 +1452,7 @@
                                     <td>
                                         <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields" style="width:480px;">
                                             <div class="col-md-2 col-sm-4 text-left" style="width:199px;">
-                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_trace_material">Traceability of material:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_trace_material">Material traceability:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4" style="width:281px;">
                                                 <input type="radio" class="col-md-1 col-sm-2" name="qa_trace_material" required="" value="no" selected="true">
@@ -1783,7 +1467,7 @@
                                      <td>
                                         <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields" style="width:480px;">
                                             <div class="col-md-2 col-sm-4 text-left" style="width:198px;">
-                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_inspect_test">Inspection / Testing:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_inspect_test">Inspection/Testing:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4" style="width:282px;">
                                                 <input type="radio" class="col-md-1 col-sm-2" name="qa_inspect_test" required="" value="no" selected="true">
@@ -1815,7 +1499,7 @@
                                      <td>
                                         <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields" style="width:480px;">
                                             <div class="col-md-2 col-sm-4 text-left" style="width:198px;">
-                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_spec_proces">Special processes (welding, heat treatment, NDT,...):</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_spec_proces">Special processes (Welding, Heat Treatment, NDT etc.):</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4" style="width:282px;">
                                                 <input type="radio" class="col-md-1 col-sm-2" name="qa_spec_proces" required="" value="no" selected="true">
@@ -1828,133 +1512,12 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <!--OLD FORM -->
-                                <!--<tr>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-8 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_docs"><br></br>Documentation:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_docs" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_docs" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                         <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-6 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_qal_rec"><br></br>Quality Record:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_qal_rec" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_qal_rec" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>-->
-                                <!--<tr>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-8 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_purchasing"><br></br>Purchasing:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_purchasing" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_purchasing" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-6 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_auditors"><br></br>Auditors:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_auditors" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_auditors" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>-->
-                                <!--<tr>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-8 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_trace_material"><br></br>Traceability of Material:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_trace_material" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_trace_material" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-6 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_inspect_test"><br></br>Inspection/Testing:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_inspect_test" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_inspect_test" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>-->
-                                <!--<tr>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-8 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_calibration"><br></br>Calibration:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_calibration" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_calibration" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-6 col-sm-6 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_spec_proces"><br></br>Special Processes (Welding, Heat treatmnet, NDT,...):</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_spec_proces" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_spec_proces" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>-->
                             </table>
                             <br/>
                             <br/>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-2 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="qa_system_14000">ISO 14001 Standard</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="qa_system_14000">ISO 14001</label>
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <input type="radio" class="col-md-1 col-sm-2" name="qa_system_14000" required="" value="no" selected="true">
@@ -1968,34 +1531,11 @@
                             <table align ="center" class="vl-subcontractor-form-table">
                                 <tr>
                                     <td>
-                                        <th class="vl-subcontractor-form-font-th-table"><hr class="vl-subcontractor-form-hr-table"/>Indicate for which of the following topics you have documents or procedures.</th>
+                                        <th class="vl-subcontractor-form-font-th-table"><hr class="vl-subcontractor-form-hr-table"/>Please indicate which of the following topics are covered in your documents or procedures:</th>
                                     </td>
                                 </tr>
                             </table>
-                            <!-- OLD FORM -->
-                            <!--<table align="center">
-                                <tr>
-                                    <th>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-4 col-sm-3 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_system_14000"><br></br>ISO 14001 Standard</label>
-                                            </div>
-                                            <div class="radio col-md-2 col-sm-4 text-just">
-                                                <input type="radio" class="radio o:website_form_input" name="qa_system_14000" required="" value="no" selected="true">No</input><br></br>
-                                                <br></br>
-                                                <input type="radio" class="radio o:website_form_input" name="qa_system_14000" required="" value="yes">Yes</input><br></br>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <div>
-                                            <h4> Indicate for which of the following topics you have documnets or procedures.</h4>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </table>-->
+
                             <table align="center" class="vl-subcontractor-form-table">
                                 <tr>
                                     <td>
@@ -2048,7 +1588,7 @@
                                     <td>
                                         <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields" style="width:480px;">
                                             <div class="col-md-2 col-sm-4 text-left" style="width:198px;">
-                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_acc_inc_stat_14">Accident / Incident statistics:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_acc_inc_stat_14">Accident/Incident statistics:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4" style="width:282px;">
                                                 <input type="radio" class="col-md-1 col-sm-2" name="qa_acc_inc_stat_14" required="" value="no" selected="true">
@@ -2061,73 +1601,12 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <!--OLD FORM -->
-                                <!--<tr>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_policy_14"><br></br>Policy:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_policy_14" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_policy_14" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_waste_mgmt_14"><br></br>Waste management:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_waste_mgmt_14" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_waste_mgmt_14" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>-->
-                                <!--<tr>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_dan_haz_sub_14">Control of dangerous and hazardous substances:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_dan_haz_sub_14" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_dan_haz_sub_14" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                     <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_acc_inc_stat_14">Acident/Incident Statistics:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_acc_inc_stat_14" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_acc_inc_stat_14" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>-->
                             </table>
                             <br/>
                             <br/>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-2 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="qa_system_18000">ISO 18001 Standard</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="qa_system_18000">ISO 18001/ISO 45001</label>
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <input type="radio" class="col-md-1 col-sm-2" name="qa_system_18000" required="" value="no" selected="true">
@@ -2141,39 +1620,17 @@
                             <table align ="center" class="vl-subcontractor-form-table">
                                 <tr>
                                     <td>
-                                        <th class="vl-subcontractor-form-font-th-table"><hr class="vl-subcontractor-form-hr-table"/>Indicate for which of the following topics you have documents or procedures.</th>
+                                        <th class="vl-subcontractor-form-font-th-table"><hr class="vl-subcontractor-form-hr-table"/>Please indicate which of the following topics are covered in your documents or procedures:</th>
                                     </td>
                                 </tr>
                             </table>
-                            <!--<table align="center">
-                                <tr>
-                                    <th>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-4 col-sm-3 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_system_18000"><br></br>ISO 18001 Standard</label>
-                                            </div>
-                                            <div class="radio col-md-2 col-sm-4 text-just">
-                                                <input type="radio" class="radio o:website_form_input" name="qa_system_18000" required="" value="no" selected="true">No</input><br></br>
-                                                <br></br>
-                                                <input type="radio" class="radio o:website_form_input" name="qa_system_18000" required="" value="yes">Yes</input><br></br>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <div>
-                                            <h4> Indicate for which of the following topics you have documnets or procedures.</h4>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </table>-->
+
                             <table align="center" class="vl-subcontractor-form-table">
                                 <tr>
                                     <td>
                                         <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields" style="width:480px;">
                                             <div class="col-md-2 col-sm-4 text-left" style="width:198px;">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_policy_18">Policy:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_policy_18">Policy: </label>
                                             </div>
                                             <div class="col-md-4 col-sm-4" style="width:282px;">
                                                 <input type="radio" class="col-md-1 col-sm-2" name="qa_policy_18" required="" value="no" selected="true">
@@ -2188,7 +1645,7 @@
                                     <td>
                                         <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields" style="width:480px;">
                                             <div class="col-md-2 col-sm-4 text-left" style="width:198px;">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_mach_main_18">Machinery maintainance</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_mach_main_18">Machinery maintenance:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4" style="width:282px;">
                                                 <input type="radio" class="col-md-1 col-sm-2" name="qa_mach_main_18" required="" value="no" selected="true">
@@ -2205,7 +1662,7 @@
                                     <td>
                                         <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields" style="width:480px;">
                                             <div class="col-md-2 col-sm-4 text-left" style="width:198px;">
-                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_acc_inc_stat_18">Accident / Incident statistics:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_acc_inc_stat_18">Accident/Incident statistics:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4" style="width:282px;">
                                                 <input type="radio" class="col-md-1 col-sm-2" name="qa_acc_inc_stat_18" required="" value="no" selected="true">
@@ -2218,59 +1675,12 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <!-- OLD FORM -->
-                                <!--<tr>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_policy_18"><br></br>Policy:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_policy_18" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_policy_18" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_mach_main_18"><br></br>Machinery maintainance</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_mach_main_18" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_mach_main_18" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>-->
-                                <!--<tr>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_acc_inc_stat_18">Acident/Incident Statistics:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_acc_inc_stat_18" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_acc_inc_stat_18" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>-->
                             </table>
                             <br/>
                             <br/>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-2 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="qa_system_50000">ISO 50001 Standard</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="qa_system_50000">ISO 50001</label>
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <input type="radio" class="col-md-1 col-sm-2" name="qa_system_50000" required="" value="no" selected="true">
@@ -2284,34 +1694,11 @@
                             <table align ="center" class="vl-subcontractor-form-table">
                                 <tr>
                                     <td>
-                                        <th class="vl-subcontractor-form-font-th-table"><hr class="vl-subcontractor-form-hr-table"/>Indicate for which of the following topics you have documents or procedures.</th>
+                                        <th class="vl-subcontractor-form-font-th-table"><hr class="vl-subcontractor-form-hr-table"/>Please indicate which of the following topics are covered in your documents or procedures:</th>
                                     </td>
                                 </tr>
                             </table>
-                            <!-- OLD FORM -->
-                            <!--<table align="center">
-                                <tr>
-                                    <th>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-4 col-sm-3 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_system_50000"><br></br>ISO 50001 Standard</label>
-                                            </div>
-                                            <div class="radio col-md-2 col-sm-4 text-just">
-                                                <input type="radio" class="radio o:website_form_input" name="qa_system_50000" required="" value="no" selected="true">No</input><br></br>
-                                                <br></br>
-                                                <input type="radio" class="radio o:website_form_input" name="qa_system_50000" required="" value="yes">Yes</input><br></br>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <div>
-                                            <h4> Indicate for which of the following topics you have documnets or procedures.</h4>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </table>-->
+
                             <table align="center" class="vl-subcontractor-form-table">
                                 <tr>
                                     <td>
@@ -2332,7 +1719,7 @@
                                     <td>
                                         <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields" style="width:480px;">
                                             <div class="col-md-2 col-sm-4 text-left" style="width:198px;">
-                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_eng_track_type_50">Energy consumption tracking by energy type</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_eng_track_type_50">Energy usage tracking by energy type:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4" style="width:282px;">
                                                 <input type="radio" class="col-md-1 col-sm-2" name="qa_eng_track_type_50" required="" value="no" selected="true">
@@ -2364,7 +1751,7 @@
                                     <td>
                                         <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields" style="width:480px;">
                                             <div class="col-md-2 col-sm-4 text-left" style="width:198px;">
-                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_action_plan_50">Action plans for energy savings:</label>
+                                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="qa_action_plan_50">Action plan for energy efficiency:</label>
                                             </div>
                                             <div class="col-md-4 col-sm-4" style="width:282px;">
                                                 <input type="radio" class="col-md-1 col-sm-2" name="qa_action_plan_50" required="" value="no" selected="true">
@@ -2377,73 +1764,12 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <!-- OLD FORM -->
-                                <!--<tr>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_policy_50"><br></br>Policy:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_policy_50" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_policy_50" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_eng_track_type_50">Energy consumption tracking by energy type</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_eng_track_type_50" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_eng_track_type_50" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>-->
-                                <!--<tr>
-                                    <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_mgmt_goal_50">Energy management goals:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_mgmt_goal_50" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_mgmt_goal_50" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                     <td>
-                                        <div class="form-group form-field o_website_form_required_custom">
-                                            <div class="col-md-5 col-sm-4 text-left">
-                                                <label class="control-label vl-subcontractor-form-font-color" for="qa_action_plan_50">Action plans for energy savings:</label>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <div class="radio col-md-2 col-sm-4 text-just">
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_action_plan_50" required="" value="no" selected="true">No</input><br></br>
-                                                    <br></br>
-                                                    <input type="radio" class="radio o:website_form_input" name="qa_action_plan_50" required="" value="yes">Yes</input><br></br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>-->
                             </table>
                             <br/>
                             <hr class="vl-subcontractor-form-hr"/>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="contact_qms">Contact person for QMS Systems:</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="contact_qms">Contact person for QMS:</label>
                                 </div>
                                 <div class="col-md-9 col-sm-8">
                                     <input type="text" class="form-control o_website_form_input" name="contact_qms" required=""/>
@@ -2452,7 +1778,7 @@
                         </div>
                         <div>
                             <h3 class="text-center vl-subcontractor-form-h3">
-                                5. Please provide the following attachments/Answers
+                                5. Please provide the following attachments/answers (applies to all companies regardless of the type of activity):
                             </h3>
                         </div>
                         <div class="vl-subcontractor-custom">
@@ -2474,7 +1800,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
                               <div class="col-md-12 col-sm-4 text-left">
-                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Copy of ISO 18001 certificate">Copy of ISO 18001 certificate</label>
+                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Copy of ISO 18001 certificate">Copy of ISO 18001/ISO 45001 certificate</label>
                               </div>
                               <div class="col-md-12 col-sm-8">
                                 <input type="file" class="form-control o_website_form_input" name="Copy of ISO 18001 certificate"/>
@@ -2490,7 +1816,15 @@
                             </div>
                             <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
                               <div class="col-md-12 col-sm-4 text-left">
-                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Proof of registered activities">Extract from the judicial record - proof of registered activities</label>
+                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Register">Organisation scheme</label>
+                              </div>
+                              <div class="col-md-12 col-sm-8">
+                                <input type="file" class="form-control o_website_form_input" name="Organisation scheme"/>
+                              </div>
+                            </div>
+                            <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
+                              <div class="col-md-12 col-sm-4 text-left">
+                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Proof of registered activities">A certified extract as official proof of registration in the Trade Register</label>
                               </div>
                               <div class="col-md-12 col-sm-8">
                                 <input type="file" class="form-control o_website_form_input" name="Proof of registered activities"/>
@@ -2498,7 +1832,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
                               <div class="col-md-12 col-sm-4 text-left">
-                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="BON-1">BON-1 not older than 30 days <br/>(Only applies to companies based in Croatia)</label>
+                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="BON-1">Creditworthiness information (BON-1) not older than 30 days <br/>(only applies to companies registered and operating in Croatia)</label>
                               </div>
                               <div class="col-md-12 col-sm-8">
                                 <input type="file" class="form-control o_website_form_input" name="BON-1"/>
@@ -2506,7 +1840,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
                               <div class="col-md-12 col-sm-4 text-left">
-                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="BON-2">BON-2 not older than 30 days <br/>(Only applies to companies based in Croatia) </label>
+                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="BON-2">Creditworthiness information (BON-2) not older than 30 days  <br/>(only applies to companies registered and operating in Croatia) </label>
                               </div>
                               <div class="col-md-12 col-sm-8">
                                 <input type="file" class="form-control o_website_form_input" name="BON-2"/>
@@ -2514,16 +1848,8 @@
                             </div>
                             <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
                               <div class="col-md-12 col-sm-4 text-left">
-                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Register">Extract from the Register not older than 30 days</label>
-                              </div>
-                              <div class="col-md-12 col-sm-8">
-                                <input type="file" class="form-control o_website_form_input" name="Register"/>
-                              </div>
-                            </div>
-                            <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
-                              <div class="col-md-12 col-sm-4 text-left">
-                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Taxes and contributions">Judicial record or an equivalent certificate of payment of social security contributions
-                                    and payment of taxes. <br/>(Only applies to companies based in Croatia)
+                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Taxes and contributions">Certificate issued by the competent tax authority on payment of social security
+                                    contributions and taxes <br/>(only applies to companies registered and operating in Croatia)
                                 </label>
                               </div>
                               <div class="col-md-12 col-sm-8">
@@ -2532,7 +1858,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
                               <div class="col-md-12 col-sm-4 text-left">
-                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Customs duties">Proof of prompt and complete payment of customs duties.<br/>(Only applies to companies based in Croatia)</label>
+                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Customs duties">Proof that customs duties and other obligations are paid in full and in a timely manner<br/>(only applies to companies registered and operating in Croatia)</label>
                               </div>
                               <div class="col-md-12 col-sm-8">
                                 <input type="file" class="form-control o_website_form_input" name="Customs duties"/>
@@ -2540,8 +1866,8 @@
                             </div>
                             <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
                               <div class="col-md-12 col-sm-4 text-left">
-                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Customs legislation">Proof that the subject has not seriously infringed or repeated infringed customs legislations.
-                                <br/>(Only applies to companies based in Croatia)</label>
+                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Customs legislation">Proof of absence of any serious infringement or repeated infringements of customs legislation
+                                <br/>(only applies to companies registered and operating in Croatia)</label>
                               </div>
                               <div class="col-md-12 col-sm-8">
                                 <input type="file" class="form-control o_website_form_input" name="Customs legislation"/>
@@ -2549,8 +1875,8 @@
                             </div>
                             <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
                               <div class="col-md-12 col-sm-4 text-left">
-                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Criminal proceedings">Proof that there are no criminal proceedings being conducted against the director or any other
-                                    responsible person <br/>(Not older than 30 days)
+                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Criminal proceedings">Proof of absence of any criminal proceedings initiated and conducted against managing director or any other
+                                    responsible person <br/>(not older than 30 days)
                                 </label>
                               </div>
                               <div class="col-md-12 col-sm-8">
@@ -2559,22 +1885,35 @@
                             </div>
                             <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
                               <div class="col-md-12 col-sm-4 text-left">
-                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Insurance/note">Evidence of insurance against liability (with a renowned assurance company) for mistakes made by
-                                    employees or blank promissory note <br/>(Only applies to companies based in Croatia)
+                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Insurance/note">Certificate of liability insurance (with a renowned insurance company) to cover mistakes or oversights made
+                                    by employees, blank promissory note <br/>(only applies to companies registered and operating in Croatia
                                 </label>
                               </div>
                               <div class="col-md-12 col-sm-8">
                                 <input type="file" class="form-control o_website_form_input" name="Insurance/Note"/>
                               </div>
                             </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-center vl-subcontractor-form-h3">
+                                6. Additional data related to specific activities:
+                            </h3>
+                        </div>
+                        <div class="vl-subcontractor-custom">
+                            <div class="form-group form-field vl-subcontractor-form-div-fields">
+                                <div class="col-md-3 col-sm-4 text-left">
+                                    <label class="control-label vl-subcontractor-form-font-color">6.1. Port Agents/Forwarders</label>
+                                </div>
+                            </div>
                             <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
                               <div class="col-md-12 col-sm-4 text-left">
-                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Evidence for agents">Evidence of IT and personnel support through affiliation with customs and tax offices:
-                                    <br/>- The minimum requirement is the possession of licences for the appropriate customs application (Nova or other);
-                                    <br/>- List of employees in permanent employment who are authorised to perform international freight forwarder jobs;
-                                    <br/>- Minimum 2 employees (Name, surname, OIB, job address, e-mail, phone, mobile);
-                                    <br/>- Valid bank guarantee for import procedure and transit bank guarantee for transit procedures;
-                                    <br/>(Only applies to companies based in Croatia and to Agents and shipping agents)
+                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Evidence for agents">Evidence of IT and personnel support via interconnections with customs and tax services
+                                    <br/>- The minimum requirement is to be holder of a customs app licence (Nova or other);
+                                    <br/>- List of full-time employees authorised to perform international freight forwarder jobs:
+                                    <br/>   - minimum 2 employees (name, surname, personal identification number, job address, e-mail, phone, mobile);
+                                    <br/>- Valid bank guarantee to customs in Import and Transit;
+                                    <br/>(only applies to companies registered and operating in Croatia)
                                 </label>
                                 <!--<label class="control-label vl-subcontractor-form-font-color" for="Evidence for agents">The minimum requirement is the possession of licences for the appropriate customs application (Nova or other)</label>
                                 <label class="control-label vl-subcontractor-form-font-color" for="Evidence for agents">List of employees in permanent employment who are authorised to perform international freight forwarder jobs</label>
@@ -2586,30 +1925,11 @@
                                 <input type="file" class="form-control o_website_form_input" name="Evidence for gents"/>
                               </div>
                             </div>
-                            <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
-                              <div class="col-md-12 col-sm-4 text-left">
-                                  <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Waste management permits">Valid waste management permits (Only applies for companies that provide mechanical and
-                                      chemical cleaning services, hazardous substance management and non-hazardous waste.)
-                                  </label>
-                                  <!--<label class="control-label vl-subcontractor-form-font-color" for="Waste management permits">chemical cleaning services, hazardous substance management and non-hazardous waste.)</label>-->
-                              </div>
-                                <div class="col-md-12 col-sm-8">
-                                <input type="file" class="form-control o_website_form_input" name="Waste management permits"/>
-                              </div>
-                            </div>
-                            <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
-                              <div class="col-md-12 col-sm-4 text-left">
-                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Confirmation of representation">Confirmation that the subcontractor is a representative or distributor of another company</label>
-                              </div>
-                              <div class="col-md-12 col-sm-8">
-                                <input type="file" class="form-control o_website_form_input" name="Confirmation of representation"/>
-                              </div>
-                            </div>
-                            <br/>
-                            <hr class="vl-subcontractor-form-hr"/>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="agent">Is the applicant an Agent?</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" style="text-align: left;" for="agent">Is the applicant a port agent?
+                                        <br/>(only applies to companies registered and operating in Croatia)
+                                    </label>
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <input type="radio" class="col-md-1 col-sm-2" name="agent" required="" value="no" selected="true">
@@ -2622,7 +1942,7 @@
                             </div>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-3 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="agent_ship_agent">Is the Agent also a Shipping agent?</label>
+                                    <label class="control-label vl-subcontractor-form-font-color"  style="text-align: left;" for="agent_ship_agent">Is the port agent also a forwarder?</label>
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <input type="radio" class="col-md-1 col-sm-2" name="agent_ship_agent" required="" value="no" selected="true">
@@ -2635,39 +1955,39 @@
                             </div>
                             <div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
                                 <div class="col-md-12 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="agent_ship_agent">* If the answer to the last question is NO please fill this questionnaire and provide the necesery documunets for your Shipping agent also.</label>
+                                    <label class="control-label vl-subcontractor-form-font-color" for="agent_ship_agent">* If the answer is NO, please provide necessary documents for your forwarder as well.</label>
                                 </div>
                             </div>
-                            <!-- OLD FORM -->
-                            <!--<div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
-                                <div class="col-md-5 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="agent">Is the applicant an Agent?</label>
+                            <hr class="vl-subcontractor-form-hr"/>
+                            <div class="form-group form-field vl-subcontractor-form-div-fields">
+                                <div class="col-md-9 col-sm-4 text-left">
+                                    <label class="control-label vl-subcontractor-form-font-color">6.2. Chemical and mechanical cleaning services, hazardous and non-hazardous waste management</label>
                                 </div>
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="radio col-md-2 col-sm-4 text-just">
-                                        <input type="radio" class="radio o:website_form_input" name="agent" required="" value="no" selected="true">No</input><br></br>
-                                        <br></br>
-                                        <input type="radio" class="radio o:website_form_input" name="agent" required="" value="yes">Yes</input><br></br>
-                                    </div>
+                            </div>
+                            <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
+                              <div class="col-md-12 col-sm-4 text-left">
+                                  <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Waste management permits">Valid waste management permits</label>
+                              </div>
+                                <div class="col-md-12 col-sm-8">
+                                <input type="file" class="form-control o_website_form_input" name="Waste management permits"/>
+                              </div>
+                            </div>
+                            <hr class="vl-subcontractor-form-hr"/>
+                            <div class="form-group form-field vl-subcontractor-form-div-fields">
+                                <div class="col-md-3 col-sm-4 text-left">
+                                    <label class="control-label vl-subcontractor-form-font-color">6.3. Representatives or distributors</label>
                                 </div>
-                            </div>-->
-                            <!--<div class="form-group form-field o_website_form_required_custom vl-subcontractor-form-div-fields">
-                                <div class="col-md-5 col-sm-4 text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="agent_ship_agent">Is the Agent also a Shipping agent?</label>
-                                </div>
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="radio col-md-2 col-sm-4 text-just">
-                                        <input type="radio" class="radio o:website_form_input" name="agent_ship_agent" required="" value="no" selected="true">No*</input><br></br>
-                                        <br></br>
-                                        <input type="radio" class="radio o:website_form_input" name="agent_ship_agent" required="" value="yes">Yes</input><br></br>
-                                    </div>
-                                </div>
-                            </div>-->
-                            <!--<div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
-                                <div calss="text-left">
-                                    <label class="control-label vl-subcontractor-form-font-color" for="agent_ship_agent">* If the answer to the last question is NO please fill this questionnaire and provide the necesery documunets for your Shipping agent also.</label>
-                                </div>
-                            </div>-->
+                            </div>
+                            <div class="form-group form-field o_website_form_custom vl-subcontractor-form-div-fields" style="width:980px;">
+                              <div class="col-md-12 col-sm-4 text-left">
+                                <label class="control-label vl-subcontractor-form-font-color" style="text-align:left;" for="Confirmation of representation">Confirmation by the principal that the subcontractor is a representative or distributor</label>
+                              </div>
+                              <div class="col-md-12 col-sm-8">
+                                <input type="file" class="form-control o_website_form_input" name="Confirmation of representation"/>
+                              </div>
+                            </div>
+                            <br/>
+                            <hr class="vl-subcontractor-form-hr"/>
                         </div>
                         <br/>
                         <div class="form-group">
@@ -2676,781 +1996,6 @@
                                 <span id="o_website_form_result"/>
                             </div>
                         </div>
-                        <!--<div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="name">Name:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="name" required=""/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="address">Address:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="address" required=""/>
-                            </div>
-                        </div>-->
-                        <!--<div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="per_id_number">Personal identification number:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="per_id_number" required=""/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="email_from">General E-Mail Address:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="email" class="form-control o_website_form_input" name="email_from" required=""/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="partner_phone">Telephone:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="partner_phone" required=""/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="fax_number">Telefax</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="fax_number" required=""/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="contact_person">Contact person/Title:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="contact_person" required=""/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="contact_person_email">Contact person E-mail Address:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="contact_person_email" required=""/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="filled_in_by">Application Filled in by/Position:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="filled_in_by" required=""/>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-center">
-                                2. Organization / General description
-                            </h3>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="financial_group">Financial Group/Owners:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="financial_group" required=""/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="company_age">How old is the Company/Plant:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="company_age" required=""/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="product_range">Product range:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="product_range" required=""/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="type_service">Types of services:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="type_service" required=""/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="bank">Bank:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="bank" required=""/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="bank_account">Bank Account:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="bank_account" required=""/>
-                            </div>
-                        </div>
-                        <table align="center" >
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="total_personnel">Total Personnel:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="total_personnel" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="pipe_welders">Pipe Welders:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="pipe_welders" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="administration">Administration:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="administration" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                 <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="ship_fitter">Ship-fitter:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="ship_fitter" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="management">Management:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="management" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                 <td>
-                                     <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="locksmith">Locksmith:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="locksmith" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="manpower">Manpower:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="manpower" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                     <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="mechanic">Mechanic:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="mechanic" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="foreman">Foreman:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="foreman" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="electrician">Electrician:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="electrician" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="welders">Welders:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="welders" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                     <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="other">Other:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="other" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                        <div>
-                            <h3 class="text-center">
-                                3. Previous Experience
-                            </h3>
-                        </div>
-                        <table align ="center">
-                            <tr>
-                                <td>
-                                    <th>Give 3 recent references of other client statig the Company name, address, Name of Project Manager, <br></br> date, brief description of the project.</th>
-                                </td>
-                            </tr>
-                            <tr>
-                                <table align ="center" border="1px solid black">
-                                    <tr>
-                                        <td>
-
-                                        </td>
-                                        <td>
-                                            <th> Client information</th>
-                                            <th> Description</th>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <th>    1   </th>
-                                        </td>
-                                        <td>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj1_company">Company name</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-6">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_company" required=""/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj1_address">Address</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_address" required=""/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj1_manager_name_1">Name of the Project Manager</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_manager_name_1" required=""/>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj1_date">Date</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_date" required=""/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj1_project_desc">Brief description of the project</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj1_project_desc" required=""/>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <th>    2   </th>
-                                        </td>
-                                        <td>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj2_company">Company name</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-6">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_company" required=""/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj2_address">Address</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_address" required=""/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj2_manager_name">Name of the Project Manager</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_manager_name" required=""/>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj2_date">Date</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_date" required=""/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj2_project_desc">Brief description of the project</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj2_project_desc" required=""/>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <th>    3   </th>
-                                        </td>
-                                        <td>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj3_company">Company name</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-6">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_company" required=""/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj3_address">Address</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_address" required=""/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj3_manager_name">Name of the Project Manager</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_manager_name" required=""/>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj3_date">Date</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_date" required=""/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group form-field">
-                                                <div class="col-md-5 col-sm-4 text-right">
-                                                    <label class="control-label" for="proj3_project_desc">Brief description of the project</label>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4">
-                                                    <input type="text" class="form-control o_website_form_input" name="proj3_project_desc" required=""/>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </tr>
-                        </table>
-                        <div>
-                            <h3 class="text-center">
-                                4. Quality Assurance System and Safety Management System
-                            </h3>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="qa_system">Standard of QA System:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="qa_system" required=""/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="qa_contact">Contact person for QA System:</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="qa_contact" required=""/>
-                            </div>
-                        </div>
-                        <div>
-                            <h4> Indicate for which of the following topics you have documnets or procedures describing the controls implemented to <br></br> ensure work is planned and carried out to a satisfactory standard (enter YES or NO)</h4>
-                        </div>
-                        <table align="center" >
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_organization">Organization:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_organization" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_non_conf_ite">Non Conforming Items:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_non_conf_ite" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_contract_rev">Contract Review:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_contract_rev" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                 <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_correct_action">Corrective Action:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_correct_action" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_engineering">Engineering:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_engineering" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                 <td>
-                                     <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_handle_stor_pack">Handling/Storage/Packing:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_handle_stor_pack" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_docs">Documentation:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_docs" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                     <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_qal_rec">Quality Record:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_qal_rec" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_purchasing">Purchasing:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_purchasing" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_auditors">Auditors:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_auditors" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_trace_material">Traceability of Material:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_trace_material" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                     <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_safe_manage">Standard of Safety Management:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_safe_manage" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_inspect_test">Inspection/Testing:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_inspect_test" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                     <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_sys">System:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_sys" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_calibration">Calibration:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_calibration" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                     <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_acc_inc_stat">Your Accident / Incident Statistics:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_acc_inc_stat" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_spec_proces">Special Processes:</label>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control o_website_form_input" name="qa_spec_proces" required=""/>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                     <div class="form-group form-field o_website_form_required_custom">
-                                        <div class="col-md-5 col-sm-4 text-right">
-                                            <label class="control-label" for="qa_wel_ndt_other">(Welding, Heat treatmnet, NDT,...)</label>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                        <div>
-                            <h3 class="text-center">
-                                5. Please provide the following attachments
-                            </h3>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                          <div class="col-md-3 col-sm-4 text-right">
-                            <label class="control-label" for="Copy of ISO certificate">Copy of ISO certificate</label>
-                          </div>
-                          <div class="col-md-7 col-sm-8">
-                            <input type="file" class="form-control o_website_form_input" name="Copy of ISO certificate"/>
-                          </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                          <div class="col-md-3 col-sm-4 text-right">
-                            <label class="control-label" for="Proof of registred activities">Extract from the judicial record - proof of registred activities</label>
-                          </div>
-                          <div class="col-md-7 col-sm-8">
-                            <input type="file" class="form-control o_website_form_input" name="Proof of registred activities"/>
-                          </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                          <div class="col-md-3 col-sm-4 text-right">
-                            <label class="control-label" for="BON-1">BON-1 not older than 30 days (Only applies to companies based in Croatia)</label>
-                          </div>
-                          <div class="col-md-7 col-sm-8">
-                            <input type="file" class="form-control o_website_form_input" name="BON-1"/>
-                          </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                          <div class="col-md-3 col-sm-4 text-right">
-                            <label class="control-label" for="BON-2">BON-2 not older than 30 days (Only applies to companies based in Croatia) </label>
-                          </div>
-                          <div class="col-md-7 col-sm-8">
-                            <input type="file" class="form-control o_website_form_input" name="BON-2"/>
-                          </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                          <div class="col-md-3 col-sm-4 text-right">
-                            <label class="control-label" for="Register">Extract from the Register not older than 30 days</label>
-                          </div>
-                          <div class="col-md-7 col-sm-8">
-                            <input type="file" class="form-control o_website_form_input" name="Register"/>
-                          </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                          <div class="col-md-3 col-sm-4 text-right">
-                            <label class="control-label" for="Taxes and contributions">Judicial record or an equivalent certificate of payment of social security contributions and payment of taxes</label>
-                          </div>
-                          <div class="col-md-7 col-sm-8">
-                            <input type="file" class="form-control o_website_form_input" name="Taxes and contributions"/>
-                          </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                          <div class="col-md-3 col-sm-4 text-right">
-                            <label class="control-label" for="Customs duties">Proof of prompt and complete payment of customs duties</label>
-                          </div>
-                          <div class="col-md-7 col-sm-8">
-                            <input type="file" class="form-control o_website_form_input" name="Customs duties"/>
-                          </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                          <div class="col-md-3 col-sm-4 text-right">
-                            <label class="control-label" for="Customs legislation">Proof that the subject has not seriously infringed or repeated infringed customs legislations</label>
-                          </div>
-                          <div class="col-md-7 col-sm-8">
-                            <input type="file" class="form-control o_website_form_input" name="Customs legislation"/>
-                          </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                          <div class="col-md-3 col-sm-4 text-right">
-                            <label class="control-label" for="Resume">Resume</label>
-                          </div>
-                          <div class="col-md-7 col-sm-8">
-                            <input type="file" class="form-control o_website_form_input" name="Resume"/>
-                          </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                          <div class="col-md-3 col-sm-4 text-right">
-                            <label class="control-label" for="Resume">Resume</label>
-                          </div>
-                          <div class="col-md-7 col-sm-8">
-                            <input type="file" class="form-control o_website_form_input" name="Resume"/>
-                          </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                          <div class="col-md-3 col-sm-4 text-right">
-                            <label class="control-label" for="Resume">Resume</label>
-                          </div>
-                          <div class="col-md-7 col-sm-8">
-                            <input type="file" class="form-control o_website_form_input" name="Resume"/>
-                          </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                          <div class="col-md-3 col-sm-4 text-right">
-                            <label class="control-label" for="Resume">Resume</label>
-                          </div>
-                          <div class="col-md-7 col-sm-8">
-                            <input type="file" class="form-control o_website_form_input" name="Resume"/>
-                          </div>
-                        </div>
-                        <div class="form-group form-field">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="description">Short Introduction</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <textarea class="form-control o_website_form_input" name="description"/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                          <div class="col-md-3 col-sm-4 text-right">
-                            <label class="control-label" for="Resume">Resume</label>
-                          </div>
-                          <div class="col-md-7 col-sm-8">
-                            <input type="file" class="form-control o_website_form_input" name="Resume"/>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
-                                <span class="btn btn-primary btn-lg o_website_form_send">Submit</span>
-                                <span id="o_website_form_result"></span>
-                            </div>
-                        </div>-->
                     </form>
                 </section>
             </div>
