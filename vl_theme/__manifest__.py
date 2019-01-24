@@ -1,6 +1,7 @@
-# -*- encoding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
-
+# -*- coding: utf-8 -*-
+# Odoo, Open Source Management Solution
+# Copyright (C) 2018 Vedran Terihaj
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Viktor Lenac (Vedran Terihaj)',
     'version': '10.0.1.0.0',
