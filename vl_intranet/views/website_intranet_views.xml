@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_layout" name="Portal layout: News menu entery" inherit_id="website_portal.portal_layout" priority="60">
+        <xpath expr="//ul[contains(@class,'o_portal_submenu')]" position="inside">
+            <li t-att-class="page_name == 'news' and 'active' or ''">
+                 <a href="/my/news">News</a>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="vl_article" name="News" page="True">
+        <t t-call="website_portal.portal_layout">
+            <h3 class="page-header">
+                News
+                <div class="dropdown pull-right mr8">
+                    <button id="sortby" class="btn btn-default" type="button" data-toggle="dropdown">
+                        <span class="fa fa-sort" /> <span t-esc="sortings.get(sortby, {}).get('label', 'Newest')"/>
+                        <span class="caret"></span>
+                    </button>
+                     <ul class="dropdown-menu" aria-labelledby="sortby">
+                        <li t-foreach="sortings" t-as="option" t-att-class="sortby == option and 'active'">
+                            <a t-att-href="default_url + '?' + keep_query('date_begin', 'date_end', sortby=option)"><span t-esc="sortings.get(option).get('label')"/></a>
+                        </li>
+                    </ul>
+                </div>
+            </h3>
+            <div id="wrap">
+                <div class="container">
+                    <div class="oe_structure">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table>
+                                  <tr t-foreach="article" t-as="l">
+                                      <tr>
+                                          <td>
+                                            <h3><span t-esc="l.name"/></h3>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <span t-esc="l.article_date"/>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <span t-esc="l.article_author.name"/>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <span t-raw="l.article_text" widget="html"/>
+                                          </td>
+                                      </tr>
+                                  </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div t-if="pager" class="o_portal_pager text-center">
+                <t t-call="website.pager"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="daily_planing_attachment_link" inherit_id="website_portal.portal_layout" customize_show="True">
+        <xpath expr="//div[@class='o_my_details']" position="before">
+            <div class="o_my_details">
+                <h3 class="page-header">Information</h3>
+                <a href="http://172.16.1.39:8080/bireports11/#!" style="float:left;" class="btn btn-default btn-xs">Employee attendance status</a>
+                <br/>
+                <br/>
+                <a href="http://vl4/Primavera/Plan_vezova.pdf" style="float:left;" class="btn btn-default btn-xs">Berth plan</a>
+                <br/>
+                <br/>
+                <a href="http://vl4//Primavera/Plan_dokova.pdf" style="float:left;" class="btn btn-default btn-xs">Dock plan</a>
+                <br/>
+                <br/>
+                <a href="http://vl4/Primavera/Plan_objekata.pdf" style="float:left;" class="btn btn-default btn-xs">Vessel plan</a>
+                <br/>
+                <br/>
+                <a href="http://vl4/Primavera/PLAN%20OPTERECENJA%20KAPACITETA.pdf" style="float:left;" class="btn btn-default btn-xs">Capacity utilization</a>
+                <br/>
+            </div>
+        </xpath>
+        <xpath expr="//div[@class='o_my_archives']" position="before">
+            <div class="o_my_archives">
+                <h3 class="page-header">Meteo stations</h3>
+                <a href="http://172.16.1.177:8080/sites/meteo/stationone/index.html" style="float:left;" class="btn btn-default btn-xs">Meteo station DOCK 5</a>
+                <br/>
+                <br/>
+                <a href="http://172.16.1.177:8080/sites/meteo/stationfour/index.html" style="float:left;" class="btn btn-default btn-xs">Meteo station DOCK 11</a>
+                <br/>
+                <br/>
+                <a href="http://172.16.1.177:8080/sites/meteo/stationtwo/index.html" style="float:left;" class="btn btn-default btn-xs">Meteo station crane 100T</a>
+                <br/>
+                <br/>
+                <a href="http://172.16.1.177:8080/sites/meteo/stationthree/index.html" style="float:left;" class="btn btn-default btn-xs">Meteo station Berth 8</a>
+                <br/>
+            </div>
+        </xpath>
+
+    </template>
+</odoo>
