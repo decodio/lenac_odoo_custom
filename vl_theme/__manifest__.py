@@ -11,11 +11,11 @@
     'website': 'http://lenac.hr',
     'depends': ['website'],
     'data': [
+        'data/theme_lenac_data.xml',
         'views/layout.xml',
         'views/pages.xml',
         'views/assets.xml',
         'views/snippets.xml',
-        #'data/vl_custom_data.xml',
     ],
     'summary': 'Tema za B2B portal',
     'description': '',
