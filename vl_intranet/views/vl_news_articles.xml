@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!--<record model="ir.ui.view" id="vl_news_search_view">
+            <field name="name">News</field>
+            <field name="model">website.portal.news</field>
+            <field name="arch" type="xml">
+                <search string="News">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="vl_news_tree_view">
+            <field name="name">News</field>
+            <field name="model">website.portal.news</field>
+            <field name="arch" type="xml">
+                <tree string="News">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="vl_news_form_view">
+            <field name="name">website.portal.news</field>
+            <field name="model">website.portal.news</field>
+            <field name="arch" type="xml">
+                <form string="News">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="portal_articles"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>-->
+
+        <record model="ir.ui.view" id="vl_article_search_view">
+            <field name="name">Article</field>
+            <field name="model">website.portal.article</field>
+            <field name="arch" type="xml">
+                <search string="News">
+                    <field name="name"/>
+                    <field name="article_date"/>
+                    <field name="article_author"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="vl_article_tree_view">
+            <field name="name">News</field>
+            <field name="model">website.portal.article</field>
+            <field name="arch" type="xml">
+                <tree string="News">
+                    <field name="name"/>
+                    <field name="article_date"/>
+                    <field name="article_author"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="vl_article_form_view">
+            <field name="name">website.portal.article</field>
+            <field name="model">website.portal.article</field>
+            <field name="arch" type="xml">
+                <form string="News">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div name="button_box" position="inside">
+                            <button class="oe_stat_button" name="website_publish_button" type="object" icon="fa-globe">
+                                <field name="website_published" widget="website_button"/>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="name"/>
+                            <field name="article_date"/>
+                            <field name="article_author"/>
+                            <field name="article_text"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--<record model="ir.actions.act_window" id="vl_news_action">
+            <field name="name">News</field>
+            <field name="res_model">website.portal.news</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new News group.
+              </p>
+            </field>
+        </record>-->
+
+         <record model="ir.actions.act_window" id="vl_article_action">
+            <field name="name">Article</field>
+            <field name="res_model">website.portal.article</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new News group.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_portal_news_root"
+                  name="Portal content"
+                  sequence="1"/>
+
+        <!--<menuitem id="menu_vl_news"
+                  name="News"
+                  parent="menu_portal_news_root"
+                  action="vl_news_action"
+                  sequence="1"/>-->
+
+         <menuitem id="menu_vl_article"
+                  name="Articles"
+                  parent="menu_portal_news_root"
+                  action="vl_article_action"
+                  sequence="1"/>
+
+   </data>
+</odoo>

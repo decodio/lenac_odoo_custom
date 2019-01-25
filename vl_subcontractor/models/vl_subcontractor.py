@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Odoo, Open Source Management Solution
-# Copyright (C) 2018 Viktor Lenac
+# Copyright (C) 2018 Vedran Terihaj
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, _
@@ -35,7 +35,7 @@ class VlSubcontractor(models.Model):
                                                  "the manager of cooperation and subliferation.")
 
     address_street = fields.Text("Company Address")
-    address_po_box = fields.Text("PO Box")
+    address_po_box = fields.Text("ZIP code:")
     address_city = fields.Text("City")
     address_country = fields.Many2one('res.country', 'Country')
     per_id_number = fields.Char("Personal identification number")

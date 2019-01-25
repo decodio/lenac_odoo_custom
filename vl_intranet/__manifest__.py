@@ -4,23 +4,23 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'VL Employee job description and code (Vedran Terihaj)',
+    'name': 'VL Intranet (Vedran Terihaj)',
     'version': '10.0.1.0.0',
     'category': 'Custom Lenac',
     'complexity': 'normal',
-    'author': 'Viktor Lenac d.d. (Vedran Terihaj)',
+    'author': "Viktor Lenac d.d. (Vedran Terihaj)",
     'website': 'https://lenac.hr',
     'license': '',
-    'depends': ['hr', 'website_portal', 'vl_maintenance'],
+    'depends': ['website_portal',],
     'data': [
-        'views/vlhr_employee.xml',
-        'views/website_vlhr_employee_views.xml',
+        'views/website_intranet_views.xml',
+        'views/vl_news_articles.xml',
     ],
     'demo': [],
     'test': [],
     'installable': True,
     'auto_install': False,
     'description': """
-        Extends the module for Shipyard Viktor Lenac""",
-    'summary': 'ICT Inventory tracking',
+        Shipyard Viktor Lenac intranet portal for registered users""",
+    'summary': 'Viktor Lenac intranet',
 }

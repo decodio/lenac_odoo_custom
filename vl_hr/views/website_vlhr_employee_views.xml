@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_layout" name="Portal layout: Phonebook menu entery" inherit_id="website_portal.portal_layout" priority="40">
+        <xpath expr="//ul[contains(@class,'o_portal_submenu')]" position="inside">
+            <li t-att-class="page_name == 'phonebook' and 'active' or ''">
+                 <a href="/my/phonebook">Phonebook</a>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="vl_phonebook" name="Phonebook" page="True">
+        <t t-call="website_portal.portal_layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="oe_structure">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <center>
+                                    <h2>Contact information</h2>
+                                </center>
+                                <table class="table-striped table">
+                                    <tr t-foreach="departments" t-as="departments">
+                                        <tr>
+                                            <td><h4><span t-esc="departments.name"/></h4></td>
+                                            <td><h4>Phone</h4></td>
+                                            <td><h4>Phone Short</h4></td>
+                                            <td><h4>Mobile Phone</h4></td>
+                                            <td><h4>Mobile Phone Short</h4></td>
+                                            <td><h4>Work Email</h4></td>
+                                        </tr>
+                                        <tr t-foreach="departments.employee_id" t-as="l">
+                                          <td><span t-esc="l.name"/></td>
+                                          <td><span t-esc="l.work_phone"/></td>
+                                          <td><span t-esc="l.work_phone_short"/></td>
+                                          <td><span t-esc="l.mobile_phone"/></td>
+                                          <td><span t-esc="l.mobile_phone_short"/></td>
+                                          <td><span t-esc="l.work_email"/></td>
+                                        </tr>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+
+
+
+
+</odoo>

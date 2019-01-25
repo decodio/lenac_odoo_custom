@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# Odoo, Open Source Management Solution
+# Copyright (C) 2018 Vedran Terihaj
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
 from odoo import models, fields
@@ -14,6 +17,9 @@ class HrEmployee(models.Model):
                                                       #string='Assigned equipment'
                                                       )
 
+    work_phone_short = fields.Char('Work Phone Short')
+    mobile_phone_short = fields.Char('Work Mobile Short')
+
 
 class HrDepartment(models.Model):
     _inherit = 'hr.department'
@@ -23,3 +29,6 @@ class HrDepartment(models.Model):
     department_assigned_equipment_ids = fields.One2many('maintenance.equipment', 'department_id'
                                                         #string='Assigned equipment'
                                                         )
+
+    employee_id = fields.One2many('hr.employee', 'department_id')
+
