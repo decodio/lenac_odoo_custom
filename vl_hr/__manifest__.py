@@ -11,7 +11,7 @@
     'author': 'Viktor Lenac d.d. (Vedran Terihaj)',
     'website': 'https://lenac.hr',
     'license': '',
-    'depends': ['hr', 'website_portal',],
+    'depends': ['hr', 'website_portal', 'vl_maintenance'],
     'data': [
         'views/vlhr_employee.xml',
         'views/website_vlhr_employee_views.xml',
