@@ -309,7 +309,7 @@
                          <group nolabel="1">
                             <group>
                                 <field name="period"/>
-                                <field name="next_action_date"/>
+                                <field name="next_action_date" readonly="True" string="Next issue"/>
                                 <field name="schedule_date"/>
                                 <field name="issue_type" readonly="True"/>
                                 <field name="item_specification"/>
