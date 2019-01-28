@@ -11,7 +11,7 @@
                             <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;">OSNOVNO SREDSTVO</td>
                             <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;">TIP SREDSTVA</td>
                             <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;">INVENTARNI BROJ</td>
-                            <td rowspan="2" colspan="2"><img style="height: 100px" alt="client" src="/vl_maintenance/static/src/logo.jpg"/></td>
+                            <!--<td rowspan="2" colspan="2"><img style="height: 100px" alt="client" src="/vl_maintenance/static/src/logo.jpg"/></td>-->
                         </tr>
                         <tr>
                             <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.name"/></td>
@@ -37,8 +37,11 @@
                         <tr>
                             <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.old_employee_id.name"/></td>
                             <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.old_employee_number"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.employee_department_old.name"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.employee_department_old_number"/></td>
+                            <!-- Report za Other
                             <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.old_department_id.name"/></td>
-                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.old_department_number"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.old_department_number"/></td>-->
                             <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.location"/></td>
                             <td><br/></td>
                         </tr>
@@ -66,8 +69,11 @@
                         <tr>
                             <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.employee_id.name"/></td>
                             <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_employee_number"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.employee_department_new.name"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.employee_department_new_number"/></td>
+                            <!-- Report za Other
                             <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.department_id.name"/></td>
-                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_department_number"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_department_number"/></td>-->
                             <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_location"/></td>
                             <td><br/></td>
                         </tr>
@@ -91,9 +97,9 @@
                                 Potpisom ovog dokumenta potvrđujem da će se računalo koristiti sukladno RU2702 - Uputa o instalaciji, administraciji i korištenju računala i računalne opreme
                                 u vlasništvu Brodogradilišta.<br/>
                                 Potvrđujem da NEĆU vršti promjene na korisničkom softweru i hardwareu bez prethodnog odobrenja od strane Rukovoditelja odjela OSKICT, u vidu instalacije ili
-                                ugradnje drugog računalnog softwera i hardwera, a koji se ne nalazi na listi odobrenog sofwera i hardwera opreme u vlasništvu Brodgradilišta.<br/>
-                                Sam čin instalacije softwera i hardwera a koji se ne nalazi na listi odobrenog sftwera i hardwera u vlasništvu Brodogradilišta povlači za sobom prijavu za povredu
-                                obveze iz radnog odnosa, povredu radne discipline, ali i kršenje zakonskih propisa, akata i odluka Brodgradilišta.
+                                ugradnje drugog računalnog softwera i hardwera, a koji se ne nalazi na listi odobrenog softwera i hardwera opreme u vlasništvu Brodogradilišta.<br/>
+                                Sam čin instalacije softwera i hardwera, a koji se ne nalazi na listi odobrenog softwera i hardwera u vlasništvu Brodogradilišta povlači za sobom prijavu za povredu
+                                obveze iz radnog odnosa, povredu radne discipline, ali i kršenje zakonskih propisa, akata i odluka Brodogradilišta.
                             </td>
                         </tr>
                         <tr>

@@ -73,9 +73,9 @@
         <menuitem
             id="menu_maintenance_allowed_os"
             name="Allowed software"
-            parent="maintenance.menu_maintenance_title"
+            parent="maintenance.menu_maintenance_configuration"
             action="maintenance_allowed_os_action"
-            sequence="100"/>
+            sequence="200"/>
 
     </data>
 </odoo>
