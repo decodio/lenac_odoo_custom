@@ -13,6 +13,8 @@
     'license': '',
     'depends': ['website_portal',],
     'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
         'views/website_intranet_views.xml',
         'views/vl_news_articles.xml',
     ],
