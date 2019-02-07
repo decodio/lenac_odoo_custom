@@ -7,6 +7,7 @@
             <field name="arch" type="xml">
                 <search string="Software name">
                     <field name="name"/>
+                    <field name="sw_inventory_number"/>
                     <field name="sw_version"/>
                     <field name="sw_purchase_date"/>
                     <field name="sw_type"/>
@@ -20,6 +21,7 @@
             <field name="arch" type="xml">
                 <tree string="Software name">
                     <field name="name"/>
+                    <field name="sw_inventory_number"/>
                     <field name="sw_version"/>
                     <field name="sw_purchase_date"/>
                     <field name="sw_type"/>
@@ -38,6 +40,7 @@
                         <group string = "Software details">
                             <group>
                                     <field name="name"/>
+                                    <field name="sw_inventory_number"/>
                                     <field name="sw_type"/>
                                     <field name="sw_vendor"/>
                                     <field name="sw_version"/>
@@ -75,6 +78,7 @@
             name="Allowed software"
             parent="maintenance.menu_maintenance_configuration"
             action="maintenance_allowed_os_action"
+            groups="maintenance.group_equipment_manager"
             sequence="200"/>
 
     </data>

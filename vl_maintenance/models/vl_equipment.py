@@ -176,6 +176,13 @@ class MaintenanceEquipment(models.Model):
     #next_action_dates = fields.Datetime('project.issue', related='preventive_issue_ids.next_action_date', compute='_compute_next_issue',
     #                                    string='Date of the next preventive issue', store=True)
 
+    @api.onchange('periods')
+    def _onchange_next_action_dates(self):
+        """Recompute the adjusted value after the standard computation."""
+        res = super(MaintenanceEquipment, self)._onchange_next_action_dates()
+        self._compute_next_issue()
+        return res
+
     @api.depends('preventive_issue_ids.period', 'preventive_issue_ids.date', 'preventive_issue_ids.date_done_iss')
     def _compute_next_issue(self):
 
@@ -251,6 +258,7 @@ class MaintenanceAllowedOs(models.Model):
     _description = 'Installed software'
 
     name = fields.Char(string="Software name", required='True')
+    sw_inventory_number = fields.Char(string="Inventory number")
     sw_vendor = fields.Char(string="Software vendor")
     sw_version = fields.Char(string="Software version")
     sw_licence = fields.Selection(selection=[('free', 'Free'), ('personal', 'Personal use'),

@@ -294,6 +294,7 @@
             name="Stages"
             parent="maintenance.menu_maintenance_stage_configuration"
             action="vl_maintenance_stage_act"
+            groups="maintenance.group_equipment_manager"
             sequence="100"/>
 
         <record id="project_issue_lenac_inherit_form_view" model="ir.ui.view">
