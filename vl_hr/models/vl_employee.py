@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import models, fields
+from odoo import models, fields, _
 
 
 class HrEmployee(models.Model):
@@ -22,7 +22,8 @@ class HrEmployee(models.Model):
 
 
 class HrDepartment(models.Model):
-    _inherit = 'hr.department'
+    _name = 'hr.department'
+    _inherit = ['hr.department', 'website.published.mixin']
 
     department_code = fields.Char(string="Department Code", required=True)
 
@@ -31,4 +32,6 @@ class HrDepartment(models.Model):
                                                         )
 
     employee_id = fields.One2many('hr.employee', 'department_id')
+
+    website_published = fields.Boolean(default=False)
 
