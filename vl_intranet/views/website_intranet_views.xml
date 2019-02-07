@@ -2,7 +2,7 @@
 <odoo>
     <template id="portal_layout" name="Portal layout: News menu entery" inherit_id="website_portal.portal_layout" priority="60">
         <xpath expr="//ul[contains(@class,'o_portal_submenu')]" position="inside">
-            <li t-att-class="page_name == 'news' and 'active' or ''" groups="base.group_portal">
+            <li t-att-class="page_name == 'news' and 'active' or ''" groups="vl_intranet.group_intranet_user">
                  <a href="/my/news">News</a>
             </li>
         </xpath>
@@ -10,7 +10,7 @@
 
     <template id="vl_article" name="News" page="True">
         <t t-call="website_portal.portal_layout">
-            <h3 class="page-header" groups="base.group_portal">
+            <h3 class="page-header" groups="vl_intranet.group_intranet_user">
                 News
                 <div class="dropdown pull-right mr8">
                     <button id="sortby" class="btn btn-default" type="button" data-toggle="dropdown">
@@ -24,7 +24,7 @@
                     </ul>
                 </div>
             </h3>
-            <div id="wrap" groups="base.group_portal">
+            <div id="wrap" groups="vl_intranet.group_intranet_user">
                 <div class="container">
                     <div class="oe_structure">
                         <div class="row">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div t-if="pager" class="o_portal_pager text-center" groups="base.group_portal">
+            <div t-if="pager" class="o_portal_pager text-center" groups="vl_intranet.group_intranet_user">
                 <t t-call="website.pager"/>
             </div>
         </t>
@@ -66,7 +66,7 @@
 
     <template id="daily_planing_attachment_link" inherit_id="website_portal.portal_layout" customize_show="True">
         <xpath expr="//div[@class='o_my_details']" position="before">
-            <div class="o_my_details" groups="base.group_portal">
+            <div class="o_my_details" groups="vl_intranet.group_intranet_user">
                 <h3 class="page-header">Information</h3>
                 <a href="http://172.16.1.39:8080/bireports11/#!" style="float:left;" class="btn btn-default btn-xs">Employee attendance status</a>
                 <br/>
@@ -85,7 +85,7 @@
             </div>
         </xpath>
         <xpath expr="//div[@class='o_my_archives']" position="before">
-            <div class="o_my_archives" groups="base.group_portal">
+            <div class="o_my_archives" groups="vl_intranet.group_intranet_user">
                 <h3 class="page-header">Meteo stations</h3>
                 <a href="http://172.16.1.177:8080/sites/meteo/stationone/index.html" style="float:left;" class="btn btn-default btn-xs">Meteo station DOCK 5</a>
                 <br/>
