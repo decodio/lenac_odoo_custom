@@ -2,7 +2,7 @@
 <odoo>
     <template id="portal_layout" name="Portal layout: Phonebook menu entery" inherit_id="website_portal.portal_layout" priority="40">
         <xpath expr="//ul[contains(@class,'o_portal_submenu')]" position="inside">
-            <li t-att-class="page_name == 'phonebook' and 'active' or ''">
+            <li t-att-class="page_name == 'phonebook' and 'active' or ''" groups="vl_intranet.group_intranet_user">
                  <a href="/my/phonebook">Phonebook</a>
             </li>
         </xpath>
@@ -14,27 +14,38 @@
                 <div class="container">
                     <div class="oe_structure">
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12" groups="vl_intranet.group_intranet_user">
                                 <center>
                                     <h2>Contact information</h2>
                                 </center>
                                 <table class="table-striped table">
                                     <tr t-foreach="departments" t-as="departments">
+                                        <td colspan="6"><h3><span t-esc="departments.name"/></h3></td>
                                         <tr>
-                                            <td><h4><span t-esc="departments.name"/></h4></td>
-                                            <td><h4>Phone</h4></td>
-                                            <td><h4>Phone Short</h4></td>
-                                            <td><h4>Mobile Phone</h4></td>
-                                            <td><h4>Mobile Phone Short</h4></td>
-                                            <td><h4>Work Email</h4></td>
+                                            <td><h5>Name / <br/> Location</h5></td>
+                                            <!--<td><h5>Location</h5></td>-->
+                                            <td style="padding-right: 10px;"><h5>Phone</h5></td>
+                                            <td style="padding-right: 10px;"><h5>Intercom</h5></td>
+                                            <td style="padding-right: 10px;"><h5>Mobile</h5></td>
+                                            <td style="padding-right: 10px;"><h5>Pager</h5></td>
+                                            <td style="padding-right: 10px;"><h5>Email</h5></td>
                                         </tr>
                                         <tr t-foreach="departments.employee_id" t-as="l">
-                                          <td><span t-esc="l.name"/></td>
-                                          <td><span t-esc="l.work_phone"/></td>
-                                          <td><span t-esc="l.work_phone_short"/></td>
-                                          <td><span t-esc="l.mobile_phone"/></td>
-                                          <td><span t-esc="l.mobile_phone_short"/></td>
-                                          <td><span t-esc="l.work_email"/></td>
+                                          <td style="padding-right: 10px;"><span t-esc="l.name"/> / <br/>
+                                          <span t-esc="l.work_location"/></td>
+                                          <td style="padding-right: 10px;"><span t-esc="l.work_phone"/></td>
+                                          <td style="padding-right: 10px;"><span t-esc="l.work_phone_short"/></td>
+                                          <td style="padding-right: 10px;"><span t-esc="l.mobile_phone"/></td>
+                                          <td style="padding-right: 10px;"><span t-esc="l.mobile_phone_short"/></td>
+                                          <td style="padding-right: 10px;"><span t-esc="l.work_email"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><br/><br/></td>
+                                            <td><br/><br/></td>
+                                            <td><br/><br/></td>
+                                            <td><br/><br/></td>
+                                            <td><br/><br/></td>
+                                            <td><br/><br/></td>
                                         </tr>
                                     </tr>
                                 </table>

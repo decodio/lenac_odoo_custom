@@ -16,6 +16,7 @@
         'views/pages.xml',
         'views/assets.xml',
         'views/snippets.xml',
+        #'views/website_ict_views.xml',
     ],
     'summary': 'Tema za B2B portal',
     'description': '',

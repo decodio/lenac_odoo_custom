@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <template id="portal_layout" name="Portal layout: Syndicate menu entery" inherit_id="website_portal.portal_layout" priority="70">
+        <xpath expr="//ul[contains(@class,'o_portal_submenu')]" position="inside">
+            <li t-att-class="page_name == 'syndicate' and 'active' or ''" groups="vl_intranet.group_intranet_user">
+                 <a href="/my/news">Syndicate news</a>
+            </li>
+
+        </xpath>
+    </template>
+
+    <template id="vl_asyndicate" name="Syndicate news" page="True">
+        <t t-call="website_portal.portal_layout">
+            <h3 class="page-header" groups="vl_intranet.group_intranet_user">
+                News
+                <div class="dropdown pull-right mr8">
+                    <button id="sortby" class="btn btn-default" type="button" data-toggle="dropdown">
+                        <span class="fa fa-sort" /> <span t-esc="sortings.get(sortby, {}).get('label', 'Newest')"/>
+                        <span class="caret"></span>
+                    </button>
+                     <ul class="dropdown-menu" aria-labelledby="sortby">
+                        <li t-foreach="sortings" t-as="option" t-att-class="sortby == option and 'active'">
+                            <a t-att-href="default_url + '?' + keep_query('date_begin', 'date_end', sortby=option)"><span t-esc="sortings.get(option).get('label')"/></a>
+                        </li>
+                    </ul>
+                </div>
+            </h3>
+            <div id="wrap" groups="vl_intranet.group_intranet_user">
+                <div class="container">
+                    <div class="oe_structure">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table>
+                                  <tr t-foreach="article2" t-as="l">
+                                      <tr>
+                                          <td>
+                                            <h3><span t-esc="l.name"/></h3>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <span t-esc="l.article_date"/>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <span t-esc="l.article_author.name"/>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <span t-raw="l.article_text" widget="html"/>
+                                          </td>
+                                      </tr>
+                                  </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div t-if="pager" class="o_portal_pager text-center" groups="vl_intranet.group_intranet_user">
+                <t t-call="website.pager"/>
+            </div>
+        </t>
+    </template>
+</odoo>

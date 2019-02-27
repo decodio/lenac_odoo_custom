@@ -26,11 +26,11 @@ class WebsiteAccount(website_account):
     @http.route(['/my/phonebook', '/my/phonebook/page/<int:page>'], type='http', auth="user", website=True)
     def render_phonebook(self, **kwargs):
         values = self._prepare_portal_layout_values()
-        departments = http.request.env['hr.department'].sudo().search([])
+        departments = http.request.env['hr.department'].sudo().search([('website_published', '=', True)])
         employees = http.request.env['hr.employee'].sudo().search([])
 
         values.update({'departments': departments,
-            'employees': employees})
+                       'employees': employees})
 
         return http.request.render('vl_hr.vl_phonebook', values, {
         })

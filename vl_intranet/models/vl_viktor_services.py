@@ -14,8 +14,8 @@ from odoo import models, fields, _
 #    portal_articles = fields.Many2one('website.portal.article')
 
 
-class WebsitePortalArticle(models.Model):
-    _name = 'website.portal.article'
+class WebsitePortalVS(models.Model):
+    _name = 'website.portal.vs'
     _inherit = 'website.published.mixin'
 
     name = fields.Char('Article title', help='Name your article', required=True)
@@ -32,9 +32,3 @@ class WebsitePortalArticle(models.Model):
     )
 
     website_published = fields.Boolean(default=False)
-
-
-class WebsiteIctLinks(models.Model):
-    _name = 'website.ict.links'
-
-    name = fields.Char('Link name')
