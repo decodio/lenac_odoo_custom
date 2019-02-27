@@ -20,4 +20,18 @@
       <field name="category_id" ref="vl_intranet.module_management"/>
     </record>
 
+    <record id="group_intranet_board" model="res.groups">
+      <field name="name">Intranet Board</field>
+      <field name="implied_ids" eval="[(4, ref('vl_intranet.group_intranet_manager'))]"/>
+      <field name="users" eval="[(4, ref('base.user_root'))]"/>
+      <field name="category_id" ref="vl_intranet.module_management"/>
+    </record>
+
+     <record id="group_intranet_vs" model="res.groups">
+      <field name="name">Intranet Viktor Servisi</field>
+      <field name="implied_ids" eval="[(4, ref('vl_intranet.group_intranet_user'))]"/>
+      <field name="users" eval="[(4, ref('base.user_root'))]"/>
+      <field name="category_id" ref="vl_intranet.module_management"/>
+    </record>
+
 </odoo>

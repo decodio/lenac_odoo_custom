@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
+    <data noupdate="0">
 
         <!--<record model="ir.ui.view" id="vl_news_search_view">
             <field name="name">News</field>
@@ -39,9 +39,9 @@
             </field>
         </record>-->
 
-        <record model="ir.ui.view" id="vl_article_search_view">
+        <record model="ir.ui.view" id="vl_articles_search_view">
             <field name="name">Article</field>
-            <field name="model">website.portal.article</field>
+            <field name="model">website.portal.vs</field>
             <field name="arch" type="xml">
                 <search string="News">
                     <field name="name"/>
@@ -51,9 +51,9 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="vl_article_tree_view">
+        <record model="ir.ui.view" id="vl_articles_tree_view">
             <field name="name">News</field>
-            <field name="model">website.portal.article</field>
+            <field name="model">website.portal.vs</field>
             <field name="arch" type="xml">
                 <tree string="News">
                     <field name="name"/>
@@ -63,9 +63,9 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="vl_article_form_view">
-            <field name="name">website.portal.article</field>
-            <field name="model">website.portal.article</field>
+        <record model="ir.ui.view" id="vl_articles_form_view">
+            <field name="name">website.portal.vs</field>
+            <field name="model">website.portal.vs</field>
             <field name="arch" type="xml">
                 <form string="News">
                     <header>
@@ -98,9 +98,9 @@
             </field>
         </record>-->
 
-         <record model="ir.actions.act_window" id="vl_article_action">
+         <record model="ir.actions.act_window" id="vl_viktors_action">
             <field name="name">Article</field>
-            <field name="res_model">website.portal.article</field>
+            <field name="res_model">website.portal.vs</field>
             <field name="view_type">form</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
@@ -109,10 +109,10 @@
             </field>
         </record>
 
-        <menuitem id="menu_portal_news_root"
-                  name="Portal content"
-                  groups="vl_intranet.group_intranet_manager"
-                  sequence="1"/>
+        <menuitem id="menu_viktors_root"
+                  name="Viktor Servisi"
+                  groups="vl_intranet.group_intranet_vs,vl_intranet.group_intranet_manager"
+                  sequence="2"/>
 
         <!--<menuitem id="menu_vl_news"
                   name="News"
@@ -120,11 +120,11 @@
                   action="vl_news_action"
                   sequence="1"/>-->
 
-         <menuitem id="menu_vl_article"
-                  name="Articles"
-                  parent="menu_portal_news_root"
-                  action="vl_article_action"
-                  groups="vl_intranet.group_intranet_manager"
+         <menuitem id="menu_vl_viktor_servisi"
+                  name="Articles VS"
+                  parent="menu_viktors_root"
+                  action="vl_viktors_action"
+                  groups="vl_intranet.group_intranet_vs,vl_intranet.group_intranet_manager"
                   sequence="1"/>
 
    </data>
