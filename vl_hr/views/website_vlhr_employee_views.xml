@@ -18,17 +18,17 @@
                                 <center>
                                     <h2>Contact information</h2>
                                 </center>
-                                <table>
+                                <table class="table-striped table">
                                     <tr t-foreach="departments" t-as="departments">
                                         <td colspan="6"><h3><span t-esc="departments.name"/></h3></td>
                                         <tr>
                                             <td><h5>Name / <br/> Location</h5></td>
                                             <!--<td><h5>Location</h5></td>-->
                                             <td style="padding-right: 10px;"><h5>Phone</h5></td>
-                                            <td style="padding-right: 10px;"><h5>Phone Short</h5></td>
-                                            <td style="padding-right: 10px;"><h5>Mobile Phone</h5></td>
-                                            <td style="padding-right: 10px;"><h5>Mobile Phone Short</h5></td>
-                                            <td style="padding-right: 10px;"><h5>Work Email</h5></td>
+                                            <td style="padding-right: 10px;"><h5>Intercom</h5></td>
+                                            <td style="padding-right: 10px;"><h5>Mobile</h5></td>
+                                            <td style="padding-right: 10px;"><h5>Pager</h5></td>
+                                            <td style="padding-right: 10px;"><h5>Email</h5></td>
                                         </tr>
                                         <tr t-foreach="departments.employee_id" t-as="l">
                                           <td style="padding-right: 10px;"><span t-esc="l.name"/> / <br/>
@@ -40,6 +40,11 @@
                                           <td style="padding-right: 10px;"><span t-esc="l.work_email"/></td>
                                         </tr>
                                         <tr>
+                                            <td><br/><br/></td>
+                                            <td><br/><br/></td>
+                                            <td><br/><br/></td>
+                                            <td><br/><br/></td>
+                                            <td><br/><br/></td>
                                             <td><br/><br/></td>
                                         </tr>
                                     </tr>
