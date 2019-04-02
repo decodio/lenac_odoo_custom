@@ -57,6 +57,7 @@
 
         <menuitem id="menu_palumbo_exchange_root"
                   name="Palumbo Lenac Exchange"
+                  groups="vl_palumbo_exchange.group_exchange_user"
                   sequence="1"/>
 
 
@@ -64,6 +65,7 @@
                   name="Exchange Folder"
                   parent="menu_palumbo_exchange_root"
                   action="vl_palumbo_exchange_action"
+                  groups="vl_palumbo_exchange.group_exchange_user"
                   sequence="1"/>
 
    </data>
