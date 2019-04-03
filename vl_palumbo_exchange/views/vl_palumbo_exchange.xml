@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record model="ir.ui.view" id="vl_palumbo_exchange_search_view">
+            <field name="name">Palumbo exchange</field>
+            <field name="model">vl.palumbo.exchange</field>
+            <field name="arch" type="xml">
+                <search string="Exchange folder">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="vl_palumbo_exchange_tree_view">
+            <field name="name">Palumbo exchange</field>
+            <field name="model">vl.palumbo.exchange</field>
+            <field name="arch" type="xml">
+                <tree string="Exchange folder">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="vl_palumbo_exchange_form_view">
+            <field name="name">vl.palumbo.exchange</field>
+            <field name="model">vl.palumbo.exchange</field>
+            <field name="arch" type="xml">
+                <form string="Exchange folder">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <notebook>
+                            <page name="page_documents" groups="base.group_user" string="Documents">
+                                <field name="cmis_folder"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+         <record model="ir.actions.act_window" id="vl_palumbo_exchange_action">
+            <field name="name">Exchange folder</field>
+            <field name="res_model">vl.palumbo.exchange</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new Exchange folder.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_palumbo_exchange_root"
+                  name="Palumbo Lenac Exchange"
+                  groups="vl_palumbo_exchange.group_exchange_user"
+                  sequence="1"/>
+
+
+         <menuitem id="menu_vl_palumbo_exchane"
+                  name="Exchange Folder"
+                  parent="menu_palumbo_exchange_root"
+                  action="vl_palumbo_exchange_action"
+                  groups="vl_palumbo_exchange.group_exchange_user"
+                  sequence="1"/>
+
+   </data>
+</odoo>
