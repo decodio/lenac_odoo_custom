@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record model="ir.ui.view" id="maintenance_ad_groups_search_view">
+            <field name="name">AD User groups</field>
+            <field name="model">maintenance.ad.groups</field>
+            <field name="arch" type="xml">
+                <search string="AD User groups">
+                    <field name="name"/>
+                    <field name="allowed_users"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_ad_groups_view_tree" >
+            <field name="name">AD User groups</field>
+            <field name="model">maintenance.ad.groups</field>
+            <field name="arch" type="xml">
+                <tree string="Software name">
+                    <field name="name"/>
+                    <field name="allowed_users"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_ad_groups_view_form">
+            <field name="name">maintenance.ad.groups</field>
+            <field name="model">maintenance.ad.groups</field>
+            <field name="arch" type="xml">
+                <form string="AD User groups">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string = "AD User group details">
+                            <group>
+                                    <field name="name"/>
+                                    <field name="allowed_users"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="maintenance_ad_groups_action">
+            <field name="name">AD User groups</field>
+            <field name="res_model">maintenance.ad.groups</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new AD user group.
+              </p>
+            </field>
+        </record>
+
+        <menuitem
+            id="menu_maintenance_ad_groups"
+            name="AD User groups"
+            parent="maintenance.menu_maintenance_configuration"
+            action="maintenance_ad_groups_action"
+            groups="maintenance.group_equipment_manager"
+            sequence="200"/>
+
+    </data>
+</odoo>

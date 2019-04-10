@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="maintenance_network_resources_search_view">
+            <field name="name">Shared network resources</field>
+            <field name="model">maintenance.network.resources</field>
+            <field name="arch" type="xml">
+                <search string="Resource name">
+                    <field name="name"/>
+                    <field name="parent_equipment_id" string="Allowed equipment"/>
+                    <field name="user_groups"/>
+                    <!--<field name="allowed_users"/>-->
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_network_resources_view_tree" >
+            <field name="name">Shared network resources</field>
+            <field name="model">maintenance.network.resources</field>
+            <field name="arch" type="xml">
+                <tree string="Resource name">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_network_resources_view_form">
+            <field name="name">maintenance.network.resources</field>
+            <field name="model">maintenance.network.resources</field>
+            <field name="arch" type="xml">
+                <form string="Shared network resource">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string = "Resource details">
+                            <group>
+                                <field name="name"/>
+                                <field name="parent_equipment_id" string="Allowed equipment"/>
+                                <field name="user_groups"/>
+                                <!--<field name="allowed_users"/>-->
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="maintenance_network_resources_action">
+            <field name="name">Shared network resources</field>
+            <field name="res_model">maintenance.network.resources</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new network resource.
+              </p>
+            </field>
+        </record>
+
+        <menuitem
+            id="menu_maintenance_network_resources"
+            name="Shared network resources"
+            parent="maintenance.menu_maintenance_configuration"
+            action="maintenance_network_resources_action"
+            groups="maintenance.group_equipment_manager"
+            sequence="200"/>
+    </data>
+</odoo>

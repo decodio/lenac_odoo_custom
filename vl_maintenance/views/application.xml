@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="maintenance_application_search_view">
+            <field name="name">Application inventory</field>
+            <field name="model">maintenance.application</field>
+            <field name="arch" type="xml">
+                <search string="Database inventory">
+                    <field name="name"/>
+                    <field name="application_menu"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_application_view_tree" >
+            <field name="name">Application inventory</field>
+            <field name="model">maintenance.application</field>
+            <field name="arch" type="xml">
+                <tree string="Database inventory">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance.application_view_form">
+            <field name="name">maintenance.application</field>
+            <field name="model">maintenance.application</field>
+            <field name="arch" type="xml">
+                <form string="Application details">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string = "Application details">
+                            <group>
+                                    <field name="name"/>
+                                    <field name="application_menu"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="maintenance_application_action">
+            <field name="name">Aplication</field>
+            <field name="res_model">maintenance.application</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new AD user group.
+              </p>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_menu_items_search_view">
+            <field name="name">Menu inventory</field>
+            <field name="model">maintenance.menu.items</field>
+            <field name="arch" type="xml">
+                <search string="Menu inventory">
+                    <field name="name"/>
+                    <field name="allowed_groups"/>
+                    <field name="allowed_users"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_menu_items_view_tree" >
+            <field name="name">Menu inventory</field>
+            <field name="model">maintenance.menu.items</field>
+            <field name="arch" type="xml">
+                <tree string="Menu inventory">
+                    <field name="name"/>
+                    <field name="application"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_menu_items_view_form">
+            <field name="name">maintenance.menu.items</field>
+            <field name="model">maintenance.menu.items</field>
+            <field name="arch" type="xml">
+                <form string="Menu details">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string = "Menu details">
+                            <group>
+                                    <field name="name"/>
+                                    <field name="allowed_groups"/>
+                                    <field name="allowed_users"/>
+                                    <field name="application"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="maintenance_menu_items_action">
+            <field name="name">Menu items</field>
+            <field name="res_model">maintenance.menu.items</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new Menu item.
+              </p>
+            </field>
+        </record>
+
+         <record model="ir.ui.view" id="maintenance_application_groups_search_view">
+            <field name="name">Groups inventory</field>
+            <field name="model">maintenance.application.groups</field>
+            <field name="arch" type="xml">
+                <search string="Groups inventory">
+                    <field name="name"/>
+                    <field name="allowed_users"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_application_groups_view_tree" >
+            <field name="name">Groups inventory</field>
+            <field name="model">maintenance.application.groups</field>
+            <field name="arch" type="xml">
+                <tree string="Menu inventory">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_application_groups_view_form">
+            <field name="name">maintenance.application.groups</field>
+            <field name="model">maintenance.application.groups</field>
+            <field name="arch" type="xml">
+                <form string="Group details">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string = "Group details">
+                            <group>
+                                    <field name="name"/>
+                                    <field name="allowed_users"/>
+                                    <field name="allowed_create"/>
+                                    <field name="allowed_edit"/>
+                                    <field name="allowed_read"/>
+                                    <field name="allowed_delete"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="maintenance_application_groups_action">
+            <field name="name">Application groups</field>
+            <field name="res_model">maintenance.application.groups</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new group.
+              </p>
+            </field>
+        </record>
+
+        <menuitem
+        id="menu_m_application"
+        name="Application Inventory"
+        parent="menu_m_data"
+        groups="maintenance.group_equipment_manager"
+        sequence="2"/>
+
+        <menuitem
+            id="menu_maintenance_application"
+            name="Application inventory"
+            parent="menu_m_application"
+            action="maintenance_application_action"
+            groups="maintenance.group_equipment_manager"
+            sequence="10"/>
+
+        <menuitem
+            id="menu_maintenance_menu_items"
+            name="Menu item inventory"
+            parent="menu_m_application"
+            action="maintenance_menu_items_action"
+            groups="maintenance.group_equipment_manager"
+            sequence="20"/>
+
+         <menuitem
+            id="menu_maintenance_application_groups"
+            name="Groups inventory"
+            parent="menu_m_application"
+            action="maintenance_application_groups_action"
+            groups="maintenance.group_equipment_manager"
+            sequence="30"/>
+
+    </data>
+</odoo>

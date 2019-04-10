@@ -28,6 +28,10 @@
             'views/vl_maintenance_views.xml',
             'views/allowed_os.xml',
             'views/hardware.xml',
+            'views/network_resources.xml',
+            'views/ad_groups.xml',
+            'views/database.xml',
+            'views/application.xml'
             ],
     'demo': [],
     'installable': True,

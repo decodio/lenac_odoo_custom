@@ -56,6 +56,13 @@
                             </group>
                         </group>
                     </page>
+                    <page string="Network resources" name="general_description" attrs="{'invisible': ['|', ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', False)]}">
+                        <group string="Network resources">
+                            <group>
+                                <field name="network_resources"/>
+                            </group>
+                        </group>
+                    </page>
                     <page string="Issues" name="issues" >
                         <group string="Reported issues">
                             <field name="issue_ids" nolabel="1" context="{'form_view_ref': 'sp_viktor_lenac.project_issue_lenac_form_view'}">
@@ -76,8 +83,8 @@
                                         <field name="stage_id"/>
                                         <field name="user_id"/>
                                         <field name="date"/>
-                                        <field name="period"/>
-                                        <field name="next_action_date"/>
+                                        <!--<field name="period"/>-->
+                                        <!--<field name="next_action_date"/>-->
                                     </tree>
                                 </field>
                         </group>
@@ -93,6 +100,26 @@
                         </group>
                     </page>
                 </notebook>
+                <notebook>
+                    <page string="Maintenance issues" name="maintenance_issue">
+                        <group>
+                            <field name="period_day"/>
+                            <field name="period_week"/>
+                            <field name="period_month"/>
+                            <field name="period_quater"/>
+                            <field name="period_half"/>
+                            <field name="period_year"/>
+                        </group>
+                        <group>
+                            <field name="next_action_date_day"/>
+                            <field name="next_action_date_week"/>
+                            <field name="next_action_date_month"/>
+                            <field name="next_action_date_quater"/>
+                            <field name="next_action_date_half"/>
+                            <field name="next_action_date_year"/>
+                        </group>
+                    </page>
+                </notebook>
             </field>
         </record>
 
@@ -102,16 +129,16 @@
             <field name="inherit_id" ref="maintenance.hr_equipment_view_kanban"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='department_id']" position="after">
-                    <field name="next_action_dates"/>
+                    <!--<field name="next_action_dates"/>-->
                     <field name="issues_open_count"/>
                 </xpath>
                 <div class="oe_kanban_content" tooltip="kanban-tooltip">
                     <div class="oe_kanban_footer_left mt4 label label-danger" t-if="record.issues_open_count.raw_value" >
                         <t t-raw="record.issues_open_count.raw_value"/> Issues
                     </div>
-                    <div class="oe_kanban_footer_left mt4 label label-default" t-if="record.next_action_dates.raw_value" >
+                    <!--<div class="oe_kanban_footer_left mt4 label label-default" t-if="record.next_action_dates.raw_value" >
                         <t t-raw="moment(record.next_action_dates.raw_value).format('MMMM Do')"/>
-                    </div>
+                    </div>-->
                 </div>
             </field>
         </record>
@@ -309,8 +336,8 @@
                     <page string="Maintenance details" name="general_description" attrs="{'invisible': ['|', ('equipment_id', '=', False)]}">
                          <group nolabel="1">
                             <group>
-                                <field name="period"/>
-                                <field name="next_action_date" readonly="True" string="Next issue"/>
+                                <!--<field name="period"/>-->
+                                <!--<field name="next_action_date" readonly="True" string="Next issue"/>-->
                                 <field name="schedule_date"/>
                                 <field name="issue_type" readonly="True"/>
                                 <field name="item_specification"/>
