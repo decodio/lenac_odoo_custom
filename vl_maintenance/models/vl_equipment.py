@@ -3,8 +3,9 @@
 # Copyright (C) 2018 Vedran Terihaj
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models, tools, _
+from odoo import api, fields, models, _
 from datetime import date, datetime, timedelta
+
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -191,9 +192,17 @@ class MaintenanceEquipment(models.Model):
                                            string='Date of the next preventive issue', readonly=True, store=True,
                                            track_visibility='onchange')
 
-    #next_action_dates = fields.Datetime(compute='_compute_next_issue_day',
-    #                                    string='Date of the next preventive issue', readonly=True, store=True,
-    #                                    track_visibility='onchange')
+    next_action_dates = fields.Datetime(compute='_compute_next_issue_day',
+                                        string='Date of the next preventive issue', readonly=True, store=True,
+                                        track_visibility='onchange')
+
+    description_day = fields.Text('What needs to be maintained?')
+    description_week = fields.Text('What needs to be maintained?')
+    description_month = fields.Text('What needs to be maintained?')
+    description_quater = fields.Text('What needs to be maintained?')
+    description_half = fields.Text('What needs to be maintained?')
+    description_year = fields.Text('What needs to be maintained?')
+
 
     @api.depends('period_day', 'preventive_issue_ids.date', 'preventive_issue_ids.date_done_iss')
     def _compute_next_issue_day(self):
@@ -203,13 +212,13 @@ class MaintenanceEquipment(models.Model):
             next_issue_todo = self.env['project.issue'].search([
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done')])
-            #                ('date_done_iss', '=', False)], order="date asc", limit=1)
+                ('state', '!=', 'done'),
+                ('date_done_iss', '=', False)], order="date asc", limit=1)
             last_issue_done = self.env['project.issue'].search([
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done')])
-            #                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
+                ('state', '=', 'done'),
+                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
             if next_issue_todo and last_issue_done:
                 next_date = next_issue_todo.date
                 date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
@@ -247,13 +256,13 @@ class MaintenanceEquipment(models.Model):
             next_issue_todo = self.env['project.issue'].search([
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done')])
-            #                ('date_done_iss', '=', False)], order="date asc", limit=1)
+                ('state', '!=', 'done'),
+                ('date_done_iss', '=', False)], order="date asc", limit=1)
             last_issue_done = self.env['project.issue'].search([
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done')])
-            #                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
+                ('state', '=', 'done'),
+                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
             if next_issue_todo and last_issue_done:
                 next_date = next_issue_todo.date
                 date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
@@ -294,13 +303,13 @@ class MaintenanceEquipment(models.Model):
             next_issue_todo = self.env['project.issue'].search([
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done')])
-            #                ('date_done_iss', '=', False)], order="date asc", limit=1)
+                ('state', '!=', 'done'),
+                ('date_done_iss', '=', False)], order="date asc", limit=1)
             last_issue_done = self.env['project.issue'].search([
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done')])
-            #                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
+                ('state', '=', 'done'),
+                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
             if next_issue_todo and last_issue_done:
                 next_date = next_issue_todo.date
                 date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
@@ -341,13 +350,13 @@ class MaintenanceEquipment(models.Model):
             next_issue_todo = self.env['project.issue'].search([
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done')])
-            #                ('date_done_iss', '=', False)], order="date asc", limit=1)
+                ('state', '!=', 'done'),
+                ('date_done_iss', '=', False)], order="date asc", limit=1)
             last_issue_done = self.env['project.issue'].search([
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done')])
-            #                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
+                ('state', '=', 'done'),
+                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
             if next_issue_todo and last_issue_done:
                 next_date = next_issue_todo.date
                 date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
@@ -388,13 +397,13 @@ class MaintenanceEquipment(models.Model):
             next_issue_todo = self.env['project.issue'].search([
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done')])
-            #                ('date_done_iss', '=', False)], order="date asc", limit=1)
+                ('state', '!=', 'done'),
+                ('date_done_iss', '=', False)], order="date asc", limit=1)
             last_issue_done = self.env['project.issue'].search([
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done')])
-            #                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
+                ('state', '=', 'done'),
+                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
             if next_issue_todo and last_issue_done:
                 next_date = next_issue_todo.date
                 date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
@@ -435,13 +444,13 @@ class MaintenanceEquipment(models.Model):
             next_issue_todo = self.env['project.issue'].search([
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done')])
-            #                ('date_done_iss', '=', False)], order="date asc", limit=1)
+                ('state', '!=', 'done'),
+                ('date_done_iss', '=', False)], order="date asc", limit=1)
             last_issue_done = self.env['project.issue'].search([
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done')])
-            #                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
+                ('state', '=', 'done'),
+                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
             if next_issue_todo and last_issue_done:
                 next_date = next_issue_todo.date
                 date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
@@ -474,16 +483,76 @@ class MaintenanceEquipment(models.Model):
 
             equipment.next_action_date_year = next_date
 
-    def _create_new_issue(self, date):
+    @api.model
+    def _create_new_issue_day(self, date):
         self.ensure_one()
         self.env['project.issue'].create({
             'name': _('Preventive issue - %s') % self.name,
             'date': date,
-            #'schedule_date': date,
-            #'category_id': self.category_id.id,
             'equipment_id': self.id,
             'issue_type': 'preventive',
-            #'user_id': self.technician_user_id.id,
+            'description': self.description_day,
+            #'issuer_id.name': 'Administrator',
+        })
+
+    @api.model
+    def _create_new_issue_week(self, date):
+        self.ensure_one()
+        self.env['project.issue'].create({
+            'name': _('Preventive issue - %s') % self.name,
+            'date': date,
+            'equipment_id': self.id,
+            'issue_type': 'preventive',
+            'description': self.description_week,
+            # 'issuer_id.name': 'Administrator',
+        })
+
+    @api.model
+    def _create_new_issue_month(self, date):
+        self.ensure_one()
+        self.env['project.issue'].create({
+            'name': _('Preventive issue - %s') % self.name,
+            'date': date,
+            'equipment_id': self.id,
+            'issue_type': 'preventive',
+            'description': self.description_month,
+            # 'issuer_id.name': 'Administrator',
+        })
+
+    @api.model
+    def _create_new_issue_quater(self, date):
+        self.ensure_one()
+        self.env['project.issue'].create({
+            'name': _('Preventive issue - %s') % self.name,
+            'date': date,
+            'equipment_id': self.id,
+            'issue_type': 'preventive',
+            'description': self.description_quater,
+            # 'issuer_id.name': 'Administrator',
+        })
+
+    @api.model
+    def _create_new_issue_half(self, date):
+        self.ensure_one()
+        self.env['project.issue'].create({
+            'name': _('Preventive issue - %s') % self.name,
+            'date': date,
+            'equipment_id': self.id,
+            'issue_type': 'preventive',
+            'description': self.description_half,
+            # 'issuer_id.name': 'Administrator',
+        })
+
+    @api.model
+    def _create_new_issue_year(self, date):
+        self.ensure_one()
+        self.env['project.issue'].create({
+            'name': _('Preventive issue - %s') % self.name,
+            'date': date,
+            'equipment_id': self.id,
+            'issue_type': 'preventive',
+            'description': self.description_year,
+            # 'issuer_id.name': 'Administrator',
         })
 
     @api.model
@@ -492,12 +561,12 @@ class MaintenanceEquipment(models.Model):
             Generates issue request on the next_action_date or today if none exists
         """
         for equipment in self.search([('period_day', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state.done', '=', False),
+            next_requests = self.env['project.issue'].search([('state', '!=', 'done'),
                                                               ('equipment_id', '=', equipment.id),
                                                               ('issue_type', '=', 'preventive'),
                                                               ('date', '=', equipment.next_action_date_day)])
             if not next_requests:
-                equipment._create_new_issue(equipment.next_action_date_day)
+                equipment._create_new_issue_day(equipment.next_action_date_day)
 
     @api.model
     def _cron_generate_issue_week(self):
@@ -505,12 +574,12 @@ class MaintenanceEquipment(models.Model):
             Generates issue request on the next_action_date or today if none exists
         """
         for equipment in self.search([('period_week', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state.done', '=', False),
+            next_requests = self.env['project.issue'].search([('state', '!=', 'done'),
                                                               ('equipment_id', '=', equipment.id),
                                                               ('issue_type', '=', 'preventive'),
                                                               ('date', '=', equipment.next_action_date_week)])
             if not next_requests:
-                equipment._create_new_issue(equipment.next_action_date_week)
+                equipment._create_new_issue_week(equipment.next_action_date_week)
 
     @api.model
     def _cron_generate_issue_month(self):
@@ -518,12 +587,12 @@ class MaintenanceEquipment(models.Model):
             Generates issue request on the next_action_date or today if none exists
         """
         for equipment in self.search([('period_month', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state.done', '=', False),
+            next_requests = self.env['project.issue'].search([('state', '!=', 'done'),
                                                               ('equipment_id', '=', equipment.id),
                                                               ('issue_type', '=', 'preventive'),
                                                               ('date', '=', equipment.next_action_date_month)])
             if not next_requests:
-                equipment._create_new_issue(equipment.next_action_date_month)
+                equipment._create_new_issue_month(equipment.next_action_date_month)
 
     @api.model
     def _cron_generate_issue_quater(self):
@@ -531,12 +600,12 @@ class MaintenanceEquipment(models.Model):
             Generates issue request on the next_action_date or today if none exists
         """
         for equipment in self.search([('period_quater', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state.done', '=', False),
+            next_requests = self.env['project.issue'].search([('state', '!=', 'done'),
                                                               ('equipment_id', '=', equipment.id),
                                                               ('issue_type', '=', 'preventive'),
                                                               ('date', '=', equipment.next_action_date_quater)])
             if not next_requests:
-                equipment._create_new_issue(equipment.next_action_date_quater)
+                equipment._create_new_issue_quater(equipment.next_action_date_quater)
 
     @api.model
     def _cron_generate_issue_half(self):
@@ -544,12 +613,12 @@ class MaintenanceEquipment(models.Model):
             Generates issue request on the next_action_date or today if none exists
         """
         for equipment in self.search([('period_half', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state.done', '=', False),
+            next_requests = self.env['project.issue'].search([('state', '!=', 'done'),
                                                               ('equipment_id', '=', equipment.id),
                                                               ('issue_type', '=', 'preventive'),
                                                               ('date', '=', equipment.next_action_date_half)])
             if not next_requests:
-                equipment._create_new_issue(equipment.next_action_date_half)
+                equipment._create_new_issue_half(equipment.next_action_date_half)
 
     @api.model
     def _cron_generate_issue_year(self):
@@ -557,12 +626,12 @@ class MaintenanceEquipment(models.Model):
             Generates issue request on the next_action_date or today if none exists
         """
         for equipment in self.search([('period_year', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state.done', '=', False),
+            next_requests = self.env['project.issue'].search([('state', '!=', 'done'),
                                                               ('equipment_id', '=', equipment.id),
                                                               ('issue_type', '=', 'preventive'),
                                                               ('date', '=', equipment.next_action_date_year)])
             if not next_requests:
-                equipment._create_new_issue(equipment.next_action_date_year)
+                equipment._create_new_issue_year(equipment.next_action_date_year)
 
     network_resources = fields.Many2many('maintenance.network.resources')
     location_name = fields.Char(string="Location name")
@@ -722,7 +791,7 @@ class ProjectIssue(models.Model):
 
     item_specification = fields.Char('Specification item')
 
-    #next_action_date = fields.Datetime('maintenance.equipment', related='equipment_id.next_action_dates')
+    next_action_date = fields.Datetime('maintenance.equipment', related='equipment_id.next_action_dates')
 
 
 class MaintenanceNetworkResources(models.Model):
