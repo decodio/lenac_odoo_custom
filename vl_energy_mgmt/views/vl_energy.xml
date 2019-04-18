@@ -13,8 +13,8 @@
                     <field name="counter_state_start"/>
                     <field name="date_write_stop"/>
                     <field name="counter_state_stop"/>
-                    <field name="date_write_monthend"/>
-                    <field name="counter_state_monthend"/>
+                    <field name="counter_type"/>
+                    <field name="project_consumption"/>
                 </search>
             </field>
         </record>
@@ -28,11 +28,9 @@
                     <field name="project_code" string="Project code"/>
                     <field name="counter_location"/>
                     <field name="date_write_start"/>
-                    <field name="counter_state_start"/>
                     <field name="date_write_stop"/>
-                    <field name="counter_state_stop"/>
-                    <field name="date_write_monthend"/>
-                    <field name="counter_state_monthend"/>
+                    <field name="project_consumption"/>
+                    <field name="counter_type"/>
                 </tree>
             </field>
         </record>
@@ -48,6 +46,7 @@
                         <group>
                             <field name="project_id"/>
                             <field name="project_code" string="Project code"/>
+                            <field name="counter_type"/>
                         </group>
                         <group>
                             <field name="counter_location"/>
@@ -61,8 +60,7 @@
                             <field name="counter_state_stop"/>
                         </group>
                         <group>
-                            <field name="date_write_monthend"/>
-                            <field name="counter_state_monthend"/>
+                            <field name="project_consumption"/>
                         </group>
                     </sheet>
                 </form>
@@ -89,5 +87,43 @@
                   parent="menu_energy_mgmt_root"
                   action="vl_energy_mgmt_action"
                   sequence="1"/>
+
+        <record id="crm_form_view_lenac_dms_oppor_inherit" model="ir.ui.view">
+            <field name="name">crm.form.view.lenac.dms.oppor.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="sp_viktor_lenac_dms_qms.crm_form_view_lenac_dms_oppor"/>
+                <field name="arch" type="xml">
+                    <notebook>
+                        <page string="Consumption detalis" name="general_description">
+                             <group nolabel="1">
+                                <group>
+                                    <field name="consumption_electrical" widget="one2many_tags">
+                                        <tree create="true">
+                                            <field name="date_write_start"/>
+                                            <field name="date_write_stop"/>
+                                            <field name="project_consumption"/>
+                                        </tree>
+                                    </field>
+                                    <field name="consumption_water">
+                                        <tree create="true">
+                                            <field name="date_write_start"/>
+                                            <field name="date_write_stop"/>
+                                            <field name="project_consumption"/>
+                                        </tree>
+                                    </field>
+                                    <field name="consumption_technical_water">
+                                        <tree create="true">
+                                            <field name="date_write_start"/>
+                                            <field name="date_write_stop"/>
+                                            <field name="project_consumption"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                             </group>
+                        </page>
+                    </notebook>
+                </field>
+        </record>
+
    </data>
 </odoo>
