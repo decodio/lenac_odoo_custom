@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="ir.ui.view" id="vl_energy_mgmt_search_view">
+            <field name="name">Energy management</field>
+            <field name="model">energy.counter</field>
+            <field name="arch" type="xml">
+                <search string="Energy counters">
+                    <field name="project_id"/>
+                    <field name="project_code" string="Project code"/>
+                    <field name="counter_location"/>
+                    <field name="date_write_start"/>
+                    <field name="counter_state_start"/>
+                    <field name="date_write_stop"/>
+                    <field name="counter_state_stop"/>
+                    <field name="date_write_monthend"/>
+                    <field name="counter_state_monthend"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="vl_energy_mgmt_tree_view">
+            <field name="name">Energy management</field>
+            <field name="model">energy.counter</field>
+            <field name="arch" type="xml">
+                <tree string="Energy counters">
+                    <field name="project_id"/>
+                    <field name="project_code" string="Project code"/>
+                    <field name="counter_location"/>
+                    <field name="date_write_start"/>
+                    <field name="counter_state_start"/>
+                    <field name="date_write_stop"/>
+                    <field name="counter_state_stop"/>
+                    <field name="date_write_monthend"/>
+                    <field name="counter_state_monthend"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="vl_energy_mgmt_form_view">
+            <field name="name">energy.counter</field>
+            <field name="model">energy.counter</field>
+            <field name="arch" type="xml">
+                <form string="Energy counters">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="project_id"/>
+                            <field name="project_code" string="Project code"/>
+                        </group>
+                        <group>
+                            <field name="counter_location"/>
+                        </group>
+                        <group>
+                            <field name="date_write_start"/>
+                            <field name="counter_state_start"/>
+                        </group>
+                        <group>
+                            <field name="date_write_stop"/>
+                            <field name="counter_state_stop"/>
+                        </group>
+                        <group>
+                            <field name="date_write_monthend"/>
+                            <field name="counter_state_monthend"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+         <record model="ir.actions.act_window" id="vl_energy_mgmt_action">
+            <field name="name">Energy counter</field>
+            <field name="res_model">energy.counter</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new News group.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_energy_mgmt_root"
+                  name="Energy management"
+                  sequence="1"/>
+
+         <menuitem id="menu_vl_energy_mgmt"
+                  name="Counters"
+                  parent="menu_energy_mgmt_root"
+                  action="vl_energy_mgmt_action"
+                  sequence="1"/>
+   </data>
+</odoo>
