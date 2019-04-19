@@ -22,9 +22,9 @@ class EnergyCounter(models.Model):
     counter_type = fields.Selection([('electrical', 'Electrical'),
                                     ('water', 'Water'),
                                     ('technical_water', 'Technical Water')],
-                                     string='Meter type',
-                                     required=True,
-                                     default='electrical')
+                                    string='Meter type',
+                                    required=True,
+                                    default='electrical')
 
     @api.depends('counter_state_start', 'counter_state_stop')
     def _project_consumption(self):
@@ -59,12 +59,4 @@ class CrmLead(models.Model):
                                                   'project_id',
                                                   domain=[('counter_type', '=', 'technical_water')],
                                                   readonly=True)
-
-
-    #counter_type = fields.Selection([('energy', 'Energy counter'), ('water', 'Water counter')],
-    #                                     string='Sort of equipment',
-    #                                     required=True)
-
-
-
 

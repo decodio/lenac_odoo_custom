@@ -15,6 +15,8 @@
                 'sp_viktor_lenac_dms_qms',
                 ],
     'data': [
+            'security/security.xml',
+            'security/ir.model.access.csv',
             'views/vl_energy.xml',
 
             ],
@@ -23,5 +25,5 @@
     'auto-install': False,
     'description': """
         Energy tracking by project""",
-    'summary': 'ICT Inventory tracking',
+    'summary': 'Energy tracking on projects',
 }

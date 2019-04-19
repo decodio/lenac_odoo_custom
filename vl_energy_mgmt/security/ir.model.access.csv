@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vl_energy_user,access_vl_energy_user,model_energy_counter,vl_energy_mgmt.group_energy_user,1,0,0,0
+access_vl_energy_manager,access_vl_energy_manager,model_energy_counter,vl_energy:mgmt.group_energy_manager,1,1,1,0
+
+
+
+access_vl_intranet_user,access_vl_intranet_user,model_website_portal_article,vl_intranet.group_intranet_user,1,0,0,0
+access_vl_intranet_manager,access_vl_intranet_manager,model_website_portal_article,vl_intranet.group_intranet_manager,1,1,1,0
+access_vl_intranet_board,access_vl_intranet_board,model_website_portal_article,vl_intranet.group_intranet_board,1,1,1,0
+access_vl_intranet_vs,access_vl_intranet_vs,model_website_portal_vs,vl_intranet.group_intranet_vs,1,1,1,0

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.module.category" id="module_management">
+      <field name="name">VL Energy Mgmt</field>
+      <field name="description">User access level for this module</field>
+      <field name="sequence">3</field>
+    </record>
+
+   <record id="group_energy_user" model="res.groups">
+     <field name="name">Energy User</field>
+     <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+     <field name="users" eval="[(4, ref('base.user_root'))]"/>
+     <field name="category_id" ref="vl_energy_mgmt.module_management"/>
+    </record>
+
+    <record id="group_energy_manager" model="res.groups">
+      <field name="name">Energy Manager</field>
+      <field name="implied_ids" eval="[(4, ref('vl_energy_mgmt.group_energy_user'))]"/>
+      <field name="users" eval="[(4, ref('base.user_root'))]"/>
+      <field name="category_id" ref="vl_energy_mgmt.module_management"/>
+    </record>
+
+</odoo>

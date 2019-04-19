@@ -80,12 +80,14 @@
 
         <menuitem id="menu_energy_mgmt_root"
                   name="Energy management"
+                  groups="vl_energy_mgmt.group_energy_manager"
                   sequence="1"/>
 
          <menuitem id="menu_vl_energy_mgmt"
                   name="Counters"
                   parent="menu_energy_mgmt_root"
                   action="vl_energy_mgmt_action"
+                  groups="vl_energy_mgmt.group_energy_manager"
                   sequence="1"/>
 
         <record id="crm_form_view_lenac_dms_oppor_inherit" model="ir.ui.view">
@@ -94,28 +96,28 @@
             <field name="inherit_id" ref="sp_viktor_lenac_dms_qms.crm_form_view_lenac_dms_oppor"/>
                 <field name="arch" type="xml">
                     <notebook>
-                        <page string="Consumption detalis" name="general_description">
+                        <page string="Consumption detalis" name="general_description" groups="vl_energy_mgmt.group_energy_user">
                              <group nolabel="1">
                                 <group>
-                                    <field name="consumption_electrical" widget="one2many_tags">
+                                    <field name="consumption_electrical" groups="vl_energy_mgmt.group_energy_user">
                                         <tree create="true">
                                             <field name="date_write_start"/>
                                             <field name="date_write_stop"/>
-                                            <field name="project_consumption"/>
+                                            <field name="project_consumption" sum="Sum"/>
                                         </tree>
                                     </field>
-                                    <field name="consumption_water">
+                                    <field name="consumption_water" groups="vl_energy_mgmt.group_energy_user">
                                         <tree create="true">
                                             <field name="date_write_start"/>
                                             <field name="date_write_stop"/>
-                                            <field name="project_consumption"/>
+                                            <field name="project_consumption" sum="Sum"/>
                                         </tree>
                                     </field>
-                                    <field name="consumption_technical_water">
+                                    <field name="consumption_technical_water" groups="vl_energy_mgmt.group_energy_user">
                                         <tree create="true">
                                             <field name="date_write_start"/>
                                             <field name="date_write_stop"/>
-                                            <field name="project_consumption"/>
+                                            <field name="project_consumption" sum="Sum"/>
                                         </tree>
                                     </field>
                                 </group>
