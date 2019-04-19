@@ -87,7 +87,7 @@
                   name="Counters"
                   parent="menu_energy_mgmt_root"
                   action="vl_energy_mgmt_action"
-                  groups="vl_energy_mgmt.group_energy_manager"
+                  groups="vl_energy_mgmt.group_energy_user"
                   sequence="1"/>
 
         <record id="crm_form_view_lenac_dms_oppor_inherit" model="ir.ui.view">
