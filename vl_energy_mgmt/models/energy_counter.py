@@ -31,7 +31,7 @@ class EnergyCounter(models.Model):
     project_consumption_380 = fields.Integer(compute='_project_consumption_380', readonly=True, store=True)
     project_consumption_440 = fields.Integer(compute='_project_consumption_440', readonly=True, store=True)
     project_consumption_generator = fields.Integer(compute='_project_consumption_generator', readonly=True, store=True)
-    project_consumption_hours = fields.Integer(compute='_project_consumption_hurs', readonly=True, store=True)
+    project_consumption_hours = fields.Integer(compute='_project_consumption_hours', readonly=True, store=True)
 
     counter_type = fields.Selection([('electrical', 'Electrical'),
                                     ('water', 'Water'),
