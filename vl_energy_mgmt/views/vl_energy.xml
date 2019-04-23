@@ -10,11 +10,8 @@
                     <field name="project_code" string="Project code"/>
                     <field name="counter_location"/>
                     <field name="date_write_start"/>
-                    <field name="counter_state_start"/>
                     <field name="date_write_stop"/>
-                    <field name="counter_state_stop"/>
                     <field name="counter_type"/>
-                    <field name="project_consumption"/>
                 </search>
             </field>
         </record>
@@ -29,7 +26,6 @@
                     <field name="counter_location"/>
                     <field name="date_write_start"/>
                     <field name="date_write_stop"/>
-                    <field name="project_consumption"/>
                     <field name="counter_type"/>
                 </tree>
             </field>
@@ -44,23 +40,54 @@
                     </header>
                     <sheet>
                         <group>
-                            <field name="project_id"/>
-                            <field name="project_code" string="Project code"/>
-                            <field name="counter_type"/>
+                            <group string="General Info">
+                                <field name="project_id"/>
+                                <field name="project_code" string="Project code"/>
+                                <field name="counter_type"/>
+                                <field name="counter_location"/>
+                                <field name="date_write_start"/>
+                                <field name="date_write_stop"/>
+                            </group>
+                            <group string="Total consumtion">
+                                <field name="project_consumption" attrs="{'invisible': ['|', ('counter_type', '=', 'electrical')]}"/>
+                                <field name="project_consumption_380" attrs="{'invisible': ['|', ('counter_type', '=', 'water'), ('counter_type', '=', 'technical_water')]}"/>
+                                <field name="project_consumption_440" attrs="{'invisible': ['|', ('counter_type', '=', 'water'), ('counter_type', '=', 'technical_water')]}"/>
+                                <field name="project_consumption_generator" attrs="{'invisible': ['|', ('counter_type', '=', 'water'), ('counter_type', '=', 'technical_water')]}"/>
+                                <field name="project_consumption_hours" attrs="{'invisible': ['|', ('counter_type', '=', 'water'), ('counter_type', '=', 'technical_water')]}"/>
+                            </group>
                         </group>
                         <group>
-                            <field name="counter_location"/>
+                            <group string="Meter 380" attrs="{'invisible': ['|', ('counter_type', '=', 'water'), ('counter_type', '=', 'technical_water')]}">
+                                <field name="counter_state_start380"/>
+                                <field name="counter_state_stop380"/>
+
+                            </group>
+
+                            <group string="Meter 440" attrs="{'invisible': ['|', ('counter_type', '=', 'water'), ('counter_type', '=', 'technical_water')]}">
+                                <field name="counter_state_start440"/>
+                                <field name="counter_state_stop440"/>
+
+                            </group>
                         </group>
                         <group>
-                            <field name="date_write_start"/>
-                            <field name="counter_state_start"/>
+                            <group string="Generator" attrs="{'invisible': ['|', ('counter_type', '=', 'water'), ('counter_type', '=', 'technical_water')]}">
+                                <field name="counter_state_startgenerator"/>
+                                <field name="counter_state_stopgenerator"/>
+
+                            </group>
+
+                            <group string="Working hours" attrs="{'invisible': ['|', ('counter_type', '=', 'water'), ('counter_type', '=', 'technical_water')]}">
+                                <field name="counter_state_starthours"/>
+                                <field name="counter_state_stophours"/>
+
+                            </group>
                         </group>
                         <group>
-                            <field name="date_write_stop"/>
-                            <field name="counter_state_stop"/>
-                        </group>
-                        <group>
-                            <field name="project_consumption"/>
+                            <group string="Consumption" attrs="{'invisible': ['|', ('counter_type', '=', 'electrical')]}">
+                                <field name="counter_state_start"/>
+                                <field name="counter_state_stop"/>
+
+                            </group>
                         </group>
                     </sheet>
                 </form>
@@ -103,7 +130,10 @@
                                         <tree create="true">
                                             <field name="date_write_start"/>
                                             <field name="date_write_stop"/>
-                                            <field name="project_consumption" sum="Sum"/>
+                                            <field name="project_consumption_380" sum="Sum"/>
+                                            <field name="project_consumption_440" sum="Sum"/>
+                                            <field name="project_consumption_generator" sum="Sum"/>
+                                            <field name="project_consumption_hours" sum="Sum"/>
                                         </tree>
                                     </field>
                                     <field name="consumption_water" groups="vl_energy_mgmt.group_energy_user">
