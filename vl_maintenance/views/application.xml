@@ -5,9 +5,9 @@
             <field name="name">Application inventory</field>
             <field name="model">maintenance.application</field>
             <field name="arch" type="xml">
-                <search string="Database inventory">
-                    <field name="name"/>
-                    <field name="application_menu"/>
+                <search string="Application inventory">
+                    <field name="application_select" string="Application name"/>
+                    <field name="application_module"/>
                 </search>
             </field>
         </record>
@@ -16,8 +16,8 @@
             <field name="name">Application inventory</field>
             <field name="model">maintenance.application</field>
             <field name="arch" type="xml">
-                <tree string="Database inventory">
-                    <field name="name"/>
+                <tree string="Application inventory">
+                    <field name="application_select" string="Application name"/>
                 </tree>
             </field>
         </record>
@@ -32,8 +32,13 @@
                     <sheet>
                         <group string = "Application details">
                             <group>
-                                    <field name="name"/>
-                                    <field name="application_menu"/>
+                                   <field name="application_select"/>
+                                   <field name="application_master_project"/>
+                                   <field name="application_module">
+                                           <tree>
+                                                <field name="name"/>
+                                           </tree>
+                                   </field>
                             </group>
                         </group>
                     </sheet>
@@ -42,7 +47,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="maintenance_application_action">
-            <field name="name">Aplication</field>
+            <field name="name">Application</field>
             <field name="res_model">maintenance.application</field>
             <field name="view_type">form</field>
             <field name="help" type="html">
@@ -52,11 +57,11 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="maintenance_menu_items_search_view">
-            <field name="name">Menu inventory</field>
-            <field name="model">maintenance.menu.items</field>
+        <record model="ir.ui.view" id="maintenance_module_items_search_view">
+            <field name="name">Module inventory</field>
+            <field name="model">maintenance.module.items</field>
             <field name="arch" type="xml">
-                <search string="Menu inventory">
+                <search string="Module inventory">
                     <field name="name"/>
                     <field name="allowed_groups"/>
                     <field name="allowed_users"/>
@@ -65,10 +70,10 @@
         </record>
 
         <record model="ir.ui.view" id="maintenance_menu_items_view_tree" >
-            <field name="name">Menu inventory</field>
-            <field name="model">maintenance.menu.items</field>
+            <field name="name">Module inventory</field>
+            <field name="model">maintenance.module.items</field>
             <field name="arch" type="xml">
-                <tree string="Menu inventory">
+                <tree string="Module inventory">
                     <field name="name"/>
                     <field name="application"/>
                 </tree>
@@ -76,19 +81,22 @@
         </record>
 
         <record model="ir.ui.view" id="maintenance_menu_items_view_form">
-            <field name="name">maintenance.menu.items</field>
-            <field name="model">maintenance.menu.items</field>
+            <field name="name">maintenance.module.items</field>
+            <field name="model">maintenance.module.items</field>
             <field name="arch" type="xml">
-                <form string="Menu details">
+                <form string="Module details">
                     <header>
                     </header>
                     <sheet>
-                        <group string = "Menu details">
+                        <group string = "Module details">
                             <group>
-                                    <field name="name"/>
-                                    <field name="allowed_groups"/>
-                                    <field name="allowed_users"/>
-                                    <field name="application"/>
+                                <field name="name"/>
+                                <field name="module_menu_view"/>
+                            </group>
+                            <group>
+                                <field name="allowed_groups"/>
+                                <field name="allowed_users"/>
+                                <field name="application" string="Application name" invisible="1"/>
                             </group>
                         </group>
                     </sheet>
@@ -96,9 +104,79 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="maintenance_menu_items_action">
-            <field name="name">Menu items</field>
-            <field name="res_model">maintenance.menu.items</field>
+        <record model="ir.actions.act_window" id="maintenance_module_items_action">
+            <field name="name">Module items</field>
+            <field name="res_model">maintenance.module.items</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new Menu item.
+              </p>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_module_menu_view_form">
+            <field name="name">maintenance.module.menu</field>
+            <field name="model">maintenance.module.menu</field>
+            <field name="arch" type="xml">
+                <form string="View details">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string = "View details">
+                            <field name="name"/>
+                            <field name="menu_view">
+                                <tree>
+                                    <field name="name" invisible="1"/>
+                                    <field name="view_version"/>
+                                    <field name="change_description"/>
+                                    <field name="hours_spent" sum="Sum"/>
+                                    <field name="cost_cooperation" sum="Sum"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="maintenance_model_menu_action">
+            <field name="name">Module view items</field>
+            <field name="res_model">maintenance.module.menu</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new Menu item.
+              </p>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_menu_view_view_form">
+            <field name="name">maintenance.menu.view</field>
+            <field name="model">maintenance.menu.view</field>
+            <field name="arch" type="xml">
+                <form string="Change details">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string = "Change details">
+                            <group>
+                                    <field name="name" invisible="1"/>
+                                    <field name="view_version"/>
+                                    <field name="change_description"/>
+                                    <field name="hours_spent"/>
+                                    <field name="cost_cooperation"/>
+                                    <field name="related_issue" context="{'form_view_ref': 'sp_viktor_lenac.project_issue_lenac_form_view'}" string="Realted Issue"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="maintenance_menu_view_action">
+            <field name="name">Module view items</field>
+            <field name="res_model">maintenance.menu.view</field>
             <field name="view_type">form</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
@@ -179,11 +257,27 @@
 
         <menuitem
             id="menu_maintenance_menu_items"
-            name="Menu item inventory"
+            name="Module inventory"
             parent="menu_m_application"
-            action="maintenance_menu_items_action"
+            action="maintenance_module_items_action"
             groups="maintenance.group_equipment_manager"
             sequence="20"/>
+
+        <menuitem
+            id="menu_maintenance_menu_items"
+            name="Module item inventory"
+            parent="menu_m_application"
+            action="maintenance_model_menu_action"
+            groups="maintenance.group_equipment_manager"
+            sequence="30"/>
+
+        <menuitem
+            id="menu_maintenance_menu_items"
+            name="Module item inventory"
+            parent="menu_m_application"
+            action="maintenance_menu_view_action"
+            groups="maintenance.group_equipment_manager"
+            sequence="40"/>
 
          <menuitem
             id="menu_maintenance_application_groups"
@@ -191,7 +285,7 @@
             parent="menu_m_application"
             action="maintenance_application_groups_action"
             groups="maintenance.group_equipment_manager"
-            sequence="30"/>
+            sequence="50"/>
 
     </data>
 </odoo>

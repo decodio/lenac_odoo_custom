@@ -9,7 +9,7 @@ from datetime import date, datetime, timedelta
 import logging
 _logger = logging.getLogger(__name__)
 
-#_LEAD_STATE = [
+#    _LEAD_STATE = [
 #    ('draft', 'New'),
 #    ('open', 'In Progress'),
 #    ('pending', 'Pending'),
@@ -147,6 +147,7 @@ class MaintenanceEquipment(models.Model):
                                                  related='employee_department_old.department_code',
                                                  readonly=True,
                                                  store=True)
+
     @api.depends('employee_id')
     def _compute_new_department_id(self):
         for equipment in self:
@@ -163,478 +164,16 @@ class MaintenanceEquipment(models.Model):
             else:
                 equipment.employee_department_old = False
 
+    network_resources = fields.Many2many('maintenance.network.resources')
+    location_name = fields.Char(string="Location name")
+
+    preventive_maintenance_ids = fields.One2many('maintenance.issue.plan', 'maintenance_id')
+
     """SAME AS PREVENTIVE MAINTENANCE"""
     preventive_issue_ids = fields.One2many('project.issue', 'equipment_id', domain=[('issue_type', '=', 'preventive')])
 
-    period_day = fields.Integer('Daily maintenance')
-    period_week = fields.Integer('Weekly maintenance')
-    period_month = fields.Integer('Monthly maintenance')
-    period_quater = fields.Integer('Quaterly maintenance')
-    period_half = fields.Integer('Half year maintenance')
-    period_year = fields.Integer('Yearly maintenance')
-
-    next_action_date_day = fields.Datetime(compute='_compute_next_issue_day',
-                                           string='Date of the next preventive issue', readonly=True, store=True,
-                                           track_visibility='onchange')
-    next_action_date_week = fields.Datetime(compute='_compute_next_issue_week',
-                                           string='Date of the next preventive issue', readonly=True, store=True,
-                                           track_visibility='onchange')
-    next_action_date_month = fields.Datetime(compute='_compute_next_issue_month',
-                                           string='Date of the next preventive issue', readonly=True, store=True,
-                                           track_visibility='onchange')
-    next_action_date_quater = fields.Datetime(compute='_compute_next_issue_quater',
-                                           string='Date of the next preventive issue', readonly=True, store=True,
-                                           track_visibility='onchange')
-    next_action_date_half = fields.Datetime(compute='_compute_next_issue_half',
-                                           string='Date of the next preventive issue', readonly=True, store=True,
-                                           track_visibility='onchange')
-    next_action_date_year = fields.Datetime(compute='_compute_next_issue_year',
-                                           string='Date of the next preventive issue', readonly=True, store=True,
-                                           track_visibility='onchange')
-
-    next_action_dates = fields.Datetime(compute='_compute_next_issue_day',
-                                        string='Date of the next preventive issue', readonly=True, store=True,
+    next_action_dates = fields.Datetime(string='Date of the next preventive issue', readonly=True, store=True,
                                         track_visibility='onchange')
-
-    description_day = fields.Text('What needs to be maintained?')
-    description_week = fields.Text('What needs to be maintained?')
-    description_month = fields.Text('What needs to be maintained?')
-    description_quater = fields.Text('What needs to be maintained?')
-    description_half = fields.Text('What needs to be maintained?')
-    description_year = fields.Text('What needs to be maintained?')
-
-
-    @api.depends('period_day', 'preventive_issue_ids.date', 'preventive_issue_ids.date_done_iss')
-    def _compute_next_issue_day(self):
-
-        date_now = fields.Date.context_today(self)
-        for equipment in self.filtered(lambda x: x.period_day > 0):
-            next_issue_todo = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done'),
-                ('date_done_iss', '=', False)], order="date asc", limit=1)
-            last_issue_done = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done'),
-                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
-            if next_issue_todo and last_issue_done:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    last_issue_done.date_done_iss)
-                if date_gap > timedelta(0) and date_gap > timedelta(days=equipment.period_day) * 2 and fields.Date.from_string \
-                            (next_issue_todo.date) > fields.Date.from_string(date_now):
-                    if fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                            days=equipment.period_day) < fields.Date.from_string(date_now):
-                        next_date = date_now
-                    else:
-                        next_date = fields.Date.to_string(
-                            fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                                days=equipment.period_day))
-            elif next_issue_todo:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    date_now)
-                if date_gap > timedelta(0) and date_gap > timedelta(days=equipment.period_day) * 2:
-                    next_date = fields.Date.to_string(
-                        fields.Date.from_string(date_now) + timedelta(days=equipment.period_day))
-            elif last_issue_done:
-                next_date = fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(days=equipment.period_day)
-                if next_date < fields.Date.from_string(date_now):
-                    next_date = date_now
-            else:
-                next_date = fields.Date.to_string(fields.Date.from_string(date_now) + timedelta(days=equipment.period_day))
-
-            equipment.next_action_date_day = next_date
-
-    @api.depends('period_week', 'preventive_issue_ids.date', 'preventive_issue_ids.date_done_iss')
-    def _compute_next_issue_week(self):
-
-        date_now = fields.Date.context_today(self)
-        for equipment in self.filtered(lambda x: x.period_week > 0):
-            next_issue_todo = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done'),
-                ('date_done_iss', '=', False)], order="date asc", limit=1)
-            last_issue_done = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done'),
-                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
-            if next_issue_todo and last_issue_done:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    last_issue_done.date_done_iss)
-                if date_gap > timedelta(0) and date_gap > timedelta(
-                        days=equipment.period_week) * 2 and fields.Date.from_string \
-                            (next_issue_todo.date) > fields.Date.from_string(date_now):
-                    if fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                            days=equipment.period_week) < fields.Date.from_string(date_now):
-                        next_date = date_now
-                    else:
-                        next_date = fields.Date.to_string(
-                            fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                                days=equipment.period_week))
-            elif next_issue_todo:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    date_now)
-                if date_gap > timedelta(0) and date_gap > timedelta(days=equipment.period_week) * 2:
-                    next_date = fields.Date.to_string(
-                        fields.Date.from_string(date_now) + timedelta(days=equipment.period_week))
-            elif last_issue_done:
-                next_date = fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                    days=equipment.period_week)
-                if next_date < fields.Date.from_string(date_now):
-                    next_date = date_now
-            else:
-                next_date = fields.Date.to_string(
-                    fields.Date.from_string(date_now) + timedelta(days=equipment.period_week))
-
-            equipment.next_action_date_week = next_date
-
-    @api.depends('period_month', 'preventive_issue_ids.date', 'preventive_issue_ids.date_done_iss')
-    def _compute_next_issue_month(self):
-
-        date_now = fields.Date.context_today(self)
-        for equipment in self.filtered(lambda x: x.period_month > 0):
-            next_issue_todo = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done'),
-                ('date_done_iss', '=', False)], order="date asc", limit=1)
-            last_issue_done = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done'),
-                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
-            if next_issue_todo and last_issue_done:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    last_issue_done.date_done_iss)
-                if date_gap > timedelta(0) and date_gap > timedelta(
-                        days=equipment.period_month) * 2 and fields.Date.from_string \
-                            (next_issue_todo.date) > fields.Date.from_string(date_now):
-                    if fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                            days=equipment.period_month) < fields.Date.from_string(date_now):
-                        next_date = date_now
-                    else:
-                        next_date = fields.Date.to_string(
-                            fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                                days=equipment.period_month))
-            elif next_issue_todo:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    date_now)
-                if date_gap > timedelta(0) and date_gap > timedelta(days=equipment.period_month) * 2:
-                    next_date = fields.Date.to_string(
-                        fields.Date.from_string(date_now) + timedelta(days=equipment.period_month))
-            elif last_issue_done:
-                next_date = fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                    days=equipment.period_month)
-                if next_date < fields.Date.from_string(date_now):
-                    next_date = date_now
-            else:
-                next_date = fields.Date.to_string(
-                    fields.Date.from_string(date_now) + timedelta(days=equipment.period_month))
-
-            equipment.next_action_date_month = next_date
-
-    @api.depends('period_quater', 'preventive_issue_ids.date', 'preventive_issue_ids.date_done_iss')
-    def _compute_next_issue_quater(self):
-
-        date_now = fields.Date.context_today(self)
-        for equipment in self.filtered(lambda x: x.period_quater > 0):
-            next_issue_todo = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done'),
-                ('date_done_iss', '=', False)], order="date asc", limit=1)
-            last_issue_done = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done'),
-                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
-            if next_issue_todo and last_issue_done:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    last_issue_done.date_done_iss)
-                if date_gap > timedelta(0) and date_gap > timedelta(
-                        days=equipment.period_quater) * 2 and fields.Date.from_string \
-                            (next_issue_todo.date) > fields.Date.from_string(date_now):
-                    if fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                            days=equipment.period_quater) < fields.Date.from_string(date_now):
-                        next_date = date_now
-                    else:
-                        next_date = fields.Date.to_string(
-                            fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                                days=equipment.period_quater))
-            elif next_issue_todo:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    date_now)
-                if date_gap > timedelta(0) and date_gap > timedelta(days=equipment.period_quater) * 2:
-                    next_date = fields.Date.to_string(
-                        fields.Date.from_string(date_now) + timedelta(days=equipment.period_quater))
-            elif last_issue_done:
-                next_date = fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                    days=equipment.period_quater)
-                if next_date < fields.Date.from_string(date_now):
-                    next_date = date_now
-            else:
-                next_date = fields.Date.to_string(
-                    fields.Date.from_string(date_now) + timedelta(days=equipment.period_quater))
-
-            equipment.next_action_date_quater = next_date
-
-    @api.depends('period_half', 'preventive_issue_ids.date', 'preventive_issue_ids.date_done_iss')
-    def _compute_next_issue_half(self):
-
-        date_now = fields.Date.context_today(self)
-        for equipment in self.filtered(lambda x: x.period_half > 0):
-            next_issue_todo = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done'),
-                ('date_done_iss', '=', False)], order="date asc", limit=1)
-            last_issue_done = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done'),
-                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
-            if next_issue_todo and last_issue_done:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    last_issue_done.date_done_iss)
-                if date_gap > timedelta(0) and date_gap > timedelta(
-                        days=equipment.period_half) * 2 and fields.Date.from_string \
-                            (next_issue_todo.date) > fields.Date.from_string(date_now):
-                    if fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                            days=equipment.period_half) < fields.Date.from_string(date_now):
-                        next_date = date_now
-                    else:
-                        next_date = fields.Date.to_string(
-                            fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                                days=equipment.period_half))
-            elif next_issue_todo:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    date_now)
-                if date_gap > timedelta(0) and date_gap > timedelta(days=equipment.period_half) * 2:
-                    next_date = fields.Date.to_string(
-                        fields.Date.from_string(date_now) + timedelta(days=equipment.period_half))
-            elif last_issue_done:
-                next_date = fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                    days=equipment.period_half)
-                if next_date < fields.Date.from_string(date_now):
-                    next_date = date_now
-            else:
-                next_date = fields.Date.to_string(
-                    fields.Date.from_string(date_now) + timedelta(days=equipment.period_half))
-
-            equipment.next_action_date_half = next_date
-
-    @api.depends('period_year', 'preventive_issue_ids.date', 'preventive_issue_ids.date_done_iss')
-    def _compute_next_issue_year(self):
-
-        date_now = fields.Date.context_today(self)
-        for equipment in self.filtered(lambda x: x.period_year > 0):
-            next_issue_todo = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done'),
-                ('date_done_iss', '=', False)], order="date asc", limit=1)
-            last_issue_done = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done'),
-                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
-            if next_issue_todo and last_issue_done:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    last_issue_done.date_done_iss)
-                if date_gap > timedelta(0) and date_gap > timedelta(
-                        days=equipment.period_year) * 2 and fields.Date.from_string \
-                            (next_issue_todo.date) > fields.Date.from_string(date_now):
-                    if fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                            days=equipment.period_year) < fields.Date.from_string(date_now):
-                        next_date = date_now
-                    else:
-                        next_date = fields.Date.to_string(
-                            fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                                days=equipment.period_year))
-            elif next_issue_todo:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    date_now)
-                if date_gap > timedelta(0) and date_gap > timedelta(days=equipment.period_year) * 2:
-                    next_date = fields.Date.to_string(
-                        fields.Date.from_string(date_now) + timedelta(days=equipment.period_year))
-            elif last_issue_done:
-                next_date = fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                    days=equipment.period_year)
-                if next_date < fields.Date.from_string(date_now):
-                    next_date = date_now
-            else:
-                next_date = fields.Date.to_string(
-                    fields.Date.from_string(date_now) + timedelta(days=equipment.period_year))
-
-            equipment.next_action_date_year = next_date
-
-    @api.model
-    def _create_new_issue_day(self, date):
-        self.ensure_one()
-        self.env['project.issue'].create({
-            'name': _('Preventive issue - %s') % self.name,
-            'date': date,
-            'equipment_id': self.id,
-            'issue_type': 'preventive',
-            'description': self.description_day,
-            #'issuer_id.name': 'Administrator',
-        })
-
-    @api.model
-    def _create_new_issue_week(self, date):
-        self.ensure_one()
-        self.env['project.issue'].create({
-            'name': _('Preventive issue - %s') % self.name,
-            'date': date,
-            'equipment_id': self.id,
-            'issue_type': 'preventive',
-            'description': self.description_week,
-            # 'issuer_id.name': 'Administrator',
-        })
-
-    @api.model
-    def _create_new_issue_month(self, date):
-        self.ensure_one()
-        self.env['project.issue'].create({
-            'name': _('Preventive issue - %s') % self.name,
-            'date': date,
-            'equipment_id': self.id,
-            'issue_type': 'preventive',
-            'description': self.description_month,
-            # 'issuer_id.name': 'Administrator',
-        })
-
-    @api.model
-    def _create_new_issue_quater(self, date):
-        self.ensure_one()
-        self.env['project.issue'].create({
-            'name': _('Preventive issue - %s') % self.name,
-            'date': date,
-            'equipment_id': self.id,
-            'issue_type': 'preventive',
-            'description': self.description_quater,
-            # 'issuer_id.name': 'Administrator',
-        })
-
-    @api.model
-    def _create_new_issue_half(self, date):
-        self.ensure_one()
-        self.env['project.issue'].create({
-            'name': _('Preventive issue - %s') % self.name,
-            'date': date,
-            'equipment_id': self.id,
-            'issue_type': 'preventive',
-            'description': self.description_half,
-            # 'issuer_id.name': 'Administrator',
-        })
-
-    @api.model
-    def _create_new_issue_year(self, date):
-        self.ensure_one()
-        self.env['project.issue'].create({
-            'name': _('Preventive issue - %s') % self.name,
-            'date': date,
-            'equipment_id': self.id,
-            'issue_type': 'preventive',
-            'description': self.description_year,
-            # 'issuer_id.name': 'Administrator',
-        })
-
-    @api.model
-    def _cron_generate_issue_day(self):
-        """
-            Generates issue request on the next_action_date or today if none exists
-        """
-        for equipment in self.search([('period_day', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state', '!=', 'done'),
-                                                              ('equipment_id', '=', equipment.id),
-                                                              ('issue_type', '=', 'preventive'),
-                                                              ('date', '=', equipment.next_action_date_day)])
-            if not next_requests:
-                equipment._create_new_issue_day(equipment.next_action_date_day)
-
-    @api.model
-    def _cron_generate_issue_week(self):
-        """
-            Generates issue request on the next_action_date or today if none exists
-        """
-        for equipment in self.search([('period_week', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state', '!=', 'done'),
-                                                              ('equipment_id', '=', equipment.id),
-                                                              ('issue_type', '=', 'preventive'),
-                                                              ('date', '=', equipment.next_action_date_week)])
-            if not next_requests:
-                equipment._create_new_issue_week(equipment.next_action_date_week)
-
-    @api.model
-    def _cron_generate_issue_month(self):
-        """
-            Generates issue request on the next_action_date or today if none exists
-        """
-        for equipment in self.search([('period_month', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state', '!=', 'done'),
-                                                              ('equipment_id', '=', equipment.id),
-                                                              ('issue_type', '=', 'preventive'),
-                                                              ('date', '=', equipment.next_action_date_month)])
-            if not next_requests:
-                equipment._create_new_issue_month(equipment.next_action_date_month)
-
-    @api.model
-    def _cron_generate_issue_quater(self):
-        """
-            Generates issue request on the next_action_date or today if none exists
-        """
-        for equipment in self.search([('period_quater', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state', '!=', 'done'),
-                                                              ('equipment_id', '=', equipment.id),
-                                                              ('issue_type', '=', 'preventive'),
-                                                              ('date', '=', equipment.next_action_date_quater)])
-            if not next_requests:
-                equipment._create_new_issue_quater(equipment.next_action_date_quater)
-
-    @api.model
-    def _cron_generate_issue_half(self):
-        """
-            Generates issue request on the next_action_date or today if none exists
-        """
-        for equipment in self.search([('period_half', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state', '!=', 'done'),
-                                                              ('equipment_id', '=', equipment.id),
-                                                              ('issue_type', '=', 'preventive'),
-                                                              ('date', '=', equipment.next_action_date_half)])
-            if not next_requests:
-                equipment._create_new_issue_half(equipment.next_action_date_half)
-
-    @api.model
-    def _cron_generate_issue_year(self):
-        """
-            Generates issue request on the next_action_date or today if none exists
-        """
-        for equipment in self.search([('period_year', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state', '!=', 'done'),
-                                                              ('equipment_id', '=', equipment.id),
-                                                              ('issue_type', '=', 'preventive'),
-                                                              ('date', '=', equipment.next_action_date_year)])
-            if not next_requests:
-                equipment._create_new_issue_year(equipment.next_action_date_year)
-
-    network_resources = fields.Many2many('maintenance.network.resources')
-    location_name = fields.Char(string="Location name")
 
 
 class MaintenanceAllowedOs(models.Model):
@@ -663,29 +202,30 @@ class MaintenanceAllowedOs(models.Model):
     sw_type = fields.Selection(selection=[('prog', 'Program'), ('OS', 'Operating system')],
                                string='Software type',
                                required='True')
+    sw_related = fields.One2many('maintenance.application', 'application_select')
 
 
 class MaintenanceHardwareDetails(models.Model):
-        _name = 'maintenance.hardware.details'
-        _description = 'Hardware Details'
+    _name = 'maintenance.hardware.details'
+    _description = 'Hardware Details'
 
-        name = fields.Char(string='Component name')
-        manufacturer = fields.Char(string='Manufacturer')
-        serial_no = fields.Char(string='Serial Number')
-        component_type = fields.Many2one('maintenance.component.type', string='Component type')
-        size = fields.Char(string='Size')
-        status = fields.Selection(selection=[('inst', 'Installed'), ('rep', 'Replaced'), ('war', 'Warranty')],
-                                  string='Component status',
-                                  required='True')
-        log_note = fields.Text(string='Log of internal notes')
-        purchase_date = fields.Date(string='Date of purchase')
-        warranty = fields.Char(string='Warranty')
-        warranty_valid = fields.Date(string='Warranty till')
-        price = fields.Char(string='Cost')
-        installed_on_pc = fields.Many2one('maintenance.equipment',
-                                          realted='name',
-                                          track_visibility='onchange',
-                                          readonly=False)
+    name = fields.Char(string='Component name')
+    manufacturer = fields.Char(string='Manufacturer')
+    serial_no = fields.Char(string='Serial Number')
+    component_type = fields.Many2one('maintenance.component.type', string='Component type')
+    size = fields.Char(string='Size')
+    status = fields.Selection(selection=[('inst', 'Installed'), ('rep', 'Replaced'), ('war', 'Warranty')],
+                              string='Component status',
+                              required='True')
+    log_note = fields.Text(string='Log of internal notes')
+    purchase_date = fields.Date(string='Date of purchase')
+    warranty = fields.Char(string='Warranty')
+    warranty_valid = fields.Date(string='Warranty till')
+    price = fields.Char(string='Cost')
+    installed_on_pc = fields.Many2one('maintenance.equipment',
+                                      realted='name',
+                                      track_visibility='onchange',
+                                      readonly=False)
 
 
 class MaintenanceRequest(models.Model):
@@ -793,6 +333,102 @@ class ProjectIssue(models.Model):
 
     next_action_date = fields.Datetime('maintenance.equipment', related='equipment_id.next_action_dates')
 
+    related_module_menu = fields.One2many('maintenance.menu.view', 'name')
+
+
+class MaintenancePlan(models.Model):
+    _name = 'maintenance.issue.plan'
+
+    name = fields.Char("Maintenance issue name")
+    period = fields.Integer('Period of maintenance (In Days)')
+    next_action_date = fields.Datetime(compute='_compute_next_issue',
+                                       string='Date of the next preventive issue',
+                                       readonly=True,
+                                       store=True,
+                                       track_visibility='onchange')
+    description = fields.Text('Describe the next maintenance')
+    project_id = fields.Many2one('project.issue',
+                                 related='',
+                                 string='Select issue type')
+    equipment_id = fields.Many2one('maintenance.equipment',
+                                   string='Equipment',
+                                   index=True,
+                                   track_visibility='onchange')
+
+    maintenance_id = fields.Many2one('maintenance.equipment', 'preventive_maintenance_ids')
+
+    preventive_issue_ids = fields.One2many('project.issue', 'equipment_id', domain=[('issue_type', '=', 'preventive')])
+
+    @api.depends('period', 'preventive_issue_ids.date', 'preventive_issue_ids.date_done_iss')
+    def _compute_next_issue(self):
+
+        date_now = fields.Date.context_today(self)
+        for equipment in self.filtered(lambda x: x.period > 0):
+            next_issue_todo = self.env['project.issue'].search([
+                ('equipment_id', '=', equipment.id),
+                ('issue_type', '=', 'preventive'),
+                ('state', '!=', 'done'),
+                ('date_done_iss', '=', False)], order="date asc", limit=1)
+            last_issue_done = self.env['project.issue'].search([
+                ('equipment_id', '=', equipment.id),
+                ('issue_type', '=', 'preventive'),
+                ('state', '=', 'done'),
+                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
+            if next_issue_todo and last_issue_done:
+                next_date = next_issue_todo.date
+                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
+                    last_issue_done.date_done_iss)
+                if date_gap > timedelta(0) and date_gap > timedelta(
+                        days=equipment.period_day) * 2 and fields.Date.from_string \
+                            (next_issue_todo.date) > fields.Date.from_string(date_now):
+                    if fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
+                            days=equipment.period) < fields.Date.from_string(date_now):
+                        next_date = date_now
+                    else:
+                        next_date = fields.Date.to_string(
+                            fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
+                                days=equipment.period))
+            elif next_issue_todo:
+                next_date = next_issue_todo.date
+                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
+                    date_now)
+                if date_gap > timedelta(0) and date_gap > timedelta(days=equipment.period) * 2:
+                    next_date = fields.Date.to_string(
+                        fields.Date.from_string(date_now) + timedelta(days=equipment.period))
+            elif last_issue_done:
+                next_date = fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
+                    days=equipment.period)
+                if next_date < fields.Date.from_string(date_now):
+                    next_date = date_now
+            else:
+                next_date = fields.Date.to_string(
+                    fields.Date.from_string(date_now) + timedelta(days=equipment.period))
+
+            equipment.next_action_date = next_date
+
+    @api.multi
+    def _create_new_issue(self, date):
+        self.env['project.issue'].create({
+            'name': _('Preventive issue - %s') % self.name,
+            'date': date,
+            'equipment_id': self.id,
+            'issue_type': 'preventive',
+            'description': self.description,
+            'issuer_id': '1',
+        })
+
+    @api.model
+    def _cron_generate_issue(self):
+        """
+            Generates issue request on the next_action_date or today if none exists
+        """
+        for plan in self.search([('period', '>', 0)]):
+            next_requests = self.env['project.issue'].search([('state', '!=', 'done'),
+                                                              ('issue_type', '=', 'preventive'),
+                                                              ('date', '=', plan.next_action_date)])
+            if not next_requests:
+                plan._create_new_issue(plan.next_action_date)
+
 
 class MaintenanceNetworkResources(models.Model):
     _name = 'maintenance.network.resources'
@@ -800,7 +436,7 @@ class MaintenanceNetworkResources(models.Model):
 
     name = fields.Char(string='Resource name')
     parent_equipment_id = fields.Many2many('maintenance.equipment')
-    user_groups = fields.Many2many('maintenance.ad.groups', string='Allowed AD Gropups')
+    user_groups = fields.Many2many('maintenance.ad.groups', string='Allowed AD Groups')
     # allowed_users = fields.Many2many('maintenance.ad.groups', related='allowed_users', string='Allowed AD users')
 
 
@@ -817,17 +453,41 @@ class MaintenanceApplication(models.Model):
     _description = 'Applications used in VL'
 
     name = fields.Char(string='Application name')
-    application_menu = fields.One2many('maintenance.menu.items', 'application')
+    application_select = fields.Many2one('maintenance.allowed.os', domain=[('sw_type', '=', 'prog')])
+    application_module = fields.One2many('maintenance.module.items', 'application')
+    application_master_project = fields.Many2one('project.project')
 
 
-class MaintenanceMenuItems(models.Model):
-    _name = 'maintenance.menu.items'
-    _description = 'Application menu items'
+class MaintenanceModuleItems(models.Model):
+    _name = 'maintenance.module.items'
+    _description = 'Application module items'
 
-    name = fields.Char(string="Menu item")
+    name = fields.Char(string="Module")
     allowed_groups = fields.Many2many('maintenance.application.groups')
     allowed_users = fields.Many2many('hr.employee')
-    application = fields.Many2one('maintenance.application', 'application_menu')
+    application = fields.Many2one('maintenance.application', 'application_select')
+    module_menu_view = fields.Many2many('maintenance.module.menu')
+
+
+class MaintenanceModuleMenu(models.Model):
+    _name = 'maintenance.module.menu'
+    _description = 'Application module menu'
+
+    name = fields.Char(string="Menu view")
+    menu_view = fields.One2many('maintenance.menu.view', 'view_menu')
+
+
+class MaintenanceMenuView(models.Model):
+    _name = 'maintenance.menu.view'
+    _description = 'Application menu view items'
+
+    name = fields.Char(string="View name")
+    view_version = fields.Char(string="View version")
+    change_description = fields.Text(string="Description")
+    hours_spent = fields.Float(string='Hours Spent', )
+    cost_cooperation = fields.Float(string='Cost')
+    view_menu = fields.Many2one('maintenance.module.menu', 'menu_view')
+    related_issue = fields.Many2one('project.issue', 'related_module_menu')
 
 
 class MaintenanceApplicationGroups(models.Model):
@@ -857,7 +517,7 @@ class MaintenanceTables(models.Model):
 
     name = fields.Char(string="Table name")
     table_fields = fields.Many2many('maintenance.table.fields')
-    table_menu_item = fields.Many2many('maintenance.menu.items')
+    table_menu_item = fields.Many2many('maintenance.module.items')
 
 
 class MaintenanceTableFields(models.Model):

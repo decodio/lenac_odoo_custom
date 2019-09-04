@@ -83,8 +83,6 @@
                                         <field name="stage_id"/>
                                         <field name="user_id"/>
                                         <field name="date"/>
-                                        <!--<field name="period"/>-->
-                                        <!--<field name="next_action_date"/>-->
                                     </tree>
                                 </field>
                         </group>
@@ -101,36 +99,17 @@
                     </page>
                 </notebook>
                 <notebook>
-                    <page string="Maintenance issues" name="maintenance_issue">
+                    <page string="Issues for maintenance " name="maintenance_issue">
                         <group>
-                            <field name="period_day"/>
-                            <field name="next_action_date_day"/>
-                            <field name="description_day"/>
-                        </group>
-                        <group>
-                            <field name="period_week"/>
-                            <field name="next_action_date_week"/>
-
-                        </group>
-                        <group>
-                            <field name="period_month"/>
-                            <field name="next_action_date_month"/>
-
-                        </group>
-                        <group>
-                            <field name="period_quater"/>
-                            <field name="next_action_date_quater"/>
-                            <field name="description_quater"/>
-                        </group>
-                        <group>
-                            <field name="period_half"/>
-                            <field name="next_action_date_half"/>
-                            <field name="description_half"/>
-                        </group>
-                        <group>
-                            <field name="period_year"/>
-                            <field name="next_action_date_year"/>
-                            <field name="description_year"/>
+                            <field name="preventive_maintenance_ids">
+                                    <tree create="true">
+                                        <field name="name"/>
+                                        <field name="period"/>
+                                        <field name="next_action_date"/>
+                                        <field name="description"/>
+                                        <field name="equipment_id"/>
+                                    </tree>
+                                </field>
                         </group>
                     </page>
                 </notebook>
@@ -358,32 +337,31 @@
                                 <field name="parent_equipment_id"/>
                             </group>
                          </group>
-                        <!--<notebook>
-                            <page string="Maintenance details" name="general_description" attrs="{'invisible': ['|', ('equipment_id', '=', False)]}">
-                                <group nolabel="1">
-                                    <group>
-                                        <field name="period"/>
-                                        <field name="next_action_date"/>
-                                        <field name="schedule_date"/>
-                                        <field name="issue_type" readonly="True"/>
-                                        <field name="item_specification"/>
-                                    </group>
-                                </group>
-                            </page>
-                            <page string="Maintenance details" name="general_description" attrs="{'invisible': ['|', ('equipment_id', '=', False)]}">
-                                <group nolabel="1">
-                                    <group>
-                                        <field name="period"/>
-                                        <field name="next_action_date"/>
-                                        <field name="schedule_date"/>
-                                        <field name="issue_type" readonly="True"/>
-                                        <field name="item_specification"/>
-                                    </group>
-                                </group>
-                            </page>
-                        </notebook>-->
+                    </page>
+                    <page string="Related application view">
+                         <group nolabel="1">
+                            <group>
+                                <field name="related_module_menu"/>
+                            </group>
+                         </group>
                     </page>
                 </notebook>
+            </field>
+        </record>
+
+        <record id="maintenance_issue_plan_form" model="ir.ui.view">
+            <field name="name">maintenance.issue.plan.form</field>
+            <field name="model">maintenance.issue.plan</field>
+            <field name="arch" type="xml">
+                <form string="Maintenance Issues">
+                    <group>
+                        <field name="name"/>
+                        <field name="period"/>
+                        <field name="next_action_date"/>
+                        <field name="description"/>
+                        <field name="equipment_id"/>
+                    </group>
+                </form>
             </field>
         </record>
     </data>
