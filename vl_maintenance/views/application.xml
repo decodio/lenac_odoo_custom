@@ -18,6 +18,7 @@
             <field name="arch" type="xml">
                 <tree string="Application inventory">
                     <field name="application_select" string="Application name"/>
+                    <field name="application_module"/>
                 </tree>
             </field>
         </record>
@@ -52,7 +53,7 @@
             <field name="view_type">form</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
-                Click to add a new AD user group.
+                Click to add a new Application.
               </p>
             </field>
         </record>
@@ -65,11 +66,12 @@
                     <field name="name"/>
                     <field name="allowed_groups"/>
                     <field name="allowed_users"/>
+                    <field name="module_menu_view"/>
                 </search>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="maintenance_menu_items_view_tree" >
+        <record model="ir.ui.view" id="maintenance_module_items_view_tree" >
             <field name="name">Module inventory</field>
             <field name="model">maintenance.module.items</field>
             <field name="arch" type="xml">
@@ -80,7 +82,7 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="maintenance_menu_items_view_form">
+        <record model="ir.ui.view" id="maintenance_module_items_view_form">
             <field name="name">maintenance.module.items</field>
             <field name="model">maintenance.module.items</field>
             <field name="arch" type="xml">
@@ -110,8 +112,30 @@
             <field name="view_type">form</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
-                Click to add a new Menu item.
+                Click to add a new Module item.
               </p>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_module_menu_search_view">
+            <field name="name">Menu inventory</field>
+            <field name="model">maintenance.module.menu</field>
+            <field name="arch" type="xml">
+                <search string="Menu inventory">
+                    <field name="name"/>
+                    <field name="menu_view"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_module_menu_view_tree" >
+            <field name="name">Menu inventory</field>
+            <field name="model">maintenance.module.menu</field>
+            <field name="arch" type="xml">
+                <tree string="Menu inventory">
+                    <field name="name"/>
+                    <field name="menu_view"/>
+                </tree>
             </field>
         </record>
 
@@ -140,7 +164,7 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="maintenance_model_menu_action">
+        <record model="ir.actions.act_window" id="maintenance_module_menu_action">
             <field name="name">Module view items</field>
             <field name="res_model">maintenance.module.menu</field>
             <field name="view_type">form</field>
@@ -148,6 +172,35 @@
               <p class="oe_view_nocontent_create">
                 Click to add a new Menu item.
               </p>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_menu_view_search_view">
+            <field name="name">Menu item inventory</field>
+            <field name="model">maintenance.menu.view</field>
+            <field name="arch" type="xml">
+                <search string="Menu item inventory">
+                    <field name="name" context="{'form_view_ref': 'vl_maintenance.maintenance_module_menu_view_form', 'default_name': name'}"/>
+                    <field name="view_menu"/>
+                    <field name="view_version"/>
+                    <field name="change_description"/>
+                    <field name="hours_spent"/>
+                    <field name="cost_cooperation"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_menu_view_view_tree" >
+            <field name="name">Menu item inventory</field>
+            <field name="model">maintenance.menu.view</field>
+            <field name="arch" type="xml">
+                <tree string="Menu item inventory">
+                    <field name="view_menu"/>
+                    <field name="view_version"/>
+                    <field name="change_description"/>
+                    <field name="hours_spent"/>
+                    <field name="cost_cooperation"/>
+                </tree>
             </field>
         </record>
 
@@ -175,7 +228,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="maintenance_menu_view_action">
-            <field name="name">Module view items</field>
+            <field name="name">Module item inventory</field>
             <field name="res_model">maintenance.menu.view</field>
             <field name="view_type">form</field>
             <field name="help" type="html">
@@ -256,7 +309,7 @@
             sequence="10"/>
 
         <menuitem
-            id="menu_maintenance_menu_items"
+            id="menu_maintenance_module_items"
             name="Module inventory"
             parent="menu_m_application"
             action="maintenance_module_items_action"
@@ -265,9 +318,9 @@
 
         <menuitem
             id="menu_maintenance_menu_items"
-            name="Module item inventory"
+            name="Menu inventory"
             parent="menu_m_application"
-            action="maintenance_model_menu_action"
+            action="maintenance_module_menu_action"
             groups="maintenance.group_equipment_manager"
             sequence="30"/>
 

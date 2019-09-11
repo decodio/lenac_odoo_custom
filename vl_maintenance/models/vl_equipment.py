@@ -7,7 +7,9 @@ from odoo import api, fields, models, _
 from datetime import date, datetime, timedelta
 
 import logging
+
 _logger = logging.getLogger(__name__)
+
 
 #    _LEAD_STATE = [
 #    ('draft', 'New'),
@@ -87,16 +89,16 @@ class MaintenanceEquipment(models.Model):
                                           string='Child equipment',
                                           readonly=True)
 
-#    project_code = fields.Many2one('maintenance.request', 'equipment_project_code')
-#    @api.multi
-#    def name_get(self):
-#        result = []
-#        for record in self:
-#            project_code = record.project_code
-#            if record.parent_equipment_ids:
-#                project_code = "%s / %s" % (record.parent_equipment_ids.name_get()[0][1], project_code)
-#            result.append((record.id, project_code))
-#        return result
+    #    project_code = fields.Many2one('maintenance.request', 'equipment_project_code')
+    #    @api.multi
+    #    def name_get(self):
+    #        result = []
+    #        for record in self:
+    #            project_code = record.project_code
+    #            if record.parent_equipment_ids:
+    #                project_code = "%s / %s" % (record.parent_equipment_ids.name_get()[0][1], project_code)
+    #            result.append((record.id, project_code))
+    #        return result
 
     @api.multi
     def create_new_issue(self):
@@ -267,6 +269,7 @@ class MaintenanceRequest(models.Model):
         res = super(MaintenanceRequest, self).write(vals)
         return res
 
+
 #    maintenance_child_equipment_issue_id = fields.One2many(
 #        'project.issue',
 #        related='maintenance_request_ids',
@@ -277,7 +280,7 @@ class MaintenanceStage(models.Model):
     _name = 'maintenance.stage'
     _inherit = ['maintenance.stage', 'stage.control.common']
 
-#    state = fields.Selection(_LEAD_STATE, 'State')
+    #    state = fields.Selection(_LEAD_STATE, 'State')
     create_code = fields.Boolean(string='Create Code')
 
 
@@ -319,8 +322,8 @@ class ProjectIssue(models.Model):
                 issue.parent_equipment_id = False
 
     """zapisuje se parent project code kako bi se prema njemu mogli dohvatiti svi Issues na formu maintenance request"""
-#    maintenance_request_ids = fields.Many2one('maintenance.request',
-#                                             related='equipment_id.equipment_project_code')
+    #    maintenance_request_ids = fields.Many2one('maintenance.request',
+    #                                             related='equipment_id.equipment_project_code')
 
     issue_type = fields.Selection([('corrective', 'Corrective'),
                                    ('preventive', 'Preventive')],
