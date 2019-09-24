@@ -78,7 +78,7 @@
             name="Allowed software"
             parent="maintenance.menu_maintenance_configuration"
             action="maintenance_allowed_os_action"
-            groups="maintenance.group_equipment_manager"
+            groups="vl_maintenance.group_it_admin"
             sequence="200"/>
 
     </data>

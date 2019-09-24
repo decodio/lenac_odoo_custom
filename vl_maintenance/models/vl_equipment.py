@@ -336,7 +336,7 @@ class ProjectIssue(models.Model):
 
     next_action_date = fields.Datetime('maintenance.equipment', related='equipment_id.next_action_dates')
 
-    related_module_menu = fields.One2many('maintenance.menu.view', 'name')
+    related_module_menu = fields.One2many('maintenance.menu.view', 'related_issue')
 
 
 class MaintenancePlan(models.Model):
@@ -371,26 +371,26 @@ class MaintenancePlan(models.Model):
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
                 #  ('state', '!=', 'done'),
-                ('date_done_iss', '=', False)], order="date asc", limit=1)
-            last_issue_done = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                #  ('state', '=', 'done'),
-                ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
-            if next_issue_todo and last_issue_done:
+                ('date', '=', False)], order="date asc", limit=1)
+            # last_issue_done = self.env['project.issue'].search([
+             #   ('equipment_id', '=', equipment.id),
+             #   ('issue_type', '=', 'preventive'),
+             #   ('state', '=', 'done'),
+             #   ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
+            if next_issue_todo: # and last_issue_done:
                 next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    last_issue_done.date_done_iss)
+                #date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
+                    #last_issue_done.date_done_iss)
                 if date_gap > timedelta(0) and date_gap > timedelta(
                         days=equipment.period_day) * 2 and fields.Date.from_string \
                              (next_issue_todo.date) > fields.Date.from_string(date_now):
-                    if fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                            days=equipment.period) < fields.Date.from_string(date_now):
+                    #if fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
+                     #       days=equipment.period) < fields.Date.from_string(date_now):
                         next_date = date_now
-                    else:
-                        next_date = fields.Date.to_string(
-                            fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                                days=equipment.period))
+                    #else:
+                     #   next_date = fields.Date.to_string(
+                      #      fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
+                       #         days=equipment.period))
             elif next_issue_todo:
                 next_date = next_issue_todo.date
                 date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
@@ -398,11 +398,11 @@ class MaintenancePlan(models.Model):
                 if date_gap > timedelta(0) and date_gap > timedelta(days=equipment.period) * 2:
                     next_date = fields.Date.to_string(
                         fields.Date.from_string(date_now) + timedelta(days=equipment.period))
-            elif last_issue_done:
-                next_date = fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                    days=equipment.period)
-                if next_date < fields.Date.from_string(date_now):
-                    next_date = date_now
+            #elif last_issue_done:
+             #   next_date = fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
+              #      days=equipment.period)
+               # if next_date < fields.Date.from_string(date_now):
+                #    next_date = date_now
             else:
                 next_date = fields.Date.to_string(
                     fields.Date.from_string(date_now) + timedelta(days=equipment.period))
@@ -541,7 +541,7 @@ class MaintenanceMenuView(models.Model):
     hours_spent = fields.Float(string='Hours Spent', )
     cost_cooperation = fields.Float(string='Cost')
     view_menu = fields.Many2one('maintenance.module.menu')
-    related_issue = fields.Many2one('project.issue')
+    related_issue = fields.Many2one('project.issue', store='True')
 
 
 class MaintenanceApplicationGroups(models.Model):

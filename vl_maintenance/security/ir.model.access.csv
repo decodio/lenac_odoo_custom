@@ -1,62 +1,21 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hr_employee_user,access_hr_employee_user,model_hr_employee,base.group_user,1,1,1,1
-access_hr_employee_system,access_hr_employee_system,model_hr_employee,base.group_system,1,1,1,1
-access_hr_department_user,access_hr_department_user,model_hr_department,base.group_user,1,1,1,1
-access_hr_department_system,access_hr_department_system,model_hr_department,base.group_system,1,1,1,1
-access_hardware_details_user,access_hardware_details_user,model_hardware_details,base.group_user,1,1,1,1
-access_hardware_details_system,access_hardware_details_system,model_hardware_details,base.group_system,1,1,1,1
-
-# C/P odoo WARNING The model allowed_os has no access rules, consider adding one
-access_allowed_os,access_allowed_os,model_allowed_os,base.group_user,1,0,0,0
-
-access_allowed_os_reader,access_allowed_os_reader,model_allowed_os,base.group_user,1,0,0,0
-access_allowed_os_editor,access_allowed_os_editor,model_allowed_os,hr.group_hr_user,1,1,1,0
-access_allowed_os_manager,access_allowed_os_manager,model_allowed_os,maintenance.group_equipment_manager,1,1,1,1
-
-
-
-access_
-
-The model maintenance.menu.view has no access rules, consider adding one. E.g. access_maintenance_menu_view,access_maintenance_menu_view,model_maintenance_menu_view,base.group_user,1,0,0,0
-The model maintenance.component.type has no access rules, consider adding one. E.g. access_maintenance_component_type,access_maintenance_component_type,model_maintenance_component_type,base.group_user,1,0,0,0
-The model maintenance.network.resources has no access rules, consider adding one. E.g. access_maintenance_network_resources,access_maintenance_network_resources,model_maintenance_network_resources,base.group_user,1,0,0,0
-The model maintenance.ad.groups has no access rules, consider adding one. E.g. access_maintenance_ad_groups,access_maintenance_ad_groups,model_maintenance_ad_groups,base.group_user,1,0,0,0
-The model maintenance.application has no access rules, consider adding one. E.g. access_maintenance_application,access_maintenance_application,model_maintenance_application,base.group_user,1,0,0,0
-The model maintenance.module.items has no access rules, consider adding one. E.g. access_maintenance_module_items,access_maintenance_module_items,model_maintenance_module_items,base.group_user,1,0,0,0
-The model maintenance.application.groups has no access rules, consider adding one. E.g. access_maintenance_application_groups,access_maintenance_application_groups,model_maintenance_application_groups,base.group_user,1,0,0,0
-The model maintenance.database has no access rules, consider adding one. E.g. access_maintenance_database,access_maintenance_database,model_maintenance_database,base.group_user,1,0,0,0
-The model maintenance.tables has no access rules, consider adding one. E.g. access_maintenance_tables,access_maintenance_tables,model_maintenance_tables,base.group_user,1,0,0,0
-The model maintenance.table.fields has no access rules, consider adding one. E.g. access_maintenance_table_fields,access_maintenance_table_fields,model_maintenance_table_fields,base.group_user,1,0,0,0
-The model maintenance.allowed.os has no access rules, consider adding one. E.g. access_maintenance_allowed_os,access_maintenance_allowed_os,model_maintenance_allowed_os,base.group_user,1,0,0,0
-The model maintenance.hardware.details has no access rules, consider adding one. E.g. access_maintenance_hardware_details,access_maintenance_hardware_details,model_maintenance_hardware_details,base.group_user,1,0,0,0
-The model maintenance.issue.plan has no access rules, consider adding one. E.g. access_maintenance_issue_plan,access_maintenance_issue_plan,model_maintenance_issue_plan,base.group_user,1,0,0,0
-The model maintenance.module.menu has no access rules, consider adding one. E.g. access_maintenance_module_menu,access_maintenance_module_menu,model_maintenance_module_menu,base.group_user,1,0,0,0
-
-
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_vl_intranet_user,access_vl_intranet_user,model_website_portal_article,vl_intranet.group_intranet_user,1,0,0,0
-access_vl_intranet_manager,access_vl_intranet_manager,model_website_portal_article,vl_intranet.group_intranet_manager,1,1,1,0
-access_vl_intranet_board,access_vl_intranet_board,model_website_portal_article,vl_intranet.group_intranet_board,1,1,1,0
-access_vl_intranet_vs,access_vl_intranet_vs,model_website_portal_vs,vl_intranet.group_intranet_vs,1,1,1,0
-
-access_vl_maintenance_,access_vl_maintenance_,model_maintenance_allowed_os,vl_maintenance.POPUNITI,1,0,0,0
-access_vl_maintenance_,access_vl_maintenance_,model_maintenance_hardware_details,vl_maintenance.POPUNITI,1,0,0,0
-
 access_vl_maintenance_equipment_manager,access_vl_maintenance_equipment_manager,model_maintenance_request,maintenance.group_equipment_manager,1,1,1,0
 access_vl_maintenance_equipment_manager,access_vl_maintenance_equipment_manager,model_maintenance_equipment_category,maintenance.group_equipment_manager,1,1,1,0
-
+access_vl_maintenance_issue_plan_user,access_vl_maintenance_issue_plan_user,model_maintenance_issue_plan,base.group_user,1,0,0,0
 access_vl_maintenance_equipment_manager,access_vl_maintenance_equipment_manager,model_maintenance_issue_plan,maintenance.group_equipment_manager,1,1,1,0
+access_vl_maintenance_network_admin,access_vl_maintenance_network_admin,model_maintenance_network_resources,vl_maintenance.group_it_admin,1,1,1,0
+access_vl_maintenance_ad_admin,access_vl_maintenance_ad_admin,model_maintenance_ad_groups,vl_maintenance.group_it_admin,1,1,1,0
+access_vl_maintenance_application_admin,access_vl_maintenance_application_admin,model_maintenance_application,vl_maintenance.group_it_admin,1,1,1,0
+access_vl_maintenance_module_admin,access_vl_maintenance_module_admin,model_maintenance_module_items,vl_maintenance.group_it_admin,1,1,1,0
+access_vl_maintenance_menu_admin,access_vl_maintenance_menu_admin,model_maintenance_module_menu,vl_maintenance.group_it_admin,1,1,1,0
+access_vl_maintenance_view_admin,access_vl_maintenance_view_admin,model_maintenance_menu_view,vl_maintenance.group_it_admin,1,1,1,0
+access_vl_maintenance_apgroups_admin,access_vl_maintenance_apgroups_admin,model_maintenance_application_groups,vl_maintenance.group_it_admin,1,1,1,0
+access_vl_maintenance_database_admin,access_vl_maintenance_database_admin,model_maintenance_database,vl_maintenance.group_it_admin,1,1,1,0
+access_vl_maintenance_tables_admin,access_vl_maintenance_tables_admin,model_maintenance_tables,vl_maintenance.group_it_admin,1,1,1,0
+access_vl_maintenance_fields_admin,access_vl_maintenance_fields_admin,model_maintenance_table_fields,vl_maintenance.group_it_admin,1,1,1,0
+access_vl_maintenance_component_admin,access_vl_maintenance_component_admin,model_maintenance_component_type,vl_maintenance.group_it_admin,1,1,1,0
+access_vl_maintenance_hw_details_user,access_vl_maintenance_hw_details_user,model_maintenance_hardware_details,base.group_user,1,0,0,0
+access_vl_maintenance_hw_details_manager,access_vl_maintenance_hw_details_manager,model_maintenance_hardware_details,maintenance.group_equipment_manager,1,1,1,0
+access_vl_maintenance_sw_details_user,access_vl_maintenance_sw_details_user,model_maintenance_allowed_os,base.group_user,1,0,0,0
+access_vl_maintenance_sw_details_manager,access_vl_maintenance_sw_details_manager,model_maintenance_allowed_os,vl_maintenance.group_it_admin,1,1,1,0
 
-access_vl_maintenance_it_admin,access_vl_maintenance_it_admin,model_maintenance_network_resources,vl_maintenance.group_it_admin,1,1,1,0
-access_vl_maintenance_it_admin,access_vl_maintenance_it_admin,model_maintenance_ad_groups,vl_maintenance.group_it_admin,1,1,1,0
-
-access_vl_maintenance_it_admin,access_vl_maintenance_it_admin,model_maintenance_application,vl_maintenance.group_it_admin,1,1,1,0
-access_vl_maintenance_it_admin,access_vl_maintenance_it_admin,model_maintenance_module_items,vl_maintenance.group_it_admin,1,1,1,0
-access_vl_maintenance_it_admin,access_vl_maintenance_it_admin,model_maintenance_module_menu,vl_maintenance.group_it_admin,1,1,1,0
-access_vl_maintenance_it_admin,access_vl_maintenance_it_admin,model_maintenance_menu_view,vl_maintenance.group_it_admin,1,1,1,0
-
-access_vl_maintenance_it_admin,access_vl_maintenance_it_admin,model_maintenance_application_groups,vl_maintenance.group_it_admin,1,1,1,0
-access_vl_maintenance_it_admin,access_vl_maintenance_it_admin,model_maintenance_database,vl_maintenance.group_it_admin,1,1,1,0
-access_vl_maintenance_it_admin,access_vl_maintenance_it_admin,model_maintenance_tables,vl_maintenance.group_it_admin,1,1,1,0
-access_vl_maintenance_it_admin,access_vl_maintenance_it_admin,model_maintenance_table_fields,vl_maintenance.group_it_admin,1,1,1,0
-access_vl_maintenance_it_admin,access_vl_maintenance_it_admin,model_maintenance_component_type,vl_maintenance.group_it_admin,1,1,1,0

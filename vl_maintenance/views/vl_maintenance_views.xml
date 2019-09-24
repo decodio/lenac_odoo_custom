@@ -311,7 +311,7 @@
         </record>
 
          <menuitem
-            id="menu_vl_subcontractor_stage"
+            id="menu_vl_maintenance_stage"
             name="Stages"
             parent="maintenance.menu_maintenance_stage_configuration"
             action="vl_maintenance_stage_act"

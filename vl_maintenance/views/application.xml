@@ -315,7 +315,7 @@
         id="menu_m_application"
         name="Application Inventory"
         parent="menu_m_data"
-        groups="maintenance.group_equipment_manager"
+        groups="vl_maintenance.group_it_admin"
         sequence="2"/>
 
         <menuitem
@@ -323,7 +323,7 @@
             name="Application inventory"
             parent="menu_m_application"
             action="maintenance_application_action"
-            groups="maintenance.group_equipment_manager"
+            groups="vl_maintenance.group_it_admin"
             sequence="10"/>
 
         <menuitem
@@ -331,7 +331,7 @@
             name="Module inventory"
             parent="menu_m_application"
             action="maintenance_module_items_action"
-            groups="maintenance.group_equipment_manager"
+            groups="vl_maintenance.group_it_admin"
             sequence="20"/>
 
         <menuitem
@@ -339,7 +339,7 @@
             name="Menu inventory"
             parent="menu_m_application"
             action="maintenance_module_menu_action"
-            groups="maintenance.group_equipment_manager"
+            groups="vl_maintenance.group_it_admin"
             sequence="30"/>
 
         <menuitem
@@ -347,7 +347,7 @@
             name="Module item inventory"
             parent="menu_m_application"
             action="maintenance_menu_view_action"
-            groups="maintenance.group_equipment_manager"
+            groups="vl_maintenance.group_it_admin"
             sequence="40"/>
 
          <menuitem
@@ -355,7 +355,7 @@
             name="Groups inventory"
             parent="menu_m_application"
             action="maintenance_application_groups_action"
-            groups="maintenance.group_equipment_manager"
+            groups="vl_maintenance.group_it_admin"
             sequence="50"/>
 
     </data>

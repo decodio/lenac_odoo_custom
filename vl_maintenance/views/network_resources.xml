@@ -61,7 +61,7 @@
             name="Shared network resources"
             parent="maintenance.menu_maintenance_configuration"
             action="maintenance_network_resources_action"
-            groups="maintenance.group_equipment_manager"
+            groups="vl_maintenance.group_it_admin"
             sequence="200"/>
     </data>
 </odoo>

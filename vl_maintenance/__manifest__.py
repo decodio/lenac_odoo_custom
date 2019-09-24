@@ -20,8 +20,8 @@
                 'stage_control_base',
                 ],
     'data': [
-        # 'security/ir.model.access.csv',
-        # 'security/vl_maintenance.xml',
+        'security/security.xml',
+        'security/ir.model.access.csv',
         'data/vl_maintenance_cron.xml',
         'report/report.xml',
         'report/personal_equipment.xml',

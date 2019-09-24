@@ -112,14 +112,14 @@
         id="menu_m_data"
         name="Data Inventory"
         parent="maintenance.menu_maintenance_title"
-        groups="maintenance.group_equipment_manager"
+        groups="vl_maintenance.group_it_admin"
         sequence="100"/>
 
         <menuitem
         id="menu_m_database"
         name="Database Inventory"
         parent="menu_m_data"
-        groups="maintenance.group_equipment_manager"
+        groups="vl_maintenance.group_it_admin"
         sequence="1"/>
 
         <menuitem
@@ -127,7 +127,7 @@
             name="Database inventory"
             parent="menu_m_database"
             action="maintenance_database_action"
-            groups="maintenance.group_equipment_manager"
+            groups="vl_maintenance.group_it_admin"
             sequence="10"/>
 
         <menuitem
@@ -135,7 +135,7 @@
             name="Tables inventory"
             parent="menu_m_database"
             action="maintenance_tables_action"
-            groups="maintenance.group_equipment_manager"
+            groups="vl_maintenance.group_it_admin"
             sequence="20"/>
 
     </data>
