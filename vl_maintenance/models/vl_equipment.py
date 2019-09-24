@@ -350,9 +350,9 @@ class MaintenancePlan(models.Model):
                                        store=True,
                                        track_visibility='onchange')
     description = fields.Text('Describe the next maintenance')
-    project_id = fields.Many2one('project.issue',
-                                 related='',
-                                 string='Select issue type')
+    project_id = fields.Many2one('project.project',
+                                 string='Select issue type',
+                                 store='True')
     equipment_id = fields.Many2one('maintenance.equipment',
                                    string='Equipment',
                                    index=True,
@@ -370,12 +370,12 @@ class MaintenancePlan(models.Model):
             next_issue_todo = self.env['project.issue'].search([
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done'),
+                #  ('state', '!=', 'done'),
                 ('date_done_iss', '=', False)], order="date asc", limit=1)
             last_issue_done = self.env['project.issue'].search([
                 ('equipment_id', '=', equipment.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done'),
+                #  ('state', '=', 'done'),
                 ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
             if next_issue_todo and last_issue_done:
                 next_date = next_issue_todo.date
@@ -383,7 +383,7 @@ class MaintenancePlan(models.Model):
                     last_issue_done.date_done_iss)
                 if date_gap > timedelta(0) and date_gap > timedelta(
                         days=equipment.period_day) * 2 and fields.Date.from_string \
-                            (next_issue_todo.date) > fields.Date.from_string(date_now):
+                             (next_issue_todo.date) > fields.Date.from_string(date_now):
                     if fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
                             days=equipment.period) < fields.Date.from_string(date_now):
                         next_date = date_now
@@ -411,14 +411,17 @@ class MaintenancePlan(models.Model):
 
     @api.multi
     def _create_new_issue(self, date):
+
         self.env['project.issue'].create({
             'name': _('Preventive issue - %s') % self.name,
             'date': date,
-            'equipment_id': self.id,
+            'equipment_id': self.equipment_id.id,
+            'project_id': self.project_id.id,
             'issue_type': 'preventive',
             'description': self.description,
             'issuer_id': '1',
         })
+
 
     @api.model
     def _cron_generate_issue(self):
@@ -426,7 +429,7 @@ class MaintenancePlan(models.Model):
             Generates issue request on the next_action_date or today if none exists
         """
         for plan in self.search([('period', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state', '!=', 'done'),
+            next_requests = self.env['project.issue'].search([  # ('state', '!=', 'done'),
                                                               ('issue_type', '=', 'preventive'),
                                                               ('date', '=', plan.next_action_date)])
             if not next_requests:
@@ -459,6 +462,22 @@ class MaintenanceApplication(models.Model):
     application_select = fields.Many2one('maintenance.allowed.os', domain=[('sw_type', '=', 'prog')])
     application_module = fields.One2many('maintenance.module.items', 'application')
     application_master_project = fields.Many2one('project.project')
+    a_related_hours = fields.Float(compute='_a_compute_sum_hours_spent',
+                                   readonly=True,
+                                   track_visibility='onchange')
+    a_related_cost_cooperation = fields.Float(compute='_a_compute_sum_cost_cooperation',
+                                              readonly=True,
+                                              track_visibility='onchange')
+
+    @api.multi
+    def _a_compute_sum_hours_spent(self):
+        for rec in self:
+            rec.a_related_hours = sum(line.m_related_hours for line in rec.application_module)
+
+    @api.multi
+    def _a_compute_sum_cost_cooperation(self):
+        for rec in self:
+            rec.a_related_cost_cooperation = sum(line.m_related_cost_cooperation for line in rec.application_module)
 
 
 class MaintenanceModuleItems(models.Model):
@@ -468,8 +487,24 @@ class MaintenanceModuleItems(models.Model):
     name = fields.Char(string="Module")
     allowed_groups = fields.Many2many('maintenance.application.groups')
     allowed_users = fields.Many2many('hr.employee')
-    application = fields.Many2one('maintenance.application', 'application_select')
+    application = fields.Many2one('maintenance.application')
     module_menu_view = fields.Many2many('maintenance.module.menu')
+    m_related_hours = fields.Float(compute='_m_compute_sum_hours_spent',
+                                   readonly=True,
+                                   track_visibility='onchange')
+    m_related_cost_cooperation = fields.Float(compute='_m_compute_sum_cost_cooperation',
+                                              readonly=True,
+                                              track_visibility='onchange')
+
+    @api.multi
+    def _m_compute_sum_hours_spent(self):
+        for rec in self:
+            rec.m_related_hours = sum(line.related_hours for line in rec.module_menu_view)
+
+    @api.multi
+    def _m_compute_sum_cost_cooperation(self):
+        for rec in self:
+            rec.m_related_cost_cooperation = sum(line.related_cost_cooperation for line in rec.module_menu_view)
 
 
 class MaintenanceModuleMenu(models.Model):
@@ -478,6 +513,22 @@ class MaintenanceModuleMenu(models.Model):
 
     name = fields.Char(string="Menu view")
     menu_view = fields.One2many('maintenance.menu.view', 'view_menu')
+    related_hours = fields.Float(compute='_compute_sum_hours_spent',
+                                 readonly=True,
+                                 track_visibility='onchange')
+    related_cost_cooperation = fields.Float(compute='_compute_sum_cost_cooperation',
+                                            readonly=True,
+                                            track_visibility='onchange')
+
+    @api.multi
+    def _compute_sum_hours_spent(self):
+        for rec in self:
+            rec.related_hours = sum(line.hours_spent for line in rec.menu_view)
+
+    @api.multi
+    def _compute_sum_cost_cooperation(self):
+        for rec in self:
+            rec.related_cost_cooperation = sum(line.cost_cooperation for line in rec.menu_view)
 
 
 class MaintenanceMenuView(models.Model):
@@ -489,8 +540,8 @@ class MaintenanceMenuView(models.Model):
     change_description = fields.Text(string="Description")
     hours_spent = fields.Float(string='Hours Spent', )
     cost_cooperation = fields.Float(string='Cost')
-    view_menu = fields.Many2one('maintenance.module.menu', 'menu_view')
-    related_issue = fields.Many2one('project.issue', 'related_module_menu')
+    view_menu = fields.Many2one('maintenance.module.menu')
+    related_issue = fields.Many2one('project.issue')
 
 
 class MaintenanceApplicationGroups(models.Model):

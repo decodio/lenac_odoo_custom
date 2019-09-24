@@ -18,6 +18,8 @@
             <field name="arch" type="xml">
                 <tree string="Application inventory">
                     <field name="application_select" string="Application name"/>
+                    <field name="a_related_hours" sum="Sum" string="Hours spent"> h</field>
+                    <field name="a_related_cost_cooperation" sum="Sum" string="Cost"> kn</field>
                     <field name="application_module"/>
                 </tree>
             </field>
@@ -35,9 +37,13 @@
                             <group>
                                    <field name="application_select"/>
                                    <field name="application_master_project"/>
+                                   <field name="a_related_hours" string="Hours spent"> h</field>
+                                   <field name="a_related_cost_cooperation" string="Cost"> kn</field>
                                    <field name="application_module">
                                            <tree>
                                                 <field name="name"/>
+                                                <field name="m_related_hours" string="Hours spent"> h</field>
+                                                <field name="m_related_cost_cooperation" string="Cost"> kn</field>
                                            </tree>
                                    </field>
                             </group>
@@ -78,6 +84,8 @@
                 <tree string="Module inventory">
                     <field name="name"/>
                     <field name="application"/>
+                    <field name="m_related_hours" sum="Sum" string="Hours spent"> h</field>
+                    <field name="m_related_cost_cooperation" sum="Sum" string="Cost"> kn</field>
                 </tree>
             </field>
         </record>
@@ -93,7 +101,15 @@
                         <group string = "Module details">
                             <group>
                                 <field name="name"/>
-                                <field name="module_menu_view"/>
+                                <field name="m_related_hours" string="Hours spent"> h</field>
+                                <field name="m_related_cost_cooperation" string="Cost"> kn</field>
+                                <field name="module_menu_view">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="related_hours" sum="Sum" string="Hours spent"> h</field>
+                                        <field name="related_cost_cooperation" sum="Sum" string="Cost"> kn</field>
+                                    </tree>
+                                </field>
                             </group>
                             <group>
                                 <field name="allowed_groups"/>
@@ -149,12 +165,14 @@
                     <sheet>
                         <group string = "View details">
                             <field name="name"/>
+                            <field name="related_hours" string="Hours spent"> h</field>
+                            <field name="related_cost_cooperation" string="Cost"/>
                             <field name="menu_view">
                                 <tree>
                                     <field name="name" invisible="1"/>
                                     <field name="view_version"/>
                                     <field name="change_description"/>
-                                    <field name="hours_spent" sum="Sum"/>
+                                    <field name="hours_spent" sum="Sum"> h</field>
                                     <field name="cost_cooperation" sum="Sum"/>
                                 </tree>
                             </field>

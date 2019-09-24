@@ -101,10 +101,11 @@
                 <notebook>
                     <page string="Issues for maintenance " name="maintenance_issue">
                         <group>
-                            <field name="preventive_maintenance_ids">
+                            <field name="preventive_maintenance_ids" context="{'default_name': name, 'default_equipment_id': id}">
                                     <tree create="true">
                                         <field name="name"/>
                                         <field name="period"/>
+                                        <field name="project_id"/>
                                         <field name="next_action_date"/>
                                         <field name="description"/>
                                         <field name="equipment_id"/>
@@ -358,6 +359,7 @@
                         <field name="name"/>
                         <field name="period"/>
                         <field name="next_action_date"/>
+                        <field name="project_id"/>
                         <field name="description"/>
                         <field name="equipment_id"/>
                     </group>
