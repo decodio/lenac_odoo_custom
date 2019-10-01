@@ -344,96 +344,85 @@ class MaintenancePlan(models.Model):
 
     name = fields.Char("Maintenance issue name")
     period = fields.Integer('Period of maintenance (In Days)')
-    next_action_date = fields.Datetime(compute='_compute_next_issue',
-                                       string='Date of the next preventive issue',
-                                       readonly=True,
-                                       store=True,
-                                       track_visibility='onchange')
+    next_action_date = fields.Datetime(
+        compute='_compute_next_issue',
+        string='Date of the next preventive issue',
+        readonly=True,
+        store=True,
+        track_visibility='onchange')
     description = fields.Text('Describe the next maintenance')
-    project_id = fields.Many2one('project.project',
-                                 string='Select issue type',
-                                 store='True')
-    equipment_id = fields.Many2one('maintenance.equipment',
-                                   string='Equipment',
-                                   index=True,
-                                   track_visibility='onchange')
+    project_id = fields.Many2one(
+        'project.project',
+         string='Select issue type',
+         store='True')
+    equipment_id = fields.Many2one(
+        'maintenance.equipment',
+        string='Equipment',
+        index=True,
+        track_visibility='onchange')
 
-    maintenance_id = fields.Many2one('maintenance.equipment', 'preventive_maintenance_ids')
+    maintenance_id = fields.Many2one(
+        'maintenance.equipment',
+        'preventive_maintenance_ids')
 
-    preventive_issue_ids = fields.One2many('project.issue', 'equipment_id', domain=[('issue_type', '=', 'preventive')])
+    preventive_issue_ids = fields.One2many(
+        'project.issue',
+        'equipment_id',
+        domain=[('issue_type', '=', 'preventive')])
 
-    @api.depends('period', 'preventive_issue_ids.date', 'preventive_issue_ids.date_done_iss')
+    @api.depends('period', 'preventive_issue_ids.date',
+                 'preventive_issue_ids.date_done_iss')
     def _compute_next_issue(self):
-
         date_now = fields.Date.context_today(self)
-        for equipment in self.filtered(lambda x: x.period > 0):
+        for maintenance_plan in self.filtered(lambda x: x.period > 0):
             next_issue_todo = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
+                ('equipment_id', '=', maintenance_plan.equipment_id.id),
                 ('issue_type', '=', 'preventive'),
-                #  ('state', '!=', 'done'),
                 ('date', '=', False)], order="date asc", limit=1)
-            # last_issue_done = self.env['project.issue'].search([
-             #   ('equipment_id', '=', equipment.id),
-             #   ('issue_type', '=', 'preventive'),
-             #   ('state', '=', 'done'),
-             #   ('date_done_iss', '!=', False)], order="date_done_iss desc", limit=1)
-            if next_issue_todo: # and last_issue_done:
+            if next_issue_todo:
                 next_date = next_issue_todo.date
-                #date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    #last_issue_done.date_done_iss)
-                if date_gap > timedelta(0) and date_gap > timedelta(
-                        days=equipment.period_day) * 2 and fields.Date.from_string \
-                             (next_issue_todo.date) > fields.Date.from_string(date_now):
-                    #if fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                     #       days=equipment.period) < fields.Date.from_string(date_now):
-                        next_date = date_now
-                    #else:
-                     #   next_date = fields.Date.to_string(
-                      #      fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                       #         days=equipment.period))
-            elif next_issue_todo:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
+                date_gap = fields.Date.from_string(next_issue_todo.date) -\
+                           fields.Date.from_string(
                     date_now)
-                if date_gap > timedelta(0) and date_gap > timedelta(days=equipment.period) * 2:
+                if date_gap > timedelta(0) and date_gap > timedelta(
+                        days=maintenance_plan.period) * 2:
                     next_date = fields.Date.to_string(
-                        fields.Date.from_string(date_now) + timedelta(days=equipment.period))
-            #elif last_issue_done:
-             #   next_date = fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-              #      days=equipment.period)
-               # if next_date < fields.Date.from_string(date_now):
-                #    next_date = date_now
+                        fields.Date.from_string(date_now) + timedelta(
+                            days=maintenance_plan.period))
             else:
                 next_date = fields.Date.to_string(
-                    fields.Date.from_string(date_now) + timedelta(days=equipment.period))
-
-            equipment.next_action_date = next_date
+                    fields.Date.from_string(date_now) + timedelta(
+                        days=maintenance_plan.period))
+            maintenance_plan.next_action_date = next_date
 
     @api.multi
     def _create_new_issue(self, date):
-
-        self.env['project.issue'].create({
+        self.ensure_one()
+        self.env['project.issue'].with_context(without_dms=True).create({
             'name': _('Preventive issue - %s') % self.name,
             'date': date,
             'equipment_id': self.equipment_id.id,
             'project_id': self.project_id.id,
             'issue_type': 'preventive',
             'description': self.description,
-            'issuer_id': '1',
+            'schedule_date': date,
+            'issuer_id': self.env.uid,
         })
-
 
     @api.model
     def _cron_generate_issue(self):
         """
             Generates issue request on the next_action_date or today if none exists
         """
-        for plan in self.search([('period', '>', 0)]):
-            next_requests = self.env['project.issue'].search([  # ('state', '!=', 'done'),
-                                                              ('issue_type', '=', 'preventive'),
-                                                              ('date', '=', plan.next_action_date)])
+        maintenance_plan_ids = self.search([('period', '>', 0)])
+        for maintenance_plan in maintenance_plan_ids:
+            next_requests = self.env['project.issue'].search(
+                [('issue_type', '=', 'preventive'),
+                 ('equipment_id', '=', maintenance_plan.equipment_id.id),
+                 ('date', '=', maintenance_plan.next_action_date)])
             if not next_requests:
-                plan._create_new_issue(plan.next_action_date)
+                maintenance_plan._create_new_issue(
+                    maintenance_plan.next_action_date)
 
 
 class MaintenanceNetworkResources(models.Model):
