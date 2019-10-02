@@ -76,6 +76,7 @@
             name="Installed Hardware"
             parent="maintenance.menu_maintenance_configuration"
             action="maintenance_hardware_details_action"
+            groups="maintenance.group_equipment_manager"
             sequence="100"/>
 
     </data>

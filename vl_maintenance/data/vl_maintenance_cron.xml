@@ -6,8 +6,58 @@
         <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
         <field name="doall" eval="False"/>
-        <field name="model" eval="'maintenance.equipment'"/>
+        <field name="model" eval="'maintenance.issue.plan'"/>
         <field name="function" eval="'_cron_generate_issue'"/>
         <field name="args" eval="'()'" />
     </record>
+    <!--<record model="ir.cron" id="maintenance_issues_cron_week">
+        <field name="name">Generate preventive issues (Week)</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model" eval="'maintenance.equipment'"/>
+        <field name="function" eval="'_cron_generate_issue_week'"/>
+        <field name="args" eval="'()'" />
+    </record>
+    <record model="ir.cron" id="maintenance_issues_cron_month">
+        <field name="name">Generate preventive issues (Month)</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model" eval="'maintenance.equipment'"/>
+        <field name="function" eval="'_cron_generate_issue_month'"/>
+        <field name="args" eval="'()'" />
+    </record>
+    <record model="ir.cron" id="maintenance_issues_cron_quater">
+        <field name="name">Generate preventive issues (Quater)</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model" eval="'maintenance.equipment'"/>
+        <field name="function" eval="'_cron_generate_issue_quater'"/>
+        <field name="args" eval="'()'" />
+    </record>
+    <record model="ir.cron" id="maintenance_issues_cron_half">
+        <field name="name">Generate preventive issues (Half)</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model" eval="'maintenance.equipment'"/>
+        <field name="function" eval="'_cron_generate_issue_half'"/>
+        <field name="args" eval="'()'" />
+    </record>
+    <record model="ir.cron" id="maintenance_issues_cron_year">
+        <field name="name">Generate preventive issues (Year)</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model" eval="'maintenance.equipment'"/>
+        <field name="function" eval="'_cron_generate_issue_year'"/>
+        <field name="args" eval="'()'" />
+    </record>-->
 </odoo>

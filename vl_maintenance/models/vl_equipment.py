@@ -3,12 +3,15 @@
 # Copyright (C) 2018 Vedran Terihaj
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models, tools, _
+from odoo import api, fields, models, _
 from datetime import date, datetime, timedelta
+
 import logging
+
 _logger = logging.getLogger(__name__)
 
-#_LEAD_STATE = [
+
+#    _LEAD_STATE = [
 #    ('draft', 'New'),
 #    ('open', 'In Progress'),
 #    ('pending', 'Pending'),
@@ -86,16 +89,16 @@ class MaintenanceEquipment(models.Model):
                                           string='Child equipment',
                                           readonly=True)
 
-#    project_code = fields.Many2one('maintenance.request', 'equipment_project_code')
-#    @api.multi
-#    def name_get(self):
-#        result = []
-#        for record in self:
-#            project_code = record.project_code
-#            if record.parent_equipment_ids:
-#                project_code = "%s / %s" % (record.parent_equipment_ids.name_get()[0][1], project_code)
-#            result.append((record.id, project_code))
-#        return result
+    #    project_code = fields.Many2one('maintenance.request', 'equipment_project_code')
+    #    @api.multi
+    #    def name_get(self):
+    #        result = []
+    #        for record in self:
+    #            project_code = record.project_code
+    #            if record.parent_equipment_ids:
+    #                project_code = "%s / %s" % (record.parent_equipment_ids.name_get()[0][1], project_code)
+    #            result.append((record.id, project_code))
+    #        return result
 
     @api.multi
     def create_new_issue(self):
@@ -163,87 +166,16 @@ class MaintenanceEquipment(models.Model):
             else:
                 equipment.employee_department_old = False
 
+    network_resources = fields.Many2many('maintenance.network.resources')
+    location_name = fields.Char(string="Location name")
+
+    preventive_maintenance_ids = fields.One2many('maintenance.issue.plan', 'maintenance_id')
+
     """SAME AS PREVENTIVE MAINTENANCE"""
     preventive_issue_ids = fields.One2many('project.issue', 'equipment_id', domain=[('issue_type', '=', 'preventive')])
 
-    periods = fields.Integer('project.issue', related='preventive_issue_ids.period')
-
-    #next_action_dates = fields.Datetime('project.issue', related='preventive_issue_ids.next_action_date')
-
-    next_action_dates = fields.Datetime(compute='_compute_next_issue',
-                                        string='Date of the next preventive issue', readonly=True, store=True,
+    next_action_dates = fields.Datetime(string='Date of the next preventive issue', readonly=True, store=True,
                                         track_visibility='onchange')
-    #next_action_dates = fields.Datetime('project.issue', related='preventive_issue_ids.next_action_date', compute='_compute_next_issue',
-    #                                    string='Date of the next preventive issue', store=True)
-
-    @api.depends('preventive_issue_ids.period', 'preventive_issue_ids.date', 'preventive_issue_ids.date_done_iss')
-    def _compute_next_issue(self):
-
-        date_now = fields.Date.context_today(self)
-        for equipment in self.filtered(lambda x: x.periods > 0):
-            next_issue_todo = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done')])
-            #                ('close_date', '=', False)], order="request_date asc", limit=1)
-            last_issue_done = self.env['project.issue'].search([
-                ('equipment_id', '=', equipment.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done')])
-            #                ('close_date', '!=', False)], order="close_date desc", limit=1)
-            if next_issue_todo and last_issue_done:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    last_issue_done.date_done_iss)
-                if date_gap > timedelta(0) and date_gap > timedelta(days=equipment.periods) * 2 and fields.Date.from_string \
-                            (next_issue_todo.date) > fields.Date.from_string(date_now):
-                    if fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                            days=equipment.periods) < fields.Date.from_string(date_now):
-                        next_date = date_now
-                    else:
-                        next_date = fields.Date.to_string(
-                            fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                                days=equipment.periods))
-            elif next_issue_todo:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    date_now)
-                if date_gap > timedelta(0) and date_gap > timedelta(days=equipment.periods) * 2:
-                    next_date = fields.Date.to_string(
-                        fields.Date.from_string(date_now) + timedelta(days=equipment.periods))
-            elif last_issue_done:
-                next_date = fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(days=equipment.periods)
-                if next_date < fields.Date.from_string(date_now):
-                    next_date = date_now
-            else:
-                next_date = fields.Date.to_string(fields.Date.from_string(date_now) + timedelta(days=equipment.periods))
-
-            equipment.next_action_dates = next_date
-
-    def _create_new_issue(self, date):
-        self.ensure_one()
-        self.env['project.issue'].create({
-            'name': _('Preventive issue - %s') % self.name,
-            'date': date,
-            'schedule_date': date,
-            #'category_id': self.category_id.id,
-            'equipment_id': self.id,
-            'issue_type': 'preventive',
-            #'user_id': self.technician_user_id.id,
-        })
-
-    @api.model
-    def _cron_generate_issue(self):
-        """
-            Generates issue request on the next_action_date or today if none exists
-        """
-        for equipment in self.search([('periods', '>', 0)]):
-            next_requests = self.env['project.issue'].search([('state.done', '=', False),
-                                                              ('equipment_id', '=', equipment.id),
-                                                              ('issue_type', '=', 'preventive'),
-                                                              ('date', '=', equipment.next_action_dates)])
-            if not next_requests:
-                equipment._create_new_issue(equipment.next_action_dates)
 
 
 class MaintenanceAllowedOs(models.Model):
@@ -251,6 +183,7 @@ class MaintenanceAllowedOs(models.Model):
     _description = 'Installed software'
 
     name = fields.Char(string="Software name", required='True')
+    sw_inventory_number = fields.Char(string="Inventory number")
     sw_vendor = fields.Char(string="Software vendor")
     sw_version = fields.Char(string="Software version")
     sw_licence = fields.Selection(selection=[('free', 'Free'), ('personal', 'Personal use'),
@@ -271,35 +204,30 @@ class MaintenanceAllowedOs(models.Model):
     sw_type = fields.Selection(selection=[('prog', 'Program'), ('OS', 'Operating system')],
                                string='Software type',
                                required='True')
+    sw_related = fields.One2many('maintenance.application', 'application_select')
 
 
 class MaintenanceHardwareDetails(models.Model):
-        _name = 'maintenance.hardware.details'
-        _description = 'Hardware Details'
+    _name = 'maintenance.hardware.details'
+    _description = 'Hardware Details'
 
-        name = fields.Char(string='Component name')
-        manufacturer = fields.Char(string='Manufacturer')
-        serial_no = fields.Char(string='Serial Number')
-        component_type = fields.Many2one('maintenance.component.type', string='Component type')
-        size = fields.Char(string='Size')
-        status = fields.Selection(selection=[('inst', 'Installed'), ('rep', 'Replaced'), ('war', 'Warranty')],
-                                  string='Component status',
-                                  required='True')
-        log_note = fields.Text(string='Log of internal notes')
-        purchase_date = fields.Date(string='Date of purchase')
-        warranty = fields.Char(string='Warranty')
-        warranty_valid = fields.Date(string='Warranty till')
-        price = fields.Char(string='Cost')
-        installed_on_pc = fields.Many2one('maintenance.equipment',
-                                          realted='name',
-                                          track_visibility='onchange',
-                                          readonly=False)
-
-
-class MaintenanceComponentType(models.Model):
-        _name = 'maintenance.component.type'
-
-        name = fields.Char(string='Component type')
+    name = fields.Char(string='Component name')
+    manufacturer = fields.Char(string='Manufacturer')
+    serial_no = fields.Char(string='Serial Number')
+    component_type = fields.Many2one('maintenance.component.type', string='Component type')
+    size = fields.Char(string='Size')
+    status = fields.Selection(selection=[('inst', 'Installed'), ('rep', 'Replaced'), ('war', 'Warranty')],
+                              string='Component status',
+                              required='True')
+    log_note = fields.Text(string='Log of internal notes')
+    purchase_date = fields.Date(string='Date of purchase')
+    warranty = fields.Char(string='Warranty')
+    warranty_valid = fields.Date(string='Warranty till')
+    price = fields.Char(string='Cost')
+    installed_on_pc = fields.Many2one('maintenance.equipment',
+                                      realted='name',
+                                      track_visibility='onchange',
+                                      readonly=False)
 
 
 class MaintenanceRequest(models.Model):
@@ -341,6 +269,7 @@ class MaintenanceRequest(models.Model):
         res = super(MaintenanceRequest, self).write(vals)
         return res
 
+
 #    maintenance_child_equipment_issue_id = fields.One2many(
 #        'project.issue',
 #        related='maintenance_request_ids',
@@ -351,7 +280,7 @@ class MaintenanceStage(models.Model):
     _name = 'maintenance.stage'
     _inherit = ['maintenance.stage', 'stage.control.common']
 
-#    state = fields.Selection(_LEAD_STATE, 'State')
+    #    state = fields.Selection(_LEAD_STATE, 'State')
     create_code = fields.Boolean(string='Create Code')
 
 
@@ -393,72 +322,255 @@ class ProjectIssue(models.Model):
                 issue.parent_equipment_id = False
 
     """zapisuje se parent project code kako bi se prema njemu mogli dohvatiti svi Issues na formu maintenance request"""
-#    maintenance_request_ids = fields.Many2one('maintenance.request',
-#                                             related='equipment_id.equipment_project_code')
-
-    schedule_date = fields.Datetime('Scheduled Date')
+    #    maintenance_request_ids = fields.Many2one('maintenance.request',
+    #                                             related='equipment_id.equipment_project_code')
 
     issue_type = fields.Selection([('corrective', 'Corrective'),
                                    ('preventive', 'Preventive')],
                                   string='Issue Type',
                                   default="corrective")
 
-#   date = request_date = fields.Date('Request Date', track_visibility='onchange', default=fields.Date.context_today,
-#                                     help="Date requested for the issue to happen")
-#   date_done_iss = close_date = fields.Date('Close Date', help="Date the issue was finished. ")
+    schedule_date = fields.Datetime('Scheduled Date')
 
     item_specification = fields.Char('Specification item')
 
     next_action_date = fields.Datetime('maintenance.equipment', related='equipment_id.next_action_dates')
 
-    period = fields.Integer('Days between each preventive issue')
+    related_module_menu = fields.One2many('maintenance.menu.view', 'related_issue')
 
-    #next_action_date = fields.Datetime(string='Date of the next preventive issue', store=True)
-"""
-    
 
-    @api.depends('period', 'date', 'date_done_iss')
+class MaintenancePlan(models.Model):
+    _name = 'maintenance.issue.plan'
+
+    name = fields.Char("Maintenance issue name")
+    period = fields.Integer('Period of maintenance (In Days)')
+    next_action_date = fields.Datetime(
+        compute='_compute_next_issue',
+        string='Date of the next preventive issue',
+        readonly=True,
+        store=True,
+        track_visibility='onchange')
+    description = fields.Text('Describe the next maintenance')
+    project_id = fields.Many2one(
+        'project.project',
+         string='Select issue type',
+         store='True')
+    equipment_id = fields.Many2one(
+        'maintenance.equipment',
+        string='Equipment',
+        index=True,
+        track_visibility='onchange')
+
+    maintenance_id = fields.Many2one(
+        'maintenance.equipment',
+        'preventive_maintenance_ids')
+
+    preventive_issue_ids = fields.One2many(
+        'project.issue',
+        'equipment_id',
+        domain=[('issue_type', '=', 'preventive')])
+
+    @api.depends('period', 'preventive_issue_ids.date',
+                 'preventive_issue_ids.date_done_iss')
     def _compute_next_issue(self):
-
         date_now = fields.Date.context_today(self)
-        for issue in self.filtered(lambda x: x.period > 0):
+        for maintenance_plan in self.filtered(lambda x: x.period > 0):
             next_issue_todo = self.env['project.issue'].search([
-                ('equipment_id', '=', issue.id),
+                ('equipment_id', '=', maintenance_plan.equipment_id.id),
                 ('issue_type', '=', 'preventive'),
-                ('state', '!=', 'done')])
-#                ('close_date', '=', False)], order="request_date asc", limit=1)
-            last_issue_done = self.env['project.issue'].search([
-                ('equipment_id', '=', issue.id),
-                ('issue_type', '=', 'preventive'),
-                ('state', '=', 'done')])
-#                ('close_date', '!=', False)], order="close_date desc", limit=1)
-            if next_issue_todo and last_issue_done:
+                ('date', '=', False)], order="date asc", limit=1)
+            if next_issue_todo:
                 next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
-                    last_issue_done.date_done_iss)
-                if date_gap > timedelta(0) and date_gap > timedelta(days=issue.period) * 2 and fields.Date.from_string\
-                            (next_issue_todo.date) > fields.Date.from_string(date_now):
-                    if fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                            days=issue.period) < fields.Date.from_string(date_now):
-                        next_date = date_now
-                    else:
-                        next_date = fields.Date.to_string(
-                            fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(
-                                days=issue.period))
-            elif next_issue_todo:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) - fields.Date.from_string(
+                date_gap = fields.Date.from_string(next_issue_todo.date) -\
+                           fields.Date.from_string(
                     date_now)
-                if date_gap > timedelta(0) and date_gap > timedelta(days=issue.period) * 2:
+                if date_gap > timedelta(0) and date_gap > timedelta(
+                        days=maintenance_plan.period) * 2:
                     next_date = fields.Date.to_string(
-                        fields.Date.from_string(date_now) + timedelta(days=issue.period))
-            elif last_issue_done:
-                next_date = fields.Date.from_string(last_issue_done.date_done_iss) + timedelta(days=issue.period)
-                if next_date < fields.Date.from_string(date_now):
-                    next_date = date_now
+                        fields.Date.from_string(date_now) + timedelta(
+                            days=maintenance_plan.period))
             else:
-                next_date = fields.Date.to_string(fields.Date.from_string(date_now) + timedelta(days=issue.period))
+                next_date = fields.Date.to_string(
+                    fields.Date.from_string(date_now) + timedelta(
+                        days=maintenance_plan.period))
+            maintenance_plan.next_action_date = next_date
 
-            issue.next_action_date = next_date
-"""
+    @api.multi
+    def _create_new_issue(self, date):
+        self.ensure_one()
+        self.env['project.issue'].with_context(without_dms=True).create({
+            'name': _('Preventive issue - %s') % self.name,
+            'date': date,
+            'equipment_id': self.equipment_id.id,
+            'project_id': self.project_id.id,
+            'issue_type': 'preventive',
+            'description': self.description,
+            'schedule_date': date,
+            'issuer_id': self.env.uid,
+        })
 
+    @api.model
+    def _cron_generate_issue(self):
+        """
+            Generates issue request on the next_action_date or today if none exists
+        """
+        maintenance_plan_ids = self.search([('period', '>', 0)])
+        for maintenance_plan in maintenance_plan_ids:
+            next_requests = self.env['project.issue'].search(
+                [('issue_type', '=', 'preventive'),
+                 ('equipment_id', '=', maintenance_plan.equipment_id.id),
+                 ('date', '=', maintenance_plan.next_action_date)])
+            if not next_requests:
+                maintenance_plan._create_new_issue(
+                    maintenance_plan.next_action_date)
+
+
+class MaintenanceNetworkResources(models.Model):
+    _name = 'maintenance.network.resources'
+    _description = 'Shared network resources'
+
+    name = fields.Char(string='Resource name')
+    parent_equipment_id = fields.Many2many('maintenance.equipment')
+    user_groups = fields.Many2many('maintenance.ad.groups', string='Allowed AD Groups')
+    # allowed_users = fields.Many2many('maintenance.ad.groups', related='allowed_users', string='Allowed AD users')
+
+
+class MaintenanceADGroups(models.Model):
+    _name = 'maintenance.ad.groups'
+    _description = 'AD user groups'
+
+    name = fields.Char(string='AD User group')
+    allowed_users = fields.Many2many('hr.employee', string='AD Users')
+
+
+class MaintenanceApplication(models.Model):
+    _name = 'maintenance.application'
+    _description = 'Applications used in VL'
+
+    name = fields.Char(string='Application name')
+    application_select = fields.Many2one('maintenance.allowed.os', domain=[('sw_type', '=', 'prog')])
+    application_module = fields.One2many('maintenance.module.items', 'application')
+    application_master_project = fields.Many2one('project.project')
+    a_related_hours = fields.Float(compute='_a_compute_sum_hours_spent',
+                                   readonly=True,
+                                   track_visibility='onchange')
+    a_related_cost_cooperation = fields.Float(compute='_a_compute_sum_cost_cooperation',
+                                              readonly=True,
+                                              track_visibility='onchange')
+
+    @api.multi
+    def _a_compute_sum_hours_spent(self):
+        for rec in self:
+            rec.a_related_hours = sum(line.m_related_hours for line in rec.application_module)
+
+    @api.multi
+    def _a_compute_sum_cost_cooperation(self):
+        for rec in self:
+            rec.a_related_cost_cooperation = sum(line.m_related_cost_cooperation for line in rec.application_module)
+
+
+class MaintenanceModuleItems(models.Model):
+    _name = 'maintenance.module.items'
+    _description = 'Application module items'
+
+    name = fields.Char(string="Module")
+    allowed_groups = fields.Many2many('maintenance.application.groups')
+    allowed_users = fields.Many2many('hr.employee')
+    application = fields.Many2one('maintenance.application')
+    module_menu_view = fields.Many2many('maintenance.module.menu')
+    m_related_hours = fields.Float(compute='_m_compute_sum_hours_spent',
+                                   readonly=True,
+                                   track_visibility='onchange')
+    m_related_cost_cooperation = fields.Float(compute='_m_compute_sum_cost_cooperation',
+                                              readonly=True,
+                                              track_visibility='onchange')
+
+    @api.multi
+    def _m_compute_sum_hours_spent(self):
+        for rec in self:
+            rec.m_related_hours = sum(line.related_hours for line in rec.module_menu_view)
+
+    @api.multi
+    def _m_compute_sum_cost_cooperation(self):
+        for rec in self:
+            rec.m_related_cost_cooperation = sum(line.related_cost_cooperation for line in rec.module_menu_view)
+
+
+class MaintenanceModuleMenu(models.Model):
+    _name = 'maintenance.module.menu'
+    _description = 'Application module menu'
+
+    name = fields.Char(string="Menu view")
+    menu_view = fields.One2many('maintenance.menu.view', 'view_menu')
+    related_hours = fields.Float(compute='_compute_sum_hours_spent',
+                                 readonly=True,
+                                 track_visibility='onchange')
+    related_cost_cooperation = fields.Float(compute='_compute_sum_cost_cooperation',
+                                            readonly=True,
+                                            track_visibility='onchange')
+
+    @api.multi
+    def _compute_sum_hours_spent(self):
+        for rec in self:
+            rec.related_hours = sum(line.hours_spent for line in rec.menu_view)
+
+    @api.multi
+    def _compute_sum_cost_cooperation(self):
+        for rec in self:
+            rec.related_cost_cooperation = sum(line.cost_cooperation for line in rec.menu_view)
+
+
+class MaintenanceMenuView(models.Model):
+    _name = 'maintenance.menu.view'
+    _description = 'Application menu view items'
+
+    name = fields.Char(string="View name")
+    view_version = fields.Char(string="View version")
+    change_description = fields.Text(string="Description")
+    hours_spent = fields.Float(string='Hours Spent', )
+    cost_cooperation = fields.Float(string='Cost')
+    view_menu = fields.Many2one('maintenance.module.menu')
+    related_issue = fields.Many2one('project.issue', store='True')
+
+
+class MaintenanceApplicationGroups(models.Model):
+    _name = 'maintenance.application.groups'
+    _description = 'Application groups'
+
+    name = fields.Char(string="Group name")
+    allowed_users = fields.Many2many('hr.employee')
+    allowed_create = fields.Boolean(string="Create")
+    allowed_edit = fields.Boolean(string="Edit")
+    allowed_read = fields.Boolean(string="Read")
+    allowed_delete = fields.Boolean(string="Delete")
+
+
+class MaintenanceDatabase(models.Model):
+    _name = 'maintenance.database'
+    _description = 'Database inventory'
+
+    name = fields.Char(string="Database name")
+    database_tables = fields.Many2many('maintenance.tables')
+    database_application = fields.Many2many('maintenance.application')
+
+
+class MaintenanceTables(models.Model):
+    _name = 'maintenance.tables'
+    _description = 'Database tables'
+
+    name = fields.Char(string="Table name")
+    table_fields = fields.Many2many('maintenance.table.fields')
+    table_menu_item = fields.Many2many('maintenance.module.items')
+
+
+class MaintenanceTableFields(models.Model):
+    _name = 'maintenance.table.fields'
+    _description = 'Fields for table'
+
+    name = fields.Char(string="Field name")
+
+
+class MaintenanceComponentType(models.Model):
+    _name = 'maintenance.component.type'
+
+    name = fields.Char(string='Component type')

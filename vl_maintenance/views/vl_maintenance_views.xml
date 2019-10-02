@@ -56,6 +56,13 @@
                             </group>
                         </group>
                     </page>
+                    <page string="Network resources" name="general_description" attrs="{'invisible': ['|', ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', False)]}">
+                        <group string="Network resources">
+                            <group>
+                                <field name="network_resources"/>
+                            </group>
+                        </group>
+                    </page>
                     <page string="Issues" name="issues" >
                         <group string="Reported issues">
                             <field name="issue_ids" nolabel="1" context="{'form_view_ref': 'sp_viktor_lenac.project_issue_lenac_form_view'}">
@@ -76,8 +83,6 @@
                                         <field name="stage_id"/>
                                         <field name="user_id"/>
                                         <field name="date"/>
-                                        <field name="period"/>
-                                        <field name="next_action_date"/>
                                     </tree>
                                 </field>
                         </group>
@@ -93,6 +98,22 @@
                         </group>
                     </page>
                 </notebook>
+                <notebook>
+                    <page string="Issues for maintenance " name="maintenance_issue">
+                        <group>
+                            <field name="preventive_maintenance_ids" context="{'default_name': name, 'default_equipment_id': id}">
+                                    <tree create="true">
+                                        <field name="name"/>
+                                        <field name="period"/>
+                                        <field name="project_id"/>
+                                        <field name="next_action_date"/>
+                                        <field name="description"/>
+                                        <field name="equipment_id"/>
+                                    </tree>
+                                </field>
+                        </group>
+                    </page>
+                </notebook>
             </field>
         </record>
 
@@ -102,16 +123,16 @@
             <field name="inherit_id" ref="maintenance.hr_equipment_view_kanban"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='department_id']" position="after">
-                    <field name="next_action_dates"/>
+                    <!--<field name="next_action_dates"/>-->
                     <field name="issues_open_count"/>
                 </xpath>
                 <div class="oe_kanban_content" tooltip="kanban-tooltip">
                     <div class="oe_kanban_footer_left mt4 label label-danger" t-if="record.issues_open_count.raw_value" >
                         <t t-raw="record.issues_open_count.raw_value"/> Issues
                     </div>
-                    <div class="oe_kanban_footer_left mt4 label label-default" t-if="record.next_action_dates.raw_value" >
+                    <!--<div class="oe_kanban_footer_left mt4 label label-default" t-if="record.next_action_dates.raw_value" >
                         <t t-raw="moment(record.next_action_dates.raw_value).format('MMMM Do')"/>
-                    </div>
+                    </div>-->
                 </div>
             </field>
         </record>
@@ -290,10 +311,11 @@
         </record>
 
          <menuitem
-            id="menu_vl_subcontractor_stage"
+            id="menu_vl_maintenance_stage"
             name="Stages"
             parent="maintenance.menu_maintenance_stage_configuration"
             action="vl_maintenance_stage_act"
+            groups="maintenance.group_equipment_manager"
             sequence="100"/>
 
         <record id="project_issue_lenac_inherit_form_view" model="ir.ui.view">
@@ -308,40 +330,40 @@
                     <page string="Maintenance details" name="general_description" attrs="{'invisible': ['|', ('equipment_id', '=', False)]}">
                          <group nolabel="1">
                             <group>
-                                <field name="period"/>
-                                <field name="next_action_date" readonly="True" string="Next issue"/>
+                                <!--<field name="period"/>-->
+                                <!--<field name="next_action_date" readonly="True" string="Next issue"/>-->
                                 <field name="schedule_date"/>
                                 <field name="issue_type" readonly="True"/>
                                 <field name="item_specification"/>
                                 <field name="parent_equipment_id"/>
                             </group>
                          </group>
-                        <!--<notebook>
-                            <page string="Maintenance details" name="general_description" attrs="{'invisible': ['|', ('equipment_id', '=', False)]}">
-                                <group nolabel="1">
-                                    <group>
-                                        <field name="period"/>
-                                        <field name="next_action_date"/>
-                                        <field name="schedule_date"/>
-                                        <field name="issue_type" readonly="True"/>
-                                        <field name="item_specification"/>
-                                    </group>
-                                </group>
-                            </page>
-                            <page string="Maintenance details" name="general_description" attrs="{'invisible': ['|', ('equipment_id', '=', False)]}">
-                                <group nolabel="1">
-                                    <group>
-                                        <field name="period"/>
-                                        <field name="next_action_date"/>
-                                        <field name="schedule_date"/>
-                                        <field name="issue_type" readonly="True"/>
-                                        <field name="item_specification"/>
-                                    </group>
-                                </group>
-                            </page>
-                        </notebook>-->
+                    </page>
+                    <page string="Related application view">
+                         <group nolabel="1">
+                            <group>
+                                <field name="related_module_menu"/>
+                            </group>
+                         </group>
                     </page>
                 </notebook>
+            </field>
+        </record>
+
+        <record id="maintenance_issue_plan_form" model="ir.ui.view">
+            <field name="name">maintenance.issue.plan.form</field>
+            <field name="model">maintenance.issue.plan</field>
+            <field name="arch" type="xml">
+                <form string="Maintenance Issues">
+                    <group>
+                        <field name="name"/>
+                        <field name="period"/>
+                        <field name="next_action_date"/>
+                        <field name="project_id"/>
+                        <field name="description"/>
+                        <field name="equipment_id"/>
+                    </group>
+                </form>
             </field>
         </record>
     </data>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="group_it_admin" model="res.groups">
+            <field name="name">IT Administrator</field>
+            <field name="category_id" ref="base.module_category_human_resources"/>
+            <field name="implied_ids" eval="[(4, ref('maintenance.group_equipment_manager'))]"/>
+        </record>
+    </data>
+</odoo>
