@@ -4,7 +4,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
+from dateutil.relativedelta import relativedelta
 
 import logging
 
@@ -169,12 +170,18 @@ class MaintenanceEquipment(models.Model):
     network_resources = fields.Many2many('maintenance.network.resources')
     location_name = fields.Char(string="Location name")
 
-    preventive_maintenance_ids = fields.One2many('maintenance.issue.plan', 'maintenance_id')
+    preventive_maintenance_ids = fields.One2many(
+        'maintenance.issue.plan',
+        'equipment_id')
 
     """SAME AS PREVENTIVE MAINTENANCE"""
-    preventive_issue_ids = fields.One2many('project.issue', 'equipment_id', domain=[('issue_type', '=', 'preventive')])
+    preventive_issue_ids = fields.One2many(
+        'project.issue',
+        'equipment_id',
+        domain=[('issue_type', '=', 'preventive')])
 
-    next_action_dates = fields.Datetime(string='Date of the next preventive issue', readonly=True, store=True,
+    next_action_dates = fields.Datetime(
+        string='Date of the next preventive issue', readonly=True, store=True,
                                         track_visibility='onchange')
 
 
@@ -338,18 +345,20 @@ class ProjectIssue(models.Model):
 
     related_module_menu = fields.One2many('maintenance.menu.view', 'related_issue')
 
+    maintenance_issue_plan_id = fields.Many2one(
+        'maintenance.issue.plan',
+        string='MaintenancePlan')
+
 
 class MaintenancePlan(models.Model):
     _name = 'maintenance.issue.plan'
 
     name = fields.Char("Maintenance issue name")
     period = fields.Integer('Period of maintenance (In Days)')
+
     next_action_date = fields.Datetime(
-        compute='_compute_next_issue',
         string='Date of the next preventive issue',
-        readonly=True,
-        store=True,
-        track_visibility='onchange')
+    )
     description = fields.Text('Describe the next maintenance')
     project_id = fields.Many2one(
         'project.project',
@@ -358,71 +367,56 @@ class MaintenancePlan(models.Model):
     equipment_id = fields.Many2one(
         'maintenance.equipment',
         string='Equipment',
-        index=True,
-        track_visibility='onchange')
+        index=True)
 
-    maintenance_id = fields.Many2one(
-        'maintenance.equipment',
-        'preventive_maintenance_ids')
+    @api.model
+    def create(self, vals):
+        res = super(MaintenancePlan, self).create(vals)
+        res.create_new_issue(fields.Date.context_today(res))
+        return res
 
-    preventive_issue_ids = fields.One2many(
-        'project.issue',
-        'equipment_id',
-        domain=[('issue_type', '=', 'preventive')])
-
-    @api.depends('period', 'preventive_issue_ids.date',
-                 'preventive_issue_ids.date_done_iss')
-    def _compute_next_issue(self):
-        date_now = fields.Date.context_today(self)
-        for maintenance_plan in self.filtered(lambda x: x.period > 0):
-            next_issue_todo = self.env['project.issue'].search([
-                ('equipment_id', '=', maintenance_plan.equipment_id.id),
-                ('issue_type', '=', 'preventive'),
-                ('date', '=', False)], order="date asc", limit=1)
-            if next_issue_todo:
-                next_date = next_issue_todo.date
-                date_gap = fields.Date.from_string(next_issue_todo.date) -\
-                           fields.Date.from_string(
-                    date_now)
-                if date_gap > timedelta(0) and date_gap > timedelta(
-                        days=maintenance_plan.period) * 2:
-                    next_date = fields.Date.to_string(
-                        fields.Date.from_string(date_now) + timedelta(
-                            days=maintenance_plan.period))
-            else:
-                next_date = fields.Date.to_string(
-                    fields.Date.from_string(date_now) + timedelta(
-                        days=maintenance_plan.period))
-            maintenance_plan.next_action_date = next_date
+    @api.onchange('period')
+    def _onchange_period(self):
+        date_now = fields.Date.from_string(fields.Date.today())
+        next_date = date_now + relativedelta(days=self.period)
+        self.next_action_date = next_date
 
     @api.multi
-    def _create_new_issue(self, date):
+    def create_new_issue(self, date):
         self.ensure_one()
-        self.env['project.issue'].with_context(without_dms=True).create({
-            'name': _('Preventive issue - %s') % self.name,
-            'date': date,
-            'equipment_id': self.equipment_id.id,
-            'project_id': self.project_id.id,
-            'issue_type': 'preventive',
-            'description': self.description,
-            'schedule_date': date,
-            'issuer_id': self.env.uid,
-        })
+        issue = self.env['project.issue'].with_context(without_dms=True).create({
+                'name': _('Preventive issue - %s') % self.name,
+                'date': date,
+                'equipment_id': self.equipment_id.id,
+                'project_id': self.project_id.id,
+                'issue_type': 'preventive',
+                'description': self.description,
+                'schedule_date': date,
+                'issuer_id': self.env.uid,
+                'maintenance_issue_plan_id': self.id,
+            })
+        return issue
 
     @api.model
     def _cron_generate_issue(self):
         """
             Generates issue request on the next_action_date or today if none exists
         """
-        maintenance_plan_ids = self.search([('period', '>', 0)])
+        today_start = fields.Datetime.from_string(fields.Date.today())
+        today_end = today_start + relativedelta(days=1)
+        maintenance_plan_ids = self.search([
+            ('period', '>', 0),
+            ('next_action_date', '>=', fields.Datetime.to_string(today_start)),
+            ('next_action_date', '<', fields.Datetime.to_string(today_end)),
+            ])
         for maintenance_plan in maintenance_plan_ids:
-            next_requests = self.env['project.issue'].search(
-                [('issue_type', '=', 'preventive'),
-                 ('equipment_id', '=', maintenance_plan.equipment_id.id),
-                 ('date', '=', maintenance_plan.next_action_date)])
-            if not next_requests:
-                maintenance_plan._create_new_issue(
-                    maintenance_plan.next_action_date)
+            issue = maintenance_plan.create_new_issue(
+                maintenance_plan.next_action_date)
+            if issue:
+                next_date = fields.Date.from_string(
+                    maintenance_plan.next_action_date) +\
+                            relativedelta(days=maintenance_plan.period)
+                maintenance_plan.write({'next_action_date': next_date})
 
 
 class MaintenanceNetworkResources(models.Model):

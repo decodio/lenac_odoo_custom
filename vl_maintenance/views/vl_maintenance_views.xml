@@ -358,10 +358,9 @@
                     <group>
                         <field name="name"/>
                         <field name="period"/>
-                        <field name="next_action_date"/>
+                        <field name="next_action_date" readonly="1"/>
                         <field name="project_id"/>
                         <field name="description"/>
-                        <field name="equipment_id"/>
                     </group>
                 </form>
             </field>
