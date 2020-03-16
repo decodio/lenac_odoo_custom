@@ -1,6 +1,6 @@
 <?xml version = "1.0" encoding="utf-8"?>
 <odoo>
-     <data noupdate="1">
+    <data noupdate="0">
     <!--HR Employee-->
     <record id="view_vl_employee_form_inherit_extension" model="ir.ui.view">
       <field name="name">view.vl.employee.form.inherit.extension</field>
@@ -16,10 +16,31 @@
         <xpath expr="//field[@name='mobile_phone']"  position="after">
             <field name="mobile_phone_short"/>
         </xpath>
+        <xpath expr="//field[@name='job_id']"  position="after">
+            <field name="job_long_id"/>
+        </xpath>
+        <xpath expr="//field[@name='marital']"  position="after">
+            <field name="youth"/>
+            <field name="disability"/>
+        </xpath>
         <notebook>
             <page string="Assigned equipment" name="employee_personal_equipment">
                 <group>
                     <field name="employee_assigned_equipment_ids"/>
+                </group>
+            </page>
+        </notebook>
+        <notebook>
+            <page string="Job history" name="employee_job_history">
+                <group>
+                    <field name="history_job_ids">
+                       <tree editable="top">
+                            <field name="job_id"/>
+                            <field name="date_start"/>
+                            <field name="date_stop"/>
+                            <field name="mobile_short"/>
+                        </tree>
+                    </field>
                 </group>
             </page>
         </notebook>
@@ -42,6 +63,19 @@
                 </button>
             </div>
             <notebook>
+                <page string="Department jobs" name="department_jobs">
+                    <group string="Department jobs">
+                        <group>
+                            <!--<field name="department_job">
+                                <tree editable="top">
+                                    <field name="sequence"/>
+                                    <field name="name"/>
+                                    <field name="job_id"/>
+                                </tree>
+                            </field>-->
+                        </group>
+                    </group>
+                </page>
                 <page string="Equipment assigned to department" name="department_related_equipment">
                     <group string="Department equipment">
                         <group>
@@ -56,5 +90,835 @@
         </xpath>-->
       </field>
     </record>
-     </data>
+
+    <!-- HR Job description -->
+     <!--<record id="view_vl_hr_job_inherited" model="ir.ui.view">
+         <field name="name">view.vl.hr.job.inherited</field>
+         <field name="model">hr.job</field>
+         <field name="inherit_id" ref="hr.view_hr_job_form"/>
+         <field name="arch" type="xml">
+             <xpath expr="//header/button[2]" position="after">
+                <button name="create_new_job_description"
+                        string="Create New" type="object"
+                        />
+             </xpath>
+             <xpath expr="//div[@name='button_box']" postition='inside'>
+                <button name="toggle_active" type="object" groups="hr.group_hr_user"
+                        class="oe_stat_button" icon="fa-archive">
+                    <field name="active" widget="boolean_button"
+                        options='{"terminology": "archive"}'/>
+                </button>
+             </xpath>
+             <xpath expr="//field[@name='name']" position="after">
+                 <field name="job_position_code" string="Job position code"/>
+             </xpath>
+             <xpath expr="//field[@name='department_id']" position="after">
+                 <field name="department_code" string="Department code"/>
+                 <field name="origin_id" string="Previous version"/>
+             </xpath>
+             <xpath expr="//field[@name='description']" position="before">
+                 <group nolabel="1">
+                     <field name="job_function" string="Job function"/>
+                     <field name="job_function_code" string="Job function code"/>
+                     <field name="trade" string="Trade"/>
+                     <field name="trade_codes" string="Trade code"/>
+                     <field name="job_responsible_id" string="Responsible"/>
+                 </group>
+             </xpath>
+             <xpath expr="//field[@name='description']" position="after">
+                 <group>
+                    <field name="special_conditions" string="Special work condition"/>
+                    <field name="service_experience_calculation" string="Service experience is calculated"/>
+                    <field name="job_position_coefficient" string="Job position coefficient"/>
+                    <field name="addition_harsh_work" string="Addition for harsh work environment"/>
+                    <field name="working_hours" string="Working hours"/>
+                 </group>
+                 <group></group>
+                 <group>
+                    <field name="min_qualifications" string="Minimum qualifications"/>
+                    <field name="min_work_experience" string="Minimum work experience"/>
+                    <field name="trail_period" string="Trail period"/>
+                    <field name="internship" string="Internship"/>
+                    <field name="special_health" string="Special health condition (ar.3 PUR)"/>
+                    <field name="proficiency_testing" string="Proficiency and skills testing"/>
+                    <field name="profession_course_vocation" string="Profession/Course/vocation"/>
+                    <field name="professional_exam" string="Professional exam"/>
+                    <field name="professional_exam_name" string="Name of the professional exam"/>
+                    <field name="specialization" string="Specialization"/>
+                    <field name="specialization_name" string="Specialization name"/>
+                    <field name="special_knowledge" string="Special knowledge"/>
+                 </group>
+             </xpath>
+         </field>
+     </record>-->
+     <!-- FROM HR JOB TO JOB LONG-->
+     <record id="view_hr_job_long_form" model="ir.ui.view">
+            <field name="name">hr.job.long.form</field>
+            <field name="model">hr.job.long</field>
+            <field name="arch" type="xml">
+                <form string="Job">
+                    <header>
+                        <button name="create_new_job_description" string="Create New" type="object" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" groups="hr.group_hr_user"
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                        options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" placeholder="e.g. Sales Manager"/></h1>
+                            <h1><field name="job_position_code" string="Job position code"/></h1>
+                        </div>
+                        <group name="employee_data">
+                            <group>
+                                <field name="department_id"/>
+                                <field name="department_code" string="Department code"/>
+                                <field name="origin_id" string="Previous version"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Job conditions" name="job_conditions">
+                                <group>
+                                    <group nolabel="1">
+                                        <field name="job_function" string="Job function"/>
+                                        <field name="job_function_code" string="Job function code"/>
+                                        <field name="trade" string="Trade"/>
+                                        <field name="trade_codes" string="Trade code"/>
+                                        <field name="job_responsible_id" string="Responsible"/>
+                                    </group>
+                                    <group>
+                                        <field name="special_conditions" string="Special work condition"/>
+                                        <field name="service_experience_calculation" string="Service experience is calculated"/>
+                                        <field name="job_position_coefficient" string="Job position coefficient"/>
+                                        <field name="addition_harsh_work" string="Addition for harsh work environment"/>
+                                        <field name="working_hours" string="Working hours"/>
+                                    </group>
+                                </group>
+                                <group></group>
+                                <group>
+                                    <field name="min_qualifications" string="Minimum qualifications"/>
+                                    <field name="min_work_experience" string="Minimum work experience"/>
+                                    <field name="trail_period" string="Trail period"/>
+                                    <field name="internship" string="Internship"/>
+                                    <field name="special_health" string="Special health condition (ar.3 PUR)"/>
+                                    <field name="proficiency_testing" string="Proficiency and skills testing"/>
+                                    <field name="profession_course_vocation" string="Profession/Course/vocation"/>
+                                    <field name="professional_exam" string="Professional exam"/>
+                                    <field name="professional_exam_name" string="Name of the professional exam"/>
+                                    <field name="specialization" string="Specialization"/>
+                                    <field name="specialization_name" string="Specialization name"/>
+                                    <field name="special_knowledge" string="Special knowledge"/>
+                                </group>
+                            </page>
+                            <page string="Job description" name="job_description">
+                                <div>
+                                    <label for="description"/>
+                                    <field name="description"/>
+                                </div>
+                            </page>
+                            <page string="SiZO">
+                                <notebook>
+                                    <page string="General">
+                                        <br/>
+                                        <br/>
+                                        <table>
+                                            <tr>
+                                                <th>Opći Režim rada</th>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 10px;">Dnevni raspored rada</td>
+                                                <td><br/><br/></td>
+                                                <td style="padding-right: 10px;"><field name="daily_work_sch"/></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 10px;">Tjedni raspored radaa</td>
+                                                <td><br/><br/></td>
+                                                <td style="padding-right: 10px;"><field name="week_work_hrs"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 10px;">Rad duzi od redovitog</td>
+                                                <td><br/><br/></td>
+                                                <td style="padding-right: 10px;"><field name="longer_work"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 10px;">Skraceno radno vrijeme zbog otezanih uvjeta <br/> rada</td>
+                                                <td><br/><br/></td>
+                                                <td style="padding-right: 10px;"><field name="shorten_shift"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 10px;">Dnevni odmor </td>
+                                                <td><br/><br/></td>
+                                                <td style="padding-right: 10px;"><field name="lunch_break_ids"/></td>
+                                            </tr>
+                                        </table>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <table style="position: center;">
+                                            <tr>
+                                                <th>Podaci koji se odnose na zaposlenike</th>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 10px;">Minimalni stupanj strucne spreme</td>
+                                                <td><br/><br/></td>
+                                                <td style="padding-right: 10px;"><field name="min_qualifications2"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 10px;">Radi li se o radnom mjestu za koje potrebno <br/> osposobljavanje za ovlastenika poslodavca za <br/> primjenu ZNR</td>
+                                                <td><br/><br/></td>
+                                                <td style="padding-right: 10px;"><field name="safety_responsible"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 10px;">Radi li se o poslovima s posebnim <br/> uvjetima</td>
+                                                <td><br/><br/></td>
+                                                <td style="padding-right: 10px;"><field name="special_conditions2"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 10px;">Racuna li se staz osiguranja s uvecanim <br/> trajanjem <br/> rada</td>
+                                                <td><br/><br/></td>
+                                                <td style="padding-right: 10px;"><field name="special_experience_calculation"/></td>
+                                                <td><br/><br/></td>
+                                                <td style="padding-right: 10px;"><field name="service_experience_calculation2"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 10px;">Koriste li se osobna zastitna sredstva </td>
+                                                <td><br/><br/></td>
+                                                <td style="padding-right: 10px;"><field name="protection_gear"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 10px;">Radi li se o radu na racunalu vise od 4 <br/> h/dnevno </td>
+                                                <td><br/><br/></td>
+                                                <td style="padding-right: 10px;"><field name="computer_work"/></td>
+                                            </tr>
+                                        </table>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <table>
+                                            <tr>
+                                                <th style="padding-right: 10px;">Sredstva rada</th>
+                                                <th style="padding-right: 10px;">Radne tvari i materijali</th>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 10px;"><field name="work_tools_ids"/></td>
+                                                <td style="padding-right: 10px;"><field name="work_materials_ids"/></td>
+                                            </tr>
+                                        </table>
+                                    </page>
+                                    <page string="Work environment">
+                                        <field name="work_place_ids" string="Mjesta rada i Uredenje">
+                                            <tree >
+                                                <field name="name" string="Name"/>
+                                                <field name="work_place_description" string="Description"/>
+                                            </tree>
+                                        </field>
+                                    </page>
+                                    <page string="Health and qualification">
+                                        <group string="Physical exam">
+                                            <group>
+                                                <field name="health_check_points" string="Mandatory points for physical exam"/>
+                                            </group>
+                                            <group>
+                                                <field name="health_check_other" string="Additional points for physical exam"/>
+                                            </group>
+                                        </group>
+                                        <group string="Mandatory qualification">
+                                            <field name="mandatory_qualification_ids"/>
+                                        </group>
+                                    </page>
+                                    <page string="Protection gear">
+                                        <group >
+                                            <field name="protection_gear1_ids" string="Head" domain="[('protection_body_part', '=', 'Head')]">
+                                                <tree >
+                                                    <field name="name" string="Name"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                        <group>
+                                            <field name="protection_gear2_ids" string="Eyes" domain="[('protection_body_part', '=', 'Eyes')]">
+                                                <tree >
+                                                    <field name="name" string="Name"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                        <group>
+                                            <field name="protection_gear3_ids" string="Ears" domain="[('protection_body_part', '=', 'Ears')]">
+                                                <tree >
+                                                    <field name="name" string="Name"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                        <group>
+                                            <field name="protection_gear4_ids" string="Nose" domain="[('protection_body_part', '=', 'Nose')]">
+                                                <tree >
+                                                    <field name="name" string="Name"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                        <group>
+                                            <field name="protection_gear5_ids" string="Body" domain="[('protection_body_part', '=', 'Body')]">
+                                                <tree >
+                                                    <field name="name" string="Name"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                        <group>
+                                            <field name="protection_gear6_ids" string="Hands" domain="[('protection_body_part', '=', 'Hands')]">
+                                                <tree >
+                                                    <field name="name" string="Name"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                        <group>
+                                            <field name="protection_gear7_ids" string="Feat" domain="[('protection_body_part', '=', 'Feat')]">
+                                                <tree >
+                                                    <field name="name" string="Name"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                        <group>
+                                            <field name="protection_gear8_ids" string="Additional" domain="[('protection_body_part', '=', 'Additional')]">
+                                                <tree >
+                                                    <field name="name" string="Name"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                    </page>
+                                    <page string="Risk assessment">
+                                        <field name="risk_ids" string="Rizici"/>
+                                    </page>
+
+                                </notebook>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_job_long_tree" model="ir.ui.view">
+            <field name="name">hr.job.long.tree</field>
+            <field name="model">hr.job.long</field>
+            <field name="arch" type="xml">
+                <tree string="Job" decoration-bf="message_needaction==True">
+                    <field name="name"/>
+                    <field name="department_id"/>
+                    <field name="no_of_employee"/>
+                    <field name="job_position_code"/>
+                    <field name="message_needaction" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_job_long_filter" model="ir.ui.view">
+            <field name="name">hr.job.long.search</field>
+            <field name="model">hr.job.long</field>
+            <field name="arch" type="xml">
+                <search string="Jobs">
+                    <field name="name" string="Job"/>
+                    <field name="department_id"/>
+                    <separator/>
+                    <filter string="Unread Messages" name="message_needaction" domain="[('message_needaction','=',True)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+                        <filter string="Status" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Company" domain="[]" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_hr_job_long" model="ir.actions.act_window">
+            <field name="name">Job Positions</field>
+            <field name="res_model">hr.job.long</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_job_long_filter"/>
+            <field name="context">{"search_default_Current":1}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new job position.
+              </p><p>
+                Job Positions are used to define jobs and their requirements.
+                You can keep track of the number of employees you have per job
+                position and follow the evolution according to what you planned
+                for the future.
+              </p><p>
+                You can attach a survey to a job position. It will be used in
+                the recruitment process to evaluate the applicants for this job
+                position.
+              </p>
+            </field>
+        </record>
+
+        <!--HR Lunch-->
+        <record id="view_hr_lunch_form" model="ir.ui.view">
+            <field name="name">hr.lunch.form</field>
+            <field name="model">hr.lunch</field>
+            <field name="arch" type="xml">
+                <form string="Lunch break">
+                    <group name="lunch_data">
+                        <group>
+                            <field name="name" string="Lunch break"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_lunch_tree" model="ir.ui.view">
+            <field name="name">hr.lunch.tree</field>
+            <field name="model">hr.lunch</field>
+            <field name="arch" type="xml">
+                <tree string="Lunch break">
+                    <field name="name" string="Lunch break"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_lunch" model="ir.actions.act_window">
+            <field name="name">Lunch break</field>
+            <field name="res_model">hr.lunch</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--HR Work Tools-->
+        <record id="view_hr_work_tools_form" model="ir.ui.view">
+            <field name="name">hr.work.tools.form</field>
+            <field name="model">hr.work.tools</field>
+            <field name="arch" type="xml">
+                <form string="Work tools">
+                    <group name="work_tools_data">
+                        <group>
+                            <field name="name" string="Work tool"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_work_tools_tree" model="ir.ui.view">
+            <field name="name">hr.work.tools.tree</field>
+            <field name="model">hr.work.tools</field>
+            <field name="arch" type="xml">
+                <tree string="Work tools">
+                    <field name="name" string="Work tool"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_work_tools" model="ir.actions.act_window">
+            <field name="name">Work tools</field>
+            <field name="res_model">hr.work.tools</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--HR Work Materials-->
+        <record id="view_hr_work_materials_form" model="ir.ui.view">
+            <field name="name">hr.work.materials.form</field>
+            <field name="model">hr.work.materials</field>
+            <field name="arch" type="xml">
+                <form string="Work materials">
+                    <group name="work_materials_data">
+                        <group>
+                            <field name="name" string="Work material"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_work_materials_tree" model="ir.ui.view">
+            <field name="name">hr.work.materials.tree</field>
+            <field name="model">hr.work.materials</field>
+            <field name="arch" type="xml">
+                <tree string="Work materials">
+                    <field name="name" string="Work material"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_work_materials" model="ir.actions.act_window">
+            <field name="name">Work materials</field>
+            <field name="res_model">hr.work.materials</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--HR Work Place-->
+        <record id="view_hr_work_place_form" model="ir.ui.view">
+            <field name="name">hr.work.place.form</field>
+            <field name="model">hr.work.place</field>
+            <field name="arch" type="xml">
+                <form string="Work place">
+                    <group name="work_place_data">
+                        <group>
+                            <field name="name" string="Work place"/>
+                            <field name="work_place_description" string="Description"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_work_place_tree" model="ir.ui.view">
+            <field name="name">hr.work.place.tree</field>
+            <field name="model">hr.work.place</field>
+            <field name="arch" type="xml">
+                <tree string="Work place">
+                    <field name="name" string="Work place"/>
+                    <field name="work_place_description" string="Description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_work_place" model="ir.actions.act_window">
+            <field name="name">Work place</field>
+            <field name="res_model">hr.work.place</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--HR Protection gear-->
+        <record id="view_hr_protection_gear_form" model="ir.ui.view">
+            <field name="name">hr.protection.gear.form</field>
+            <field name="model">hr.protection.gear</field>
+            <field name="arch" type="xml">
+                <form string="Protection gear">
+                    <group name="protection_gear_data">
+                        <group>
+                            <field name="name" string="Protection gear"/>
+                            <field name="protection_body_part" string="Body part"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_protection_gear_tree" model="ir.ui.view">
+            <field name="name">hr.protection.gear.tree</field>
+            <field name="model">hr.protection.gear</field>
+            <field name="arch" type="xml">
+                <tree string="Protection gear">
+                    <field name="name" string="Protection gear"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_protection_gear" model="ir.actions.act_window">
+            <field name="name">Protection gear</field>
+            <field name="res_model">hr.protection.gear</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--HR Body part-->
+        <record id="view_hr_body_part_form" model="ir.ui.view">
+            <field name="name">hr.body.part.form</field>
+            <field name="model">hr.body.part</field>
+            <field name="arch" type="xml">
+                <form string="Body part">
+                    <group name="body_part_data">
+                        <group>
+                            <field name="name" string="Body part"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_body_part_tree" model="ir.ui.view">
+            <field name="name">hr.body.part.tree</field>
+            <field name="model">hr.body.part</field>
+            <field name="arch" type="xml">
+                <tree string="Body part">
+                    <field name="name" string="Body part"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_body_part" model="ir.actions.act_window">
+            <field name="name">Body part</field>
+            <field name="res_model">hr.body.part</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--HR Risk-->
+        <record id="view_hr_risk_form" model="ir.ui.view">
+            <field name="name">hr.risk.form</field>
+            <field name="model">hr.risk</field>
+            <field name="arch" type="xml">
+                <form string="Risk">
+                    <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" placeholder="e.g. Sales Manager"/></h1>
+                        </div>
+                    <group name="risk_data">
+                        <group>
+                            <field name="danger_ids" string="Dangers">
+                                <tree>
+                                    <field name="name" string="Name"/>
+                                </tree>
+                            </field>
+                            <field name="consequence_ids" string="Consequence">
+                                <tree>
+                                    <field name="name" string="Name"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Risk evaluation">
+                            <field name="field_1" string="P"/>
+                            <field name="field_2" string="V"/>
+                            <field name="field_3" string="R"/>
+                        </group>
+                        <group string="Measures to diminish">
+                            <field name="risk_measures"/>
+                        </group>
+                        <group string="Risk evaluation">
+                            <field name="field_4" string="P"/>
+                            <field name="field_5" string="V"/>
+                            <field name="field_6" string="R"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_risk_tree" model="ir.ui.view">
+            <field name="name">hr.risk.tree</field>
+            <field name="model">hr.risk</field>
+            <field name="arch" type="xml">
+                <tree string="Risk">
+                    <field name="name" string="Risk"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_risk_filter" model="ir.ui.view">
+            <field name="name">hr.risk.search</field>
+            <field name="model">hr.risk</field>
+            <field name="arch" type="xml">
+                <search string="Risks">
+                    <field name="name" string="Risk"/>
+                    <field name="danger_ids"/>
+                    <field name="consequence_ids"/>
+                    <field name="field_3"/>
+                    <field name="field_6"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_hr_risk" model="ir.actions.act_window">
+            <field name="name">Risk</field>
+            <field name="res_model">hr.risk</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- HR Dangers -->
+        <record id="view_hr_dangers_form" model="ir.ui.view">
+            <field name="name">hr.dangers.form</field>
+            <field name="model">hr.dangers</field>
+            <field name="arch" type="xml">
+                <form string="Dangers">
+                    <group name="dangers_data">
+                        <group>
+                            <field name="name" string="Dangers"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_dangers_tree" model="ir.ui.view">
+            <field name="name">hr.dangers.tree</field>
+            <field name="model">hr.dangers</field>
+            <field name="arch" type="xml">
+                <tree string="Dangers">
+                    <field name="name" string="Dangers"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_dangers" model="ir.actions.act_window">
+            <field name="name">Dangers</field>
+            <field name="res_model">hr.dangers</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- HR Consequence -->
+        <record id="view_hr_consequence_form" model="ir.ui.view">
+            <field name="name">hr.consequence.form</field>
+            <field name="model">hr.consequence</field>
+            <field name="arch" type="xml">
+                <form string="Consequence">
+                    <group name="consequence_data">
+                        <group>
+                            <field name="name" string="Consequence"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_consequence_tree" model="ir.ui.view">
+            <field name="name">hr.consequence.tree</field>
+            <field name="model">hr.consequence</field>
+            <field name="arch" type="xml">
+                <tree string="Consequence">
+                    <field name="name" string="Consequence"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_consequence" model="ir.actions.act_window">
+            <field name="name">Consequence</field>
+            <field name="res_model">hr.consequence</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- HR Education -->
+        <record id="view_hr_mandatory_qualification_form" model="ir.ui.view">
+            <field name="name">hr.mandatory.qualification.form</field>
+            <field name="model">hr.mandatory.qualification</field>
+            <field name="arch" type="xml">
+                <form string="Qualification">
+                    <group name="qualification_data">
+                        <group>
+                            <field name="name" string="Qualification"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_mandatory_qualification_tree" model="ir.ui.view">
+            <field name="name">hr.mandatory.qualification.tree</field>
+            <field name="model">hr.mandatory.qualification</field>
+            <field name="arch" type="xml">
+                <tree string="Qualification">
+                    <field name="name" string="Qualification"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_mandatory_qualification" model="ir.actions.act_window">
+            <field name="name">Qualification</field>
+            <field name="res_model">hr.mandatory.qualification</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem
+            id="menu_hr_job_long"
+            name="Job position"
+            action="action_hr_job_long"
+            parent="hr.menu_hr_root"
+            sequence="8"
+            />
+        <menuitem
+            id="menu_hr_sizo"
+            name="SiZO Configuration"
+            parent="hr.menu_hr_root"
+            sequence="50"
+            />
+        <menuitem
+            id="menu_hr_lunch"
+            name="Lunch break"
+            action="action_hr_lunch"
+            parent="menu_hr_sizo"
+            sequence="1"
+            />
+        <menuitem
+            id="menu_hr_work_tools"
+            name="Work tools"
+            action="action_hr_work_tools"
+            parent="menu_hr_sizo"
+            sequence="2"
+            />
+        <menuitem
+            id="menu_hr_work_materials"
+            name="Work materials"
+            action="action_hr_work_materials"
+            parent="menu_hr_sizo"
+            sequence="3"
+            />
+        <menuitem
+            id="menu_hr_work_place"
+            name="Work place"
+            action="action_hr_work_place"
+            parent="menu_hr_sizo"
+            sequence="4"
+            />
+        <menuitem
+            id="menu_hr_gear"
+            name="Gear protection"
+            parent="menu_hr_sizo"
+            sequence="5"
+            />
+        <menuitem
+            id="menu_hr_protection_gear"
+            name="Protection gear"
+            action="action_hr_protection_gear"
+            parent="menu_hr_gear"
+            sequence="1"
+            />
+        <menuitem
+            id="menu_hr_body_part"
+            name="Body part"
+            action="action_hr_body_part"
+            parent="menu_hr_gear"
+            sequence="2"
+            />
+        <menuitem
+            id="menu_hr_risk_main"
+            name="Risks"
+            parent="menu_hr_sizo"
+            sequence="5"
+            />
+        <menuitem
+            id="menu_hr_risk"
+            name="Risk"
+            action="action_hr_risk"
+            parent="menu_hr_risk_main"
+            sequence="1"
+            />
+        <menuitem
+            id="menu_hr_dangers"
+            name="Dangers"
+            action="action_hr_dangers"
+            parent="menu_hr_risk_main"
+            sequence="2"
+            />
+        <menuitem
+            id="menu_hr_consequence"
+            name="Consequence"
+            action="action_hr_consequence"
+            parent="menu_hr_risk_main"
+            sequence="3"
+            />
+        <menuitem
+            id="menu_hr_mandatory_qualification"
+            name="Mandatory qualification"
+            action="action_hr_mandatory_qualification"
+            parent="menu_hr_sizo"
+            sequence="6"
+            />
+
+
+    </data>
 </odoo>

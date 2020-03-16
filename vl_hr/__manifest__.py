@@ -15,6 +15,9 @@
     'data': [
         'views/vlhr_employee.xml',
         'views/website_vlhr_employee_views.xml',
+        'report/report.xml',
+        'report/job_description_department.xml',
+        'report/job_risk.xml',
     ],
     'demo': [],
     'test': [],
