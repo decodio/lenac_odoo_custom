@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="job_description_department">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <tr t-call="report.external_layout">
+                <div class="page" width="auto">
+                    <h2 style="width: 876px;text-align: center;">OPISI POSLOVA</h2>
+                    <table style="width:auto">
+                        <tr t-foreach="o.department_job.sorted(key=lambda b: b.sequence)" t-as="l" style="border: black;border-style: solid;">
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Šifra i naziv OJ:</td>
+                                <t t-if="department_code != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="2" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.department_code"/></td>
+                                </t>
+                                <t t-if="department_id != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="3" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.department_id.name"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Šifra i naziv radnog mjesta:</td>
+                                <t t-if="job_position_code != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="2" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.job_position_code"/></td>
+                                </t>
+                                <t t-if="name != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="3" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.name"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Šifra i naziv funkcije radnog mjesta:</td>
+                                <t t-if="job_function_code != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="2" style="text-align: left;font-size: 20px;"><span t-esc="l.job_function_code"/></td>
+                                </t>
+                                <t t-if="job_function != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="3" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.job_function.name"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Šifra i naziv zanata:</td>
+                                <t t-if="trade_codes != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="2" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.trade_codes"/></td>
+                                </t>
+                                <t t-if="trade != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="3" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.trade.name"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Odgovoran:</td>
+                                <t t-if="job_responsible_id != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.job_responsible_id.name"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="8"><br/></td>
+                            </tr>
+                            <tr>
+                                <t t-if="description != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="8" style="text-align: left;font-size: 20px;"><span t-esc="l.description"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="8"><br/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" style=" text-align: center;border: black;border-style: solid;">OSNOVNI PODACI O RADNOM MJESTU</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Posebni uvjeti rada:</td>
+                                <t t-if="special_conditions != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.special_conditions"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Obračun staža osiguranja:</td>
+                                <t t-if="service_experience_calculation != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.service_experience_calculation"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Koeficijent radnog mjesta:</td>
+                                <t t-if="job_position_coefficient != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.job_position_coefficient"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Dodatak plaći za otežane uvjete rad:</td>
+                                <t t-if="addition_harsh_work != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.addition_harsh_work"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Radno vrijeme</td>
+                                <t t-if="working_hours != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.working_hours"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="8"><br/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" style="text-align: center;border: black;border-style: solid;">UVJETI RADNOG MJESTA</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Min. Stupanj stručne spreme:</td>
+                                <t t-if="min_qualifications != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.min_qualifications"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Minimalno radno iskustvo:</td>
+                                <t t-if="min_work_experience != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.min_work_experience"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Probni rad:</td>
+                                <t t-if="trail_period != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.trail_period"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Pripravnički staž:</td>
+                                <t t-if="internship != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.internship"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Posebni zdravstveni uvjeti (čl.3 PUR)</td>
+                                <t t-if="special_health != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.special_health"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Prethodna provjera str. znanja i sposobnosti:</td>
+                                <t t-if="proficiency_testing != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.proficiency_testing"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Struka/smjer/zvanje</td>
+                                <t t-if="profession_course_vocation != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.profession_course_vocation"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Stručni ispit:</td>
+                                <t t-if="professional_exam != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.professional_exam"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Naziv stručnog ispita:</td>
+                                <t t-if="professional_exam_name != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.professional_exam_name"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Specijalizacija:</td>
+                                <t t-if="specialization != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.specialization"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Naziv specijalizacije:</td>
+                                <t t-if="specialization_name != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.specialization_name"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: black;border-style: solid;">Posebna znanja:</td>
+                                <t t-if="special_knowledge != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;font-size: 20px;border: black;border-style: solid;"><span t-esc="l.special_knowledge"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="8"><br/></td>
+                            </tr>
+                        </tr>
+                        <!--<tr>
+                            <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;">OSNOVNO SREDSTVO</td>
+                            <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;">TIP SREDSTVA</td>
+                            <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;">INVENTARNI BROJ</td>
+                            <td rowspan="2" colspan="2"><img style="height: 100px" alt="client" src="/vl_maintenance/static/src/logo.jpg"/></td>-->
+                        <!--</tr>
+                        <tr>
+                            <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.name"/></td>
+                            <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.category_id.name"/></td>
+                            <td style="width:278px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.pc_number"/></td>
+                        </tr>
+                        <tr><td><br/></td></tr>
+                        <tr>
+                            <td>
+                                <h3>
+                                    ZADUŽENJE SA:
+                                </h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">DJELATNIKA</td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">MB. DJELATNIKA</td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">ODJEL</td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">ŠIFRA OJ</td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;">LOKACIJE</td>
+                            <td><br/></td>
+                        </tr>
+                        <tr>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.old_employee_id.name"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.old_employee_number"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.employee_department_old.name"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.employee_department_old_number"/></td>
+                            Report za Other
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.old_department_id.name"/></td>
+                            <td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.old_department_number"/></td>-->
+                            <!--<td style="width:167px;border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.location"/></td>
+                            <td><br/></td>
+                        </tr>
+                        <tr><td><br/></td></tr>-->
+                    </table>
+                    <!--<h3>
+                        ZADUŽUJE SE NA:
+                    </h3>
+                    <table style="width:876px">
+                        <tr>
+                            <td>
+                                <h3>
+                                    ZADUŽUJE SE NA:
+                                </h3>
+                            </td>
+                        </tr>-->
+                        <!--<tr>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;">DJELATNIKA</td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;">MB. DJELATNIKA</td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;">ODJEL</td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;">ŠIFRA OJ</td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;">LOKACIJU</td>
+                            <td><br/></td>
+                        </tr>
+                        <tr>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.employee_id.name"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_employee_number"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.employee_department_new.name"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.employee_department_new_number"/></td>
+                            Report za Other
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.department_id.name"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_department_number"/></td>-->
+                            <!--<td style="border: black;border-style: solid;text-align: center;font-size: 20px;"><span t-field="o.new_location"/></td>
+                            <td><br/></td>
+                        </tr>
+                        <tr><td><br/></td></tr>
+                        <tr>
+                            <td colspan="5" align="left"><h3>Korisnički software</h3></td>
+                        </tr>
+                        <tr t-foreach="o.installed_sw" t-as="l" style="border: black;border-style: solid;">
+                            <td colspan="5" style="text-align: left;font-size: 20px;"><span t-esc="l.name"/></td>
+                        </tr>
+                        <tr><td><br/></td></tr>
+                        <tr>
+                            <td colspan="5" align="left"><h3>Hardware</h3></td>
+                        </tr>
+                        <tr t-foreach="o.components" t-as="l" style="border: black;border-style: solid;">
+                            <td colspan="5" style="text-align: left;font-size: 20px;"><span t-esc="l.name"/></td>
+                        </tr>
+                        <tr><td><br/></td></tr>
+                        <tr>
+                            <td colspan="5" style="border: black;border-style: solid;text-align: left;font-size: 20px;">
+                                Potpisom ovog dokumenta potvrđujem da će se računalo koristiti sukladno RU2702 - Uputa o instalaciji, administraciji i korištenju računala i računalne opreme
+                                u vlasništvu Brodogradilišta.<br/>
+                                Potvrđujem da NEĆU vršti promjene na korisničkom softweru i hardwareu bez prethodnog odobrenja od strane Rukovoditelja odjela OSKICT, u vidu instalacije ili
+                                ugradnje drugog računalnog softwera i hardwera, a koji se ne nalazi na listi odobrenog softwera i hardwera opreme u vlasništvu Brodogradilišta.<br/>
+                                Sam čin instalacije softwera i hardwera, a koji se ne nalazi na listi odobrenog softwera i hardwera u vlasništvu Brodogradilišta povlači za sobom prijavu za povredu
+                                obveze iz radnog odnosa, povredu radne discipline, ali i kršenje zakonskih propisa, akata i odluka Brodogradilišta.
+                            </td>
+                        </tr>
+                        <tr>
+                            <tr>
+                                <td colspan="2"><h3>Predao-predali: <span t-field="o.technician_user_id.name"/></h3></td>
+                                <td colspan="2"><h3>Preuzeo: <span t-field="o.employee_id.name"/></h3></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    (potpis i/ili pečat)
+                                    <br/>
+                                </td>
+                                <td>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span t-field="o.date_assigned"/>
+                                    <br/>
+                                </td>
+                                <td>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    (potpis i/ili pečat)
+                                    <br/>
+                                </td>
+                                <td>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span t-field="o.date_assigned"/>
+                                    <br/>
+                                </td>
+                            </tr>
+                        </tr>
+                    </table>-->
+                </div>
+            </tr>
+        </t>
+    </t>
+    </template>
+</odoo>
+
+
+
+
