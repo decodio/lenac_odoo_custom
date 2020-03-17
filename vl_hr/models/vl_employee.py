@@ -52,7 +52,7 @@ class HrDepartment(models.Model):
 
     website_published = fields.Boolean(default=False)
 
-    #department_job = fields.Many2many('hr.job', 'job_id')
+    department_job = fields.Many2many('hr.job.long', 'job_id')
 
 
 class HrJobHistory(models.Model):
@@ -86,24 +86,41 @@ class HrJobLong(models.Model):
     name = fields.Char(string='Job Title', required=True, index=True, translate=True)
     no_of_employee = fields.Integer(compute='_compute_employees', string="Current Number of Employees", store=True,
                                     help='Number of employees currently occupying this job position.')
+    no_of_female = fields.Integer(compute='_compute_employees', string="Current Number of Female Employees", store=True,
+                                  help='Number of female employees currently occupying this job position.')
+    no_of_youth = fields.Integer(compute='_compute_employees', string="Current Number of Young Employees", store=True,
+                                 help='Number of young employees currently occupying this job position.')
+    no_of_disability = fields.Integer(compute='_compute_employees',
+                                      string="Current Number of Employees with Disability", store=True,
+                                      help='Number of employees currently occupying this job position.')
 
     employee_ids = fields.One2many('hr.employee', 'job_long_id', string='Employees', groups='base.group_user')
-    description = fields.Text(string='Job Description')
+    description = fields.Html(string='Job Description')
     department_id = fields.Many2one('hr.department', string='Department')
 
-    @api.depends('employee_ids.job_long_id', 'employee_ids.active')
+    @api.depends('employee_ids.job_long_id', 'employee_ids.active', 'employee_ids.gender',
+                 'employee_ids.youth', 'employee_ids.disability')
     def _compute_employees(self):
-        employee_data = self.env['hr.employee'].read_group([('job_long_id', 'in', self.ids)], ['job_long_id'], ['job_long_id'])
+        employee_data = self.env['hr.employee'].read_group(
+            [('job_long_id', 'in', self.ids)], ['job_long_id'], ['job_long_id'])
         result = dict((data['job_long_id'][0], data['job_long_id_count']) for data in employee_data)
-        for job in self:
-            job.no_of_employee = result.get(job.id, 0)
 
-    @api.depends('employee_ids.job_long_id', 'employee_ids.active')
-    def _compute_employees(self):
-        employee_data = self.env['hr.employee'].read_group([('job_long_id', 'in', self.ids)], ['job_long_id'],
-                                                           ['job_long_id'])
-        result = dict((data['job_long_id'][0], data['job_long_id_count']) for data in employee_data)
+        employee_data_f = self.env['hr.employee'].read_group(
+            [('job_long_id', 'in', self.ids), ('gender', '=', 'female')], ['job_long_id'], ['job_long_id'])
+        result_f = dict((data['job_long_id'][0], data['job_long_id_count']) for data in employee_data_f)
+
+        employee_data_y = self.env['hr.employee'].read_group(
+            [('job_long_id', 'in', self.ids), ('youth', '=', 'yes')], ['job_long_id'], ['job_long_id'])
+        result_y = dict((data['job_long_id'][0], data['job_long_id_count']) for data in employee_data_y)
+
+        employee_data_d = self.env['hr.employee'].read_group(
+            [('job_long_id', 'in', self.ids), ('disability', '=', 'yes')], ['job_long_id'], ['job_long_id'])
+        result_d = dict((data['job_long_id'][0], data['job_long_id_count']) for data in employee_data_d)
+
         for job in self:
+            job.no_of_disability = result_d.get(job.id, 0)
+            job.no_of_youth = result_y.get(job.id, 0)
+            job.no_of_female = result_f.get(job.id, 0)
             job.no_of_employee = result.get(job.id, 0)
 
     @api.multi
@@ -204,8 +221,6 @@ class HrJobLong(models.Model):
     special_knowledge = fields.Char(string='Special knowledge')
 
     """SIZO PART"""
-    no_of_female = fields.Integer(compute='_compute_female', string="Current Number of Employees", store=True,
-                                  help='Number of employees currently occupying this job position.')
 
     daily_work_sch = fields.Selection([('1', 'One shift'),
                                        ('2', 'Two shifts'),
@@ -248,7 +263,8 @@ class HrJobLong(models.Model):
     protection_gear7_ids = fields.Many2many('hr.protection.gear', 'protection_gear7_id', string="Feat")
     protection_gear8_ids = fields.Many2many('hr.protection.gear', 'protection_gear8_id', string="Additional")
 
-    mandatory_qualification_ids = fields.Many2many('hr.mandatory.qualification', 'mandatory_qualification_id', string="Mandatory education")
+    mandatory_qualification_ids = fields.Many2many('hr.mandatory.qualification', 'mandatory_qualification_id',
+                                                   string="Mandatory education")
 
     risk_ids = fields.Many2many('hr.risk')
 

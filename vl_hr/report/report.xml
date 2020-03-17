@@ -7,9 +7,16 @@
         name="vl_hr.job_description_department"
         file="vl_hr.job_description_department"
         />
+    <report id="report_job_description"
+        model="hr.job.long"
+        string="Job description"
+        report_type="qweb-pdf"
+        name="vl_hr.job_description"
+        file="vl_hr.job_description"
+        />
     <report id="report_job_risk"
         model="hr.job.long"
-        string="Risk assesment"
+        string="Risk assessment"
         report_type="qweb-pdf"
         name="vl_hr.job_risk"
         file="vl_hr.job_risk"

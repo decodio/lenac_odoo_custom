@@ -63,7 +63,7 @@ class HrRisk(models.Model):
     name = fields.Char()
     danger_ids = fields.Many2many('hr.dangers', 'danger_id')
     consequence_ids = fields.Many2many('hr.consequence', 'consequence_id')
-    risk_measures = fields.Text()
+    risk_measures = fields.Html()
 
     field_1 = fields.Selection([('A', 'A'),
                                 ('B', 'B'),

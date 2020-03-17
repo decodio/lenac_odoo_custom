@@ -66,13 +66,12 @@
                 <page string="Department jobs" name="department_jobs">
                     <group string="Department jobs">
                         <group>
-                            <!--<field name="department_job">
+                            <field name="department_job">
                                 <tree editable="top">
                                     <field name="sequence"/>
                                     <field name="name"/>
-                                    <field name="job_id"/>
                                 </tree>
-                            </field>-->
+                            </field>
                         </group>
                     </group>
                 </page>
@@ -91,66 +90,6 @@
       </field>
     </record>
 
-    <!-- HR Job description -->
-     <!--<record id="view_vl_hr_job_inherited" model="ir.ui.view">
-         <field name="name">view.vl.hr.job.inherited</field>
-         <field name="model">hr.job</field>
-         <field name="inherit_id" ref="hr.view_hr_job_form"/>
-         <field name="arch" type="xml">
-             <xpath expr="//header/button[2]" position="after">
-                <button name="create_new_job_description"
-                        string="Create New" type="object"
-                        />
-             </xpath>
-             <xpath expr="//div[@name='button_box']" postition='inside'>
-                <button name="toggle_active" type="object" groups="hr.group_hr_user"
-                        class="oe_stat_button" icon="fa-archive">
-                    <field name="active" widget="boolean_button"
-                        options='{"terminology": "archive"}'/>
-                </button>
-             </xpath>
-             <xpath expr="//field[@name='name']" position="after">
-                 <field name="job_position_code" string="Job position code"/>
-             </xpath>
-             <xpath expr="//field[@name='department_id']" position="after">
-                 <field name="department_code" string="Department code"/>
-                 <field name="origin_id" string="Previous version"/>
-             </xpath>
-             <xpath expr="//field[@name='description']" position="before">
-                 <group nolabel="1">
-                     <field name="job_function" string="Job function"/>
-                     <field name="job_function_code" string="Job function code"/>
-                     <field name="trade" string="Trade"/>
-                     <field name="trade_codes" string="Trade code"/>
-                     <field name="job_responsible_id" string="Responsible"/>
-                 </group>
-             </xpath>
-             <xpath expr="//field[@name='description']" position="after">
-                 <group>
-                    <field name="special_conditions" string="Special work condition"/>
-                    <field name="service_experience_calculation" string="Service experience is calculated"/>
-                    <field name="job_position_coefficient" string="Job position coefficient"/>
-                    <field name="addition_harsh_work" string="Addition for harsh work environment"/>
-                    <field name="working_hours" string="Working hours"/>
-                 </group>
-                 <group></group>
-                 <group>
-                    <field name="min_qualifications" string="Minimum qualifications"/>
-                    <field name="min_work_experience" string="Minimum work experience"/>
-                    <field name="trail_period" string="Trail period"/>
-                    <field name="internship" string="Internship"/>
-                    <field name="special_health" string="Special health condition (ar.3 PUR)"/>
-                    <field name="proficiency_testing" string="Proficiency and skills testing"/>
-                    <field name="profession_course_vocation" string="Profession/Course/vocation"/>
-                    <field name="professional_exam" string="Professional exam"/>
-                    <field name="professional_exam_name" string="Name of the professional exam"/>
-                    <field name="specialization" string="Specialization"/>
-                    <field name="specialization_name" string="Specialization name"/>
-                    <field name="special_knowledge" string="Special knowledge"/>
-                 </group>
-             </xpath>
-         </field>
-     </record>-->
      <!-- FROM HR JOB TO JOB LONG-->
      <record id="view_hr_job_long_form" model="ir.ui.view">
             <field name="name">hr.job.long.form</field>
@@ -223,6 +162,12 @@
                             <page string="SiZO">
                                 <notebook>
                                     <page string="General">
+                                        <group string="Broj osoba na radnom mjestu">
+                                            <field name="no_of_employee" string="Ukupno"/>
+                                            <field name="no_of_female" string="Od toga žena"/>
+                                            <field name="no_of_youth" string="Od toga mladeži"/>
+                                            <field name="no_of_disability" string="Od toga invalida"/>
+                                        </group>
                                         <br/>
                                         <br/>
                                         <table>

@@ -46,8 +46,8 @@
                         <tr>
                             <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.no_of_employee"/></td>
                             <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.no_of_female"/></td>
-                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">count_mladeži</td>
-                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">count_invalida</td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.no_of_youth"/></td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.no_of_disability"/></td>
                         </tr>
                         <tr>
                             <td colspan="4"><br/></td>
@@ -103,7 +103,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Računa li se staž osiguranja s uvećanim <br/> trajanjem? </td>
-                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="dict(o.fields_get(allfields=['special_experience_calculation'])['special_experience_calculation']['selection'])[o.special_experience_calculation]"/><span t-esc="o.service_experience_calculation2"/> </td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="dict(o.fields_get(allfields=['special_experience_calculation'])['special_experience_calculation']['selection'])[o.special_experience_calculation]"/>   -   <span t-esc="o.service_experience_calculation2"/> </td>
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Koriste li se osobna zaštitna sredstva?</td>
@@ -135,7 +135,7 @@
                             <td colspan="4" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">OPIS POSLA I TEHNOLOŠKOG PROCESA RADA</td>
                         </tr>
                         <tr>
-                            <td colspan="4" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.description"/> </td>
+                            <td colspan="4" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-raw="o.description" widget="html"/> </td>
                         </tr>
                         <tr>
                             <td colspan="4"><br/></td>
@@ -333,10 +333,10 @@
                             <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_1"/><br/></td>
                             <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_2"/><br/></td>
                             <td class="color_code" style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_3"/><br/></td>
-                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.risk_measures"/><br/></td>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-raw="l.risk_measures" widget="html"/><br/></td>
                             <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_4"/><br/></td>
                             <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_5"/><br/></td>
-                            <td calss="color_code" style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_6"/><br/></td>
+                            <td class="color_code" style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_6"/><br/></td>
                         </tr>
                     </table>
                 </div>
