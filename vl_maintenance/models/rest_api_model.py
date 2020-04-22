@@ -118,25 +118,70 @@ class RestApiModel(models.Model):
                     'success': False,
                     'message': str(e)}
 
-    def create_maintenance_equipment_tracking(self, sm_equipment_id, sm_employee_id, tool_shop_id):
-        """ Create an new equipment with all the above filed required """
+    def create_maintenance_equipment_tracking(self, sm_equipment_id,
+                                              sm_employee_id, tool_shop_id):
+        """ Create a new equipment tracking record
+         with all the above filed required """
         try:
             vals = {
                 'sm_equipment_id': int(sm_equipment_id),
                 'sm_employee_id': int(sm_employee_id),
                 'tool_shop_id': int(tool_shop_id),
                 'sm_equipment_assign_to': 'other'
-
             }
 
-            maintenance_equipment_model = self.env['maintenance.equipment.tracking']
-            res = maintenance_equipment_model.create(vals)
+            maintenance_equipment_tracking_model = self.env[
+                'maintenance.equipment.tracking']
+            res = maintenance_equipment_tracking_model.create(vals)
             if res:
-                return {'result': {'sm_equipment_id': res.id},
+                return {'result': {'maintenance_equipment_tracking_id': res.id},
                         'success': True,
                         'message': ''}
             else:
                 return {'result': '',
+                        'success': False,
+                        'message': ''}
+        except Exception as e:
+            return {'result': '',
+                    'success': False,
+                    'message': str(e)}
+
+    def update_maintenance_equipment_tracking(self, res_id, **kwargs):
+        """ Update existing maintenance equipment tracking """
+        optional_fields = ['sm_equipment_id',
+                           'sm_employee_id',
+                           'tool_shop_id',
+                           'sm_equipment_assign_to']
+
+        int_fields = ['sm_equipment_id',
+                      'sm_employee_id',
+                      'tool_shop_id']
+        try:
+            # Extract optional values from incoming arguments
+            vals = {}
+            for key in optional_fields:
+                if key not in kwargs:
+                    continue
+                value = kwargs.get(key)
+                # Try to parse the value if possible
+                if key in int_fields:
+                    vals[key] = int(value)
+                else:
+                    vals[key] = value
+
+            maintenance_equipment_tracking_model = self.env[
+                'maintenance.equipment.tracking']
+            eqt_id = maintenance_equipment_tracking_model.search(
+                [('id', '=', int(res_id))], limit=1)
+            res = False
+            if eqt_id and vals:
+                res = eqt_id.write(vals)
+            if res:
+                return {'result': res,
+                        'success': True,
+                        'message': ''}
+            else:
+                return {'result': res,
                         'success': False,
                         'message': ''}
         except Exception as e:
