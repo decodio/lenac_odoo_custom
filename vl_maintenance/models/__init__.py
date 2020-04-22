@@ -4,4 +4,4 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import vl_equipment
-from . import res_api_model
+from . import rest_api_model
