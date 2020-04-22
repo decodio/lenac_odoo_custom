@@ -25,13 +25,15 @@
         'data/vl_maintenance_cron.xml',
         'report/report.xml',
         'report/personal_equipment.xml',
+        'report/mobile_phone.xml',
         'views/vl_maintenance_views.xml',
         'views/allowed_os.xml',
         'views/hardware.xml',
         'views/network_resources.xml',
         'views/ad_groups.xml',
         'views/database.xml',
-        'views/application.xml'
+        'views/application.xml',
+        'views/warehouse.xml'
     ],
     'demo': [],
     'installable': True,

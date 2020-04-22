@@ -22,7 +22,10 @@
                     <field name="sort_of_equipment" wiget="radio"/>
                 </xpath>
                 <xpath expr="//field[@name='category_id']" position="after">
-                    <field name = "pc_number"/>
+                    <field name = "pc_number" attrs="{'invisible': ['|', ('sort_of_equipment', '=', 'sm_production'), ('sort_of_equipment', '=', False)]}"/>
+                    <field name = "barcode_number"/>
+                    <field name = "no_of_pieces" string="Number of pieces" attrs="{'invisible': ['|', ('sort_of_equipment', '=', 'sm_production'), ('sort_of_equipment', '=', False)]}"/>
+                    <field name = "number_of_pieces" string="Number of pieces" attrs="{'invisible': ['|','|', ('sort_of_equipment', '=', 'ict'), ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', False)]}"/>
                 </xpath>
                 <xpath expr="//field[@name='employee_id']" position="after">
                     <field name="new_employee_number" string="Employee number" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'department'), ('equipment_assign_to', '=', False)]}"/>
@@ -111,6 +114,28 @@
                                         <field name="equipment_id"/>
                                     </tree>
                                 </field>
+                        </group>
+                    </page>
+                </notebook>
+                <notebook>
+                    <page string="Small equipment" name="small_equipment" attrs="{'invisible': ['|','|', ('sort_of_equipment', '=', 'ict'), ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', False)]}">
+                        <group>
+                            <field name = "number_of_piecese" string="Number of pieces used"/>
+                            <field name = "number_of_piecesst" string="Number of pieces stored"/>
+                            <field name="equipment_tracking_ids" string="Equipment tracking">
+                                <tree editable="top">
+                                    <field name="sm_equipment_assign_to" string="Used by"/>
+                                    <field name="sm_employee_id" string="Current Employee"/>
+                                    <field name="sm_employee_number" string="Employee Code"/>
+                                    <field name="employee_department_sm" string="Employee Department"/>
+                                    <field name="employee_department_sm_number" string="Department Code"/>
+                                    <field name="smo_employee_id" string="Previous Employee"/>
+                                    <field name="smo_employee_number" string="Employee Code"/>
+                                    <field name="employee_department_smo" string="Employee Department"/>
+                                    <field name="employee_department_smo_number" string="Department code"/>
+                                    <field name="tool_shop_id" string="Tool Shop"/>
+                                </tree>
+                            </field>
                         </group>
                     </page>
                 </notebook>

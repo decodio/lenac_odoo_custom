@@ -34,12 +34,15 @@ class MaintenanceEquipment(models.Model):
         }
         return report_obj.render('report.external_layout', docargs)
 
-    sort_of_equipment = fields.Selection([('production', 'Production Equipment'), ('ict', 'IT Equipment')],
+    sort_of_equipment = fields.Selection([('production', 'Production Equipment'),
+                                          ('ict', 'IT Equipment'),
+                                          ('sm_production', 'Small equipment')],
                                          string='Sort of equipment',
                                          required=True,
                                          default='production')
 
     pc_number = fields.Char('Inventory number')
+    barcode_number = fields.Char('Barcode')
     installed_os = fields.Many2one('maintenance.allowed.os', string='Installed OS')
     installed_sw = fields.Many2many('maintenance.allowed.os', string='Installed software')
     date_purchased = fields.Date('Date of purchase')
@@ -182,7 +185,68 @@ class MaintenanceEquipment(models.Model):
 
     next_action_dates = fields.Datetime(
         string='Date of the next preventive issue', readonly=True, store=True,
-                                        track_visibility='onchange')
+        track_visibility='onchange')
+
+    inventoried = fields.Boolean(string='Inventoried', help='If checked Yes')
+
+    no_of_pieces = fields.Integer(string='Number of pieces', default='1')
+
+    """SMALL EQUIPMENT"""
+
+    equipment_tracking_ids = fields.One2many('maintenance.equipment.tracking',
+                                             'sm_equipment_id',
+                                             track_visibility='always')
+
+    number_of_pieces = fields.Integer(compute='_compute_equipment',
+                                      string="Current Number of Equipment",
+                                      help='Current number of equipment',
+                                      readonly=False)
+
+    number_of_piecese = fields.Integer(compute='_compute_equipment',
+                                       string="Current Number of Equipment used",
+                                       store=True,
+                                       help='Current number of equipment used')
+
+    number_of_piecesst = fields.Integer(compute='_compute_equipment',
+                                        string="Current Number of Equipment in Storage",
+                                        store=True,
+                                        help='Current number of equipment in storage')
+
+    @api.depends('equipment_tracking_ids.sm_equipment_id',
+                 'equipment_tracking_ids.sm_equipment_assign_to')
+    def _compute_equipment(self):
+        equipment_data = self.env['maintenance.equipment.tracking'].read_group(
+            [('sm_equipment_id', 'in', self.ids)], ['sm_equipment_id'],
+            ['sm_equipment_id'])
+        result = dict(
+            (data['sm_equipment_id'][0], data['sm_equipment_id_count']) for data
+            in
+            equipment_data)
+
+        equipment_data_ae = self.env[
+            'maintenance.equipment.tracking'].read_group(
+            [('sm_equipment_id', 'in', self.ids),
+             ('sm_equipment_assign_to', '=', 'employee')],
+            ['sm_equipment_id'], ['sm_equipment_id'])
+        result_ae = dict(
+            (data['sm_equipment_id'][0], data['sm_equipment_id_count']) for data
+            in
+            equipment_data_ae)
+
+        equipment_data_st = self.env[
+            'maintenance.equipment.tracking'].read_group(
+            [('sm_equipment_id', 'in', self.ids),
+             ('sm_equipment_assign_to', '=', 'other')], ['sm_equipment_id'],
+            ['sm_equipment_id'])
+        result_st = dict(
+            (data['sm_equipment_id'][0], data['sm_equipment_id_count']) for data
+            in
+            equipment_data_st)
+
+        for equipment in self:
+            equipment.number_of_piecesst = result_st.get(equipment.id, 0)
+            equipment.number_of_piecese = result_ae.get(equipment.id, 0)
+            equipment.number_of_pieces = result.get(equipment.id, 0)
 
 
 class MaintenanceAllowedOs(models.Model):
@@ -568,3 +632,189 @@ class MaintenanceComponentType(models.Model):
     _name = 'maintenance.component.type'
 
     name = fields.Char(string='Component type')
+
+
+class MaintenanceEquipmentTracking(models.Model):
+    _name = 'maintenance.equipment.tracking'
+
+    sm_equipment_id = fields.Many2one('maintenance.equipment', string='Equipment')
+
+    tool_shop_id = fields.Many2one('maintenance.tool.shop', string='Tool shop')
+
+    sm_equipment_assign_to = fields.Selection([('employee', 'Employee'), ('other', 'Other')],
+                                              string='Used By',
+                                              required=True,
+                                              default='other')
+    sm_employee_id = fields.Many2one('hr.employee', string='Assigned to Employee', track_visibility='onchange')
+    sm_department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
+    sm_employee_number = fields.Char('hr.employee', related='sm_employee_id.employee_number', readonly=True, store=True)
+    sm_department_number = fields.Char('hr.department',
+                                       related='sm_department_id.department_code',
+                                       readonly=True,
+                                       store=True)
+    employee_department_sm = fields.Many2one('hr.department',
+                                             compute='_compute_sm_department_id',
+                                             readonly=True,
+                                             store=True)
+    employee_department_sm_number = fields.Char('hr.department',
+                                                related='employee_department_sm.department_code',
+                                                readonly=True,
+                                                store=True)
+    smo_employee_id = fields.Many2one('hr.employee', string='Assigned to Employee', track_visibility='onchange')
+    smo_department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
+    smo_employee_number = fields.Char('hr.employee',
+                                      related='smo_employee_id.employee_number',
+                                      readonly=True,
+                                      store=True)
+    smo_department_number = fields.Char('hr.department',
+                                        related='smo_department_id.department_code',
+                                        readonly=True,
+                                        store=True)
+    employee_department_smo = fields.Many2one('hr.department',
+                                              compute='_compute_smo_department_id',
+                                              readonly=True,
+                                              store=True)
+    employee_department_smo_number = fields.Char('hr.department',
+                                                 related='employee_department_smo.department_code',
+                                                 readonly=True,
+                                                 store=True)
+
+    @api.depends('sm_employee_id')
+    def _compute_sm_department_id(self):
+        for equipment in self:
+            if equipment.sm_employee_id:
+                equipment.employee_department_sm = equipment.sm_employee_id.department_id
+            else:
+                equipment.employee_department_sm = False
+
+    @api.depends('smo_employee_id')
+    def _compute_smo_department_id(self):
+        for equipment in self:
+            if equipment.smo_employee_id:
+                equipment.employee_department_smo = equipment.smo_employee_id.department_id
+            else:
+                equipment.employee_department_smo = False
+
+
+class MaintenanceToolShop(models.Model):
+    _name = 'maintenance.tool.shop'
+
+    name = fields.Char(string='Tool shop')
+    equipment_tracking_ids = fields.One2many('maintenance.equipment.tracking',
+                                             'tool_shop_id',
+                                             string="Tool Shop Equipment")
+
+    equipment_tracking_ts_info_lines = fields.Many2many('tool.shop.equipment.count',
+                                                        string='Tool shop equipment count',
+                                                        compute='_compute_tracking_info_lines')
+
+    @api.depends('equipment_tracking_ids')
+    def _compute_tracking_info_lines(self):
+        """Compute temporary tool shop equipment count values"""
+        """Problem kada nije dodjeljeno barem na jedan employee ne prikazuje vrijednosti ostalo radi"""
+        tsec_model = self.env['tool.shop.equipment.count']
+        equipment_tracking_ts_info_lines = tsec_model
+        if not self.equipment_tracking_ids:
+            return
+        data_lines = self.env['maintenance.equipment.tracking'].read_group(
+            [('tool_shop_id', '=', self.id)],
+            ['sm_equipment_id', 'tool_shop_id', 'number_of_pieces'],
+            ['sm_equipment_id'])
+        res = dict((data['sm_equipment_id'][0], data['sm_equipment_id_count'])
+                   for data in data_lines)
+        data_employee_lines = self.env['maintenance.equipment.tracking'].read_group(
+            [('tool_shop_id', '=', self.id), ('sm_equipment_assign_to', '=', 'employee')],
+            ['sm_equipment_id', 'tool_shop_id', 'number_of_piecese'],
+            ['sm_equipment_id'])
+        res_employee = dict((data['sm_equipment_id'][0], data['sm_equipment_id_count'])
+                            for data in data_employee_lines)
+        for sm_equipment_id in res and res_employee:
+            vals = {'tool_shop_id': self.id,
+                    'count': res[sm_equipment_id],
+                    'count_employee': res_employee[sm_equipment_id],
+                    'sm_equipment_id': sm_equipment_id}
+            temp_res = tsec_model.create(vals)
+            if temp_res:
+                equipment_tracking_ts_info_lines |= temp_res
+        self.equipment_tracking_ts_info_lines = equipment_tracking_ts_info_lines
+
+
+class ToolShopMaintenanceEquipmentCount(models.TransientModel):
+    _name = 'tool.shop.equipment.count'
+    _description = """Temporary model to display tool shop
+     equipment data without storing"""
+
+    tool_shop_id = fields.Many2one('maintenance.tool.shop', string='Tool shop')
+    sm_equipment_id = fields.Many2one('maintenance.equipment', string='Equipment')
+    count = fields.Integer(string='Count')
+    count_employee = fields.Integer(string='Used By Employee')
+
+    @api.depends('count', 'count_employee')
+    def _compute_equipment_on_storage(self):
+        for equipment in self:
+            equipment.on_storage = self.count - self.count_employee
+
+    on_storage = fields.Integer(string='On storage', compute='_compute_equipment_on_storage')
+
+
+""" Work in progress
+class MaintenanceMobileCost(models.Model):
+    _name = 'maintenance.mobile.cost'
+    _description = 'Mobile bill specification'
+
+    mobile_long = fields.Char(string='Subscriber number')
+    invoice_number = fields.Char(string='Invoice number')
+    invoice_date = fields.Date(string='Date of invoice')
+
+    subscriber_total = fields.Char(string='Subscriber total')
+    quantity_tf = fields.Char(string='Quantity tax free')
+    total_tf = fields.Char(string='Total tax free')
+
+    quantity_month_discount = fields.Char(string='Quantity monthly discount')
+    total_month_discount = fields.Char(string='Total monthly discount')
+
+    quantity_vpn = fields.Char(string='Quantitiy VPN')
+    total_vpn = fields.Char(string='Total cost VPN')
+
+    duration_call_network = fields.Char(string='Calls duration in network')
+    total_call_network = fields.Char(string='Total cost calls in network')
+
+    total_cost_vpn = fields.Char(string='Total cost calls in VPN')
+
+    duration_call_fixnet = fields.Char(string='Calls duration to fixed network')
+    total_call_fixnet = fields.Char(string='Total cost to fixed network')
+
+    duration_call_onet = fields.Char(string='Calls duration to other mobile networks')
+    total_call_onet = fields.Char(string='Total cost to other mobile networks')
+
+    duration_call_roaming = fields.Char(string='Calls duration to roaming')
+    total_call_roaming = fields.Char(string='Total cost to roaming')
+
+    duration_call_special = fields.Char(string='Calls duration to special numbers')
+    total_call_special = fields.Char(string='Total cost call to special numbers')
+
+    total_services_roaming = fields.Char(string='Total cost roaming services')
+
+    quantity_sms = fields.Char(string='Sent SMS quantity')
+    total_sms = fields.Char(string='Total cost of SMS')
+
+    quantity_sms_av = fields.Char(string='Sent SMS quantity with added value')
+    total_sms_av = fields.Char(string='Total cost of SMS with added value')
+
+    quantity_mms = fields.Char(string='Sent MMS quantity')
+    total_mms = fields.Char(string='Total cost of MMS')
+
+    quantity_mms_av = fields.Char(string='Sent MMS quantity with added value')
+    total_mms_av = fields.Char(string='Total cost of MMS with added value')
+
+    quantity_data = fields.Char(string='Quantity of data transfer')
+    total_data = fields.Char(string='Total cost of data transfer')
+
+    total_other_services = fields.Char(string='Other services total')
+
+    quantity_network_access = fields.Char(string='Quantity for network access')
+    total_network_access = fields.Char(string='Total for network access')
+
+    quantity_network_frequency = fields.Char(string='Quantity network frequency')
+    total_network_frequency = fields.Char(string='Total network frequency')
+"""

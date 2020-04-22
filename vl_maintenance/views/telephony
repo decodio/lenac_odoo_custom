@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<!--        <record model="ir.ui.view" id="maintenance_telephony_search_view">
+            <field name="name">Telephony mobile management</field>
+            <field name="model">maintenance.mobile.cost</field>
+            <field name="arch" type="xml">
+                <search string="Mobile phone cost">
+                    <field name="mobile_long"/>
+                    <field name="invoice_date"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_telephony_view_tree" >
+            <field name="name">Telephony mobile management</field>
+            <field name="model">maintenance.mobile.cost</field>
+            <field name="arch" type="xml">
+                <tree string="Mobile phone cost">
+                    <field name="mobile_long"/>
+                    <field name="invoice_date"/>
+                    <field name="total_tf"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_telephony_view_form">
+            <field name="name">maintenance.mobile.cost</field>
+            <field name="model">maintenance.mobile.cost</field>
+            <field name="arch" type="xml">
+                <form string="Mobile phone detailed cost">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string = "Mobile phone detail">
+                            <group>
+                                <field name="mobile_long"/>
+                                <field name="invoice_number"/>
+                                <field name="invoice_date"/>
+                                <field name="allowed_users"/> OVO JE ZAKOMENTIRANO
+                            </group>
+                            <group string="Tax free">
+                                <field name="quantity_tf" string="Quantity"/>
+                                <field name="total_tf" string="Cost"> kn</field>
+                            </group>
+                            <group string="Monthly discount">
+                                <field name="quantity_month_discount" string="Quantity"/>
+                                <field name="total_month_discount" string="Cost"> kn</field>
+                            </group>
+                            <group string="VPN option 0">
+                                <field name="quantity_vpn" string="Quantity"/>
+                                <field name="total_vpn" string="Cost"> kn</field>
+                            </group>
+                            <group string="Whit-in network calls">
+                                <field name="duration_call_network" string="Duration"/>
+                                <field name="total_call_network" string="Cost"> kn</field>
+                            </group>
+                            <group string="Calls whit-in VPN">
+                                <field name="total_cost_vpn" string="Cost"> kn</field>
+                            </group>
+                            <group string="Calls to national land-line network">
+                                <field name="duration_call_fixnet" string="Duration"/>
+                                <field name="total_call_fixnet" string="Cost"> kn</field>
+                            </group>
+                            <group string="Calls to other mobile networks">
+                                <field name="duration_call_onet" string="Duration"/>
+                                <field name="total_call_onet" string="Cost"> kn</field>
+                            </group>
+                            <group string="Roaming calls">
+                                <field name="duration_call_roaming" string="Duration"/>
+                                <field name="total_call_roaming" string="Cost"> kn</field>
+                            </group>
+                            <group string="Calls to special numbers">
+                                <field name="duration_call_special" string="Duration"/>
+                                <field name="total_call_special" string="Cost"> kn</field>
+                            </group>
+                            <group string="Roaming services">
+                                <field name="total_services_roaming" string="Cost"> kn</field>
+                            </group>
+                            <group string="Sent SMS">
+                                <field name="quantity_sms" string="Quantity"/>
+                                <field name="total_sms" string="Cost"> kn</field>
+                            </group>
+                            <group string="SMS with added value">
+                                <field name="quantity_sms_av" string="Quantity"/>
+                                <field name="total_sms_av" string="Cost"> kn</field>
+                            </group>
+                            <group string="Sent MMS">
+                                <field name="quantity_mms" string="Quantity"/>
+                                <field name="total_mms" string="Cost"> kn</field>
+                            </group>
+                            <group string="MMS with added value">
+                                <field name="quantity_mms_av" string="Quantity"/>
+                                <field name="total_mms_av" string="Cost"> kn</field>
+                            </group>
+                            <group string="Data transfer">
+                                <field name="quantity_data" string="Quantity"/>
+                                <field name="total_data" string="Cost"> kn</field>
+                            </group>
+                            <group string="Other services">
+                                <field name="total_other_services" string="Cost"> kn</field>
+                            </group>
+                            <group string="Monthly cost for network access">
+                                <field name="quantity_network_access" string="Quantity"/>
+                                <field name="total_network_access" string="Cost"> kn</field>
+                            </group>
+                            <group string="Cost for radio frequency usage">
+                                <field name="quantity_network_frequency" string="Quantity"/>
+                                <field name="total_network_frequency" string="Cost"> kn</field>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="maintenance_telephony_action">
+            <field name="name">Telephony mobile management</field>
+            <field name="res_model">maintenance.mobile.cost</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new network resource.
+              </p>
+            </field>
+        </record>
+
+        <menuitem
+            id="menu_telephony_main"
+            name="Equipments"
+            parent="maintenance.menu_maintenance_title"
+            action="hr_equipment_action"
+            groups="group_equipment_manager,base.group_user"
+            sequence="2"/>
+
+        <menuitem
+            id="menu_maintenance_telephony"
+            name="Shared network resources"
+            parent="maintenance.menu_maintenance_configuration"
+            action="maintenance_telephony_action"
+            groups="vl_maintenance.group_it_admin"
+            sequence="200"/>
+            -->
+    </data>
+</odoo>

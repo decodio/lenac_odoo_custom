@@ -7,4 +7,11 @@
         name="vl_maintenance.report_equipment"
         file="vl_maintenance.report_equipment"
         />
+    <report id="report_personal_mobile"
+        model="maintenance.equipment"
+        string="Mobile phone"
+        report_type="qweb-pdf"
+        name="vl_maintenance.report_mobile"
+        file="vl_maintenance.report_mobile"
+        />
 </odoo>
