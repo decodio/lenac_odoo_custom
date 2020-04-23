@@ -639,7 +639,7 @@ class MaintenanceEquipmentTracking(models.Model):
 
     sm_equipment_id = fields.Many2one('maintenance.equipment', string='Equipment')
 
-    bar_code = fields.Char('maintenance.equipment', relate='barcode_number', string='Barcode', store=True)
+    bar_code = fields.Char(related='sm_equipment_id.barcode_number', string='Barcode', store=True)
 
     tool_shop_id = fields.Many2one('maintenance.tool.shop', string='Tool shop')
 
