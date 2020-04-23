@@ -639,6 +639,8 @@ class MaintenanceEquipmentTracking(models.Model):
 
     sm_equipment_id = fields.Many2one('maintenance.equipment', string='Equipment')
 
+    bar_code = fields.Char('maintenance.equipment', relate='barcode_number', string='Barcode', store=True)
+
     tool_shop_id = fields.Many2one('maintenance.tool.shop', string='Tool shop')
 
     sm_equipment_assign_to = fields.Selection([('employee', 'Employee'), ('other', 'Other')],
