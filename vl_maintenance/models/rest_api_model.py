@@ -13,7 +13,7 @@ class RestApiModel(models.Model):
                                      employee_id, date_assigned, new_location,
                                      old_equipment_assign_to, old_employee_id,
                                      assign_date, date_purchased,
-                                     partner_ref, item_model, serial_no, location=None):
+                                     partner_ref, item_model, serial_no, barcode_number, location=None):
         """ Create an new equipment with all the above filed required """
         try:
             vals = {
@@ -40,12 +40,13 @@ class RestApiModel(models.Model):
                 'assign_date': assign_date,
                 'location': location,
                 'date_purchased': date_purchased,
-                'partner_ref': int(partner_ref),
+                'partner_ref': partner_ref,
                 # model is an reserved function field so use
                 # another field name instead
                 'model': item_model,
                 # Reći Ikici da umjesto model šalje item_model
                 'serial_no': serial_no,
+                'barcode_number': barcode_number
             }
 
             maintenance_equipment_model = self.env['maintenance.equipment']
@@ -69,7 +70,8 @@ class RestApiModel(models.Model):
                            'equipment_assign_to', 'employee_id',
                            'date_assigned', 'new_location',
                            'old_equipment_assign_to', 'old_employee_id',
-                           'assign_date', 'location']
+                           'assign_date', 'location', 'barcode_number',
+                           'sort_of_equipment']
 
         int_fields = ['category_id',
                       'equipment_assign_to',
@@ -119,7 +121,7 @@ class RestApiModel(models.Model):
                     'message': str(e)}
 
     def create_maintenance_equipment_tracking(self, sm_equipment_id,
-                                              sm_employee_id, tool_shop_id):
+                                              sm_employee_id, tool_shop_id, bar_code):
         """ Create a new equipment tracking record
          with all the above filed required """
         try:
@@ -127,6 +129,7 @@ class RestApiModel(models.Model):
                 'sm_equipment_id': int(sm_equipment_id),
                 'sm_employee_id': int(sm_employee_id),
                 'tool_shop_id': int(tool_shop_id),
+                'bar_code': bar_code,
                 'sm_equipment_assign_to': 'other'
             }
 
@@ -151,11 +154,14 @@ class RestApiModel(models.Model):
         optional_fields = ['sm_equipment_id',
                            'sm_employee_id',
                            'tool_shop_id',
-                           'sm_equipment_assign_to']
+                           'sm_equipment_assign_to',
+                           'smo_employee_id',
+                           'bar_code']
 
         int_fields = ['sm_equipment_id',
                       'sm_employee_id',
-                      'tool_shop_id']
+                      'tool_shop_id',
+                      'smo_employee_id']
         try:
             # Extract optional values from incoming arguments
             vals = {}
