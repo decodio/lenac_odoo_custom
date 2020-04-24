@@ -720,7 +720,7 @@ class MaintenanceToolShop(models.Model):
             [('tool_shop_id', '=', self.id)],
             ['sm_equipment_id', 'tool_shop_id', 'number_of_pieces'],
             ['sm_equipment_id'])
-        res = dict((data['sm_equipment_id'][0], data['sm_equipment_id_count'])
+        res = dict((data['sm_equipment_id'][0], data['sm_equipment_id_count'] or 0)
                    for data in data_lines)
         data_employee_lines = self.env['maintenance.equipment.tracking'].read_group(
             [('tool_shop_id', '=', self.id), ('sm_equipment_assign_to', '=', 'employee')],
@@ -728,10 +728,10 @@ class MaintenanceToolShop(models.Model):
             ['sm_equipment_id'])
         res_employee = dict((data['sm_equipment_id'][0], data['sm_equipment_id_count'])
                             for data in data_employee_lines)
-        for sm_equipment_id in res and res_employee:
+        for sm_equipment_id in res:
             vals = {'tool_shop_id': self.id,
                     'count': res[sm_equipment_id],
-                    'count_employee': res_employee[sm_equipment_id],
+                    'count_employee': res_employee.get(sm_equipment_id, 0),
                     'sm_equipment_id': sm_equipment_id}
             temp_res = tsec_model.create(vals)
             if temp_res:
