@@ -9,11 +9,10 @@ class RestApiModel(models.Model):
     _inherit = "rest.api.model"
 
     def create_maintenance_equipment(self, name, sort_of_equipment, category_id,
-                                     pc_number, equipment_assign_to,
+                                     pc_number, barcode_number, equipment_assign_to,
                                      employee_id, date_assigned, new_location,
-                                     old_equipment_assign_to, old_employee_id,
                                      assign_date, date_purchased,
-                                     partner_ref, item_model, serial_no, barcode_number, location=None):
+                                     partner_ref, item_model, serial_no, location=None):
         """ Create an new equipment with all the above filed required """
         try:
             vals = {
@@ -25,6 +24,7 @@ class RestApiModel(models.Model):
 
                 'category_id': int(category_id), # category id goes here
                 'pc_number': pc_number,
+                'barcode_number': barcode_number,
 
                 'equipment_assign_to': equipment_assign_to,
                 # equipment_assign_to selection: employee, department, other
@@ -33,10 +33,10 @@ class RestApiModel(models.Model):
                 'date_assigned': date_assigned,
                 'new_location': new_location,
 
-                'old_equipment_assign_to': old_equipment_assign_to,
+                #'old_equipment_assign_to': old_equipment_assign_to,
                 # old_equipment_assign_to selection: employee, department, other
 
-                'old_employee_id': int(old_employee_id),
+                #'old_employee_id': int(old_employee_id),
                 'assign_date': assign_date,
                 'location': location,
                 'date_purchased': date_purchased,
@@ -45,8 +45,8 @@ class RestApiModel(models.Model):
                 # another field name instead
                 'model': item_model,
                 # Reći Ikici da umjesto model šalje item_model
-                'serial_no': serial_no,
-                'barcode_number': barcode_number
+                'serial_no': serial_no
+
             }
 
             maintenance_equipment_model = self.env['maintenance.equipment']
@@ -121,15 +121,15 @@ class RestApiModel(models.Model):
                     'message': str(e)}
 
     def create_maintenance_equipment_tracking(self, sm_equipment_id,
-                                              sm_employee_id, tool_shop_id, bar_code):
+                                              tool_shop_id):
         """ Create a new equipment tracking record
          with all the above filed required """
         try:
             vals = {
                 'sm_equipment_id': int(sm_equipment_id),
-                'sm_employee_id': int(sm_employee_id),
+                #'sm_employee_id': int(sm_employee_id),
                 'tool_shop_id': int(tool_shop_id),
-                'bar_code': bar_code,
+                #'bar_code': bar_code,
                 'sm_equipment_assign_to': 'other'
             }
 

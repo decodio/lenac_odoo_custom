@@ -3,9 +3,10 @@
 # Copyright (C) 2018 Vedran Terihaj
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models, SUPERUSER_ID, _
 from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
+from odoo.exceptions import UserError
 
 import logging
 
@@ -35,8 +36,13 @@ class MaintenanceEquipment(models.Model):
         return report_obj.render('report.external_layout', docargs)
 
     sort_of_equipment = fields.Selection([('production', 'Production Equipment'),
+                                          ('sm_production', 'Small Production Tools'),
+                                          ('production_tools', 'Production Tools'),
                                           ('ict', 'IT Equipment'),
-                                          ('sm_production', 'Small equipment')],
+                                          ('spare_parts', 'Spare parts'),
+                                          ('office_equipment', 'Office equipment'),
+                                          ('office_tools', 'Office tools')
+                                          ],
                                          string='Sort of equipment',
                                          required=True,
                                          default='production')
@@ -247,6 +253,139 @@ class MaintenanceEquipment(models.Model):
             equipment.number_of_piecesst = result_st.get(equipment.id, 0)
             equipment.number_of_piecese = result_ae.get(equipment.id, 0)
             equipment.number_of_pieces = result.get(equipment.id, 0)
+
+    """ SMALL ICT EQUIPMENT changed to spare parts"""
+    spare_equipment_ids = fields.One2many('maintenance.spare.equipment.tracking', 'spare_equipment_id')
+
+    additional_equipment_installed_ids = fields.One2many('maintenance.spare.equipment.tracking', 'spare_equipment_id')
+
+    number_of_spare_pieces = fields.Integer(compute='_compute_spare_equipment',
+                                          string="Current Number of Equipment",
+                                          help='Current number of equipment',
+                                          readonly=False)
+
+    number_of_spare_piecese = fields.Integer(compute='_compute_spare_equipment',
+                                           string="Current Number of Equipment used",
+                                           store=True,
+                                           help='Current number of equipment used')
+
+    number_of_spare_piecesst = fields.Integer(compute='_compute_spare_equipment',
+                                        string="Current Number of Equipment in Storage",
+                                        store=True,
+                                        help='Current number of equipment in storage')
+
+    @api.depends('spare_equipment_ids.spare_equipment_id',
+                 'spare_equipment_ids.spare_equipment_assign_to')
+    def _compute_spare_equipment(self):
+        equipment_data = self.env['maintenance.spare.equipment.tracking'].read_group(
+            [('spare_equipment_id', 'in', self.ids)], ['spare_equipment_id'],
+            ['spare_equipment_id'])
+        result = dict(
+            (data['spare_equipment_id'][0], data['spare_equipment_id_count']) for data
+            in
+            equipment_data)
+
+        equipment_data_ae = self.env[
+            'maintenance.spare.equipment.tracking'].read_group(
+            [('spare_equipment_id', 'in', self.ids),
+             ('spare_equipment_assign_to', '=', 'installed')],
+            ['spare_equipment_id'], ['spare_equipment_id'])
+        result_ae = dict(
+            (data['spare_equipment_id'][0], data['spare_equipment_id_count']) for data
+            in
+            equipment_data_ae)
+
+        equipment_data_st = self.env[
+            'maintenance.spare.equipment.tracking'].read_group(
+            [('spare_equipment_id', 'in', self.ids),
+             ('spare_equipment_assign_to', '=', 'other')], ['spare_equipment_id'],
+            ['spare_equipment_id'])
+        result_st = dict(
+            (data['spare_equipment_id'][0], data['spare_equipment_id_count']) for data
+            in
+            equipment_data_st)
+
+        for equipment in self:
+            equipment.number_of_spare_piecesst = result_st.get(equipment.id, 0)
+            equipment.number_of_spare_piecese = result_ae.get(equipment.id, 0)
+            equipment.number_of_spare_pieces = result.get(equipment.id, 0)
+
+    """SUBCATEGORY"""
+
+    subcategory_id = fields.Many2one('maintenance.equipment.subcategory', string='Equipment Category',
+                                     track_visibility='onchange', group_expand='_read_group_subcategory_ids')
+
+    @api.model
+    def _read_group_subcategory_ids(self, subcategories, domain, order):
+        subcategory_ids = subcategories._search([], order=order, access_rights_uid=SUPERUSER_ID)
+        return subcategories.browse(subcategory_ids)
+
+
+class MaintenanceEquipmentSubcategory(models.Model):
+    _name = 'maintenance.equipment.subcategory'
+    _inherit = ['mail.alias.mixin', 'mail.thread']
+    _description = 'Asset Category'
+
+    @api.one
+    @api.depends('equipment_ids')
+    def _compute_fold(self):
+        self.fold = False if self.equipment_count else True
+
+    name = fields.Char('Subcategory Name', required=True)
+    technician_user_id = fields.Many2one('hr.employee', 'Responsible', track_visibility='onchange', required=True)
+    color = fields.Integer('Color Index')
+    note = fields.Text('Comments', translate=True)
+    equipment_ids = fields.One2many('maintenance.equipment', 'subcategory_id', string='Equipments', copy=False)
+    equipment_count = fields.Integer(string="Equipment", compute='_compute_equipment_count')
+    maintenance_ids = fields.One2many('maintenance.request', 'category_id', copy=False)
+    maintenance_count = fields.Integer(string="Maintenance", compute='_compute_maintenance_count')
+    alias_id = fields.Many2one(
+        'mail.alias', 'Alias', ondelete='cascade', required=True,
+        help="Email alias for this equipment category. New emails will automatically "
+        "create new maintenance request for this equipment category.")
+    fold = fields.Boolean(string='Folded in Maintenance Pipe', compute='_compute_fold', store=True)
+
+    @api.multi
+    def _compute_equipment_count(self):
+        equipment_data = self.env['maintenance.equipment'].read_group([('subcategory_id', 'in', self.ids)], ['subcategory_id'], ['subcategory_id'])
+        mapped_data = dict([(m['subcategory_id'][0], m['subcategory_id_count']) for m in equipment_data])
+        for subcategory in self:
+            subcategory.equipment_count = mapped_data.get(subcategory.id, 0)
+
+    @api.multi
+    def _compute_maintenance_count(self):
+        maintenance_data = self.env['maintenance.request'].read_group([('subcategory_id', 'in', self.ids)], ['subcategory_id'], ['subcategory_id'])
+        mapped_data = dict([(m['subcategory_id'][0], m['subcategory_id_count']) for m in maintenance_data])
+        for subcategory in self:
+            subcategory.maintenance_count = mapped_data.get(subcategory.id, 0)
+
+    @api.model
+    def create(self, vals):
+        self = self.with_context(alias_model_name='maintenance.request', alias_parent_model_name=self._name)
+        if not vals.get('alias_name'):
+            vals['alias_name'] = vals.get('name')
+        subcategory_id = super(MaintenanceEquipmentSubcategory, self).create(vals)
+        subcategory_id.alias_id.write({'alias_parent_thread_id': subcategory_id.id, 'alias_defaults': {'subcategory_id': subcategory_id.id}})
+        return subcategory_id
+
+    @api.multi
+    def unlink(self):
+        MailAlias = self.env['mail.alias']
+        for subcategory in self:
+            if subcategory.equipment_ids or subcategory.maintenance_ids:
+                raise UserError(_("You cannot delete an equipment category containing equipments or maintenance requests."))
+            MailAlias += subcategory.alias_id
+        res = super(MaintenanceEquipmentSubcategory, self).unlink()
+        MailAlias.unlink()
+        return res
+
+    def get_alias_model_name(self, vals):
+        return vals.get('alias_model', 'maintenance.equipment')
+
+    def get_alias_values(self):
+        values = super(MaintenanceEquipmentSubcategory, self).get_alias_values()
+        values['alias_defaults'] = {'subcategory_id': self.id}
+        return values
 
 
 class MaintenanceAllowedOs(models.Model):
@@ -636,10 +775,12 @@ class MaintenanceComponentType(models.Model):
 
 class MaintenanceEquipmentTracking(models.Model):
     _name = 'maintenance.equipment.tracking'
+    _description = 'Equipment tracking'
 
     sm_equipment_id = fields.Many2one('maintenance.equipment', string='Equipment')
 
     bar_code = fields.Char(related='sm_equipment_id.barcode_number', string='Barcode', store=True)
+    sm_equipment_name = fields.Char(related='sm_equipment_id.name', string='Name', store=True)
 
     tool_shop_id = fields.Many2one('maintenance.tool.shop', string='Tool shop')
 
@@ -698,6 +839,26 @@ class MaintenanceEquipmentTracking(models.Model):
                 equipment.employee_department_smo = False
 
 
+class MaintenanceSpareEquipmentTracking(models.Model):
+    _name = 'maintenance.spare.equipment.tracking'
+    _description = 'Equipment tracking'
+
+    spare_equipment_id = fields.Many2one('maintenance.equipment', string='Equipment', track_visibility='onchange')
+
+    #ict_equipment_id = fields.Many2one('maintenance.equipment', string='Installed on Equipment',
+    #                                   track_visibility='onchange')
+    bar_code = fields.Char(related='spare_equipment_id.barcode_number', string='Barcode', store=True)
+    spare_equipment_name = fields.Char(related='spare_equipment_id.name', string='Name', store=True)
+    spare_equipment_category = fields.Char(related='spare_equipment_id.category_id.name', strin="Category")
+
+    tool_shop_id = fields.Many2one('maintenance.tool.shop', string='Tool shop')
+
+    spare_equipment_assign_to = fields.Selection([('installed', 'Installed'), ('other', 'Other')],
+                                                  string='Used By',
+                                                  required=True,
+                                                  default='other')
+
+
 class MaintenanceToolShop(models.Model):
     _name = 'maintenance.tool.shop'
 
@@ -705,10 +866,17 @@ class MaintenanceToolShop(models.Model):
     equipment_tracking_ids = fields.One2many('maintenance.equipment.tracking',
                                              'tool_shop_id',
                                              string="Tool Shop Equipment")
+    spare_equipment_tracking_ids = fields.One2many('maintenance.spare.equipment.tracking',
+                                                   'tool_shop_id',
+                                                   string="Tool Shop Equipment")
 
     equipment_tracking_ts_info_lines = fields.Many2many('tool.shop.equipment.count',
                                                         string='Tool shop equipment count',
                                                         compute='_compute_tracking_info_lines')
+
+    spare_equipment_tracking_ts_info_lines = fields.Many2many('tool.shop.spare.equipment.count',
+                                                              string='Tool shop equipment count',
+                                                              compute='_compute_tracking_info_lines')
 
     @api.depends('equipment_tracking_ids')
     def _compute_tracking_info_lines(self):
@@ -740,6 +908,35 @@ class MaintenanceToolShop(models.Model):
                 equipment_tracking_ts_info_lines |= temp_res
         self.equipment_tracking_ts_info_lines = equipment_tracking_ts_info_lines
 
+    @api.depends('spare_equipment_tracking_ids')
+    def _compute_tracking_info_lines_ict(self):
+        tsec_model = self.env['tool.shop.spare.equipment.count']
+        spare_equipment_tracking_ts_info_lines = tsec_model
+        if not self.spare_equipment_tracking_ids:
+            return
+
+        data_lines_ict = self.env['maintenance.spare.equipment.tracking'].read_group(
+            [('tool_shop_id', '=', self.id)],
+            ['spare_equipment_id', 'tool_shop_id', 'number_of_spare_pieces'],
+            ['spare_equipment_id'])
+        res_ict = dict((data['spare_equipment_id'][0], data['spare_equipment_id_count'])
+                       for data in data_lines_ict)
+        data_lines_installed_ict = self.env['maintenance.spare.equipment.tracking'].read_group(
+            [('tool_shop_id', '=', self.id), ('spare_equipment_assign_to', '=', 'installed')],
+            ['spare_equipment_id', 'tool_shop_id', 'number_of_spare_piecese'],
+            ['spare_equipment_id'])
+        res_installed_ict = dict((data['spare_equipment_id'][0], data['spare_equipment_id_count'])
+                                 for data in data_lines_installed_ict)
+        for spare_equipment_id in res_ict:
+            vals = {'tool_shop_id': self.id,
+                    'count': res_ict[spare_equipment_id],
+                    'count_installed': res_installed_ict.get(spare_equipment_id, 0),
+                    'spare_equipment_id': spare_equipment_id}
+            temp_res = tsec_model.create(vals)
+            if temp_res:
+                spare_equipment_tracking_ts_info_lines |= temp_res
+        self.spare_equipment_tracking_ts_info_lines = spare_equipment_tracking_ts_info_lines
+
 
 class ToolShopMaintenanceEquipmentCount(models.TransientModel):
     _name = 'tool.shop.equipment.count'
@@ -755,6 +952,24 @@ class ToolShopMaintenanceEquipmentCount(models.TransientModel):
     def _compute_equipment_on_storage(self):
         for equipment in self:
             equipment.on_storage = self.count - self.count_employee
+
+    on_storage = fields.Integer(string='On storage', compute='_compute_equipment_on_storage')
+
+
+class ToolShopMaintenanceSpareEquipmentCount(models.TransientModel):
+    _name = 'tool.shop.spare.equipment.count'
+    _description = """Temporary model to display tool shop
+     equipment data without storing"""
+
+    tool_shop_id = fields.Many2one('maintenance.tool.shop', string='Tool shop')
+    spare_equipment_id = fields.Many2one('maintenance.equipment', string='Equipment')
+    count = fields.Integer(string='Count')
+    count_installed = fields.Integer(string='Used By Employee')
+
+    @api.depends('count', 'count_installed')
+    def _compute_equipment_on_storage(self):
+        for equipment in self:
+            equipment.on_storage = self.count - self.count_installed
 
     on_storage = fields.Integer(string='On storage', compute='_compute_equipment_on_storage')
 

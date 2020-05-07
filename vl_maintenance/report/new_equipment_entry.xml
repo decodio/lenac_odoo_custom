@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_new_equipment">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <tr t-call="report.external_layout">
+                <div class="page" width="auto">
+                    <table id="equipment" style="width:auto">
+                        <tr>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Inv br.</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><span t-esc="o.pc_number"/></td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Naziv OS</td>
+                            <td colspan="2"  style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><span t-esc="o.name"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Šifra i naziv<br/> amortiz. grupe</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Šifra organizacije</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><sapn t-esc="o.employee_department_new_number"/></td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Naziv: <sapn t-esc="o.employee_department_new.name"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Šifra lokacije</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><sapn t-esc="o.new_location"/></td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Naziv:</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Šifra Radnika</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><sapn t-esc="o.new_employee_number"/></td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Ime i prezime: <sapn t-esc="o.employee_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Datum nabave</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><sapn t-esc="o.date_purchased"/></td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Vijek trajanja:</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Datum aktiviranja</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Max. stopa amortiz:</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Proizvođač</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><sapn t-esc="o.partner_ref"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Dobavljač</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><sapn t-esc="o.partner_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Konto broj:</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Naziv:</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Vrijednost:</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Knjigovodstvo:</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Procjena:</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Korekcija:</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Nabavna: <span t-esc="o.cost"/> Kn</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Otpisana:        Kn</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Sadašnja:        Kn</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Garancija:</td>
+                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><span t-esc="o.warranty"/></td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Polica osiguranja:</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> TEHNIČKI PODACI: </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> Vrsta:</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><sapn t-esc="o.category_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> 1. Tip</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><sapn t-esc="o.subcategory_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> 2. Model</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><sapn t-esc="o.model"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> 3. Dimenzija</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> 4. Težina</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> 5. Tlocrt </td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> 6. Kapacitet </td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> 7. Vrsta pogona </td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> 8. Motor broj </td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> 9. Tvornički broj </td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><sapn t-esc="o.serial_no"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> 10. Rezervni dijelovi </td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"> </td>
+                        </tr>
+                        <tr style="border-style: solid;border-width: thin;">
+                            <td rowspan="5" colspan="1" style="text-align: left;padding-left: 3px; padding-right: 3px;"> Osobno zaduženje:</td>
+                            <td rowspan="5" colspan="2" style="text-align: left;padding-left: 3px; padding-right: 3px;"> Voditelj investicijskog projekta: </td>
+                            <td rowspan="5" colspan="2" style="text-align: left;padding-left: 3px; padding-right: 3px;"> Članovi komisije: <br/> 1. <br/> 2. </td>
+                        </tr>
+                    </table>
+                </div>
+            </tr>
+        </t>
+    </t>
+    </template>
+</odoo>

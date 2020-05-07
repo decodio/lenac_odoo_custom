@@ -14,4 +14,11 @@
         name="vl_maintenance.report_mobile"
         file="vl_maintenance.report_mobile"
         />
+    <report id="report_new_equipment_entry"
+        model="maintenance.equipment"
+        string="O3003 - Popisni list OSA"
+        report_type="qweb-pdf"
+        name="vl_maintenance.report_new_equipment"
+        file="vl_maintenance.report_new_equipment"
+        />
 </odoo>

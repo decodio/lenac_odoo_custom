@@ -26,6 +26,7 @@
         'report/report.xml',
         'report/personal_equipment.xml',
         'report/mobile_phone.xml',
+        'report/new_equipment_entry.xml',
         'views/vl_maintenance_views.xml',
         'views/allowed_os.xml',
         'views/hardware.xml',

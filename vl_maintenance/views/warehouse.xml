@@ -33,14 +33,6 @@
         </record>
 
         <!-- Actions based on equipment sort -->
-        <record id="action_warehouse_small_equipment" model="ir.actions.act_window">
-            <field name="name">Small equipmnet</field>
-            <field name="res_model">maintenance.equipment</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree, form</field>
-            <field name="domain">[('sort_of_equipment', '=', 'sm_production')]</field>
-            <field name="view_id" ref="warehouse_small_equipment_view_tree"/>
-        </record>
 
         <record id="action_warehouse_assets" model="ir.actions.act_window">
             <field name="name">Assets</field>
@@ -51,12 +43,57 @@
             <field name="view_id" ref="warehouse_other_equipment_view_tree"/>
         </record>
 
+        <record id="action_warehouse_production_tools" model="ir.actions.act_window">
+            <field name="name">Production tools</field>
+            <field name="res_model">maintenance.equipment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree, form</field>
+            <field name="domain">[('sort_of_equipment', '=', 'production_tools')]</field>
+            <field name="view_id" ref="warehouse_other_equipment_view_tree"/>
+        </record>
+
+        <record id="action_warehouse_small_equipment" model="ir.actions.act_window">
+            <field name="name">Small equipmnet</field>
+            <field name="res_model">maintenance.equipment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree, form</field>
+            <field name="domain">[('sort_of_equipment', '=', 'sm_production')]</field>
+            <field name="view_id" ref="warehouse_small_equipment_view_tree"/>
+        </record>
+
         <record id="action_warehouse_ict" model="ir.actions.act_window">
             <field name="name">IT equipment</field>
             <field name="res_model">maintenance.equipment</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree, form</field>
             <field name="domain">[('sort_of_equipment', '=', 'ict')]</field>
+            <field name="view_id" ref="warehouse_other_equipment_view_tree"/>
+        </record>
+
+        <record id="action_warehouse_spare_parts" model="ir.actions.act_window">
+            <field name="name">Spare parts</field>
+            <field name="res_model">maintenance.equipment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree, form</field>
+            <field name="domain">[('sort_of_equipment', '=', 'spare_parts')]</field>
+            <field name="view_id" ref="warehouse_other_equipment_view_tree"/>
+        </record>
+
+        <record id="action_warehouse_office_equipment" model="ir.actions.act_window">
+            <field name="name">Office Equipment</field>
+            <field name="res_model">maintenance.equipment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree, form</field>
+            <field name="domain">[('sort_of_equipment', '=', 'office_equipment')]</field>
+            <field name="view_id" ref="warehouse_other_equipment_view_tree"/>
+        </record>
+
+        <record id="action_warehouse_office_tools" model="ir.actions.act_window">
+            <field name="name">Office Tools</field>
+            <field name="res_model">maintenance.equipment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree, form</field>
+            <field name="domain">[('sort_of_equipment', '=', 'office_tools')]</field>
             <field name="view_id" ref="warehouse_other_equipment_view_tree"/>
         </record>
 
@@ -74,6 +111,14 @@
                                     <field name="sm_equipment_id"/>
                                     <field name="count"/>
                                     <field name="count_employee"/>
+                                    <field name="on_storage"/>
+                                </tree>
+                            </field>
+                            <field name="spare_equipment_tracking_ts_info_lines">
+                                <tree>
+                                    <field name="spare_equipment_id"/>
+                                    <field name="count"/>
+                                    <field name="count_installed"/>
                                     <field name="on_storage"/>
                                 </tree>
                             </field>
@@ -107,26 +152,55 @@
             parent="maintenance.menu_maintenance_title"
             sequence="110"
             />
-        <menuitem
-            id="menu_warehouse_tools"
-            name="Small equipment"
-            action="action_warehouse_small_equipment"
-            parent="menu_warehouse"
-            sequence="1"
-            />
+
         <menuitem
             id="menu_warehouse_assets"
             name="Assets"
             action="action_warehouse_assets"
             parent="menu_warehouse"
+            sequence="1"
+            />
+        <menuitem
+            id="menu_warehouse_production_tools"
+            name="Production tools"
+            action="action_warehouse_production_tools"
+            parent="menu_warehouse"
             sequence="2"
+            />
+        <menuitem
+            id="menu_warehouse_tools"
+            name="Small equipment"
+            action="action_warehouse_small_equipment"
+            parent="menu_warehouse"
+            sequence="3"
             />
         <menuitem
             id="menu_warehouse_ict"
             name="IT Equpment"
             action="action_warehouse_ict"
             parent="menu_warehouse"
-            sequence="3"
+            sequence="4"
+            />
+        <menuitem
+            id="menu_warehouse_spare_parts"
+            name="Spare Parts"
+            action="action_warehouse_spare_parts"
+            parent="menu_warehouse"
+            sequence="5"
+            />
+        <menuitem
+            id="menu_warehouse_office_equipment"
+            name="Office Equipment"
+            action="action_warehouse_office_equipment"
+            parent="menu_warehouse"
+            sequence="6"
+            />
+        <menuitem
+            id="menu_warehouse_office_tools"
+            name="Office Tools"
+            action="action_warehouse_office_tools"
+            parent="menu_warehouse"
+            sequence="7"
             />
          <menuitem
             id="menu_tool_shop"
