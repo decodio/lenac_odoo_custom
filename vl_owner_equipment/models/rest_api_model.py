@@ -9,7 +9,7 @@ class RestApiModel(models.Model):
     _inherit = "rest.api.model"
 
     def create_owner_equipment(self, name, barcode_number, project_id, removal_responsible_id,
-                               location_removed_id, category_id, subcategory_id, image, description=False):
+                               location_removed_id, category_id, subcategory_id, image=False, description=False):
         """ Create an new equipment with all the above filed required """
         try:
             vals = {
