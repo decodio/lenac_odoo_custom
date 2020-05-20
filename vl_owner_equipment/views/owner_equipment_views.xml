@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- OWNER EQUIPMENT PROJECT-->
+        <record model="ir.ui.view" id="owner_equipment_project_search_view">
+            <field name="name">owner.equipment.project.search</field>
+            <field name="model">owner.equipment.project</field>
+            <field name="arch" type="xml">
+                <search string="Project">
+                    <field name="name"/>
+                    <field name="project_code_crm" string="Project Name CRM"/>
+                    <field name="project_location_ids" string="Project Locations"/>
+                    <field name="project_category_ids" string="Project Categories"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_project_view_tree" >
+            <field name="name">owner.equipment.project.tree</field>
+            <field name="model">owner.equipment.project</field>
+            <field name="arch" type="xml">
+                <tree string="Project">
+                    <field name="name"/>
+                    <field name="project_code_crm" string="Project Name CRM"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_project_view_form">
+            <field name="name">owner.equipment.project.form</field>
+            <field name="model">owner.equipment.project</field>
+            <field name="arch" type="xml">
+                <form string="Project Configuration">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string="Project Configuration">
+                            <field name="name"/>
+                            <field name="project_code_crm" string="Project Name CRM"/>
+                            <field name="project_location_ids" string="Project Locations">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="location_code"/>
+                                </tree>
+                            </field>
+                            <field name="project_category_ids" string="Equipment Main Categories">
+                                <tree>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="owner_equipment_project_action">
+            <field name="name">Owner Equipment Project</field>
+            <field name="res_model">owner.equipment.project</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a project.
+              </p>
+            </field>
+        </record>
+
+        <!-- OWNER EQUIPMENT -->
+        <record model="ir.ui.view" id="owner_equipment_view_form">
+            <field name="name">owner.equipment.form</field>
+            <field name="model">owner.equipment</field>
+            <field name="arch" type="xml">
+                <form string="Equipment Inventory">
+                    <header>
+                    </header>
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image&quot;, &quot;size&quot;: [200, 200]}"/>
+                        <group>
+                            <group string="Equipment details">
+                                <field name="name"/>
+                                <field name="barcode_number"/>
+                                <field name="project_id"/>
+                                <field name="removal_responsible_id"/>
+                                <field name="date_removed"/>
+                            </group>
+                            <group>
+                                <field name="location_removed_id" domain="[('project_location_id', '=', project_id)]"/>
+                                <field name="category_id" domain="[('project_category_id', '=', category_id)]"/>
+                                <field name="subcategory_id" domain="[('owner_subcategory_id', '=', category_id)]"/>
+                                <field name="date_reinstalled"/>
+                                <field name="location_reinstalled_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description" name="description">
+                                <field name="description"/>
+                            </page>
+                            <page string="Removal Crew" name="removal_crew">
+                                <field name="removal_crew_ids" string="Removed By">
+                                    <tree>
+                                        <field name="employee_crew"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Equipment tracking" name="equipment_tracking">
+                                <field name="equipment_tracking_ids" string="Assigned To">
+                                    <tree>
+                                        <field name="assigned_employee"/>
+                                        <field name="date_assigned_employee"/>
+                                        <field name="assigned_location_id" string="Current Location"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Scan History" name="scan_history">
+                                <field name="scan_history_ids" string="Scan History">
+                                    <tree>
+                                        <field name="equipment_scanned_by"/>
+                                        <field name="equipment_scanned_date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_view_kanban">
+            <field name="name">owner.equipment.kanban</field>
+            <field name="model">owner.equipment</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="barcode_number"/>
+                    <field name="project_id"/>
+                    <field name="location_removed_id"/>
+                    <field name="category_id"/>
+                    <field name="subcategory_id"/>
+                    <field name="removal_responsible_id"/>
+                    <field name="date_removed"/>
+                    <field name="color"/>
+                    <field name="image"/>
+                    <templates>
+                        <t t-name="kanban-tooltip">
+                            <ul class="oe_kanban_tooltip">
+                                <li><b>Barcode:</b> <field name="barcode_number"/></li>
+                                <li><b>Project:</b> <field name="project_id"/></li>
+                            </ul>
+                        </t>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+                                <div class="o_dropdown_kanban dropdown">
+
+                                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >
+                                        <span class="fa fa-bars fa-lg"/>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <t t-if="widget.editable"><li><a type="edit">Edit...</a></li></t>
+                                        <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t>
+                                        <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_content" tooltip="kanban-tooltip">
+                                    <div><b><field name="name"/></b></div>
+                                    <div class="mt4">
+                                        <div t-if="record.barcode_number.raw_value"><field name="barcode_number"/></div>
+                                        <div t-if="record.removal_responsible_id.raw_value"><field name="removal_responsible_id"/></div>
+                                        <div t-if="record.location_removed_id.raw_value"><field name="location_removed_id"/></div>
+                                        <div t-if="record.date_removed.raw_value"><field name="date_removed"/></div>
+                                        <div t-if="record.category_id.raw_value"><field name="category_id"/></div>
+                                        <div t-if="record.subcategory_id.raw_value"><field name="subcategory_id"/></div>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <img t-att-src="kanban_image('owner.equipment', 'image', record.image.raw_value)" t-att-title="record.image.value" width="200" height="200" class="oe_kanban_avatar"/>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_view_tree" >
+            <field name="name">owner.equipment.tree</field>
+            <field name="model">owner.equipment</field>
+            <field name="arch" type="xml">
+                <tree string="Owner equipment">
+                    <field name="name"/>
+                    <field name="barcode_number"/>
+                    <field name="project_id"/>
+                    <field name="location_removed_id"/>
+                    <field name="category_id"/>
+                    <field name="subcategory_id"/>
+                    <field name="removal_responsible_id"/>
+                    <field name="date_removed"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_search_view">
+            <field name="name">owner.equipment.search</field>
+            <field name="model">owner.equipment</field>
+            <field name="arch" type="xml">
+                <search string="Equipment">
+                    <field name="name"/>
+                    <field name="barcode_number"/>
+                    <field name="project_id"/>
+                    <field name="location_removed_id"/>
+                    <field name="category_id"/>
+                    <field name="subcategory_id"/>
+                    <field name="removal_responsible_id"/>
+                    <field name="date_removed"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="owner_equipment_action">
+            <field name="name">Owner Equipment</field>
+            <field name="res_model">owner.equipment</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="owner_equipment_view_kanban"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a equipment.
+              </p>
+            </field>
+        </record>
+
+        <!-- OWNER EQUIPMENT PROJECT LOCATION-->
+        <record model="ir.ui.view" id="owner_equipment_project_location_search_view">
+            <field name="name">owner.equipment.project.location.search</field>
+            <field name="model">owner.equipment.project.location</field>
+            <field name="arch" type="xml">
+                <search string="Location">
+                    <field name="name"/>
+                    <field name="location_code"/>
+                    <field name="project_location_id" string="Project"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_project_location_view_tree" >
+            <field name="name">owner.equipment.project.location.tree</field>
+            <field name="model">owner.equipment.project.location</field>
+            <field name="arch" type="xml">
+                <tree string="Location">
+                    <field name="name"/>
+                    <field name="location_code"/>
+                    <field name="project_location_id" string="Project"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_project_location_view_form">
+            <field name="name">owner.equipment.project.location.form</field>
+            <field name="model">owner.equipment.project.location</field>
+            <field name="arch" type="xml">
+                <form string="Location">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string="Equipment details">
+                            <field name="name"/>
+                            <field name="location_code"/>
+                            <field name="project_location_id" string="Project"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="owner_equipment_project_location_action">
+            <field name="name">Owner Equipment Project Location</field>
+            <field name="res_model">owner.equipment.project.location</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a location.
+              </p>
+            </field>
+        </record>
+
+        <!-- OWNER EQUIPMENT CATEGORY-->
+        <record model="ir.ui.view" id="owner_equipment_category_search_view">
+            <field name="name">owner.equipment.category.search</field>
+            <field name="model">owner.equipment.category</field>
+            <field name="arch" type="xml">
+                <search string="Category">
+                    <field name="name"/>
+                    <field name="project_category_id" string="Project"/>
+                    <field name="owner_subcategory_ids" string="Subcategories"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_category_view_tree">
+            <field name="name">owner.equipment.category.tree</field>
+            <field name="model">owner.equipment.category</field>
+            <field name="arch" type="xml">
+                <tree string="Category">
+                    <field name="name"/>
+                    <field name="project_category_id" string="Project"/>
+                    <field name="owner_subcategory_ids" string="Subcategories"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_category_view_form">
+            <field name="name">owner.equipment.category.form</field>
+            <field name="model">owner.equipment.category</field>
+            <field name="arch" type="xml">
+                <form string="Category">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string="Category details">
+                            <field name="name"/>
+                            <field name="project_category_id" string="Project"/>
+                            <field name="owner_subcategory_ids" string="Subcategories"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="owner_equipment_category_action">
+            <field name="name">Owner Equipment Category</field>
+            <field name="res_model">owner.equipment.category</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a category.
+              </p>
+            </field>
+        </record>
+
+        <!-- OWNER EQUIPMENT SUBCATEGORY-->
+        <record model="ir.ui.view" id="owner_equipment_subcategory_search_view">
+            <field name="name">owner.equipment.subcategory.search</field>
+            <field name="model">owner.equipment.subcategory</field>
+            <field name="arch" type="xml">
+                <search string="Subcategory">
+                    <field name="name"/>
+                    <field name="owner_subcategory_id" string="Category"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_subcategory_view_tree" >
+            <field name="name">owner.equipment.subcategory.tree</field>
+            <field name="model">owner.equipment.subcategory</field>
+            <field name="arch" type="xml">
+                <tree string="Subcategory">
+                    <field name="name"/>
+                    <field name="owner_subcategory_id" string="Category"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_subcategory_view_form">
+            <field name="name">owner.equipment.subcategory.form</field>
+            <field name="model">owner.equipment.subcategory</field>
+            <field name="arch" type="xml">
+                <form string="Subcategory">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string="Subcategory details">
+                            <field name="name"/>
+                            <field name="owner_subcategory_id" string="Category"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="owner_equipment_subcategory_action">
+            <field name="name">Owner Equipment Subcategory</field>
+            <field name="res_model">owner.equipment.subcategory</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a subcategory.
+              </p>
+            </field>
+        </record>
+
+        <!-- OWNER EQUIPMENT LOCATION-->
+        <record model="ir.ui.view" id="owner_equipment_location_search_view">
+            <field name="name">owner.equipment.location.search</field>
+            <field name="model">owner.equipment.location</field>
+            <field name="arch" type="xml">
+                <search string="Location">
+                    <field name="name"/>
+                    <field name="location_code"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_location_view_tree" >
+            <field name="name">owner.equipment.location.tree</field>
+            <field name="model">owner.equipment.location</field>
+            <field name="arch" type="xml">
+                <tree string="Location">
+                    <field name="name"/>
+                    <field name="location_code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_location_view_form">
+            <field name="name">owner.equipment.location.form</field>
+            <field name="model">owner.equipment.location</field>
+            <field name="arch" type="xml">
+                <form string="Location">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string="Location details">
+                            <field name="name"/>
+                            <field name="location_code"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="owner_equipment_location_action">
+            <field name="name">Owner Equipment Location</field>
+            <field name="res_model">owner.equipment.location</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a location.
+              </p>
+            </field>
+        </record>
+
+        <!-- MENU ITEMS -->
+        <menuitem
+            id="owner_equipment_main"
+            name="Owner Equipment"
+            sequence="5000"
+        />
+        <menuitem
+            id="owner_equipment_subgroup"
+            parent="owner_equipment_main"
+            name="Owner Equipment"
+            sequence="1"
+        />
+        <menuitem
+            id="owner_equipment_submenu"
+            parent="owner_equipment_subgroup"
+            action="owner_equipment_action"
+            name="Owner Equipment"
+            sequence="1"
+        />
+        <menuitem
+            id="owner_equipment_project_subgroup"
+            parent="owner_equipment_main"
+            name="Project Configuration"
+            sequence="2"
+        />
+        <menuitem
+            id="owner_equipment_project_submenu"
+            parent="owner_equipment_project_subgroup"
+            action="owner_equipment_project_action"
+            name="Project"
+            sequence="1"
+        />
+        <menuitem
+            id="owner_equipment_configuration"
+            parent="owner_equipment_main"
+            name="Configuration"
+            groups="vl_owner_equipment.owner_equipment_administrator"
+            sequence="3"
+        />
+        <menuitem
+            id="owner_equipment_project_location"
+            parent="owner_equipment_configuration"
+            action="owner_equipment_project_location_action"
+            name="Locations"
+            sequence="1"
+        />
+        <menuitem
+            id="owner_equipment_category"
+            parent="owner_equipment_configuration"
+            action="owner_equipment_category_action"
+            name="Categories"
+            sequence="2"
+        />
+        <menuitem
+            id="owner_equipment_subcategory"
+            parent="owner_equipment_configuration"
+            action="owner_equipment_subcategory_action"
+            name="Subcategories"
+            sequence="3"
+        />
+        <menuitem
+            id="owner_equipment_location"
+            parent="owner_equipment_configuration"
+            action="owner_equipment_location_action"
+            name="Locations"
+            sequence="4"
+        />
+
+
+    </data>
+</odoo>
