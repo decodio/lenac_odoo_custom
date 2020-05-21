@@ -3,6 +3,7 @@
 # Copyright (C) 2020 Vedran Terihaj
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import base64
 from odoo import api, models, fields, _
 #from odoo.addons.cmis_field import fields as cmis_fields
 
@@ -60,6 +61,15 @@ class OwnerEquipment(models.Model):
     def onchange_project(self):
         self.subcategory_id = None
 
+    def _attach_image(self, file_data):
+        """Attach an image to this document"""
+        # Skip files that don't match the allowed extensions.
+        filename = file_data.filename
+        ext = filename.split('.')[-1]
+        if ext not in ['jpg', 'jpeg', 'png', 'gif', 'tga', 'bmp']:
+            return False
+        self.image = base64.encodestring(file_data.read())
+        return True
 """        
     def create_cmis_folder_from_default_template(self, records, backend):
         self._create_in_cmis(records, backend)

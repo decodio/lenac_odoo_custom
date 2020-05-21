@@ -20,12 +20,13 @@ class RestApiModel(models.Model):
                 'location_removed_id': int(location_removed_id),
                 'category_id': int(category_id),
                 'subcategory_id': int(subcategory_id),
-                'image': image,
                 'description': description
             }
             owner_equipment_model = self.env['owner.equipment']
             res = owner_equipment_model.create(vals)
             if res:
+                # Crate and attach an image
+                res._attach_image(image)
                 return{'result': {'id': res.id},
                        'success': True,
                        'message': ''}
