@@ -21,4 +21,11 @@
         name="vl_maintenance.report_new_equipment"
         file="vl_maintenance.report_new_equipment"
         />
+    <report id="report_scrap_equipment"
+        model="maintenance.equipment.scrap"
+        string="O3004 - Prijedlog za rshod OSA"
+        report_type="qweb-pdf"
+        name="vl_maintenance.report_equipment_scrap"
+        file="vl_maintenance.report_equipment_scrap"
+        />
 </odoo>

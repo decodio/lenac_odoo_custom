@@ -127,6 +127,30 @@ class MaintenanceEquipment(models.Model):
         }
         return res
 
+    @api.multi
+    def create_scrap(self):
+        # issue_id = self.issue_id
+        view_ref = self.env['ir.model.data'].get_object_reference('vl_maintenance', 'maintenance_equipment_scrap_form_view')
+        view_id = view_ref[1] if view_ref else False
+        res = {
+            "type": "ir.actions.act_window",
+            "res_model": "maintenance.equipment.scrap",
+            "view_type": "form",
+            "view_mode": "form",
+            "view_id": view_id,
+            "target": "new",
+            "context": {
+                'equipment_name': self.name,
+                'equipment_number': self.pc_number,
+                'date_purchased': self.date_purchased,
+                'location': self.new_location,
+            }
+
+        }
+        return res
+
+    active = fields.Boolean('Active', default=True)
+
     issue_ids = fields.One2many('project.issue', 'equipment_id', string='Issues',
                                 domain=[('issue_type', '=', 'corrective')])
 
@@ -319,6 +343,21 @@ class MaintenanceEquipment(models.Model):
     def _read_group_subcategory_ids(self, subcategories, domain, order):
         subcategory_ids = subcategories._search([], order=order, access_rights_uid=SUPERUSER_ID)
         return subcategories.browse(subcategory_ids)
+
+
+class MaintenanceEquipmentScrap(models.Model):
+    _name = 'maintenance.equipment.scrap'
+    _description = 'Mark Equipment For Scrap'
+
+    equipment_id = fields.Many2one('maintenance.equipment')
+    equipment_name = fields.Char(string='Equipment Name', help='Copy name from LOGINFO')
+    equipment_number = fields.Char(related='equipment_id.pc_number', store=True)
+    date_purchased = fields.Date(related='equipment_id.date_purchased', store=True)
+    location = fields.Char(related='equipment_id.new_location', store=True)
+    location_name = fields.Char(string='Location Name', help='Copy name from LOGINFO')
+    scrap_description = fields.Text(string='Reason For Scrap')
+    active = fields.Boolean('Active', default=True)
+    scrap_date = fields.Date(default=lambda self: fields.date.today())
 
 
 class MaintenanceEquipmentSubcategory(models.Model):

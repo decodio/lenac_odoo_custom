@@ -17,6 +17,16 @@
                             <!-- Test id od HW project_id 'default_project_id': 237817-->
                             <field string="Issues" name="issues_count" widget="statinfo"/>
                     </button>
+                    <button name="create_scrap"
+                            type="object"
+                            string="Scrap"
+                            class="oe_stat_button"
+                            icon="fa-trash-o"
+                            context="{'default_equipment_id': id}">
+                    </button>
+                    <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                        <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                    </button>
                 </xpath>
                 <xpath expr="//field[@name='category_id']" position="before">
                     <field name="sort_of_equipment" wiget="radio"/>
@@ -194,6 +204,104 @@
                 </group>
             </field>
         </record>
+
+        <!-- MARK FOR SCRAP-->
+        <record model="ir.ui.view" id="maintenance_equipment_scrap_search_view">
+            <field name="name">Scraped Equipment</field>
+            <field name="model">maintenance.equipment.scrap</field>
+            <field name="arch" type="xml">
+                <search string="Scraped Equipment">
+                    <field name="equipment_id"/>
+                    <field name="equipment_name"/>
+                    <field name="equipment_number"/>
+                    <field name="date_purchased"/>
+                    <field name="location"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_equipment_scrap_tree_view" >
+            <field name="name">Scraped Equipment</field>
+            <field name="model">maintenance.equipment.scrap</field>
+            <field name="arch" type="xml">
+                <tree string="Scraped Equipment">
+                    <field name="equipment_id"/>
+                    <field name="equipment_name"/>
+                    <field name="equipment_number"/>
+                    <field name="date_purchased"/>
+                    <field name="location"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_equipment_scrap_form_view">
+            <field name="name">maintenance.equipment.scrap.form</field>
+            <field name="model">maintenance.equipment.scrap</field>
+            <field name="arch" type="xml">
+                <form string="Scrap Form">
+                    <!--header>
+                        <field name="stage_id" widget="statusbar" clickable="True"/>
+                    </header-->
+                    <sheet string="Scrap Reason">
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="equipment_id" invisible="1"/>
+                            <field name="equipment_name"/>
+                            <field name="equipment_number"/>
+                            <field name="date_purchased"/>
+                            <field name="location"/>
+                            <field name="location_name"/>
+                            <field name="scrap_description"/>
+                            <field name="scrap_date"/>
+                        </group>
+                    </sheet>
+                    <!--div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div-->
+                </form>
+            </field>
+        </record>
+
+        <record id="action_open_maintenance_scrap_form_popup" model="ir.actions.act_window">
+            <field name="name">Scrap Reason</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">maintenance.equipment.scrap</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="maintenance_equipment_scrap_form_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="maintenance_equipment_scrap_action" model="ir.actions.act_window" >
+            <field name="name">Scrap Equipment</field>
+            <field name="res_model">maintenance.equipment.scrap</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to scrap.
+              </p>
+            </field>
+        </record>
+
+        <menuitem
+            id="menu_scraped_equipment_main"
+            name="Scrap"
+            parent="maintenance.menu_maintenance_title"
+            sequence="120"
+            />
+        <menuitem
+            id="menu_scraped_equipment"
+            name="Scraped equipment"
+            parent="menu_scraped_equipment_main"
+            action="maintenance_equipment_scrap_action"
+            sequence="1"
+            />
+
 
         <record id="vl_equipment_action_from_subcategory_form" model="ir.actions.act_window">
             <field name="name">Equipments</field>
