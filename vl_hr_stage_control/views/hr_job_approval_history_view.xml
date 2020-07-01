@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="hr_job_approval_history_form" model="ir.ui.view">
+        <field name="name">hr.job.approval.history.form</field>
+        <field name="model">hr.job.approval.history</field>
+        <field name="arch" type="xml">
+            <form string="Job Stage Approval History">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="requested_datetime"/>
+                            <field name="approval_datetime"/>
+                        </group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="next_approver_id"/>
+                            <field name="state"/>
+                            <field name="comment"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_job_approval_history_tree" model="ir.ui.view" >
+        <field name="name">hr.job.approval.history.tree</field>
+        <field name="model">hr.job.approval.history</field>
+        <field name="arch" type="xml">
+            <tree string="Job Stage Approval History">
+                <field name="name"/>
+                <field name="stage_id"/>
+                <field name="requested_datetime"/>
+                <field name="approval_datetime"/>
+                <field name="user_id"/>
+                <field name="next_approver_id"/>
+                <field name="comment"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_job_approval_history_act" model="ir.actions.act_window">
+        <field name="name">Job Approval History</field>
+        <field name="res_model">hr.job.approval.history</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="hr_job_approval_history_tree"/>
+    </record>
+</odoo>

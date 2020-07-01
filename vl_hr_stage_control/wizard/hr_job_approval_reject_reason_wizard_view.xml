@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="hr_job_approval_reject_reason_form" model="ir.ui.view">
+        <field name="name">hr.job.approval.reject.reason.form</field>
+        <field name="model">hr.job.approval.reject.reason</field>
+        <field name="arch" type="xml">
+            <form string="Reject Reason">
+                <group>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                    </group>
+                </group>
+                <group colspan="4" name="Comment" string="Comment">
+                    <field name="comment" colspan="4" nolabel="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_job_approval_reject_reason_tree" model="ir.ui.view" >
+        <field name="name">hr.job.approval.reject.reason.tree</field>
+        <field name="model">hr.job.approval.reject.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Reject Reasons">
+                <field name="name"/>
+                <field name="comment"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_job_approval_reject_reason_act" model="ir.actions.act_window">
+        <field name="name">Reject Reason</field>
+        <field name="res_model">hr.job.approval.reject.reason</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="hr_job_approval_reject_reason_tree"/>
+    </record>
+
+    <menuitem id="menu_hr_job_approval_reject_reason_act"
+              action="hr_job_approval_reject_reason_act"
+              name="Reject Reason"
+              sequence="0"
+              parent="hr.menu_human_resources_configuration"
+              groups="base.group_user"/>
+
+
+    <record id="view_hr_job_approval_reject_reason_wizard" model="ir.ui.view">
+        <field name="name">hr.job.approval.reject.reason.wizard.view</field>
+        <field name="model">hr.job.approval.reject.reason.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Reject Reason">
+                <group string="Reject Reason">
+                    <group>
+                         <field name="approval_reject_reason_id"/>
+                    </group>
+                    <group>
+
+                    </group>
+                </group>
+                <group colspan="4" name="Comment" string="Comment">
+                    <field name="comment" colspan="4" nolabel="1"/>
+                </group>
+                <group col="4" colspan="4">
+                    <button name="reject_with_reason" string="Reject" type="object" icon="fa-check"/>
+                    <button special="cancel" string="Cancel" icon="fa-close"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_job_approval_reject_reason" model="ir.actions.act_window">
+        <field name="name">Reject Reason</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.job.approval.reject.reason.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="view_hr_job_approval_reject_reason_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

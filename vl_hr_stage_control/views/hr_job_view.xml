@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_hr_job_long_form" model="ir.ui.view">
+        <field name="name">hr.job.long.form</field>
+        <field name="model">hr.job.long</field>
+        <field name="inherit_id" ref="vl_hr.view_hr_job_long_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button icon="fa-arrow-right" name="button_next_stage" string="Next Stage" type="object" class="oe_highlight" attrs="{'invisible':[('state','=','cancelled')]}"/>
+                <button icon="fa-times" name="button_cancel" string="Revoke" type="object" class="oe_highlight" attrs="{'invisible':[('state','=','cancelled')]}"/>
+                <field name="stage_id" widget="statusbar" />
+                <field name="state" invisible="1"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" postition='inside'>
+                <field name="hide_approve_reject_button" invisible="1"/>
+                <button icon="fa-check" name="mark_approved" string="Mark as approved" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|',('hide_approve_reject_button', '=', True), ('state', 'in', ('draft','',))]}"
+                        style="margin-left:2px;margin-right:2px;"/>
+                <button icon="fa-times" name="mark_rejected" string="Mark as rejected" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|',('hide_approve_reject_button', '=', True), ('state', 'in', ('draft','',))]}"
+                        style="margin-left:2px;margin-right:2px;"/>
+            </xpath>
+            <notebook>
+                <page string="Approval">
+                    <group colspan="4" name="approvals" string="Custom Approvals">
+                        <field name="approval_ids" nolabel="1" colspan="4">
+                            <tree editable="top">
+                                <field name="sequence"/>
+                                <field name="name"/>
+                                <field name="user_id"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+                <page name="page_approval_history" string="Approval approval history">
+                    <group name="group_approval_history">
+                        <field name="approval_history_ids" nolabel="1" readonly="1"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

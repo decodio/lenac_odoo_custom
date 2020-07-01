@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="hr_job_stage_approval_form" model="ir.ui.view">
+        <field name="name">hr.job.stage.approval.form</field>
+        <field name="model">hr.job.stage.approval</field>
+        <field name="arch" type="xml">
+            <form string="Job Stage Approval">
+                <group>
+                    <group name="definition" string="Definition">
+                        <field name="sequence" invisible="0"/>
+                        <field name="name"/>
+                        <field name="custom_approvals"/>
+                        <field name="user_id" />
+                        <field name="field_id" />
+                        <field name="description"/>
+                    </group>
+                    <group name="advanced" string="Advanced" invisible="1">
+                        <field name="ask_next_person"/>
+                        <field name="next_person_domain"/>
+                        <field name="user_ids"/>
+                        <field name="condition"/>
+                        <field name="approver_groups_id"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_job_stage_approval_tree" model="ir.ui.view" >
+        <field name="name">hr.job.stage.approval.tree</field>
+        <field name="model">hr.job.stage.approval</field>
+        <field name="arch" type="xml">
+            <tree string="Job Stage Approval">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="field_id"/>
+                <field name="user_id"/>
+                <field name="stage_id" invisible="1"/>
+                <!--field name="approver_groups_id"/>
+                <field name="description"/>
+                <field name="ask_next_person"/>
+                <field name="next_person_domain"/>
+                <field name="condition"/-->
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_job_stage_approval_act" model="ir.actions.act_window">
+        <field name="name">Stages</field>
+        <field name="res_model">hr.job.stage.approval</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="hr_job_stage_approval_tree"/>
+    </record>
+</odoo>
