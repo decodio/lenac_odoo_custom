@@ -11,6 +11,8 @@ class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     employee_number = fields.Char(string='Employee ID number', required=True)
+    employee_number_long = fields.Char(string='Employee ID number long', required=True)
+    employee_mifare_card_number = fields.Char(string='Employe MIFARE card number')
 
     # empass_equipement_ids = fields.Many2one('maintenance.equipment', 'employee_id', string='Assigned equipment')
     employee_assigned_equipment_ids = fields.One2many('maintenance.equipment', 'employee_id'
@@ -268,8 +270,28 @@ class HrJobLong(models.Model):
 
     risk_ids = fields.Many2many('hr.risk')
 
+    approver_id = fields.Many2one(copy=False)
 
+    @api.multi
+    def button_cancel(self):
+        vals = {}
+        domain = [('state', '=', 'cancelled')]
+        next_stage = self.get_next_stage_id(domain=domain, direction='forward')
+        if next_stage:
+            vals.update(
+                {'stage_id': next_stage.id})
+        return self.write(vals)
 
+    @api.multi
+    def button_create_document_revision(self):
+        vals = {}
+        domain = [('state', '=', 'open')]
+        next_stage = self.get_next_stage_id(domain=domain)
+        vals.update(
+            {'stage_id': next_stage.id,
+             'approval_ids': [(5,)]})
+
+        return self.write(vals)
 
     @api.multi
     def create_new_job_description(self):
@@ -282,6 +304,21 @@ class HrJobLong(models.Model):
         action['views'] = [(form_view.id, 'form')]
         action['res_id'] = new_job.id
         return action
+
+    @api.multi
+    def copy(self, default=None):
+        if self.env.context.get('create_new_job_description', False):
+            default = dict(default or {})
+            default['origin_id'] = self.id
+        return super(HrJobLong, self).copy(default=default)
+
+    """@api.multi
+    def copy(self, default=None):
+        self.ensure_one()
+        default = dict(default or {})
+        if 'name' not in default:
+            default['name'] = _("%s (copy)") % (self.name)
+        return super(HrJobLong, self).copy(default=default)"""
 
 
 class HrJobFunction(models.Model):

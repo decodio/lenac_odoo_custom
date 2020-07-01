@@ -11,7 +11,10 @@
     'author': 'Viktor Lenac d.d. (Vedran Terihaj)',
     'website': 'https://lenac.hr',
     'license': '',
-    'depends': ['hr', 'website_portal'],
+    'depends': ['hr',
+                'website_portal',
+                'sp_viktor_lenac_dms_qms',
+                'stage_control_base',],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',

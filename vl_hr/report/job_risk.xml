@@ -332,11 +332,36 @@
                             </td>
                             <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_1"/><br/></td>
                             <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_2"/><br/></td>
+                            <t t-if="l.field_3 == '1'">
+                                <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #6BB94F;"><span t-esc="l.field_3"/><br/></td>
+                            </t>
+                            <t t-elif= "l.field_3 == '2'">
+                                <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #ECE248;"><span t-esc="l.field_3"/><br/></td>
+                            </t>
+                            <t t-elif= "l.field_3 == '3'">
+                                <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #FF3535;"><span t-esc="l.field_3"/><br/></td>
+                            </t>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-raw="l.risk_measures" widget="html"/><br/></td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_4"/><br/></td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_5"/><br/></td>
+                            <t t-if="l.field_6 == '1'">
+                                <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #6BB94F;"><span t-esc="l.field_6"/><br/></td>
+                            </t>
+                            <t t-elif= "l.field_6 == '2'">
+                                <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #ECE248;"><span t-esc="l.field_6"/><br/></td>
+                            </t>
+                            <t t-elif= "l.field_6 == '3'">
+                                <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #FF3535;"><span t-esc="l.field_6"/><br/></td>
+                            </t>
+                            <!--
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_1"/><br/></td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_2"/><br/></td>
                             <td class="color_code" style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_3"/><br/></td>
                             <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-raw="l.risk_measures" widget="html"/><br/></td>
                             <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_4"/><br/></td>
                             <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_5"/><br/></td>
                             <td class="color_code" style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_6"/><br/></td>
+                            -->
                         </tr>
                     </table>
                 </div>
