@@ -107,9 +107,8 @@
                 <form string="Job">
                     <header>
                         <button name="create_new_job_description" string="Create New" type="object" />
-                        <button icon="fa-angle-double-left" name="button_create_document_revision" string="Job Revision" type="object" class="oe_highlight"
-                             attrs="{'invisible': [('state', 'not in', ['done','cancelled'])]}"
-                    />
+                        <button icon="fa-angle-double-left" name="button_create_document_revision" string="Job Revision" type="object" class="oe_highlight"/>
+                             <!--attrs="{'invisible': [('state', 'not in', ['done','cancelled'])]}"-->
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
