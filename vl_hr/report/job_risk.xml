@@ -3,7 +3,7 @@
     <template id="job_risk">
     <t t-call="report.html_container">
         <t t-foreach="docs" t-as="o">
-            <tr t-call="report.external_layout">
+            <tr>
                 <head>
                     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
                     <script type="text/javascript">
@@ -20,6 +20,28 @@
                     });
                     </script>
                 </head>
+                <div class="header">
+                    <table id="header_table" style="width:850px">
+                        <tr>
+                            <td rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">
+                                <img style="height: 100px" alt="client" src="/vl_maintenance/static/src/logo.jpg"/>
+                            </td>
+                            <td colspan="5" rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; font-size:20px">PROCJENA RIZIKA PREMA RADNOM MJESTU</td>
+                            <td rowspan="4" style="text-align: center; vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr>
+                                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Stranica:
+                                        <span class="page"/>
+                                        /
+                                        <span class="topage"/>
+                                        </td>
+                                    </tr>
+                                    <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;"></td></tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
                 <div class="page" width="auto">
                     <table id="general_info" style="width:auto">
                         <tr>
