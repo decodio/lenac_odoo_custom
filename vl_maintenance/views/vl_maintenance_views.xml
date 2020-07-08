@@ -299,6 +299,7 @@
             name="Scraped equipment"
             parent="menu_scraped_equipment_main"
             action="maintenance_equipment_scrap_action"
+            groups="maintenance.group_equipment_manager"
             sequence="1"
             />
 
