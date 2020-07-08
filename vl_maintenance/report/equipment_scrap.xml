@@ -1,47 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_equipment_scrap">
-    <t t-call="report.html_container">
-        <t t-foreach="docs" t-as="o">
-            <tr t-call="report.external_layout">
-                <div class="page" width="auto">
-                    <table id="equipment" style="width:auto">
-                        <tr>
-                            <td colspan="7" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Naziv: <span t-esc="o.equipment_name"/></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Inv.br</td>
-                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Dat. nabave</td>
-                            <td rowspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Lokacija</td>
-                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Šifra</td>
-                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Naziv</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><span t-esc="o.equipment_number"/></td>
-                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><span t-esc="o.date_purchased"/></td>
-                            <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><span t-esc="o.location"/></td>
-                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><span t-esc="o.location_name"/></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Razlog rashoda</td>
-                            <td colspan="6" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><span t-esc="o.scrap_description"/></td>
-                        </tr>
-                    </table>
-                    <br/>
-                    <br/>
-                </div>
-            </tr>
+        <t t-call="report.html_container">
+            <div class="header">
+                <table id="header_table" style="width:850px">
+                    <tr>
+                        <td rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">
+                            LOGO
+                        </td>
+                        <td colspan="5" rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">O3004 Prijedlog za rashod osnovnog sredstva</td>
+                        <td style="text-align: center;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">
+                            <table>
+                                <tr>
+                                    <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Page:
+                                    <span class="page"/>
+                                    /
+                                    <span class="topage"/>
+                                    </td>
+                                </tr>
+                                <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">ŠIFRA: O.30.04</td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="page" width="auto">
+                <t t-set="i" t-value="1"/>
+                <t t-foreach="docs" t-as="o">
+                    <tr>
+                        <table id="equipment" style="width:850px">
+                            <tr>
+                                <td colspan="7" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;background-color: beige;">Naziv: <span t-esc="o.equipment_name"/></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Inv.br</td>
+                                <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Dat. nabave</td>
+                                <td rowspan="2" style="text-align: center;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Lokacija</td>
+                                <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Šifra</td>
+                                <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Naziv</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><span t-esc="o.equipment_number"/></td>
+                                <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><span t-esc="datetime.datetime.strptime(o.date_purchased, '%Y-%m-%d').strftime('%d.%m.%Y')"/></td>
+                                <td style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><span t-esc="o.location"/></td>
+                                <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><span t-esc="o.location_name"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Razlog rashoda</td>
+                                <td colspan="6" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;"><span t-esc="o.scrap_description"/></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <t t-if="i == 12">
+                            <div style="page-break-after:always;"></div>
+                            <t t-set="i" t-value="1"/>
+                        </t>
+                        <t t-set="i" t-value="i+1"/>
+                    </tr>
+                </t>
+            </div>
+            <div style="page-break-after: always;"/>
+            <div class="footer">
+                <table id="footer_table" style="width:850px">
+                    <tr>
+                        <td rowspan="3" colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Predlagač: <br/><br/><br/></td>
+                        <td rowspan="3" colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Datum: <br/><br/><br/></td>
+                        <td rowspan="3" colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Odobrio: <br/><br/><br/></td>
+                        <td rowspan="3" colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Datum: <br/><br/></td>
+                    </tr>
+                </table>
+            </div>
         </t>
-        <div class="page" width="auto">
-            <table>
-                <tr>
-                    <td rowspan="3" colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Predlagač:</td>
-                    <td rowspan="3" colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Predlagač:</td>
-                    <td rowspan="3" colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Predlagač:</td>
-                    <td rowspan="3" colspan="2" style="text-align: left;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">Predlagač:</td>
-                </tr>
-            </table>
-        </div>
-    </t>
     </template>
 </odoo>
