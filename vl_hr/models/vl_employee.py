@@ -164,7 +164,7 @@ class HrJobLong(models.Model):
                                     )
     job_function_old = fields.Many2one('hr.job.function.old')
     job_function_code_old = fields.Char('hr.job.function.old',
-                                        related='job_function.old.function_code',
+                                        related='job_function_old.function_code',
                                         readonly=True,
                                         store=True
                                         )
