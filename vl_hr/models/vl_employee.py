@@ -162,6 +162,12 @@ class HrJobLong(models.Model):
                                     readonly=True,
                                     store=True
                                     )
+    job_function_old = fields.Many2one('hr.job.function.old')
+    job_function_code_old = fields.Char('hr.job.function.old',
+                                        related='job_function.old.function_code',
+                                        readonly=True,
+                                        store=True
+                                        )
     trade = fields.Many2one('hr.job.trade')
     trade_codes = fields.Char('hr.job.trade',
                               related='trade.trade_code',
@@ -323,6 +329,13 @@ class HrJobLong(models.Model):
 
 class HrJobFunction(models.Model):
     _name = 'hr.job.function'
+
+    name = fields.Char(string='Job function')
+    function_code = fields.Char(string='Job function code')
+
+
+class HrJobFunctionOld(models.Model):
+    _name = 'hr.job.function.old'
 
     name = fields.Char(string='Job function')
     function_code = fields.Char(string='Job function code')
