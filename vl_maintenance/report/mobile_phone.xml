@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_mobile">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <tr t-call="report.external_layout">
+                <div class="page">
+                    <h2 style="width: 876px;text-align: center;">IZVJEŠTAJ O PROMJENI SMJEŠTAJA I OSOBNOG ZADUŽENJA TK OPREME</h2>
+                    <table>
+                        <tr>
+                            <td style="col-span: 2;border: black;border-style: solid;text-align: center;">SIM</td>
+                            <td style="col-span: 2;border: black;border-style: solid;text-align: center;">Osobni podaci</td>
+                            <td style="col-span: 3;border: black;border-style: solid;text-align: center;">GSM UREĐAJI</td>
+                            <td ></td>
+                            <td style="col-span: 2 ;border: black;border-style: solid;text-align: center;">Organizacijska jedinica</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="border: black;border-style: solid;text-align: center;">Broj telefona</td>
+                            <td style="border: black;border-style: solid;text-align: center;">VPN</td>
+                            <td style="border: black;border-style: solid;text-align: center;">MBR</td>
+                            <td style="border: black;border-style: solid;text-align: center;">Ime i prezime</td>
+                            <td style="border: black;border-style: solid;text-align: center;">IMEI</td>
+                            <td style="border: black;border-style: solid;text-align: center;">Proizvođač</td>
+                            <td style="border: black;border-style: solid;text-align: center;">Model</td>
+                            <td style="border: black;border-style: solid;text-align: center;">SIM SN</td>
+                            <td style="border: black;border-style: solid;text-align: center;">OJ</td>
+                            <td style="border: black;border-style: solid;text-align: center;">OJ Naziv</td>
+                            <td style="border: black;border-style: solid;text-align: center;">Datum</td>
+                        </tr>
+                        <tr>
+                            <td style="border: black;border-style: solid;text-align: center;"><span t-field="o.child_equipment_ids.name"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;"><span t-field="o.child_equipment_ids.pc_number"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;"><span t-field="o.new_employee_number"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;"><span t-field="o.employee_id.name"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;"><span t-field="o.pc_number"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;"><span t-field="o.partner_ref"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;"><span t-field="o.model"/>Model</td>
+                            <td style="border: black;border-style: solid;text-align: center;"><span t-field="o.child_equipment_ids.serial_no"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;"><span t-field="o.employee_department_new_number"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;"><span t-field="o.employee_department_new.name"/></td>
+                            <td style="border: black;border-style: solid;text-align: center;"><span t-field="o.date_assigned"/></td>
+                        </tr>
+                        <tr>
+                            <td style="col-span:6"></td>
+                            <td>Napomena:</td>
+                            <td style="col-span:4"><span t-field="o.note"/></td>
+                        </tr>
+                    </table>
+                    <h3>
+                        ZADUŽUJE SE NA:
+                    </h3>
+                    <table>
+                        <tr>
+                            <tr>
+                                <td colspan="2"><h3>Preuzeo: <span t-field="o.employee_id.name"/></h3></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    (potpis i/ili pečat)
+                                    <br/>
+                                </td>
+                                <td>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span t-field="o.date_assigned"/>
+                                    <br/>
+                                </td>
+                                <td>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    (potpis i/ili pečat)
+                                    <br/>
+                                </td>
+                                <td>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span t-field="o.date_assigned"/>
+                                    <br/>
+                                </td>
+                            </tr>
+                        </tr>
+                    </table>
+                </div>
+            </tr>
+        </t>
+    </t>
+    </template>
+</odoo>
+
+
+
+

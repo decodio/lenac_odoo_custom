@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="job_description_department">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <tr t-call="report.external_layout">
+                <div class="page" width="auto">
+                    <h2 style="width: 876px;text-align: center;">OPISI POSLOVA</h2>
+                    <table style="width:auto">
+                        <tr t-foreach="o.department_job.sorted(key=lambda b: b.sequence)" t-as="l" style="border-style: solid;border-width: thin;">
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Šifra i naziv OJ:</td>
+                                <t t-if="department_code != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.department_code"/></td>
+                                </t>
+                                <t t-if="department_id != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="3" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.department_id.name"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Šifra i naziv radnog mjesta:</td>
+                                <t t-if="job_position_code != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.job_position_code"/></td>
+                                </t>
+                                <t t-if="name != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="3" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.name"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Šifra i naziv funkcije radnog mjesta:</td>
+                                <t t-if="job_function_code != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="2" style="text-align: left; padding-left: 3px; padding-right: 3px;"><span t-esc="l.job_function_code"/></td>
+                                </t>
+                                <t t-if="job_function != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="3" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.job_function.name"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Šifra i naziv zanata:</td>
+                                <t t-if="trade_codes != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.trade_codes"/></td>
+                                </t>
+                                <t t-if="trade != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="3" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.trade.name"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Odgovoran:</td>
+                                <t t-if="job_responsible_id != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.job_responsible_id.name"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="8"><br/></td>
+                            </tr>
+                            <tr>
+                                <t t-if="description != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="8" style="text-align: left; padding-left: 3px; padding-right: 3px;"><span t-raw="l.description" widget="html"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="8"><br/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" style=" text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">OSNOVNI PODACI O RADNOM MJESTU</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Posebni uvjeti rada:</td>
+                                <t t-if="special_conditions != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.special_conditions"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Obračun staža osiguranja:</td>
+                                <t t-if="service_experience_calculation != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.service_experience_calculation"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Koeficijent radnog mjesta:</td>
+                                <t t-if="job_position_coefficient != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.job_position_coefficient"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Dodatak plaći za otežane uvjete rad:</td>
+                                <t t-if="addition_harsh_work != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.addition_harsh_work"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Radno vrijeme</td>
+                                <t t-if="working_hours != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.working_hours"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="8"><br/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" style="text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">UVJETI RADNOG MJESTA</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Min. Stupanj stručne spreme:</td>
+                                <t t-if="min_qualifications != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.min_qualifications"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Minimalno radno iskustvo:</td>
+                                <t t-if="min_work_experience != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.min_work_experience"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Probni rad:</td>
+                                <t t-if="trail_period != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.trail_period"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Pripravnički staž:</td>
+                                <t t-if="internship != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.internship"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Posebni zdravstveni uvjeti (čl.3 PUR)</td>
+                                <t t-if="special_health != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.special_health"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Prethodna provjera str. znanja i sposobnosti:</td>
+                                <t t-if="proficiency_testing != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.proficiency_testing"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Struka/smjer/zvanje</td>
+                                <t t-if="profession_course_vocation != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.profession_course_vocation"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Stručni ispit:</td>
+                                <t t-if="professional_exam != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.professional_exam"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Naziv stručnog ispita:</td>
+                                <t t-if="professional_exam_name != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.professional_exam_name"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Specijalizacija:</td>
+                                <t t-if="specialization != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.specialization"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Naziv specijalizacije:</td>
+                                <t t-if="specialization_name != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.specialization_name"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Posebna znanja:</td>
+                                <t t-if="special_knowledge != '&lt;td&gt;&lt;br&gt;&lt;/td&gt;'">
+                                    <td colspan="5" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.special_knowledge"/></td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td colspan="8"><br/></td>
+                            </tr>
+                        </tr>
+                    </table>
+                </div>
+            </tr>
+        </t>
+    </t>
+    </template>
+</odoo>
+
+
+
+

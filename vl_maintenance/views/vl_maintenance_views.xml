@@ -17,12 +17,26 @@
                             <!-- Test id od HW project_id 'default_project_id': 237817-->
                             <field string="Issues" name="issues_count" widget="statinfo"/>
                     </button>
+                    <button name="create_scrap"
+                            type="object"
+                            string="Scrap"
+                            class="oe_stat_button"
+                            icon="fa-trash-o"
+                            context="{'default_equipment_id': id}">
+                    </button>
+                    <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                        <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                    </button>
                 </xpath>
                 <xpath expr="//field[@name='category_id']" position="before">
                     <field name="sort_of_equipment" wiget="radio"/>
                 </xpath>
                 <xpath expr="//field[@name='category_id']" position="after">
+                    <field name = "subcategory_id" string="Subcategory"/>
                     <field name = "pc_number"/>
+                    <field name = "barcode_number"/>
+                    <field name = "no_of_pieces" string="Number of pieces" attrs="{'invisible': ['|', ('sort_of_equipment', '=', 'sm_production'), ('sort_of_equipment', '=', False)]}"/>
+                    <field name = "number_of_pieces" string="Number of pieces" attrs="{'invisible': ['|','|', ('sort_of_equipment', '=', 'ict'), ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', False)]}"/>
                 </xpath>
                 <xpath expr="//field[@name='employee_id']" position="after">
                     <field name="new_employee_number" string="Employee number" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'department'), ('equipment_assign_to', '=', False)]}"/>
@@ -32,9 +46,9 @@
                 <xpath expr="//field[@name='department_id']" position="after">
                     <field name="new_department_number" string="Department code" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'employee'), ('equipment_assign_to', '=', False)]}"/>
                     <field name="date_assigned"/>
-                    <field name="installed_os" domain="[('sw_type', '=', 'OS')]" attrs="{'invisible': ['|', ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', False)]}"/>
+                    <field name="installed_os" domain="[('sw_type', '=', 'OS')]" attrs="{'invisible': ['|','|','|', ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', 'sm_production'), ('sort_of_equipment', '=', 'production_tools'), ('sort_of_equipment', '=', False)]}"/>
                     <field name="new_location"/>
-                    <field name="installed_sw" domain="[('sw_type', '=', 'prog')]" attrs="{'invisible': ['|', ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', False)]}"/>
+                    <field name="installed_sw" domain="[('sw_type', '=', 'prog')]" attrs="{'invisible': ['|','|','|', ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', 'sm_production'), ('sort_of_equipment', '=', 'production_tools'), ('sort_of_equipment', '=', False)]}"/>
                 </xpath>
                  <xpath expr="//field[@name='technician_user_id']" position="after">
                      <field name="old_equipment_assign_to" widget="radio"/>
@@ -53,10 +67,15 @@
                         <group string="Components tracking">
                             <group>
                                 <field name="components" domain="[('installed_on_pc', '=', False)]"/>
+                                <field name="additional_equipment_installed_ids" string="Additonaly installed components">
+                                    <tree>
+                                        <field name="spare_equipment_name"/>
+                                    </tree>
+                                </field>
                             </group>
                         </group>
                     </page>
-                    <page string="Network resources" name="general_description" attrs="{'invisible': ['|', ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', False)]}">
+                    <page string="Network resources" name="general_description" attrs="{'invisible': ['|','|','|', ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', 'sm_production'), ('sort_of_equipment', '=', 'production_tools'), ('sort_of_equipment', '=', False)]}">
                         <group string="Network resources">
                             <group>
                                 <field name="network_resources"/>
@@ -101,7 +120,7 @@
                 <notebook>
                     <page string="Issues for maintenance " name="maintenance_issue">
                         <group>
-                            <field name="preventive_maintenance_ids" context="{'default_name': name, 'default_equipment_id': id}">
+                            <field name="preventive_maintenance_ids" string="Preventive maintenance" context="{'default_name': name, 'default_equipment_id': id}">
                                     <tree create="true">
                                         <field name="name"/>
                                         <field name="period"/>
@@ -111,6 +130,44 @@
                                         <field name="equipment_id"/>
                                     </tree>
                                 </field>
+                        </group>
+                    </page>
+                </notebook>
+                <notebook>
+                    <page string="Small equipment" name="small_equipment" attrs="{'invisible': ['|','|', ('sort_of_equipment', '=', 'ict'), ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', False)]}">
+                        <group>
+                            <field name = "number_of_piecese" string="Number of pieces used"/>
+                            <field name = "number_of_piecesst" string="Number of pieces stored"/>
+                            <field name="equipment_tracking_ids" string="Equipment tracking">
+                                <tree editable="top">
+                                    <field name="sm_equipment_assign_to" string="Used by"/>
+                                    <field name="sm_employee_id" string="Current Employee"/>
+                                    <field name="sm_employee_number" string="Employee Code"/>
+                                    <field name="employee_department_sm" string="Employee Department"/>
+                                    <field name="employee_department_sm_number" string="Department Code"/>
+                                    <field name="smo_employee_id" string="Previous Employee"/>
+                                    <field name="smo_employee_number" string="Employee Code"/>
+                                    <field name="employee_department_smo" string="Employee Department"/>
+                                    <field name="employee_department_smo_number" string="Department code"/>
+                                    <field name="tool_shop_id" string="Tool Shop"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </notebook>
+                <notebook>
+                    <page string="Spare Equipment" name="spare_equipment" attrs="{'invisible': ['|','|', ('sort_of_equipment', '=', 'production'), ('sort_of_equipment', '=', 'sm_production'), ('sort_of_equipment', '=', False)]}">
+                        <group>
+                            <field name = "number_of_spare_pieces" string="Total number of Pieces"/>
+                            <field name = "number_of_spare_piecesst" string="Number of Pieces on storage"/>
+                            <field name = "number_of_spare_piecese" string="Number op Pieces Used"/>
+                            <field name = "spare_equipment_ids" string="">
+                                <tree editable="top">
+                                    <field name="spare_equipment_assign_to" string="Used by"/>
+                                    <field name="spare_equipment_id" string="Installed"/>
+                                    <field name="tool_shop_id" string="Stored in"/>
+                                </tree>
+                            </field>
                         </group>
                     </page>
                 </notebook>
@@ -134,6 +191,137 @@
                         <t t-raw="moment(record.next_action_dates.raw_value).format('MMMM Do')"/>
                     </div>-->
                 </div>
+            </field>
+        </record>
+
+        <record id="maintenance_equipment_view_search_inherit_hr" model="ir.ui.view">
+            <field name="name">maintenance.equipment.view.search.inherit.hr</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_view_search"/>
+            <field name="arch" type="xml">
+                <group position="inside">
+                    <filter string="Subcategory" domain="[]" context="{'group_by': 'subcategory_id'}"/>
+                </group>
+            </field>
+        </record>
+
+        <!-- MARK FOR SCRAP-->
+        <record model="ir.ui.view" id="maintenance_equipment_scrap_search_view">
+            <field name="name">Scraped Equipment</field>
+            <field name="model">maintenance.equipment.scrap</field>
+            <field name="arch" type="xml">
+                <search string="Scraped Equipment">
+                    <field name="equipment_id"/>
+                    <field name="equipment_name"/>
+                    <field name="equipment_number"/>
+                    <field name="date_purchased"/>
+                    <field name="location"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_equipment_scrap_tree_view" >
+            <field name="name">Scraped Equipment</field>
+            <field name="model">maintenance.equipment.scrap</field>
+            <field name="arch" type="xml">
+                <tree string="Scraped Equipment">
+                    <field name="equipment_id"/>
+                    <field name="equipment_name"/>
+                    <field name="equipment_number"/>
+                    <field name="date_purchased"/>
+                    <field name="location"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_equipment_scrap_form_view">
+            <field name="name">maintenance.equipment.scrap.form</field>
+            <field name="model">maintenance.equipment.scrap</field>
+            <field name="arch" type="xml">
+                <form string="Scrap Form">
+                    <!--header>
+                        <field name="stage_id" widget="statusbar" clickable="True"/>
+                    </header-->
+                    <sheet string="Scrap Reason">
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="equipment_id" invisible="1"/>
+                            <field name="equipment_name"/>
+                            <field name="equipment_number"/>
+                            <field name="date_purchased"/>
+                            <field name="location"/>
+                            <field name="location_name"/>
+                            <field name="scrap_description"/>
+                            <field name="scrap_date"/>
+                        </group>
+                    </sheet>
+                    <!--div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div-->
+                </form>
+            </field>
+        </record>
+
+        <record id="action_open_maintenance_scrap_form_popup" model="ir.actions.act_window">
+            <field name="name">Scrap Reason</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">maintenance.equipment.scrap</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="maintenance_equipment_scrap_form_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="maintenance_equipment_scrap_action" model="ir.actions.act_window" >
+            <field name="name">Scrap Equipment</field>
+            <field name="res_model">maintenance.equipment.scrap</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to scrap.
+              </p>
+            </field>
+        </record>
+
+        <menuitem
+            id="menu_scraped_equipment_main"
+            name="Scrap"
+            parent="maintenance.menu_maintenance_title"
+            sequence="120"
+            />
+        <menuitem
+            id="menu_scraped_equipment"
+            name="Scraped equipment"
+            parent="menu_scraped_equipment_main"
+            action="maintenance_equipment_scrap_action"
+            groups="maintenance.group_equipment_manager"
+            sequence="1"
+            />
+
+
+        <record id="vl_equipment_action_from_subcategory_form" model="ir.actions.act_window">
+            <field name="name">Equipments</field>
+            <field name="res_model">maintenance.equipment</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="search_view_id" ref="maintenance_equipment_view_search_inherit_hr"/>
+            <field name="view_id" ref="maintenance_equipment_view_kanban_inherit_hr"/>
+            <field name="context">{
+                'search_default_subcategory_id': [active_id],
+                'default_subcategory_id': active_id,
+            }</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a new Engine.
+                </p><p>
+                    This application helps you to track equipments used by employees.
+                    Create some laptop, printer or phone and link each equipment to an employee or departement.
+                    You will manage allocations, issues and maintenance of equipment.
+                </p>
             </field>
         </record>
 
@@ -358,13 +546,102 @@
                     <group>
                         <field name="name"/>
                         <field name="period"/>
-                        <field name="next_action_date"/>
+                        <field name="next_action_date" readonly="1"/>
                         <field name="project_id"/>
                         <field name="description"/>
-                        <field name="equipment_id"/>
                     </group>
                 </form>
             </field>
         </record>
+
+        <record id="vl_equipment_subcategory_view_form" model="ir.ui.view">
+            <field name="name">equipment.subcategory.form</field>
+            <field name="model">maintenance.equipment.subcategory</field>
+            <field name="arch" type="xml">
+                <form string="Equipment Subcategories">
+                    <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(vl_equipment_action_from_subcategory_form)d"
+                            class="oe_stat_button"
+                            icon="fa-laptop"
+                            type="action">
+                            <field string="Equipments" name="equipment_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" string="Category Name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group col="4">
+                            <field name="technician_user_id"/>
+                        </group>
+                        <group name="group_alias" attrs="{'invisible': [('alias_domain', '=', False)]}" groups="base.group_no_one">
+                            <label for="alias_name" string="Email Alias"/>
+                            <div name="alias_def">
+                                <field name="alias_id" class="oe_read_only oe_inline" string="Email Alias" required="0"/>
+                                <div class="oe_edit_only oe_inline" name="edit_alias" style="display: inline;">
+                                    <field name="alias_name" class="oe_inline"/>@<field name="alias_domain" class="oe_inline" readonly="1"/>
+                                </div>
+                            </div>
+                        </group>
+                    </group>
+                    <field name="note" nolabel="1"/>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="vl_equipment_subcategory_view_tree" model="ir.ui.view">
+            <field name="name">equipment.subcategory.tree</field>
+            <field name="model">maintenance.equipment.subcategory</field>
+            <field name="arch" type="xml">
+                <tree string="Assign To User">
+                    <field name="name" string="Name"/>
+                    <field name="technician_user_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vl_equipment_subcategory_view_search" model="ir.ui.view">
+            <field name="name">equipment.subcategory.search</field>
+            <field name="model">maintenance.equipment.subcategory</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+                    <field name="name" string="Subcategory Name" filter_domain="[('name','ilike',self)]"/>
+                    <group  expand='0' string='Group by...'>
+                        <filter string='Responsible' domain="[]" context="{'group_by' : 'technician_user_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- equipment.category : actions -->
+        <record id="vl_equipment_subcategory_action" model="ir.actions.act_window">
+            <field name="name">Equipment Subcategories</field>
+            <field name="res_model">maintenance.equipment.subcategory</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="vl_equipment_subcategory_view_tree"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a new equipment category.
+                </p>
+            </field>
+        </record>
+
+
+
+        <menuitem
+            id="menu_maintenance_subcat"
+            name="Equipment Subcategories"
+            parent="maintenance.menu_maintenance_configuration"
+            action="vl_equipment_subcategory_action"
+            sequence="3"/>
     </data>
 </odoo>

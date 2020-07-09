@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="job_risk">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <tr>
+                <head>
+                    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
+                    <script type="text/javascript">
+                    $(document).ready(function(){
+                        $('#risk_assessment td.color_code').each(function(){
+                            if ($(this).text() == 3 ) {
+                                $(this).css('background-color','#FF3535');
+                            } else if ($(this).text() == 2 ) {
+                                $(this).css('background-color','#ECE248');
+                            } else if ($(this).text() == 1 ) {
+                                $(this).css('background-color','#6BB94F');
+                            }
+                        });
+                    });
+                    </script>
+                </head>
+                <div class="header">
+                    <table id="header_table" style="width:850px">
+                        <tr>
+                            <td rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">
+                                <img style="height: 100px" alt="client" src="/vl_maintenance/static/src/logo.jpg"/>
+                            </td>
+                            <td colspan="5" rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; font-size:20px">PROCJENA RIZIKA PREMA RADNOM MJESTU</td>
+                            <td rowspan="4" style="text-align: center; vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr>
+                                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Stranica:
+                                        <span class="page"/>
+                                        /
+                                        <span class="topage"/>
+                                        </td>
+                                    </tr>
+                                    <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;"></td></tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="page" width="auto">
+                    <table id="general_info" style="width:auto">
+                        <tr>
+                            <td style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">ORGANIZACIJSKA JEDINICA</td>
+                            <td colspan="3"  style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;"><span t-esc="o.department_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">RADNO MJESTO</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;"><span t-esc="o.name"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><br/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">BROJ OSOBA NA RADNOM MJESTU</td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">UKUPNO</td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">OD TOGA ŽENA</td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">OD TOGA MLADEŽI</td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">OD TOGA INVALIDA</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.no_of_employee"/></td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.no_of_female"/></td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.no_of_youth"/></td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.no_of_disability"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><br/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">OPĆI REŽIM RADA I RASPORED RADNOG VREMENA</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Dnevni raspored rada</td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.daily_work_sch"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Tjedni raspored rada</td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.week_work_hrs"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Rad duži od redovitog</td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="dict(o.fields_get(allfields=['longer_work'])['longer_work']['selection'])[o.longer_work]"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Skraćeno radno vrijeme zbog otežanih uvjeta rada</td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="dict(o.fields_get(allfields=['shorten_shift'])['shorten_shift']['selection'])[o.shorten_shift]"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Devni odmor</td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="o.lunch_break_ids" t-as="l">
+                                        <span t-esc="l.name"/><br/>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                         <tr>
+                            <td colspan="4"><br/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">PODACI KOJI SE ODNOSE NA ZAPOSLENIKE</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Minimalni stupanj stručne spreme</td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.min_qualifications2"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Radi li se o radnom mjestu za koje je potrebno <br/>
+                                                                                                             osposobljavanje za ovlaštenika poslodavca za <br/>
+                                                                                                             primjenu pravila ZNR?</td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="dict(o.fields_get(allfields=['safety_responsible'])['safety_responsible']['selection'])[o.safety_responsible]"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Radi li se o poslovima s posebnim uvijetima <br/> rada?</td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="dict(o.fields_get(allfields=['special_conditions2'])['special_conditions2']['selection'])[o.special_conditions2]"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Računa li se staž osiguranja s uvećanim <br/> trajanjem? </td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="dict(o.fields_get(allfields=['special_experience_calculation'])['special_experience_calculation']['selection'])[o.special_experience_calculation]"/>   -   <span t-esc="o.service_experience_calculation2"/> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Koriste li se osobna zaštitna sredstva?</td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="dict(o.fields_get(allfields=['protection_gear'])['protection_gear']['selection'])[o.protection_gear]"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Radi li se o radu na računalu više od 4 <br/> h/dnevno?</td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="dict(o.fields_get(allfields=['computer_work'])['computer_work']['selection'])[o.computer_work]"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><br/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">TOČKE LJEČNIČKOG PREGLEDA PREMA PRAVILNIKU O POSLOVIMA S POSEBNIM UVJETIMA RADA</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.health_check_points"/><br/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">LJEČNIČKI PREGLEDI PEMA DRUGIM PROPISIMA</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.health_check_other"/><br/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><br/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">OPIS POSLA I TEHNOLOŠKOG PROCESA RADA</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-raw="o.description" widget="html"/> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><br/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">SREDSTVA RADA</td>
+                            <td colspan="2" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">RADNE TVARI I MATERIJALI</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="o.work_tools_ids" t-as="l">
+                                        <span t-esc="l.name"/><br/>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="o.work_materials_ids" t-as="l">
+                                        <span t-esc="l.name"/><br/>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><br/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">MJESTA RADA</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="o.work_place_ids" t-as="l">
+                                        <span t-esc="l.name"/><br/>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="o.work_place_ids" t-as="l">DA<br/></tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><br/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">UREĐENJE MJESTA RADA</td>
+                        </tr>
+                        <tr>
+                           <td colspan="4" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                               <table>
+                                   <tr t-foreach="o.work_place_ids" t-as="l">
+                                       <span t-esc="l.name"/><br/>
+                                       <span t-esc="l.work_place_description"/>
+                                       <br/>
+                                       <br/>
+                                    </tr>
+                                </table>
+                           </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><br/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">OSOBNA ZAŠTITNA OPREMA</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">GLAVA</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="o.protection_gear1_ids" t-as="l">
+                                        <span t-esc="l.name"/><br/>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">OČI</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="o.protection_gear2_ids" t-as="l">
+                                        <span t-esc="l.name"/><br/>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">SLUH</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="o.protection_gear3_ids" t-as="l">
+                                        <span t-esc="l.name"/><br/>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">DIŠNI ORGANI</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="o.protection_gear4_ids" t-as="l">
+                                        <span t-esc="l.name"/><br/>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">TRUP</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="o.protection_gear5_ids" t-as="l">
+                                        <span t-esc="l.name"/><br/>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">RUKE</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="o.protection_gear6_ids" t-as="l">
+                                        <span t-esc="l.name"/><br/>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">NOGE</td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="o.protection_gear7_ids" t-as="l">
+                                        <span t-esc="l.name"/><br/>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><br/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">OBAVEZNA OSPOSOBLJAVANJA</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="o.mandatory_qualification_ids" t-as="l">
+                                        <span t-esc="l.name"/><br/>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><br/></td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <table id="risk_assessment">
+                        <tr>
+                            <th colspan="10"> PROCJENA RAZINE RIZIKA OD OZLJEDE I MJERE SMANJIVANJA RIZIKA</th>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" style="text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;"> AKTIVNOST</td>
+                            <td rowspan="2" style="text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;"> OPASNOSTI, ŠTETNOSTI I NAPORI</td>
+                            <td rowspan="2" style="text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;"> POSLJEDICE</td>
+                            <td colspan="3" style="text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;"> POČETNI RIZIK</td>
+                            <td rowspan="2" style="text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;"> MJERE SMANJIVANJA RIZIKA</td>
+                            <td colspan="3" style="text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;"> PREOSTALI RIZIK</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">V</td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">P</td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">R</td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">V</td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">P</td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">R</td>
+                        </tr>
+                        <tr t-foreach="o.risk_ids" t-as="l">
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.name"/><br/></td>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="l.danger_ids" t-as="d">
+                                        <span t-esc="d.name"/><br/>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
+                                <table>
+                                    <tr t-foreach="l.consequence_ids" t-as="c">
+                                        <span t-esc="c.name"/><br/>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_1"/><br/></td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_2"/><br/></td>
+                            <t t-if="l.field_3 == '1'">
+                                <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #6BB94F;"><span t-esc="l.field_3"/><br/></td>
+                            </t>
+                            <t t-elif= "l.field_3 == '2'">
+                                <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #ECE248;"><span t-esc="l.field_3"/><br/></td>
+                            </t>
+                            <t t-elif= "l.field_3 == '3'">
+                                <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #FF3535;"><span t-esc="l.field_3"/><br/></td>
+                            </t>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-raw="l.risk_measures" widget="html"/><br/></td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_4"/><br/></td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_5"/><br/></td>
+                            <t t-if="l.field_6 == '1'">
+                                <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #6BB94F;"><span t-esc="l.field_6"/><br/></td>
+                            </t>
+                            <t t-elif= "l.field_6 == '2'">
+                                <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #ECE248;"><span t-esc="l.field_6"/><br/></td>
+                            </t>
+                            <t t-elif= "l.field_6 == '3'">
+                                <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #FF3535;"><span t-esc="l.field_6"/><br/></td>
+                            </t>
+                            <!--
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_1"/><br/></td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_2"/><br/></td>
+                            <td class="color_code" style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_3"/><br/></td>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-raw="l.risk_measures" widget="html"/><br/></td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_4"/><br/></td>
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_5"/><br/></td>
+                            <td class="color_code" style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_6"/><br/></td>
+                            -->
+                        </tr>
+                    </table>
+                </div>
+            </tr>
+        </t>
+    </t>
+    </template>
+</odoo>
+
+
+
+
