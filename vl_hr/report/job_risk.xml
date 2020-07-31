@@ -2,10 +2,34 @@
 <odoo>
     <template id="job_risk">
     <t t-call="report.html_container">
-        <t t-foreach="docs" t-as="o">
-            <tr>
+        <div class="header">
+                <table id="header_table" style="width:850px">
+                    <tr>
+                        <td rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">
+                            <img style="height: 100px" alt="client" src="/vl_maintenance/static/src/logo.jpg"/>
+                        </td>
+                        <td colspan="5" rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; font-size:20px">RU2131 - Procjena rizika prema radnom mjestu</td>
+                        <td rowspan="4" style="text-align: center; vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">
+                            <table>
+                                <tr>
+                                    <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Oznaka: RU2131</td></tr>
+                                    <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Izdanje: 001</td></tr>
+                                    <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Datum: 18.02.2019.</td></tr>
+                                    <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Stranica:
+                                    <span class="page"/> / <span class="topage"/>
+                                    </td>
+                                </tr>
+                                <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;"/></tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        <div class="page" width="auto">
+            <t t-foreach="docs" t-as="o">
+                <tr>
                 <head>
-                    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
+                    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"/>
                     <script type="text/javascript">
                     $(document).ready(function(){
                         $('#risk_assessment td.color_code').each(function(){
@@ -20,33 +44,11 @@
                     });
                     </script>
                 </head>
-                <div class="header">
-                    <table id="header_table" style="width:850px">
-                        <tr>
-                            <td rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">
-                                <img style="height: 100px" alt="client" src="/vl_maintenance/static/src/logo.jpg"/>
-                            </td>
-                            <td colspan="5" rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; font-size:20px">PROCJENA RIZIKA PREMA RADNOM MJESTU</td>
-                            <td rowspan="4" style="text-align: center; vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">
-                                <table>
-                                    <tr>
-                                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Stranica:
-                                        <span class="page"/>
-                                        /
-                                        <span class="topage"/>
-                                        </td>
-                                    </tr>
-                                    <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;"></td></tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="page" width="auto">
-                    <table id="general_info" style="width:auto">
+                <!--div class="page" width="auto"-->
+                    <table id="general_info" style="width:auto; page-break-before:always;">
                         <tr>
                             <td style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">ORGANIZACIJSKA JEDINICA</td>
-                            <td colspan="3"  style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;"><span t-esc="o.department_id.name"/></td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;"><span t-esc="o.department_id.name"/></td>
                         </tr>
                         <tr>
                             <td style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">RADNO MJESTO</td>
@@ -115,8 +117,8 @@
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Radi li se o radnom mjestu za koje je potrebno <br/>
-                                                                                                             osposobljavanje za ovlaštenika poslodavca za <br/>
-                                                                                                             primjenu pravila ZNR?</td>
+                                                                                                                                                    osposobljavanje za ovlaštenika poslodavca za <br/>
+                                                                                                                                                    primjenu pravila ZNR?</td>
                             <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="dict(o.fields_get(allfields=['safety_responsible'])['safety_responsible']['selection'])[o.safety_responsible]"/></td>
                         </tr>
                         <tr>
@@ -124,7 +126,7 @@
                             <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="dict(o.fields_get(allfields=['special_conditions2'])['special_conditions2']['selection'])[o.special_conditions2]"/></td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Računa li se staž osiguranja s uvećanim <br/> trajanjem? </td>
+                            <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">Računa li se staž osiguranja s uvećanim trajanjem? </td>
                             <td colspan="2" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="dict(o.fields_get(allfields=['special_experience_calculation'])['special_experience_calculation']['selection'])[o.special_experience_calculation]"/>   -   <span t-esc="o.service_experience_calculation2"/> </td>
                         </tr>
                         <tr>
@@ -150,18 +152,20 @@
                         <tr>
                             <td colspan="4" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.health_check_other"/><br/></td>
                         </tr>
-                        <tr>
-                            <td colspan="4"><br/></td>
-                        </tr>
+                    </table>
+                    <br/>
+                    <table id="job_position" style="page-break-before:always;">
                         <tr>
                             <td colspan="4" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">OPIS POSLA I TEHNOLOŠKOG PROCESA RADA</td>
                         </tr>
                         <tr>
-                            <td colspan="4" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-raw="o.description" widget="html"/> </td>
+                            <td colspan="4" style="text-align: left; padding-left: 3px; padding-right: 3px; page-break-inside: auto;"><span t-raw="o.description" widget="html"/> </td>
                         </tr>
                         <tr>
                             <td colspan="4"><br/></td>
                         </tr>
+                    </table>
+                    <table style="page-break-before:always;">
                         <tr>
                             <td colspan="2" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">SREDSTVA RADA</td>
                             <td colspan="2" style="text-align: center;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">RADNE TVARI I MATERIJALI</td>
@@ -316,7 +320,7 @@
                         </tr>
                     </table>
                     <br/>
-                    <table id="risk_assessment">
+                    <table id="risk_assessment" style="page-break-before:always;">
                         <tr>
                             <th colspan="10"> PROCJENA RAZINE RIZIKA OD OZLJEDE I MJERE SMANJIVANJA RIZIKA</th>
                         </tr>
@@ -337,18 +341,18 @@
                             <td style="text-align: center;border-style: solid;border-width: thin; background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">R</td>
                         </tr>
                         <tr t-foreach="o.risk_ids" t-as="l">
-                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.name"/><br/></td>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.name" style="font-size: 11px !important;"/><br/></td>
                             <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
                                 <table>
                                     <tr t-foreach="l.danger_ids" t-as="d">
-                                        <span t-esc="d.name"/><br/>
+                                        <span t-esc="d.name" style="font-size: 11px !important;"/><br/>
                                     </tr>
                                 </table>
                             </td>
                             <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;">
                                 <table>
                                     <tr t-foreach="l.consequence_ids" t-as="c">
-                                        <span t-esc="c.name"/><br/>
+                                        <span t-esc="c.name" style="font-size: 11px !important;"/><br/>
                                     </tr>
                                 </table>
                             </td>
@@ -357,22 +361,22 @@
                             <t t-if="l.field_3 == '1'">
                                 <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #6BB94F;"><span t-esc="l.field_3"/><br/></td>
                             </t>
-                            <t t-elif= "l.field_3 == '2'">
+                            <t t-elif="l.field_3 == '2'">
                                 <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #ECE248;"><span t-esc="l.field_3"/><br/></td>
                             </t>
-                            <t t-elif= "l.field_3 == '3'">
+                            <t t-elif="l.field_3 == '3'">
                                 <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #FF3535;"><span t-esc="l.field_3"/><br/></td>
                             </t>
-                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-raw="l.risk_measures" widget="html"/><br/></td>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; "><span t-raw="l.risk_measures" widget="html"/><br/></td>
                             <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_4"/><br/></td>
                             <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="l.field_5"/><br/></td>
                             <t t-if="l.field_6 == '1'">
                                 <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #6BB94F;"><span t-esc="l.field_6"/><br/></td>
                             </t>
-                            <t t-elif= "l.field_6 == '2'">
+                            <t t-elif="l.field_6 == '2'">
                                 <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #ECE248;"><span t-esc="l.field_6"/><br/></td>
                             </t>
-                            <t t-elif= "l.field_6 == '3'">
+                            <t t-elif="l.field_6 == '3'">
                                 <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; background-color: #FF3535;"><span t-esc="l.field_6"/><br/></td>
                             </t>
                             <!--
@@ -386,9 +390,11 @@
                             -->
                         </tr>
                     </table>
-                </div>
-            </tr>
-        </t>
+                </tr>
+            </t>
+        </div>
+
+
     </t>
     </template>
 </odoo>
