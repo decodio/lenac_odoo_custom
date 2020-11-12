@@ -12,6 +12,7 @@ class MgmtsystemAudit(models.Model):
 
     system_ids = fields.Many2many('mgmtsystem.system', 'System')
 
+'''
     @api.model
     def _fill_system(self):
         system = self.env['mgmtsystem.system'].search(
@@ -21,6 +22,7 @@ class MgmtsystemAudit(models.Model):
                 record.system_ids = [(4, record.system_id.id)]
             else:
                 record.system_ids = False
+'''
 
 
 class MgmtsystemVerificationLine(models.Model):
