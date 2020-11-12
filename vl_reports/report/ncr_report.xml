@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="report_vl_nonconformity">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="o">
+                <tr>
+                <!--t t-call="report.external_layout"-->
+                    <div class="header">
+                        <table id="header_table" style="width:850px">
+                            <tr>
+                                <td rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">
+                                    <img style="height: 100px" alt="client" src="/vl_maintenance/static/src/logo.jpg"/>
+                                </td>
+                                <td colspan="5" rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; font-size:20px">Izvještaj o nesukladnosti/Nesukladnom proizvodu</td>
+                                <td rowspan="4" style="text-align: center; vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">
+                                    <table>
+                                        <tr>
+                                            <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Oznaka: O1104</td></tr>
+                                            <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Izdanje: 003</td></tr>
+                                            <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Datum: 12.11.2020</td></tr>
+                                            <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Stranica:
+                                            <span class="page"/> / <span class="topage"/>
+                                            </td>
+                                        </tr>
+                                        <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;"/></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="page">
+                        <table>
+                            <tr>
+                                <td colspan="7" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" > 1. Pokretanje</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Pokretač / Auditor: <span t-field="o.user_id.name"/></td>
+                                <td colspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Datum: <span t-field="o.create_date"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Izvor: <span t-field="o.origin_ids.name"/></td>
+                                <td colspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Vrsta radnje: <span t-field="o.immediate_action_id.name"/></td>
+                                <td colspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Razina nesukladnosti: <span t-field="o.severity_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Referentni zahtjev <span t-field="o.requirement_id.name"/> <br/> <span t-field="o.requirement_id.description"/> </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Opis nesukladnosti <span t-field="o.audit_finds"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >2. Predložena radnja </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Uzrok nesukladnosti <span t-field="o.analysis"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Predložena popravna ili zaštitna radnja: <br/><span t-field="o.action_description"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Osoba odgovorna za provedbu: <span t-field="o.responsible_user_id.name"/></td>
+                                <td colspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Rok izvršenja: <br/> <span t-field="o.number_of_days"/> dana</td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >3. Poduzeta radnja </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Poduzeta radnja i postignuti rezulati: <br/><span t-field="o.evaluation_comments"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Osoba odgovorna za provedbu: <span t-field="o.responsible_user_id.name"/></td>
+                                <td colspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Datum provedbe: <br/> <span t-field="o.date_deadline"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >4. Završna ovjera </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Ovjerio: <span t-field="o.responsible_user_id.name"/></td>
+                                <td colspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" >Datum: <span t-field="o.closing_date"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </tr>
+            </t>
+            <!--/t-->
+        </t>
+    </template>
+</odoo>

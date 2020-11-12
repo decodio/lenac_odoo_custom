@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="report_nonconformity"
+        model="mgmtsystem.nonconformity"
+        string="Izvještaj o nesukladnosti"
+        report_type="qweb-pdf"
+        name="vl_reports.report_vl_nonconformity"
+        file="vl_reports.report_vl_nonconformity"
+        />
+    <report id="report_audit"
+        model="mgmtsystem.audit"
+        string="Izvještaj sa audita"
+        report_type="qweb-pdf"
+        name="vl_reports.report_vl_audit_report"
+        file="vl_reports.report_vl_audit_report"
+        />
+    <report id="report_verification_list"
+        model="mgmtsystem.audit"
+        string="Operativni plan audita"
+        report_type="qweb-pdf"
+        name="vl_reports.report_vl_verification_report"
+        file="vl_reports.report_vl_verification_report"
+        />
+    <report id="report_audit_plan"
+        model="mgmtsystem.audit"
+        string="Plan internih audita"
+        report_type="qweb-pdf"
+        name="vl_reports.report_vl_audit_plan"
+        file="vl_reports.report_vl_audit_plan"
+        />
+</odoo>
