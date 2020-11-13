@@ -10,7 +10,7 @@ class MgmtsystemAudit(models.Model):
 
     _inherit = ['mgmtsystem.audit']
 
-    system_ids = fields.Many2many('mgmtsystem.system', 'System')
+    system_ids = fields.Many2many('mgmtsystem.system')
 
     @api.model
     def _fill_system(self):
@@ -25,7 +25,7 @@ class MgmtsystemAudit(models.Model):
 
 class MgmtsystemVerificationLine(models.Model):
     """Class to manage verification's Line."""
-    _inherit = "mgmtsystem.verification.line"
+    _inherit = ['mgmtsystem.verification.line']
 
     name_id = fields.Many2one('mgmtsystem.system')
 
