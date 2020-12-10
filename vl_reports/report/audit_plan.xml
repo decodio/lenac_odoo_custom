@@ -2,8 +2,8 @@
 <odoo>
     <template id="report_vl_audit_plan">
         <t t-call="report.html_container">
-            <div class="header" style="-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-ms-transform: rotate(90deg);transform: rotate(90deg);">
-                <table id="header_table" style="width:850px">
+            <div class="header">
+                <table id="header_table" style="width:850px; ">
                     <tr>
                         <td rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">
                             <img style="height: 100px" alt="client" src="/vl_maintenance/static/src/logo.jpg"/>
@@ -25,64 +25,62 @@
                     </tr>
                 </table>
             </div>
-            <div class="page" style="-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-ms-transform: rotate(90deg);transform: rotate(90deg);">
-                <table>
+            <div class="page">
+                <table style="width:850px;">
                     <tr>
-                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Auditor 1</td>
-                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Auditor 2</td>
-                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Opseg</td>
-                        <td colspan="2" style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Organizacijska jednica</td>
-                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Odgovorna osoba</td>
-                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Datum početka</td>
-                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Datum završetka</td>
-                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Oznaka</td>
+                        <td style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Auditor 1</td>
+                        <td style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Auditor 2</td>
+                        <td style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Opseg</td>
+                        <td colspan="2" style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Organizacijska jednica</td>
+                        <td style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Odgovorna osoba</td>
+                        <td style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Datum početka</td>
+                        <td style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Datum završetka</td>
+                        <td style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Oznaka</td>
                     </tr>
                     <tr t-foreach="docs" t-as="o">
-                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;"><span t-field="o.user_id.name"/></td>
-                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">
-                            <ul class="list-unstyled">
-                                <t t-foreach="o.auditor_user_ids" t-as="auditor">
-                                        <li><span t-field="auditor.name"/></li>
-                                </t>
-                            </ul>
+                        <td style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;"><span t-field="o.user_id.name"/></td>
+                        <td style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">
+                            <t t-foreach="o.auditor_user_ids" t-as="auditor">
+                                <span t-field="auditor.name"/>;<br/>
+                            </t>
                         </td>
-                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">
-                            <ul class="list-unstyled">
-                                <t t-foreach="o.system_ids" t-as="system">
-                                        <li><span t-field="system.name"/></li>
-                                </t>
-                            </ul>
+                        <td style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">
+                            <t t-foreach="o.system_ids" t-as="system">
+                                <span t-field="system.name"/>;<br/>
+                            </t>
+
                         </td>
-                        <td colspan="2" style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;"><span t-field="o.department_id.name"/></td>
-                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">
-                            <ul class="list-unstyled">
-                                <t t-foreach="o.auditee_user_ids" t-as="auditee">
-                                    <li><span t-field="auditee.name"/></li>
-                                </t>
-                            </ul>
+                        <td colspan="2" style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;"><span t-field="o.department_id.name"/></td>
+                        <td style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">
+                            <t t-foreach="o.auditee_user_ids" t-as="auditee">
+                                <span t-field="auditee.name"/>;<br/>
+                            </t>
                         </td>
-                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;"><span t-field="o.date"/></td>
-                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;"><span t-field="o.date"/></td>
-                        <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;"><span t-field="o.reference"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="7" rowspan="4"></td>
-                        <td colspan="2" rowspan="4" style="text-align: middle;vertical-align: top;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Predstavnik uprave za kvalitetu<br/>Alen Karnjuš</td>
-                    </tr>
-                    <tr>
-                        <td colspan="7" ></td>
-                        <td colspan="2" style="text-align: middle;vertical-align: top;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Potpis</td>
+                        <td style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;"><span t-field="o.date"/></td>
+                        <td style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;"><span t-field="o.date"/></td>
+                        <td style="text-align: left;vertical-align: middle;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;"><span t-field="o.reference"/></td>
                     </tr>
                     <tr>
                         <td colspan="9"><br/></td>
                     </tr>
-                    <tr>
-                        <td colspan="7" rowspan="4"></td>
-                        <td colspan="2" rowspan="4" style="text-align: middle;vertical-align: top;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Član Uprave<br/>Sandra Uzelac</td>
+                    <tr rowspan="4">
+                        <td colspan="6"></td>
+                        <td colspan="3" style="text-align: center;vertical-align: top;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Predstavnik uprave za kvalitetu<br/>Alen Karnjuš<br/><br/><br/><br/></td>
                     </tr>
                     <tr>
-                        <td colspan="7" ></td>
-                        <td colspan="2" style="text-align: middle;vertical-align: top;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Potpis</td>
+                        <td colspan="6"></td>
+                        <td colspan="3" style="text-align: center;vertical-align: top;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Potpis</td>
+                    </tr>
+                    <tr>
+                        <td colspan="9"><br/></td>
+                    </tr>
+                    <tr rowspan="4">
+                        <td colspan="6"></td>
+                        <td colspan="3" style="text-align: center;vertical-align: top;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Član Uprave<br/>Sandra Uzelac<br/><br/><br/><br/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6"></td>
+                        <td colspan="3" style="text-align: center;vertical-align: top;padding-left: 3px; padding-right: 3px;border-style: solid;border-width: thin;">Potpis</td>
                     </tr>
                 </table>
             </div>
