@@ -18,6 +18,7 @@
                 ],
     'data': [
         'views/vl_mgmt_system_audit.xml',
+        'views/vl_mgmt_system_ncr.xml',
     ],
     'demo': [],
     'installable': True,
