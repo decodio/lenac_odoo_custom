@@ -47,7 +47,7 @@ class HrJobLong(models.Model):
     approver_id = fields.Many2one(copy=False)
 
     def _get_default_stage_id(self):
-        stage_obj = self.env['document.page.stage']
+        stage_obj = self.env['hr.job.long.stage']
         # from category
         stage = stage_obj.search([], order="sequence asc", limit=1)
         return stage
