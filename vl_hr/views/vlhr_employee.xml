@@ -667,7 +667,7 @@
                             <field name="field_3" string="R"/>
                         </group>
                         <group string="Measures to diminish">
-                            <field name="risk_measures"/>
+                            <field name="risk_measures_ids" string="Measures"/>
                         </group>
                         <group string="Risk evaluation">
                             <field name="field_4" string="P"/>
@@ -806,6 +806,53 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+        <!--HR measures-->
+        <record id="view_hr_measures_form" model="ir.ui.view">
+            <field name="name">hr.measures.form</field>
+            <field name="model">hr.measures</field>
+            <field name="arch" type="xml">
+                <form string="Measure">
+                    <group name="measure_data">
+                        <group>
+                            <field name="name" string="Measure"/>
+                            <field name="risk_ids" string="Associated risks">
+                                <tree>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                            <field name="date_start"/>
+                            <field name="interval"/>
+                            <field name="date_stop"/>
+                            <field name="responsible"/>
+                            <field name="oversight"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_measures_tree" model="ir.ui.view">
+            <field name="name">hr.measures.tree</field>
+            <field name="model">hr.measures</field>
+            <field name="arch" type="xml">
+                <tree string="Measures">
+                    <field name="name" string="Measure"/>
+                    <field name="date_start"/>
+                    <field name="interval"/>
+                    <field name="date_stop"/>
+                    <field name="responsible"/>
+                    <field name="oversight"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_measures" model="ir.actions.act_window">
+            <field name="name">Measures</field>
+            <field name="res_model">hr.measures</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
         <menuitem
             id="menu_hr_job_long"
             name="Job position"
@@ -893,6 +940,13 @@
             action="action_hr_consequence"
             parent="menu_hr_risk_main"
             sequence="3"
+            />
+        <menuitem
+            id="menu_hr_measures"
+            name="Measures"
+            action="action_hr_measures"
+            parent="menu_hr_risk_main"
+            sequence="4"
             />
         <menuitem
             id="menu_hr_mandatory_qualification"

@@ -63,7 +63,8 @@ class HrRisk(models.Model):
     name = fields.Char()
     danger_ids = fields.Many2many('hr.dangers', 'danger_id')
     consequence_ids = fields.Many2many('hr.consequence', 'consequence_id')
-    risk_measures = fields.Html()
+    risk_measures_ids = fields.One2many('hr.measures', 'risk_id')
+    risk_measure_id = fields.Many2one('hr.measure')
 
     field_1 = fields.Selection([('A', 'A'),
                                 ('B', 'B'),
@@ -144,6 +145,19 @@ class HrConsequence(models.Model):
     _name = 'hr.consequence'
 
     name = fields.Char()
+
+
+class HrMeasures(models.Model):
+    _name = 'hr.measures'
+
+    name = fields.Char(string='Measure')
+    risk_id = fields.Many2one('hr.risk')
+    risk_ids = fields.One2many('hr.risk', 'risk_measure_id')
+    date_start = fields.Date(string='Start date')
+    interval = fields.Char(string='Interval')
+    date_stop = fields.Date(string='End Date')
+    responsible = fields.Char(string='Responsible')
+    oversight = fields.Char(string='Oversight')
 
 
 class HRMandatoryQualification (models.Model):
