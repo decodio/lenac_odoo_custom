@@ -64,7 +64,7 @@ class HrRisk(models.Model):
     danger_ids = fields.Many2many('hr.dangers', 'danger_id')
     consequence_ids = fields.Many2many('hr.consequence', 'consequence_id')
     risk_measures_ids = fields.One2many('hr.measures', 'risk_id')
-    risk_measure_id = fields.Many2one('hr.measure')
+    risk_measure_id = fields.Many2one('hr.measures')
 
     field_1 = fields.Selection([('A', 'A'),
                                 ('B', 'B'),
