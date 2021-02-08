@@ -25,6 +25,7 @@
         'data/vl_maintenance_cron.xml',
         'report/report.xml',
         'report/personal_equipment.xml',
+        'report/personal_equipment_fin.xml',
         'report/mobile_phone.xml',
         'report/new_equipment_entry.xml',
         'report/equipment_scrap.xml',

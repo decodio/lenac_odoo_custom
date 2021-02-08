@@ -71,7 +71,7 @@ class RestApiModel(models.Model):
                            'date_assigned', 'new_location',
                            'old_equipment_assign_to', 'old_employee_id',
                            'assign_date', 'location', 'barcode_number',
-                           'sort_of_equipment']
+                           'sort_of_equipment', 'inventoried']
 
         int_fields = ['category_id',
                       'equipment_assign_to',

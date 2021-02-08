@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_equipment_fin">
+    <t t-call="report.html_container">
+        <div class="header">
+            <table id="header_table" style="width :297mm;">
+                <tr>
+                    <td rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">
+                        <img style="height: 100px" alt="client" src="/vl_maintenance/static/src/logo.jpg"/>
+                    </td>
+                    <td colspan="5" rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; font-size:20px">IZVJEŠTAJ O PROMJENI SMJEŠTAJA <br/> I OSOBNOG ZADUŽENJA OSNOVNIH SREDSTAVA</td>
+                    <td rowspan="4" style="text-align: center; vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">
+                        <table>
+                            <tr>
+                                <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Oznaka: O3006</td></tr>
+                                <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Izdanje: 003</td></tr>
+                                <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Datum: 22.01.2021</td></tr>
+                                <td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Stranica:
+                                <span class="page"/> / <span class="topage"/>
+                                </td>
+                            </tr>
+                            <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;"/></tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="page">
+            <table style=" width :297mm;">
+                <tr>
+                    <td colspan="7" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">1</td>
+                    <td colspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">2</td>
+                    <td colspan="11" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">3</td>
+                    <td colspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">4</td>
+                </tr>
+                <tr>
+                    <td colspan="7" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">OSNOVNO SREDSTVO</td>
+                    <td colspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">POROMJENA LOKACIJE</td>
+                    <td colspan="11" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">PROMJENA OSOBNOH ZADUŽENJA</td>
+                    <td colspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">PROMJENA OJ/MT</td>
+                </tr>
+                <tr>
+                    <td rowspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">Inv br.</td>
+                    <td rowspan="2" colspan="6" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">Naziv</td>
+                    <td rowspan="2" colspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">Šifra<br/>stare<br/>lok.</td>
+                    <td rowspan="2" colspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">Šifra<br/>Nove<br/>lok.</td>
+                    <td colspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">Staro zaduženje</td>
+                    <td colspan="7" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">Novo zaduženje</td>
+                    <td rowspan="2" colspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">Šifra<br/>stare<br/>OJ/MT</td>
+                    <td rowspan="2" colspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">Šifra<br/>nove<br/>OJ/MT</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">Mat.Br.</td>
+                    <td colspan="3" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">Prezime i ime</td>
+                    <td style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">Mat.Br.</td>
+                    <td colspan="3" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">Prezime i ime</td>
+                    <td colspan="3" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">Potpis</td>
+                </tr>
+                <tr t-foreach="docs" t-as="o">
+                    <td style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.pc_number"/></td>
+                    <td colspan="6" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.name"/></td>
+                    <td colspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.location"/></td>
+                    <td colspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.new_location"/></td>
+                    <td style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.old_employee_number"/></td>
+                    <td colspan="3" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.old_employee_id.name"/></td>
+                    <td style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.new_employee_number"/></td>
+                    <td colspan="3" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.employee_id.name"/></td>
+                    <td colspan="3" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; width: 30mm"><br/></td>
+                    <td colspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.employee_department_old_number"/></td>
+                    <td colspan="2" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.employee_department_old_number"/></td>
+                </tr>
+                <tr><td><br/></td></tr>
+            </table>
+        </div>
+    </t>
+    </template>
+</odoo>
+
+
+
+
