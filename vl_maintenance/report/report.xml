@@ -2,10 +2,17 @@
 <odoo>
     <report id="report_personal_equipment"
         model="maintenance.equipment"
-        string="User equipment list"
+        string="ICT Prezaduženje"
         report_type="qweb-pdf"
         name="vl_maintenance.report_equipment"
         file="vl_maintenance.report_equipment"
+        />
+    <report id="report_personal_equipment"
+        model="maintenance.equipment"
+        string="FIN Prezaduženje"
+        report_type="qweb-pdf"
+        name="vl_maintenance.report_equipment_fin"
+        file="vl_maintenance.report_equipment_fin"
         />
     <report id="report_personal_mobile"
         model="maintenance.equipment"
@@ -23,7 +30,7 @@
         />
     <report id="report_scrap_equipment"
         model="maintenance.equipment.scrap"
-        string="O3004 - Prijedlog za rshod OSA"
+        string="O3004 - Prijedlog za rashod OSA"
         report_type="qweb-pdf"
         name="vl_maintenance.report_equipment_scrap"
         file="vl_maintenance.report_equipment_scrap"
