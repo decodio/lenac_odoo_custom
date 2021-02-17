@@ -7,7 +7,7 @@
         name="vl_maintenance.report_equipment"
         file="vl_maintenance.report_equipment"
         />
-    <report id="report_personal_equipment"
+    <report id="report_personal_equipment_fin"
         model="maintenance.equipment"
         string="FIN Prezaduženje"
         report_type="qweb-pdf"

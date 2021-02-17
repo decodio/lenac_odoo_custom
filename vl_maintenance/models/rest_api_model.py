@@ -71,13 +71,15 @@ class RestApiModel(models.Model):
                            'date_assigned', 'new_location',
                            'old_equipment_assign_to', 'old_employee_id',
                            'assign_date', 'location', 'barcode_number',
-                           'sort_of_equipment', 'inventoried']
+                           'sort_of_equipment', 'inventoried',
+                           'inventory_date']
 
         int_fields = ['category_id',
                       'equipment_assign_to',
                       'employee_id',
                       'old_equipment_assign_to',
-                      'old_employee_id']
+                      'old_employee_id',
+                      'inventoried_user_id']
         #todo
         """ Ovaj update također mora mjenjati polje sm_equipment_ids
             Polja koja ažurira su iz modela maintenance.employee.tracking

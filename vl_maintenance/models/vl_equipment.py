@@ -219,6 +219,14 @@ class MaintenanceEquipment(models.Model):
 
     inventoried = fields.Boolean(string='Inventoried', help='If checked Yes')
 
+    inventory_date = fields.Date(string='Inventoried on')
+
+    inventoried_user_id = fields.Many2one('res.users',
+                                          string='Inventoried by',
+                                          track_visibility='onchange',
+                                          required=True,
+                                          default=lambda self: self.env.uid)
+
     no_of_pieces = fields.Integer(string='Number of pieces', default='1')
 
     """SMALL EQUIPMENT"""

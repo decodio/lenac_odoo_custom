@@ -14,6 +14,8 @@
                     <field name="number_of_piecese" string="No. Assigned" readonly="1"/>
                     <field name="number_of_piecesst" string="No. In Storage" readonly="1"/>
                     <field name="inventoried" string="Inventoried"/>
+                    <field name="inventory_date" string="Inventory Date" readonly="1"/>
+                    <field name="inventoried_user_id" string="Inventoried by" readonly="1"/>
                 </tree>
             </field>
         </record>
@@ -25,9 +27,12 @@
                 <tree string="Equipment" editable="top">
                     <field name="name" string="Name" readonly="1" />
                     <field name="pc_number" string="Code" readonly="1"/>
+                    <field name="employee_id" string="Used by" readonly="1"/>
                     <field name="barcode_number" string="Bar code" readonly="1"/>
                     <field name="no_of_pieces" string="No. of pieces" readonly="1"/>
                     <field name="inventoried" string="Inventoried"/>
+                    <field name="inventory_date" string="Inventory Date" readonly="1"/>
+                    <field name="inventoried_user_id" string="Inventoried by" readonly="1"/>
                 </tree>
             </field>
         </record>
