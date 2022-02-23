@@ -20,13 +20,16 @@ class OwnerEquipmentProject(models.Model):
 
 class OwnerEquipment(models.Model):
     _name = 'owner.equipment'
+    _inherit = ['mail.thread']
     _description = 'Equipment owned by client'
 
-    name = fields.Char(string='Item name')
+    name = fields.Char(string='Item name', track_visibility='onchange')
     barcode_number = fields.Char(string='Bar Code', readonly=True)
-    project_id = fields.Many2one('owner.equipment.project')
-    date_removed = fields.Datetime(default=lambda self: fields.datetime.now(), string='Date/Time removed')
-    date_reinstalled = fields.Datetime(string='Date Reinstalled')
+    project_id = fields.Many2one('owner.equipment.project', track_visibility='onchange')
+    date_removed = fields.Datetime(default=lambda self: fields.datetime.now(),
+                                   string='Date/Time removed',
+                                   track_visibility='onchange')
+    date_reinstalled = fields.Datetime(string='Date Reinstalled', track_visibility='onchange')
     removal_responsible_id = fields.Many2one('res.users',
                                              string='Removal Responsible',
                                              index=True,
@@ -34,11 +37,16 @@ class OwnerEquipment(models.Model):
                                              required=True,
                                              default=lambda self: self.env.uid)
 
-    location_removed_id = fields.Many2one('owner.equipment.project.location', string='Removed from Location')
-    location_reinstalled_id = fields.Many2one('owner.equipment.project.location', string='Removed from Location')
-    category_id = fields.Many2one('owner.equipment.category', string='Main Category')
-    subcategory_id = fields.Many2one('owner.equipment.subcategory', string='Subcategory')
-    description = fields.Text(string='Description')
+    location_removed_id = fields.Many2one('owner.equipment.project.location',
+                                          string='Removed from Location',
+                                          track_visibility='onchange')
+    location_reinstalled_id = fields.Many2one('owner.equipment.project.location',
+                                              string='Removed from Location',
+                                              track_visibility='onchange')
+    category_id = fields.Many2one('owner.equipment.category', string='Main Category', track_visibility='onchange')
+    subcategory_id = fields.Many2one('owner.equipment.subcategory', string='Subcategory', track_visibility='onchange')
+    stored_container_id = fields.Many2one('owner.equipment.container', track_visibility='onchange')
+    description = fields.Text(string='Description', track_visibility='onchange')
 
     scan_history_ids = fields.One2many('owner.equipment.scan.history', 'scan_history_id', string='Scanned by')
 
@@ -48,6 +56,14 @@ class OwnerEquipment(models.Model):
     color = fields.Integer('Color Index')
 
     image = fields.Binary("Image", attachment=True)
+
+    number_of_pieces = fields.Char(string='Number of pieces')
+
+    weight = fields.Char(string='Weight in kg')
+
+    active = fields.Boolean('Scrap', default=True)
+
+    document_link = fields.Char(string='Link to documents')
 
     @api.onchange('project_id')
     def onchange_project(self):
@@ -70,6 +86,19 @@ class OwnerEquipment(models.Model):
             return False
         self.image = base64.encodestring(file_data.read())
         return True
+
+    @api.model
+    def render_html(self, docids, data=None):
+        report_obj = self.env['report']
+        report = report_obj._get_report_from_name('report.external_layout')
+        docargs = {
+            'doc_ids': docids,
+            'doc_model': report.model,
+            'docs': self,
+        }
+        return report_obj.render('report.external_layout', docargs)
+
+
 """        
     def create_cmis_folder_from_default_template(self, records, backend):
         self._create_in_cmis(records, backend)
@@ -106,6 +135,83 @@ class OwnerEquipment(models.Model):
             self._fields['cmis_folder'].create_value(res)
         return res
 """
+
+
+class OwnerEquipmentContainer(models.Model):
+    _name = 'owner.equipment.container'
+    _inherit = ['mail.thread']
+    _description = 'Storage containers (box, cartes, ect.)'
+
+    name = fields.Char(string='Name', track_visibility='onchange')
+    barcode_number = fields.Char(string='Bar Code', readonly=True)
+    project_id = fields.Many2one('owner.equipment.project', track_visibility='onchange')
+    date_removed = fields.Datetime(default=lambda self: fields.datetime.now(),
+                                   string='Date/Time removed',
+                                   track_visibility='onchange')
+    removal_responsible_id = fields.Many2one('res.users',
+                                             string='Removal Responsible',
+                                             index=True,
+                                             track_visibility='onchange',
+                                             required=True,
+                                             default=lambda self: self.env.uid)
+
+    location_removed_id = fields.Many2one('owner.equipment.project.location',
+                                          string='Removed from Location',
+                                          track_visibility='onchange')
+    location_reinstalled_id = fields.Many2one('owner.equipment.project.location',
+                                              string='Removed from Location',
+                                              track_visibility='onchange')
+    category_id = fields.Many2one('owner.equipment.category', string='Main Category', track_visibility='onchange')
+    container_content_ids = fields.One2many('owner.equipment', 'stored_container_id', track_visibility='onchange')
+    description = fields.Text(string='Description', track_visibility='onchange')
+
+    scan_history_ids = fields.One2many('owner.equipment.scan.history', 'scan_history_id', string='Scanned by')
+
+    equipment_tracking_ids = fields.One2many('owner.equipment.tracking', 'equipment_tracking_id')
+
+    removal_crew_ids = fields.One2many('owner.equipment.removal.crew', 'removal_crew_id')
+    color = fields.Integer('Color Index')
+
+    image = fields.Binary("Image", attachment=True)
+
+    weight = fields.Char(string='Weight in kg')
+
+    active = fields.Boolean('Scrap', default=True)
+
+    document_link = fields.Char(string='Link to documents')
+
+    @api.onchange('project_id')
+    def onchange_project(self):
+        self.location_removed_id = None
+
+    @api.onchange('project_id')
+    def onchange_project(self):
+        self.category_id = None
+
+    @api.onchange('category_id')
+    def onchange_project(self):
+        self.subcategory_id = None
+
+    def _attach_image(self, file_data):
+        """Attach an image to this document"""
+        # Skip files that don't match the allowed extensions.
+        filename = file_data.filename
+        ext = filename.split('.')[-1]
+        if ext not in ['jpg', 'jpeg', 'png', 'gif', 'tga', 'bmp']:
+            return False
+        self.image = base64.encodestring(file_data.read())
+        return True
+
+    @api.model
+    def render_html(self, docids, data=None):
+        report_obj = self.env['report']
+        report = report_obj._get_report_from_name('report.external_layout')
+        docargs = {
+            'doc_ids': docids,
+            'doc_model': report.model,
+            'docs': self,
+        }
+        return report_obj.render('report.external_layout', docargs)
 
 
 class OwnerEquipmentProjectLocation(models.Model):

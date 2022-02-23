@@ -74,6 +74,11 @@
                     <header>
                     </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" groups="hr.group_hr_user" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>
                         <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image&quot;, &quot;size&quot;: [200, 200]}"/>
                         <group>
                             <group string="Equipment details">
@@ -82,6 +87,8 @@
                                 <field name="project_id"/>
                                 <field name="removal_responsible_id"/>
                                 <field name="date_removed"/>
+                                <field name="stored_container_id"/>
+                                <field name="document_link" widget="url"/>
                             </group>
                             <group>
                                 <field name="location_removed_id" domain="[('project_location_id', '=', project_id)]"/>
@@ -121,6 +128,10 @@
                             </page>
                         </notebook>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -221,6 +232,177 @@
             <field name="res_model">owner.equipment</field>
             <field name="view_mode">kanban,tree,form</field>
             <field name="view_id" ref="owner_equipment_view_kanban"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a equipment.
+              </p>
+            </field>
+        </record>
+
+        <!-- OWNER EQUIPMENT CONTAINER-->
+        <record model="ir.ui.view" id="owner_equipment_container_view_form">
+            <field name="name">owner.equipment.container.form</field>
+            <field name="model">owner.equipment.container</field>
+            <field name="arch" type="xml">
+                <form string="Equipment Containers Inventory">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" groups="hr.group_hr_user" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>
+                        <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image&quot;, &quot;size&quot;: [200, 200]}"/>
+                        <group>
+                            <group string="Equipment container details">
+                                <field name="name"/>
+                                <field name="barcode_number"/>
+                                <field name="project_id"/>
+                                <field name="removal_responsible_id"/>
+                                <field name="date_removed"/>
+                                <field name="document_link" widget="url"/>
+                            </group>
+                            <group>
+                                <field name="location_removed_id" domain="[('project_location_id', '=', project_id)]"/>
+                                <field name="category_id" domain="[('project_category_id', '=', category_id)]"/>
+                                <field name="location_reinstalled_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Container contents" name="container_contents">
+                                <field name="container_content_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="barcode_number"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Description" name="description">
+                                <field name="description"/>
+                            </page>
+                            <page string="Removal Crew" name="removal_crew">
+                                <field name="removal_crew_ids" string="Removed By">
+                                    <tree>
+                                        <field name="employee_crew"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Equipment tracking" name="equipment_tracking">
+                                <field name="equipment_tracking_ids" string="Assigned To">
+                                    <tree>
+                                        <field name="assigned_employee"/>
+                                        <field name="date_assigned_employee"/>
+                                        <field name="assigned_location_id" string="Current Location"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Scan History" name="scan_history">
+                                <field name="scan_history_ids" string="Scan History">
+                                    <tree>
+                                        <field name="equipment_scanned_by"/>
+                                        <field name="equipment_scanned_date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_container_view_kanban">
+            <field name="name">owner.equipment.container.kanban</field>
+            <field name="model">owner.equipment.container</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="barcode_number"/>
+                    <field name="project_id"/>
+                    <field name="location_removed_id"/>
+                    <field name="category_id"/>
+                    <field name="removal_responsible_id"/>
+                    <field name="date_removed"/>
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-tooltip">
+                            <ul class="oe_kanban_tooltip">
+                                <li><b>Barcode:</b> <field name="barcode_number"/></li>
+                                <li><b>Project:</b> <field name="project_id"/></li>
+                            </ul>
+                        </t>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+                                <div class="o_dropdown_kanban dropdown">
+
+                                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >
+                                        <span class="fa fa-bars fa-lg"/>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <t t-if="widget.editable"><li><a type="edit">Edit...</a></li></t>
+                                        <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t>
+                                        <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_content" tooltip="kanban-tooltip">
+                                    <div><b><field name="name"/></b></div>
+                                    <div class="mt4">
+                                        <div t-if="record.barcode_number.raw_value"><field name="barcode_number"/></div>
+                                        <div t-if="record.removal_responsible_id.raw_value"><field name="removal_responsible_id"/></div>
+                                        <div t-if="record.location_removed_id.raw_value"><field name="location_removed_id"/></div>
+                                        <div t-if="record.date_removed.raw_value"><field name="date_removed"/></div>
+                                        <div t-if="record.category_id.raw_value"><field name="category_id"/></div>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_container_view_tree" >
+            <field name="name">owner.equipment.container.tree</field>
+            <field name="model">owner.equipment.container</field>
+            <field name="arch" type="xml">
+                <tree string="Owner equipment">
+                    <field name="name"/>
+                    <field name="barcode_number"/>
+                    <field name="project_id"/>
+                    <field name="location_removed_id"/>
+                    <field name="category_id"/>
+                    <field name="removal_responsible_id"/>
+                    <field name="date_removed"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_container_search_view">
+            <field name="name">owner.equipment.container.search</field>
+            <field name="model">owner.equipment.container</field>
+            <field name="arch" type="xml">
+                <search string="Equipment">
+                    <field name="name"/>
+                    <field name="barcode_number"/>
+                    <field name="project_id"/>
+                    <field name="location_removed_id"/>
+                    <field name="category_id"/>
+                    <field name="removal_responsible_id"/>
+                    <field name="date_removed"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="owner_equipment_container_action">
+            <field name="name">Owner Equipment</field>
+            <field name="res_model">owner.equipment.container</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="owner_equipment_container_view_kanban"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Click to add a equipment.
@@ -456,6 +638,13 @@
             action="owner_equipment_action"
             name="Owner Equipment"
             sequence="1"
+        />
+        <menuitem
+            id="owner_equipment_container_submenu"
+            parent="owner_equipment_subgroup"
+            action="owner_equipment_container_action"
+            name="Owner Equipment Container"
+            sequence="2"
         />
         <menuitem
             id="owner_equipment_project_subgroup"

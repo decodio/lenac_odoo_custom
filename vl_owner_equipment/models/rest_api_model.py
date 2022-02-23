@@ -9,7 +9,8 @@ class RestApiModel(models.Model):
     _inherit = "rest.api.model"
 
     def create_owner_equipment(self, name, barcode_number, project_id, removal_responsible_id,
-                               location_removed_id, category_id, subcategory_id, image=False, description=False):
+                               location_removed_id, category_id, subcategory_id, image=False,
+                               description=False, number_of_pieces=False):
         """ Create an new equipment with all the above filed required """
         try:
             vals = {
@@ -20,7 +21,8 @@ class RestApiModel(models.Model):
                 'location_removed_id': int(location_removed_id),
                 'category_id': int(category_id),
                 'subcategory_id': int(subcategory_id),
-                'description': description
+                'description': description,
+                'number_of_pieces': number_of_pieces
             }
             owner_equipment_model = self.env['owner.equipment']
             res = owner_equipment_model.create(vals)
@@ -41,7 +43,7 @@ class RestApiModel(models.Model):
 
     def update_owner_equipment(self, res_id, **kwargs):
         """ Update existing equipment"""
-        optional_fields = ['name', 'description', 'date_reinstalled']
+        optional_fields = ['name', 'description', 'date_reinstalled', 'weight', 'number_of_pieces']
 
         int_fields = ['project_id',
                       'removal_responsible_id',
@@ -123,6 +125,80 @@ class RestApiModel(models.Model):
                 return {'result': '',
                         'success': False,
                         'message': ''}
+        except Exception as e:
+            return {'result': '',
+                    'success': False,
+                    'message': str(e)}
+
+    def create_owner_equipment_container(self, name, barcode_number, project_id, removal_responsible_id,
+                                         location_removed_id, category_id, image=False, description=False):
+        """ Create an new equipment container with all the above filed required """
+        try:
+            vals = {
+                'name': name,
+                'barcode_number': barcode_number,
+                'project_id': int(project_id),
+                'removal_responsible_id': int(removal_responsible_id),
+                'location_removed_id': int(location_removed_id),
+                'category_id': int(category_id),
+                'description': description
+            }
+            owner_equipment_container_model = self.env['owner.equipment.container']
+            res = owner_equipment_container_model.create(vals)
+            if res:
+                # Crate and attach an image
+                res._attach_image(image)
+                return{'result': {'id': res.id},
+                       'success': True,
+                       'message': ''}
+            else:
+                return {'result': '',
+                        'success': False,
+                        'message': ''}
+        except Exception as e:
+            return {'result': '',
+                    'success': False,
+                    'message': str(e)}
+
+    def update_owner_equipment_container(self, res_id, **kwargs):
+        """ Update existing equipment container"""
+        optional_fields = ['name', 'description', 'date_reinstalled', 'weight']
+
+        int_fields = ['project_id',
+                      'removal_responsible_id',
+                      'location_removed_id',
+                      'location_reinstalled_id'
+                      'category_id',
+                      'subcategory_id']
+
+        try:
+            # Extract optional values from incoming arguments
+            vals = {}
+            for key in optional_fields:
+                if key not in kwargs:
+                    continue
+                value = kwargs.get(key)
+                # Try to parse the value if possible
+                if key in int_fields:
+                    vals[key] = int(value)
+                else:
+                    vals[key] = value
+
+            owner_equipment_container_model = self.env['owner.equipment.container']
+            eq_id = owner_equipment_container_model.search(
+                [('id', '=', int(res_id))], limit=1)
+            res = False
+            if eq_id and vals:
+                res = eq_id.write(vals)
+            if res:
+                return {'result': res,
+                        'success': True,
+                        'message': ''}
+            else:
+                return {'result': res,
+                        'success': False,
+                        'message': ''}
+
         except Exception as e:
             return {'result': '',
                     'success': False,
