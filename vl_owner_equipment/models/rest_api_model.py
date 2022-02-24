@@ -10,7 +10,7 @@ class RestApiModel(models.Model):
 
     def create_owner_equipment(self, name, barcode_number, project_id, removal_responsible_id,
                                location_removed_id, category_id, subcategory_id, image=False,
-                               description=False, number_of_pieces=False, weight=False):
+                               description=False, number_of_pieces=False, weight=False, document_link=False):
         """ Create an new equipment with all the above filed required """
         try:
             vals = {
@@ -23,7 +23,8 @@ class RestApiModel(models.Model):
                 'subcategory_id': int(subcategory_id),
                 'description': description,
                 'number_of_pieces': number_of_pieces,
-                'weight': weight
+                'weight': weight,
+                'document_link': document_link
             }
             owner_equipment_model = self.env['owner.equipment']
             res = owner_equipment_model.create(vals)
@@ -44,7 +45,7 @@ class RestApiModel(models.Model):
 
     def update_owner_equipment(self, res_id, **kwargs):
         """ Update existing equipment"""
-        optional_fields = ['name', 'description', 'date_reinstalled', 'weight', 'number_of_pieces']
+        optional_fields = ['name', 'description', 'date_reinstalled', 'weight', 'number_of_pieces', 'document_link']
 
         int_fields = ['project_id',
                       'removal_responsible_id',
@@ -133,7 +134,7 @@ class RestApiModel(models.Model):
 
     def create_owner_equipment_container(self, name, barcode_number, project_id, removal_responsible_id,
                                          location_removed_id, category_id, image=False, description=False,
-                                         number_of_pieces=False, weight=False):
+                                         number_of_pieces=False, weight=False, document_link=False):
         """ Create an new equipment container with all the above filed required """
         try:
             vals = {
@@ -145,7 +146,8 @@ class RestApiModel(models.Model):
                 'category_id': int(category_id),
                 'description': description,
                 'number_of_pieces': number_of_pieces,
-                'weight': weight
+                'weight': weight,
+                'document_link': document_link
             }
             owner_equipment_container_model = self.env['owner.equipment.container']
             res = owner_equipment_container_model.create(vals)
@@ -166,14 +168,14 @@ class RestApiModel(models.Model):
 
     def update_owner_equipment_container(self, res_id, **kwargs):
         """ Update existing equipment container"""
-        optional_fields = ['name', 'description', 'date_reinstalled', 'weight', 'number_of_pieces']
+        optional_fields = ['name', 'description', 'date_reinstalled', 'weight', 'number_of_pieces', 'document_link']
 
         int_fields = ['project_id',
                       'removal_responsible_id',
                       'location_removed_id',
                       'location_reinstalled_id'
-                      'category_id',
-                      'subcategory_id']
+                      'category_id'
+                      ]
 
         try:
             # Extract optional values from incoming arguments
