@@ -57,11 +57,13 @@ class OwnerEquipment(models.Model):
 
     image = fields.Binary("Image", attachment=True)
 
-    number_of_pieces = fields.Char(string='Number of pieces')
+    number_of_pieces = fields.Float(string='Number of pieces', track_visibility='onchange')
 
-    weight = fields.Char(string='Weight in kg')
+    weight = fields.Float(string='Weight in kg', track_visibility='onchange')
 
-    active = fields.Boolean('Scrap', default=True)
+    total_weight = fields.Float(string='Total weight', compute='_compute_equipment_weight')
+
+    active = fields.Boolean('Scrap', default=True, track_visibility='onchange')
 
     document_link = fields.Char(string='Link to documents')
 
@@ -97,6 +99,12 @@ class OwnerEquipment(models.Model):
             'docs': self,
         }
         return report_obj.render('report.external_layout', docargs)
+
+    @api.depends('number_of_pieces', 'weight')
+    def _compute_equipment_weight(self):
+        for equipment in self:
+            equipment.total_weight = self.number_of_pieces * self.weight
+
 
 
 """        
@@ -174,7 +182,11 @@ class OwnerEquipmentContainer(models.Model):
 
     image = fields.Binary("Image", attachment=True)
 
-    weight = fields.Char(string='Weight in kg')
+    number_of_pieces = fields.Float(string='Number of pieces', track_visibility='onchange')
+
+    weight = fields.Float(string='Weight in kg', track_visibility='onchange')
+
+    total_weight = fields.Float(string='Total weight')
 
     active = fields.Boolean('Scrap', default=True)
 

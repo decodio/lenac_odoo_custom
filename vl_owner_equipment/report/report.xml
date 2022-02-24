@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="report_owner_equipment"
+        model="owner.equipment"
+        string="Report of equipment"
+        report_type="qweb-pdf"
+        name="vl_owner_equipment.report_vl_owner_equipment"
+        file="vl_owner_equipment.report_vl_owner_equipment"
+        />
+    <report id="report_owner_equipment_container"
+        model="owner.equipment.container"
+        string="Report of equipment in containers"
+        report_type="qweb-pdf"
+        name="vl_owner_equipment.report_vl_owner_equipment_container"
+        file="vl_owner_equipment.report_vl_owner_equipment_container"
+        />
+</odoo>
