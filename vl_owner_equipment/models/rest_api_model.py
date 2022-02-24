@@ -10,7 +10,8 @@ class RestApiModel(models.Model):
 
     def create_owner_equipment(self, name, barcode_number, project_id, removal_responsible_id,
                                location_removed_id, category_id, subcategory_id=False, image=False,
-                               description=False, number_of_pieces=False, weight=False, document_link=False):
+                               description=False, number_of_pieces=False, weight=False, document_link=False,
+                               active=False, damaged=False):
         """ Create an new equipment with all the above filed required """
         try:
             vals = {
@@ -24,7 +25,9 @@ class RestApiModel(models.Model):
                 'description': description,
                 'number_of_pieces': number_of_pieces,
                 'weight': weight,
-                'document_link': document_link
+                'document_link': document_link,
+                'active': active,
+                'damaged': damaged
             }
             owner_equipment_model = self.env['owner.equipment']
             res = owner_equipment_model.create(vals)
@@ -134,7 +137,7 @@ class RestApiModel(models.Model):
 
     def create_owner_equipment_container(self, name, barcode_number, project_id, removal_responsible_id,
                                          location_removed_id, category_id, image=False, description=False,
-                                         number_of_pieces=False, weight=False, document_link=False):
+                                         number_of_pieces=False, weight=False, document_link=False, active=False):
         """ Create an new equipment container with all the above filed required """
         try:
             vals = {
@@ -147,7 +150,8 @@ class RestApiModel(models.Model):
                 'description': description,
                 'number_of_pieces': number_of_pieces,
                 'weight': weight,
-                'document_link': document_link
+                'document_link': document_link,
+                'active': active
             }
             owner_equipment_container_model = self.env['owner.equipment.container']
             res = owner_equipment_container_model.create(vals)

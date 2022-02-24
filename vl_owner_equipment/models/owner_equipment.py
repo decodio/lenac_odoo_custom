@@ -67,6 +67,8 @@ class OwnerEquipment(models.Model):
 
     document_link = fields.Char(string='Link to documents')
 
+    damaged = fields.Selection([('yes', 'Yes'), ('no', 'No')], default='no', string="Damaged")
+
     @api.onchange('project_id')
     def onchange_project(self):
         self.location_removed_id = None

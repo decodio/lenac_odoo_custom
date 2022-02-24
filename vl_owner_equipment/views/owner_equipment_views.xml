@@ -84,14 +84,18 @@
                             <group string="Equipment details">
                                 <field name="name"/>
                                 <field name="barcode_number"/>
+                                <field name="number_of_pieces"/>
+                                <field name="weight"/>
+                                <field name="total_weight"/>
                                 <field name="project_id"/>
                                 <field name="removal_responsible_id"/>
                                 <field name="date_removed"/>
-                                <field name="stored_container_id"/>
-                                <field name="document_link" widget="url"/>
+                                <field name="document_link" widget="url" readonly="1"/>
                             </group>
                             <group>
                                 <field name="location_removed_id" domain="[('project_location_id', '=', project_id)]"/>
+                                <field name="stored_container_id"/>
+                                <field name="damaged" string="Stored in container"/>
                                 <field name="category_id" domain="[('project_category_id', '=', category_id)]"/>
                                 <field name="subcategory_id" domain="[('owner_subcategory_id', '=', category_id)]"/>
                                 <field name="date_reinstalled"/>
@@ -258,10 +262,13 @@
                             <group string="Equipment container details">
                                 <field name="name"/>
                                 <field name="barcode_number"/>
+                                <field name="number_of_pieces"/>
+                                <field name="weight"/>
+                                <field name="total_weight"/>
                                 <field name="project_id"/>
                                 <field name="removal_responsible_id"/>
                                 <field name="date_removed"/>
-                                <field name="document_link" widget="url"/>
+                                <field name="document_link" widget="url" readonly="1"/>
                             </group>
                             <group>
                                 <field name="location_removed_id" domain="[('project_location_id', '=', project_id)]"/>
