@@ -9,9 +9,10 @@ class RestApiModel(models.Model):
     _inherit = "rest.api.model"
 
     def create_owner_equipment(self, name, barcode_number, project_id, removal_responsible_id,
-                               location_removed_id, category_id, subcategory_id=False, image=False,
-                               description=False, number_of_pieces=False, weight=False, document_link=False,
-                               active=False, damaged=False):
+                               location_removed_id, sub_location_removed_id, category_id, subcategory_id=False,
+                               stored_container_id=False, image=False, description=False, number_of_pieces=False,
+                               weight=False, active=False, document_link=False, damaged=False, qaqc_item=False,
+                               qaqc_page=False):
         """ Create an new equipment with all the above filed required """
         try:
             vals = {
@@ -20,14 +21,19 @@ class RestApiModel(models.Model):
                 'project_id': int(project_id),
                 'removal_responsible_id': int(removal_responsible_id),
                 'location_removed_id': int(location_removed_id),
+                'sub_location_removed_id': int(sub_location_removed_id),
                 'category_id': int(category_id),
                 'subcategory_id': int(subcategory_id),
+                'stored_container_id': int(stored_container_id),
                 'description': description,
                 'number_of_pieces': number_of_pieces,
                 'weight': weight,
-                'document_link': document_link,
                 'active': active,
-                'damaged': damaged
+                'document_link': document_link,
+                'damaged': damaged,
+                'qaqc_item': qaqc_item,
+                'qaqc_page': qaqc_page
+
             }
             owner_equipment_model = self.env['owner.equipment']
             res = owner_equipment_model.create(vals)
@@ -48,14 +54,18 @@ class RestApiModel(models.Model):
 
     def update_owner_equipment(self, res_id, **kwargs):
         """ Update existing equipment"""
-        optional_fields = ['name', 'description', 'date_reinstalled', 'weight', 'number_of_pieces', 'document_link']
+        optional_fields = ['name', 'description', 'date_reinstalled', 'weight', 'number_of_pieces', 'document_link',
+                           'qaqc_item', 'qaqc_page', 'damaged', 'active']
 
         int_fields = ['project_id',
                       'removal_responsible_id',
                       'location_removed_id',
+                      'sub_location_removed_id',
                       'location_reinstalled_id'
+                      'sub_location_reinstalled_id',
                       'category_id',
-                      'subcategory_id']
+                      'subcategory_id',
+                      'stored_container_id']
 
         try:
             # Extract optional values from incoming arguments
@@ -136,8 +146,9 @@ class RestApiModel(models.Model):
                     'message': str(e)}
 
     def create_owner_equipment_container(self, name, barcode_number, project_id, removal_responsible_id,
-                                         location_removed_id, category_id, image=False, description=False,
-                                         number_of_pieces=False, weight=False, document_link=False, active=False):
+                                         location_removed_id, sub_location_removed_id, category_id, image=False,
+                                         description=False, number_of_pieces=False, weight=False, document_link=False,
+                                         active=False, container_content_ids =False):
         """ Create an new equipment container with all the above filed required """
         try:
             vals = {
@@ -146,12 +157,14 @@ class RestApiModel(models.Model):
                 'project_id': int(project_id),
                 'removal_responsible_id': int(removal_responsible_id),
                 'location_removed_id': int(location_removed_id),
+                'sub_location_removed_id': int(sub_location_removed_id),
                 'category_id': int(category_id),
                 'description': description,
                 'number_of_pieces': number_of_pieces,
                 'weight': weight,
                 'document_link': document_link,
-                'active': active
+                'active': active,
+                'container_content_ids': int(container_content_ids)
             }
             owner_equipment_container_model = self.env['owner.equipment.container']
             res = owner_equipment_container_model.create(vals)
@@ -177,9 +190,11 @@ class RestApiModel(models.Model):
         int_fields = ['project_id',
                       'removal_responsible_id',
                       'location_removed_id',
+                      'sub_location_removed_id',
                       'location_reinstalled_id'
-                      'category_id'
-                      ]
+                      'sub_location_reinstalled_id',
+                      'category_id',
+                      'container_content_ids']
 
         try:
             # Extract optional values from incoming arguments

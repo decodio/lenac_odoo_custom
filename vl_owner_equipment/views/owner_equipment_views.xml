@@ -87,20 +87,29 @@
                                 <field name="number_of_pieces"/>
                                 <field name="weight"/>
                                 <field name="total_weight"/>
-                                <field name="project_id"/>
-                                <field name="removal_responsible_id"/>
-                                <field name="date_removed"/>
-                                <field name="document_link" widget="url" readonly="1"/>
-                            </group>
-                            <group>
-                                <field name="location_removed_id" domain="[('project_location_id', '=', project_id)]"/>
-                                <field name="stored_container_id"/>
                                 <field name="damaged" string="Stored in container"/>
                                 <field name="category_id" domain="[('project_category_id', '=', category_id)]"/>
                                 <field name="subcategory_id" domain="[('owner_subcategory_id', '=', category_id)]"/>
-                                <field name="date_reinstalled"/>
-                                <field name="location_reinstalled_id"/>
                             </group>
+                            <group string="Location details">
+                                <field name="project_id"/>
+                                <field name="removal_responsible_id"/>
+                                <field name="date_removed"/>
+                                <field name="location_removed_id" domain="[('project_location_id', '=', project_id)]"/>
+                                <field name="sub_location_removed_id" domain="[('owner_sublocation_id', '=', location_removed_id)]"/>
+                                <field name="stored_container_id"/>
+                                <field name="document_link" widget="url" readonly="1"/>
+                            </group>
+                            <group string="Equipment status">
+                                <field name="date_reinstalled" />
+                                <field name="location_reinstalled_id" domain="[('project_location_id', '=', project_id)]"/>
+                                <field name="sub_location_reinstalled_id" domain="[('owner_sublocation_id', '=', location_reinstalled_id)]"/>
+                            </group>
+                            <group string="QA/QC Code">
+                                <field name="qaqc_item"/>
+                                <field name="qaqc_page"/>
+                            </group>
+
                         </group>
                         <notebook>
                             <page string="Description" name="description">
@@ -185,9 +194,9 @@
                                         <div t-if="record.category_id.raw_value"><field name="category_id"/></div>
                                         <div t-if="record.subcategory_id.raw_value"><field name="subcategory_id"/></div>
                                     </div>
-                                    <div class="oe_kanban_bottom_right">
+                                    <!--div class="oe_kanban_bottom_right">
                                         <img t-att-src="kanban_image('owner.equipment', 'image', record.image.raw_value)" t-att-title="record.image.value" width="200" height="200" class="oe_kanban_avatar"/>
-                                    </div>
+                                    </div-->
                                 </div>
                                 <div class="oe_clear"></div>
                             </div>
@@ -265,15 +274,19 @@
                                 <field name="number_of_pieces"/>
                                 <field name="weight"/>
                                 <field name="total_weight"/>
+                                <field name="category_id" domain="[('project_category_id', '=', category_id)]"/>
+                            </group>
+                            <group string="Location details">
                                 <field name="project_id"/>
                                 <field name="removal_responsible_id"/>
                                 <field name="date_removed"/>
+                                <field name="location_removed_id" domain="[('project_location_id', '=', project_id)]"/>
+                                <field name="sub_location_removed_id" domain="[('owner_sublocation_id', '=', location_removed_id)]"/>
                                 <field name="document_link" widget="url" readonly="1"/>
                             </group>
-                            <group>
-                                <field name="location_removed_id" domain="[('project_location_id', '=', project_id)]"/>
-                                <field name="category_id" domain="[('project_category_id', '=', category_id)]"/>
-                                <field name="location_reinstalled_id"/>
+                            <group string="Equipment status">
+                                <field name="location_reinstalled_id" domain="[('project_location_id', '=', project_id)]"/>
+                                <field name="sub_location_reinstalled_id" domain="[('owner_sublocation_id', '=', location_reinstalled_id)]"/>
                             </group>
                         </group>
                         <notebook>
@@ -426,6 +439,7 @@
                     <field name="name"/>
                     <field name="location_code"/>
                     <field name="project_location_id" string="Project"/>
+                    <field name="project_sublocation_ids" string="Sublocation"/>
                 </search>
             </field>
         </record>
@@ -450,10 +464,11 @@
                     <header>
                     </header>
                     <sheet>
-                        <group string="Equipment details">
+                        <group string="Location details">
                             <field name="name"/>
                             <field name="location_code"/>
                             <field name="project_location_id" string="Project"/>
+                            <field name="project_sublocation_ids" string="Sublocation"/>
                         </group>
                     </sheet>
                 </form>
@@ -467,6 +482,60 @@
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Click to add a location.
+              </p>
+            </field>
+        </record>
+
+        <!-- OWNER EQUIPMENT PROJECT SUB LOCATION-->
+        <record model="ir.ui.view" id="owner_equipment_project_sublocation_search_view">
+            <field name="name">owner.equipment.project.sublocation.search</field>
+            <field name="model">owner.equipment.project.sublocation</field>
+            <field name="arch" type="xml">
+                <search string="Sub Location">
+                    <field name="name"/>
+                    <field name="sub_location_code"/>
+                    <field name="owner_sublocation_id" string="Location"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_project_sublocation_view_tree" >
+            <field name="name">owner.equipment.project.sublocation.tree</field>
+            <field name="model">owner.equipment.project.sublocation</field>
+            <field name="arch" type="xml">
+                <tree string="Sub Location">
+                    <field name="name"/>
+                    <field name="sub_location_code"/>
+                    <field name="owner_sublocation_id" string="Location"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="owner_equipment_project_sublocation_view_form">
+            <field name="name">owner.equipment.project.sublocation.form</field>
+            <field name="model">owner.equipment.project.sublocation</field>
+            <field name="arch" type="xml">
+                <form string="Sub Location">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group string="Sub location details">
+                            <field name="name"/>
+                            <field name="sub_location_code"/>
+                            <field name="owner_sublocation_id" string="Location"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="owner_equipment_project_sublocation_action">
+            <field name="name">Owner Equipment Project Location Sub Location</field>
+            <field name="res_model">owner.equipment.project.sublocation</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a sublocation.
               </p>
             </field>
         </record>
@@ -677,29 +746,36 @@
             id="owner_equipment_project_location"
             parent="owner_equipment_configuration"
             action="owner_equipment_project_location_action"
-            name="Locations"
+            name="Main Locations"
             sequence="1"
+        />
+        <menuitem
+            id="owner_equipment_project_sublocation"
+            parent="owner_equipment_configuration"
+            action="owner_equipment_project_sublocation_action"
+            name="Main Sub Locations"
+            sequence="2"
         />
         <menuitem
             id="owner_equipment_category"
             parent="owner_equipment_configuration"
             action="owner_equipment_category_action"
             name="Categories"
-            sequence="2"
+            sequence="3"
         />
         <menuitem
             id="owner_equipment_subcategory"
             parent="owner_equipment_configuration"
             action="owner_equipment_subcategory_action"
             name="Subcategories"
-            sequence="3"
+            sequence="4"
         />
         <menuitem
             id="owner_equipment_location"
             parent="owner_equipment_configuration"
             action="owner_equipment_location_action"
-            name="Locations"
-            sequence="4"
+            name="Locations Stored"
+            sequence="5"
         />
 
 

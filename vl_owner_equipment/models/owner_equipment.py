@@ -36,42 +36,47 @@ class OwnerEquipment(models.Model):
                                              track_visibility='onchange',
                                              required=True,
                                              default=lambda self: self.env.uid)
-
     location_removed_id = fields.Many2one('owner.equipment.project.location',
                                           string='Removed from Location',
                                           track_visibility='onchange')
-    location_reinstalled_id = fields.Many2one('owner.equipment.project.location',
-                                              string='Removed from Location',
+    sub_location_removed_id = fields.Many2one('owner.equipment.project.sublocation',
+                                              string='Sub location',
                                               track_visibility='onchange')
+    location_reinstalled_id = fields.Many2one('owner.equipment.project.location',
+                                              string='Reinstalled Location',
+                                              track_visibility='onchange')
+    sub_location_reinstalled_id = fields.Many2one('owner.equipment.project.sublocation',
+                                                  string='Reinstalled Sub location',
+                                                  track_visibility='onchange')
     category_id = fields.Many2one('owner.equipment.category', string='Main Category', track_visibility='onchange')
     subcategory_id = fields.Many2one('owner.equipment.subcategory', string='Subcategory', track_visibility='onchange')
     stored_container_id = fields.Many2one('owner.equipment.container', track_visibility='onchange')
     description = fields.Text(string='Description', track_visibility='onchange')
-
     scan_history_ids = fields.One2many('owner.equipment.scan.history', 'scan_history_id', string='Scanned by')
-
     equipment_tracking_ids = fields.One2many('owner.equipment.tracking', 'equipment_tracking_id')
-
     removal_crew_ids = fields.One2many('owner.equipment.removal.crew', 'removal_crew_id')
     color = fields.Integer('Color Index')
-
     image = fields.Binary("Image", attachment=True)
-
     number_of_pieces = fields.Float(string='Number of pieces', track_visibility='onchange')
-
     weight = fields.Float(string='Weight in kg', track_visibility='onchange')
-
     total_weight = fields.Float(string='Total weight', compute='_compute_equipment_weight')
-
     active = fields.Boolean('Scrap', default=True, track_visibility='onchange')
-
     document_link = fields.Char(string='Link to documents')
-
-    damaged = fields.Selection([('yes', 'Yes'), ('no', 'No')], default='no', string="Damaged")
+    damaged = fields.Selection([('yes', 'Yes'), ('no', 'No')], default='no', string="Damaged", track_visibility='onchange')
+    qaqc_item = fields.Char(string='Item number', track_visibility='onchange')
+    qaqc_page = fields.Char(string='Page', track_visibility='onchange')
 
     @api.onchange('project_id')
     def onchange_project(self):
         self.location_removed_id = None
+
+    @api.onchange('location_removed_id')
+    def onchange_project(self):
+        self.sub_location_removed_id = None
+
+    @api.onchange('location_reinstalled_id')
+    def onchange_project(self):
+        self.sub_location_reinstalled_id = None
 
     @api.onchange('project_id')
     def onchange_project(self):
@@ -168,9 +173,19 @@ class OwnerEquipmentContainer(models.Model):
     location_removed_id = fields.Many2one('owner.equipment.project.location',
                                           string='Removed from Location',
                                           track_visibility='onchange')
-    location_reinstalled_id = fields.Many2one('owner.equipment.project.location',
-                                              string='Removed from Location',
+
+    sub_location_removed_id = fields.Many2one('owner.equipment.project.sublocation',
+                                              string='Sub location',
                                               track_visibility='onchange')
+
+    location_reinstalled_id = fields.Many2one('owner.equipment.project.location',
+                                              string='Reinstalled Location',
+                                              track_visibility='onchange')
+
+    sub_location_reinstalled_id = fields.Many2one('owner.equipment.project.sublocation',
+                                                  string='Reinstalled Sub location',
+                                                  track_visibility='onchange')
+
     category_id = fields.Many2one('owner.equipment.category', string='Main Category', track_visibility='onchange')
     container_content_ids = fields.One2many('owner.equipment', 'stored_container_id', track_visibility='onchange')
     description = fields.Text(string='Description', track_visibility='onchange')
@@ -194,9 +209,21 @@ class OwnerEquipmentContainer(models.Model):
 
     document_link = fields.Char(string='Link to documents')
 
+    qaqc_item = fields.Char(string='Item number', track_visibility='onchange')
+
+    qaqc_page = fields.Char(string='Page', track_visibility='onchange')
+
     @api.onchange('project_id')
     def onchange_project(self):
         self.location_removed_id = None
+
+    @api.onchange('location_removed_id')
+    def onchange_project(self):
+        self.sub_location_removed_id = None
+
+    @api.onchange('location_reinstalled_id')
+    def onchange_project(self):
+        self.sub_location_reinstalled_id = None
 
     @api.onchange('project_id')
     def onchange_project(self):
@@ -235,6 +262,16 @@ class OwnerEquipmentProjectLocation(models.Model):
     name = fields.Char(string='Location name')
     location_code = fields.Char(string='Location code')
     project_location_id = fields.Many2one('owner.equipment.project', 'project_location_ids', store=True)
+    project_sublocation_ids = fields.One2many('owner.equipment.project.sublocation', 'owner_sublocation_id')
+
+
+class OwnerEquipmentProjectSublocation(models.Model):
+    _name = 'owner.equipment.project.sublocation'
+    _description = 'Sub location'
+
+    name = fields.Char(string='Sub location name')
+    sub_location_code = fields.Char(string='Sub location code')
+    owner_sublocation_id = fields.Many2one('owner.equipment.project.location', 'project_sublocation_ids')
 
 
 class OwnerEquipmentCategory(models.Model):

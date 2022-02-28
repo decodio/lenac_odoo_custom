@@ -8,9 +8,9 @@
                         <td rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">
                             <img style="height: 100px" alt="client" src="/vl_owner_equipment/static/src/logo.jpg"/>
                         </td>
-                        <td colspan="5" rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; font-size:20px">Equipmnet list</td>
-                        <td rowspan="4" style="text-align: center; vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">
-                            <!--table>
+                        <td colspan="5" rowspan="4" style="text-align: center;vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px; font-size:20px">Equipment list</td>
+                        <!--td rowspan="4" style="text-align: center; vertical-align: middle;border-style: solid;border-width: thin;padding-left: 3px; padding-right: 3px;">
+                            <table>
                                 <tr>
                                     <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Oznaka: O1504</td></tr>
                                     <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;">Izdanje: 001</td></tr>
@@ -20,29 +20,33 @@
                                     </td>
                                 </tr>
                                 <tr><td style="text-align: right;vertical-align: middle;padding-left: 3px; padding-right: 3px;"/></tr>
-                            </table-->
-                        </td>
+                            </table>
+                        </td-->
                     </tr>
                 </table>
             </div>
             <div class="page" width="auto">
                 <table id="equipment_list" style="width:auto; page-break-before:always;">
                     <tr>
-                        <td style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">Name</td>
+                        <td colspan="3" style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">Name</td>
                         <td style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">Date removed</td>
                         <td style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">Location removed</td>
                         <td style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">Quantity</td>
-                        <td style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">Barcode number</td>
+                        <td style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">Weight</td>
+                        <td style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">Total weight</td>
+                        <!--td style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">Barcode number</td-->
                         <td style="text-align: left;border-style: solid;border-width: thin;background-color:  #d1d4d9; padding-left: 3px; padding-right: 3px;">Barcode</td>
                     </tr>
                     <t t-foreach="docs" t-as="o">
                         <tr>
-                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.name"/></td>
+                            <td colspan="3" style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.name"/></td>
                             <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.date_removed"/></td>
                             <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.location_removed_id.name"/></td>
                             <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.number_of_pieces"/></td>
-                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.barcode_number"/></td>
-                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.weight"/></td>
+                            <td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.total_weight"/></td>
+                            <!--td style="text-align: left;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px;"><span t-esc="o.barcode_number"/></td-->
+                            <td style="text-align: center;border-style: solid;border-width: thin; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">
                                 <!--img alt="barcode" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.barcode_number, 600, 100)" style="width:350px;height:60px;"/-->
                                 <img alt="barcode" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.barcode_number, 600, 120)" style="max-height:50pt;max-width:100%;"/><br/>
                                 <span t-field="o.barcode_number"/>
