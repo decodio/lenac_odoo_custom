@@ -55,13 +55,15 @@ class RestApiModel(models.Model):
     def update_owner_equipment(self, res_id, **kwargs):
         """ Update existing equipment"""
         optional_fields = ['name', 'description', 'date_reinstalled', 'weight', 'number_of_pieces', 'document_link',
-                           'qaqc_item', 'qaqc_page', 'damaged', 'active']
+                           'qaqc_item', 'qaqc_page', 'damaged', 'active', 'project_id', 'removal_responsible_id',
+                           'location_removed_id', 'sub_location_removed_id', 'location_reinstalled_id',
+                           'sub_location_reinstalled_id', 'category_id', 'subcategory_id', 'stored_container_id']
 
         int_fields = ['project_id',
                       'removal_responsible_id',
                       'location_removed_id',
                       'sub_location_removed_id',
-                      'location_reinstalled_id'
+                      'location_reinstalled_id',
                       'sub_location_reinstalled_id',
                       'category_id',
                       'subcategory_id',
@@ -185,13 +187,16 @@ class RestApiModel(models.Model):
 
     def update_owner_equipment_container(self, res_id, **kwargs):
         """ Update existing equipment container"""
-        optional_fields = ['name', 'description', 'date_reinstalled', 'weight', 'number_of_pieces', 'document_link']
+        optional_fields = ['name', 'description', 'date_reinstalled', 'weight', 'number_of_pieces', 'document_link',
+                           'project_id', 'removal_responsible_id', 'location_removed_id', 'sub_location_removed_id',
+                           'location_reinstalled_id', 'sub_location_reinstalled_id', 'category_id',
+                           'container_content_ids']
 
         int_fields = ['project_id',
                       'removal_responsible_id',
                       'location_removed_id',
                       'sub_location_removed_id',
-                      'location_reinstalled_id'
+                      'location_reinstalled_id',
                       'sub_location_reinstalled_id',
                       'category_id',
                       'container_content_ids']
