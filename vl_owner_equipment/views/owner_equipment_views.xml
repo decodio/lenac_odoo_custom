@@ -83,7 +83,7 @@
                         <group>
                             <group string="Equipment details">
                                 <field name="name"/>
-                                <field name="barcode_number"/>
+                                <field name="barcode_number" readonly="1"/>
                                 <field name="number_of_pieces"/>
                                 <field name="weight"/>
                                 <field name="total_weight"/>
@@ -155,7 +155,7 @@
             <field name="arch" type="xml">
                 <kanban>
                     <field name="name"/>
-                    <field name="barcode_number"/>
+                    <field name="barcode_number" />
                     <field name="project_id"/>
                     <field name="location_removed_id"/>
                     <field name="category_id"/>
@@ -270,7 +270,7 @@
                         <group>
                             <group string="Equipment container details">
                                 <field name="name"/>
-                                <field name="barcode_number"/>
+                                <field name="barcode_number" readonly="1"/>
                                 <field name="number_of_pieces"/>
                                 <field name="weight"/>
                                 <field name="total_weight"/>
