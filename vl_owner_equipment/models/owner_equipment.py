@@ -24,7 +24,7 @@ class OwnerEquipment(models.Model):
     _description = 'Equipment owned by client'
 
     name = fields.Char(string='Item name', track_visibility='onchange')
-    barcode_number = fields.Char(string='Bar Code', readonly=True)
+    barcode_number = fields.Char(string='Bar Code')
     project_id = fields.Many2one('owner.equipment.project', track_visibility='onchange')
     date_removed = fields.Datetime(default=lambda self: fields.datetime.now(),
                                    string='Date/Time removed',
@@ -158,7 +158,7 @@ class OwnerEquipmentContainer(models.Model):
     _description = 'Storage containers (box, cartes, ect.)'
 
     name = fields.Char(string='Name', track_visibility='onchange')
-    barcode_number = fields.Char(string='Bar Code', readonly=True)
+    barcode_number = fields.Char(string='Bar Code')
     project_id = fields.Many2one('owner.equipment.project', track_visibility='onchange')
     date_removed = fields.Datetime(default=lambda self: fields.datetime.now(),
                                    string='Date/Time removed',

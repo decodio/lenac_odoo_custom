@@ -87,7 +87,7 @@
                                 <field name="number_of_pieces"/>
                                 <field name="weight"/>
                                 <field name="total_weight"/>
-                                <field name="damaged" string="Stored in container"/>
+                                <field name="damaged"/>
                                 <field name="category_id" domain="[('project_category_id', '=', category_id)]"/>
                                 <field name="subcategory_id" domain="[('owner_subcategory_id', '=', category_id)]"/>
                             </group>
