@@ -92,7 +92,7 @@
                                 <field name="subcategory_id" domain="[('owner_subcategory_id', '=', category_id)]"/>
                             </group>
                             <group string="Location details">
-                                <field name="project_id"/>
+                                <field name="project_id" string="Project"/>
                                 <field name="removal_responsible_id"/>
                                 <field name="date_removed"/>
                                 <field name="location_removed_id" domain="[('project_location_id', '=', project_id)]"/>
@@ -468,7 +468,7 @@
                             <field name="name"/>
                             <field name="location_code"/>
                             <field name="project_location_id" string="Project"/>
-                            <field name="project_sublocation_ids" string="Sublocation"/>
+                            <field name="project_sublocation_ids" string="Sublocation"/>                           >
                         </group>
                     </sheet>
                 </form>
