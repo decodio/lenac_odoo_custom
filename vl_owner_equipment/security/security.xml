@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="owner_equipment">
+          <field name="name">Owner Equipment</field>
+          <field name="description">User access level for this module</field>
+          <field name="sequence">7</field>
+        </record>
+        <record id="owner_equipment_user" model="res.groups">
+            <field name="name">Owner Equipment User</field>
+            <field name="category_id" ref="vl_owner_equipment.owner_equipment"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+        <record id="owner_equipment_manager" model="res.groups">
+          <field name="name">Equipment Manager</field>
+          <field name="implied_ids" eval="[(4, ref('vl_owner_equipment.owner_equipment_user'))]"/>
+          <field name="users" eval="[(4, ref('base.user_root'))]"/>
+          <field name="category_id" ref="vl_owner_equipment.owner_equipment"/>
+        </record>
+        <record id="owner_equipment_project_manager" model="res.groups">
+          <field name="name">Project Equipment Manager</field>
+          <field name="implied_ids" eval="[(4, ref('vl_owner_equipment.owner_equipment_manager'))]"/>
+          <field name="users" eval="[(4, ref('base.user_root'))]"/>
+          <field name="category_id" ref="vl_owner_equipment.owner_equipment"/>
+        </record>
+        <record id="owner_equipment_administrator" model="res.groups">
+          <field name="name">Equipment Administrator</field>
+          <field name="implied_ids" eval="[(4, ref('vl_owner_equipment.owner_equipment_project_manager'))]"/>
+          <field name="users" eval="[(4, ref('base.user_root'))]"/>
+          <field name="category_id" ref="vl_owner_equipment.owner_equipment"/>
+        </record>
+    </data>
+</odoo>
