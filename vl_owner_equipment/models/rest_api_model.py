@@ -34,6 +34,7 @@ class RestApiModel(models.Model):
                 'qaqc_item': qaqc_item,
                 'qaqc_page': qaqc_page
 
+
             }
             owner_equipment_model = self.env['owner.equipment']
             res = owner_equipment_model.create(vals)
@@ -57,7 +58,8 @@ class RestApiModel(models.Model):
         optional_fields = ['name', 'description', 'date_reinstalled', 'weight', 'number_of_pieces', 'document_link',
                            'qaqc_item', 'qaqc_page', 'damaged', 'active', 'project_id', 'removal_responsible_id',
                            'location_removed_id', 'sub_location_removed_id', 'location_reinstalled_id',
-                           'sub_location_reinstalled_id', 'category_id', 'subcategory_id', 'stored_container_id']
+                           'sub_location_reinstalled_id', 'category_id', 'subcategory_id', 'stored_container_id',
+                           'document_link']
 
         int_fields = ['project_id',
                       'removal_responsible_id',
